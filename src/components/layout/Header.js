@@ -1,65 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../../App.css";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import './header.css';
 
-export default function Header() {
+function Header() {
+
   return (
-    <header className="transparent scroll-dark">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="de-flex sm-pt10">
-              <div className="de-flex-col">
-                <div className="de-flex-col">
-                  <div id="logo">
-                    <a>
-                      <img alt="" src="/assets/images/logo-6.jpg" />
-                    </a>
-                  </div>
-                </div>
-                <div className="de-flex-col">
-                  <input
-                    id="quick_search"
-                    className="xs-hide style-1 form-element"
-                    name="quick_search"
-                    placeholder="Search"
-                    type="text"
-                  />
-                </div>
+    <Navbar bg="light" expand="lg" id='navbars' className='navbarsContainer' collapseOnSelect>
+      <Container className='navbarsContainer'>
+        <Navbar.Brand as={HashLink} to="/" href="#homeone" style={{ width: '50%' }}><img alt="logo" src="/assets/images/logo-6.jpg" className='handleImage' /></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="NavbarToggle" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={Link} to="/home" href="#home" className='menuText'>Home</Nav.Link>  
+            {/* <div class="dropdown-menus">
+              <button class="menu-btns">Countries </button>
+              <div class="menu-contents">
+                <Nav.Link as={HashLink} to="/Singapore" className='menuText'>Singapore</Nav.Link>
+                <Nav.Link as={HashLink} to="/malaysia" className='menuText'>Malaysia</Nav.Link>
+                <Nav.Link as={HashLink} to="/india" className='menuText'>India</Nav.Link>
+                
               </div>
-              <div className="de-flex-col header-col-mid">
-                <ul id="mainmenu">
-                  <li>
-                    <a href="/">
-                      Home<span></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      Countries<span></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      Types<span></span>
-                    </a>
-                  </li>
-                </ul>
+            </div> */}
 
-                <div className="menu_side_area">
-                  <Link to="/connect_wallet">
-                    <a className="btn-main btn-wallet">
-                      <i className="icon_wallet_alt"></i>
-                      <span>Connect Wallet</span>
-                    </a>
-                  </Link>
-                  <span id="menu-btn"></span>
-                </div>
+            <div class="dropdown-menus">
+              <button class="menu-btns">Types </button>
+              <div class="menu-contents">
+                <Nav.Link as={HashLink} href="#souven" to="/souvenirNft" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
+                <Nav.Link as={HashLink} to="/mealnft" href='#meal' className='menuText dropdown-text'>Meal NFT</Nav.Link>
+                 
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </header>
+
+            <Nav.Link as={HashLink} to="/connect_wallet" className='menuText'><button class="button-18" role="button"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
+
+export default Header;
+

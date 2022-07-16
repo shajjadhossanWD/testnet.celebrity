@@ -1,0 +1,226 @@
+.isActive {
+  font-weight: 600;
+  border-bottom: 1px solid #000;
+}
+ 
+#navbars {
+  z-index: 200 !important;
+  height: 80px !important;
+  width: 100% !important;
+  position: fixed !important;
+  background: #1A1A25!important;
+}
+
+.navbarsContainer {
+  background: #1A1A25 !important;
+}
+
+.handleImage {
+  width: 10%;
+}
+ 
+.NavbarToggle {
+  background: rgb(194, 194, 194);
+}
+
+.listItem {
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+
+
+/* ------------------------------------- */
+.button-18 {
+  align-items: center;
+  background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%);
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.button-18:hover,
+.button-18:focus { 
+  background-color: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%);
+  color: #ffffff;
+}
+
+.button-18:active {
+  background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%);
+  color: rgb(255, 255, 255, .7);
+}
+
+.button-18:disabled { 
+  cursor: not-allowed;
+  background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%);;
+  color: rgba(0, 0, 0, .3);
+}
+
+ 
+ /* ----------------------------------------- */
+
+
+.menuText {
+  font-size: medium;
+  font-weight: 400 !important;
+  color: white !important;
+  margin-left: 15px;
+}
+
+div#responsive-navbar-nav {
+  justify-content: flex-end;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center !important;
+}
+
+
+#collasible-nav-dropdown {
+  font-size: large;
+  font-weight: 400 !important;
+  color: white !important;
+  margin-left: 5px;
+}
+
+.img-fluids {
+  width: 8% !important;
+  /* margin-left: -80px !important; */
+}
+
+button.mt-2.navbar-toggler.collapsed {
+  color: rgb(207, 207, 207);
+  background: #bebebe;
+  border-color: rgb(255 255 255 / 10%);
+}
+  
+
+
+.dropdown-menus {
+  position: relative;
+  display: inline-block;
+  background: none;
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-contents {
+  display: none;
+  position: absolute;
+  color: white !important;
+  background-color: #1A1A25 !important;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 300;
+  margin-top: 25px;
+  border-radius: 5px 50px 5px 5px;
+  padding: 10px;
+}
+
+.menu-btns {
+  background: none;
+  color: white; 
+  font-size: 16px;
+  border: none;
+}
+
+
+.links {
+  color: rgb(255, 255, 255);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menus:hover .menu-contents {
+  display: block;
+}
+
+
+/* -------------------------------------- */
+
+@media only screen and (max-width: 900px) {
+  .line-one {
+    width: 413px;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  
+
+  .img-fluid {
+    margin-left: 16px !important; 
+    width: 100%;
+  }
+  .background-nav {
+    background: #000000;
+    padding-bottom: 20px;
+  }
+
+  #navbar {
+    background: #000000 !important
+  }
+
+  .menuText { 
+    margin-left: 0 !important;
+  }
+  .menu-contents {
+    border-radius: 5px 5px 5px 5px;
+  }
+
+  .dropdown-text{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .img-fluid {
+    margin-left: -80px !important; 
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .handleImage {
+    width: 30%;
+  }
+}
+
+@media (min-width: 576px) {
+  .navStyle {
+    padding: 30px 0px;
+  }
+}
+
+@media screen and (min-width: 441px) and (max-width: 575px) {
+  .handleImage {
+    width: 30%;
+  }
+}
+
+
+ 

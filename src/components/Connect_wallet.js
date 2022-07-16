@@ -1,4 +1,4 @@
-import React from "react";
+import './layout/css/style.css';
 
 export default function Connect_wallet() {
   return (

@@ -1,0 +1,38 @@
+.mainPartFooter {
+    /* text-align: center; */
+    margin-bottom: 50px;
+}
+
+.secondPartFooter {
+    border-top: 1px solid rgb(151, 151, 151);
+}
+
+.handleSpace {
+    margin-top: -10px;
+    color: rgb(145, 145, 145);
+}
+
+.footerBody {
+    background-color: #1A1A25;
+}
+
+@media screen and (max-width:440px) {
+    .handleFlex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .handleForWidth {
+        width: 250px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 50px;
+    }
+
+    .handleingCenterforSmall {
+        text-align: center;
+        margin-left: 50px;
+    }
+}

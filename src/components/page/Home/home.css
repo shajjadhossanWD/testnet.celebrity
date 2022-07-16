@@ -1,0 +1,14 @@
+.bannerBg{
+  background-image: url("https://i.ibb.co/z6W1CJf/20-dc5e2b870a07316225ec.jpg"); /* The image used */  
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+ 
+}
+
+/* ----------------HowItWorks-------------- */
+.backgroundSection{
+  background-color: #1A1A25!important;
+  padding-top: 50px;
+  padding-bottom: 50px !important;
+}

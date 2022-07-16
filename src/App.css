@@ -6,6 +6,7 @@
   height: 40vmin;
   pointer-events: none;
 }
+ 
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -32,6 +33,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -41,12 +43,116 @@
   font-size: 70px;
 }
 
- .form-element {
+.form-element {
   display: table-cell;
   box-sizing: border-box;
 }
 
 .xs-hide {
-        display: none;
-    }
+  display: none;
+}
 
+.banner-text {
+  margin-top: -20px;
+
+}
+
+span.navbar-toggler-icon {
+  width: 23px;
+}
+
+
+ 
+
+/* -------------Footer css---------------------- */
+.footer-main{
+  background-color: #1A1A25;
+}
+.text-center.my-3.footer {
+  position: relative;
+}
+
+.made-love {
+  color: rgb(236, 81, 81);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+p.text-light.mb-0 {
+  align-items: center;
+  display: flex;
+}
+
+.icon-part {
+  text-decoration: none;
+}
+
+.icon-sm {
+  height: 30px;
+  width: 30px;
+  background-color: rgb(66, 66, 66);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-sm .icons {
+  color: #DC3545;
+  text-decoration: none;
+}
+
+.pricing-image-home img {
+  opacity: .9;
+  width: 100%;
+  border-radius: 7px;
+}
+ 
+
+
+.d-flex.justify-content-center.gap-3.flex-row {
+  display: flex;
+  justify-content: center;
+}
+ 
+@media only screen and (max-width: 769px) {
+  .social_link_wrapper{
+    justify-content: center !important;
+  }
+}
+/* --------------------------------- */
+
+
+@media only screen and (max-width: 900px) and (min-width: 700px) {
+  .line-one {
+    width: 413px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .line-one {
+    width: auto;
+    letter-spacing: 5px !important;
+  }
+
+  .handleImgforRespons {
+    margin-left: 50px !important;
+    margin-top: 20px !important;
+    width: 70% !important;
+  }
+
+  .img-fluids {
+    width: 20% !important;
+  }
+
+  .font-resize {
+    line-height: 50px !important;
+  }
+
+
+  .font-resize {
+    font-size: 40px;
+  }
+}
+
+ 

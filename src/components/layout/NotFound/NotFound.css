@@ -1,0 +1,19 @@
+/* responsive  */
+
+@media screen and (max-width: 440px) {
+    .handleImg {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .handleHeigth {
+        height: 500px !important;
+    }
+}
+
+@media screen and (min-width: 441px) and (max-width: 840px) {
+    .handleImg {
+        width: auto !important;
+        height: auto !important;
+    }
+}

@@ -1,0 +1,74 @@
+[ 
+    { 
+    "image": "/assets/images/misc/women-statue.png",
+    "image2":"/assets/images/items-alt/static-8.jpg",
+    "cost": 0.08, 
+    "name": "Delectus Antiendotoxin",
+    "stock": "1/20", 
+    "fvt": "50"
+    },
+    { 
+        "aircraftName": "Surfusion Underfalconer",
+        "image": "/assets/images/author/author-10.jpg",
+        "image2":"/assets/images/items-alt/static-10.jpg",
+        "cost": 0.06, 
+        "name": "Delectus Antiendotoxin",
+        "stock": "1/22", 
+        "fvt": "80"
+        },
+        {  
+            "image": "/assets/images/author/author-11.jpg",
+            "image2":"/assets/images/items-alt/static-9.jpg",
+            "cost": 0.02, 
+            "name": "Buccocervical #203",
+            "stock": "1/11", 
+            "fvt": "97"
+            },
+            { 
+        
+                "image": "/assets/images/author/author-12.jpg",
+                "image2":"/assets/images/items-alt/static-7.jpg",
+                "cost": 0.02, 
+                "name": "AnimeSailorClub #304",
+                "stock": "1/15", 
+                "fvt": "37"
+                },
+                { 
+            
+                    "image":"/assets/images/author/author-9.jpg",
+                    "image2":"/assets/images/items-alt/static-7.jpg",
+                    "cost": 0.06, 
+                    "name": "The Truth",
+                    "stock": "1/20", 
+                    "fvt": "26"
+                    },
+                    { 
+                
+                        "image": "/assets/images/author/author-2.jpg",
+                        "image2":"/assets/images/items-alt/static-5.jpg",
+                        "cost": 0.03,  
+                        "name": "Running Puppets",
+                        "stock": "1/24", 
+                        "fvt": "45"
+                        },
+
+                        { 
+                    
+                            "image": "/assets/images/author/author-3.jpg",
+                            "image2":"/assets/images/items-alt/static-6.jpg",
+                            "cost": 0.09, 
+                            "name": "Green Frogman",
+                            "stock": "1/25", 
+                            "fvt": "76"
+                            },
+                            { 
+                        
+                                "image": "/assets/images/author/author-4.jpg",
+                                "image2":"/assets/images/items/anim-5.webp",
+                                "cost": 0.09, 
+                                "name": "Loop Donut",
+                                "stock": "1/14", 
+                                "fvt": "94"
+                                } 
+        
+    ]
