@@ -14,7 +14,7 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="NavbarToggle" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/home" href="#home" className='menuText'>Home</Nav.Link>  
+            <Nav.Link as={Link} to="/home" href="#home" className='menuText'>Home</Nav.Link>
             {/* <div class="dropdown-menus">
               <button class="menu-btns">Countries </button>
               <div class="menu-contents">
@@ -30,10 +30,11 @@ function Header() {
               <div class="menu-contents">
                 <Nav.Link as={HashLink} href="#souven" to="/souvenirNft" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
                 <Nav.Link as={HashLink} to="/mealnft" href='#meal' className='menuText dropdown-text'>Meal NFT</Nav.Link>
-                 
+
               </div>
             </div>
 
+            <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link>
             <Nav.Link as={HashLink} to="/connect_wallet" className='menuText'><button class="button-18" role="button"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </Nav.Link>
           </Nav>
         </Navbar.Collapse>
