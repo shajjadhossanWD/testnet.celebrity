@@ -23,7 +23,7 @@ const MealNFT = () => {
             </div>
             <Container className="SouvenirNFT_card row pt-2">  
                 {
-                  isMeal.map((data, idx) => (
+                  isMeal?.map((data, idx) => (
                     <div key={{idx}} className="col-sm-12 col-md-4 col-lg-3 p-2">
                       <div class="card">
                          <div className="nft__item_like like_card">

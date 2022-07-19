@@ -57,7 +57,7 @@ function MealSlider() {
     return (
       <Slider {...settings} className="gap-2">
            {
-            isMeal.map((data, idx)=>(
+            isMeal?.map((data, idx)=>(
               <div key={idx} className="d-item1">
                <div class="card">
                  <div className="nft__item_like like_card">
