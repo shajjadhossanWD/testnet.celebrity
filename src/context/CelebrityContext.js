@@ -1,4 +1,7 @@
+import { forwardRef, useContext } from "react";
 import React, { createContext, useState, useEffect } from "react";
+import { ethers } from "ethers";
+
 import swal from "sweetalert";
 import axios from "axios";
 import {
@@ -63,7 +66,7 @@ export default function CelebrityProvider({ children }) {
     checkIfWalletIsConnect();
   }, []);
 
-  const mintTicketNFTTestnetBNB = async (uriNft, data) => {
+  const mintTicketNFTTestnetBNB = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
         const chainid = await window.ethereum.request({
@@ -76,7 +79,7 @@ export default function CelebrityProvider({ children }) {
           const provider = new ethers.providers.Web3Provider(ethereum);
           // const conversion = await axios.get("https://free.currconv.com/api/v7/convert?q=USD_SGD&compact=ultra&apiKey=e5b6419c6d8fc5692df5");
           // const USD = 3000/conversion.data.USD_SGD;
-          const USD = 300 / 1.4;
+          const USD = mintPrice / 1.4;
           console.log(USD);
           const price1 = await axios.get(
             "https://api.pancakeswap.info/api/v2/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
@@ -117,12 +120,12 @@ export default function CelebrityProvider({ children }) {
           return mint_hash;
         } else {
           console.log("No ethereum object");
-          setRequestLoading(false);
+          //setRequestLoading(false);
         }
       }
     } catch (error) {
       console.log(error);
-      setRequestLoading(false);
+      //setRequestLoading(false);
       if (error.code === -32603) {
         swal({
           title: "Attention",
@@ -146,7 +149,7 @@ export default function CelebrityProvider({ children }) {
     }
   };
 
-  const mintTicketNFTTestnetUSDSC = async (uriNft, data) => {
+  const mintTicketNFTTestnetUSDSC = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
         const chainid = await window.ethereum.request({
@@ -160,7 +163,7 @@ export default function CelebrityProvider({ children }) {
           console.log(USDSCTokenContract);
           const provider = new ethers.providers.Web3Provider(ethereum);
           // const conversion = await axios.get("https://free.currconv.com/api/v7/convert?q=USD_SGD&compact=ultra&apiKey=e5b6419c6d8fc5692df5");
-          const USD = (3000 / 1.4).toString();
+          const USD = (mintPrice / 1.4).toString();
           // const USD = 300/conversion.data.USD_SGD;
           console.log(USD);
           const parsedAmount = ethers.utils.parseEther(USD);
@@ -207,12 +210,12 @@ export default function CelebrityProvider({ children }) {
           return mint_hash;
         } else {
           console.log("No ethereum object");
-          setRequestLoading(false);
+          //setRequestLoading(false);
         }
       }
     } catch (error) {
       console.log(error);
-      setRequestLoading(false);
+      //setRequestLoading(false);
       if (error.code === -32603) {
         swal({
           title: "Attention",
@@ -236,7 +239,7 @@ export default function CelebrityProvider({ children }) {
     }
   };
 
-  const mintTicketNFTTestnetDSL = async (uriNft, data) => {
+  const mintTicketNFTTestnetDSL = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
         const chainid = await window.ethereum.request({
@@ -250,7 +253,7 @@ export default function CelebrityProvider({ children }) {
           console.log(USDSCTokenContract);
           const provider = new ethers.providers.Web3Provider(ethereum);
           // const conversion = await axios.get("https://free.currconv.com/api/v7/convert?q=USD_SGD&compact=ultra&apiKey=e5b6419c6d8fc5692df5");
-          const USD = (2100 / 1.4).toString();
+          const USD = (mintPrice / 1.4).toString();
           // const USD = 300/conversion.data.USD_SGD;
           console.log(USD);
           const parsedAmount = ethers.utils.parseEther(USD);
@@ -290,12 +293,12 @@ export default function CelebrityProvider({ children }) {
           return mint_hash;
         } else {
           console.log("No ethereum object");
-          setRequestLoading(false);
+          //setRequestLoading(false);
         }
       }
     } catch (error) {
       console.log(error);
-      setRequestLoading(false);
+      //setRequestLoading(false);
       if (error.code === -32603) {
         swal({
           title: "Attention",
@@ -363,6 +366,7 @@ export default function CelebrityProvider({ children }) {
 
   const connectWallet = async (wallet) => {
     try {
+      console.log("connect");
       if (window.innerWidth < 576 && !ethereum) {
         return swal({
           title: "Attention",
@@ -469,6 +473,9 @@ export default function CelebrityProvider({ children }) {
         setUser,
         chain,
         logOut,
+        mintTicketNFTTestnetBNB,
+        mintTicketNFTTestnetUSDSC,
+        mintTicketNFTTestnetDSL,
       }}
     >
       {children}
