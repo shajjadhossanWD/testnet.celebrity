@@ -60,7 +60,7 @@ export default function () {
                      Explore
                    </a>
                  </div>
-                 <div className="col-md-6 offset-md-1">
+                 <div className="col-md-6 offset-md-1 d-flex" style={{justifyContent: 'center'}} >
                    <img
                      src="/assets/images/misc/women-statue.png"
                      className="lazy img-fluid wow fadeIn handleImgforRespons"

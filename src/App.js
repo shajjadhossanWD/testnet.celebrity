@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from "react-router-dom";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import Connect_wallet from "./components/Connect_wallet";
 import Landing from "./components/layout/Landing";
 import NotFound from './components/layout/NotFound/NotFound';

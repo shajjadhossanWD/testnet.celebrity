@@ -21,7 +21,7 @@ const MealNFT = () => {
             <div style={{ backgroundColor: '#1A1A25' }}>
                <h1 style={{ marginTop: '80px' }} className='text-gradient text-center pt-5 text-uppercase'>Meal NFT</h1>
             </div>
-            <Container className="SouvenirNFT_card row pt-2">  
+            <Container className="SouvenirNFT_card row pt-2 ">  
                 {
                   isMeal?.map((data, idx) => (
                     <div key={{idx}} className="col-sm-12 col-md-4 col-lg-3 p-2">

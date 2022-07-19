@@ -43,8 +43,8 @@ function Home() {
                    <p className=" lead" data-wow-delay="2s">
                      <h4>The largest collection of NFTs with purpose</h4>
                    </p>
-                   <div className="mb-sm-30"></div>
-   
+                   <div className="mb-sm-30"></div> 
+ 
                    <a
                      href="03_grey-explore.html"
                      className="btn-main lead mt-3" 
@@ -52,7 +52,7 @@ function Home() {
                      Explore
                    </a>
                  </div>
-                 <div className="col-md-6 offset-md-1">
+                 <div className="col-md-6 offset-md-1 d-flex" style={{justifyContent: 'center'}}>
                    <img
                      src="/assets/images/misc/women-statue.png"
                      className="lazy img-fluid fadeIn handleImgforRespons" 

@@ -46,8 +46,7 @@ function SouvenirSlider() {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows:false
+          slidesToScroll: 1
         }
       }
     ]
@@ -56,65 +55,391 @@ function SouvenirSlider() {
     return ( 
       <div> 
       <Slider {...settings} className="gap-2">
-        {
-          isSouvenir.map((data, idx)=>(
-            <div key={idx} className="d-item1">
+      <div className="d-item1">
                <div class="card">
-               <div className="nft__item_like like_card">
-                   <i className="fa fa-heart"></i>
-                   <span>{data.fvt}</span>
-                </div>
-               <div class="card-img" style={{backgroundImage:`url(${data.image})`}}>
-               	<div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
-               		 <div className="d-flex card_hover_icon">
-                     <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
-                         <i className="fa-brands fa-linkedin-in icons" ></i> 
-                     </a>    
-                     <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
-                         <i className="fa-brands fa-twitter icons"></i> 
-                    </a>    
-                    </div>
-                    <div  className="d-flex card_hover_icon">
-                      <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
-                         <i className="fa-brands fa-facebook-f icons"></i> 
-                     </a>  
-                     <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
-                         <i className="fa-brands fa-instagram icons"></i>  
-                     </a>   
-                     <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
-                       <i className="fa fa-envelope fa-lg"  ></i>
-                      </a>
-                     </div> 
-               	</div>
-               </div> 
-               <div class="card-content">
-                 <div className="row"> 
-                      <a href="#!">
-                      <Typography variant="body2">
-                       {data.name} <span></span>
-                      </Typography>
-                   	</a> 
-                     <Typography variant="body2">
-                      {data.type} <span></span>
-                     </Typography>   
-                    <Typography variant="body2">
-                       Price of NFT(SGD):<span> </span>
-                      </Typography>
-                      <Typography variant="body2">
-                      {data.details}<span> </span>
-                      </Typography> 
+                 <div className="nft__item_like like_card">
+                     <i className="fa fa-heart"></i>
+                     <span>50</span>
                   </div>
-                  <hr style={{margin:"10px 0px 10px 0px"}}/>
-                  <div className="d-flex card_bottom_btn_main">
-                    <div className="col-10 d-grid">
-                     <Link to={`/souvenirnft/${data.id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                 <div class="card-img" style={{backgroundImage:`url(https://i.ibb.co/HdR7nSP/logo-6.jpg)`}}>
+                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
+                      <div className="d-flex card_hover_icon">
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                           <i className="fa-brands fa-linkedin-in icons" ></i> 
+                       </a>    
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-twitter icons"></i> 
+                      </a>    
+                      </div>
+                      <div  className="d-flex card_hover_icon">
+                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-facebook-f icons"></i> 
+                       </a>  
+                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-instagram icons"></i>  
+                       </a>   
+                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                         <i className="fa fa-envelope fa-lg"  ></i>
+                        </a>
+                       </div> 
+                   </div>
+                 </div> 
+                 <div class="card-content">
+                   <div className="row"> 
+                        <a href="#!">
+                        <Typography variant="body2">
+                        Name Of NFT:<span></span>
+                        </Typography>
+                       </a> 
+                       <Typography variant="body2">
+                        Type Of NFT: <span></span>
+                       </Typography>   
+                      <Typography variant="body2">
+                         Price Of NFT(SGD):<span> </span>
+                        </Typography>
+                        <Typography variant="body2">
+                         Details Of NFT:<span> </span>
+                        </Typography> 
+                    </div>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <div className="d-flex card_bottom_btn_main">
+                      <div className="col-10 d-grid">
+                       <Link to={`/souvenirnft/souvenir_01`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                      </div> 
                     </div> 
-                  </div> 
-	              </div>
+                  </div>
+                 </div> 
                </div> 
-             </div>
-          ))
-         } 
+               <div className="d-item1">
+               <div class="card">
+                 <div className="nft__item_like like_card">
+                     <i className="fa fa-heart"></i>
+                     <span>60</span>
+                  </div>
+                 <div class="card-img" style={{backgroundImage:`url(https://i.ibb.co/HdR7nSP/logo-6.jpg)`}}>
+                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
+                      <div className="d-flex card_hover_icon">
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                           <i className="fa-brands fa-linkedin-in icons" ></i> 
+                       </a>    
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-twitter icons"></i> 
+                      </a>    
+                      </div>
+                      <div  className="d-flex card_hover_icon">
+                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-facebook-f icons"></i> 
+                       </a>  
+                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-instagram icons"></i>  
+                       </a>   
+                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                         <i className="fa fa-envelope fa-lg"  ></i>
+                        </a>
+                       </div> 
+                   </div>
+                 </div> 
+                 <div class="card-content">
+                   <div className="row"> 
+                        <a href="#!">
+                        <Typography variant="body2">
+                        Name Of NFT:<span></span>
+                        </Typography>
+                       </a> 
+                       <Typography variant="body2">
+                        Type Of NFT: <span></span>
+                       </Typography>   
+                      <Typography variant="body2">
+                         Price Of NFT(SGD):<span> </span>
+                        </Typography>
+                        <Typography variant="body2">
+                         Details Of NFT:<span> </span>
+                        </Typography> 
+                    </div>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <div className="d-flex card_bottom_btn_main">
+                      <div className="col-10 d-grid">
+                       <Link to={`/souvenirnft/souvenir_02`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                      </div> 
+                    </div> 
+                  </div>
+                 </div> 
+               </div>
+               <div className="d-item1">
+               <div class="card">
+                 <div className="nft__item_like like_card">
+                     <i className="fa fa-heart"></i>
+                     <span>80</span>
+                  </div>
+                 <div class="card-img" style={{backgroundImage:`url(https://i.ibb.co/HdR7nSP/logo-6.jpg)`}}>
+                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
+                      <div className="d-flex card_hover_icon">
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                           <i className="fa-brands fa-linkedin-in icons" ></i> 
+                       </a>    
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-twitter icons"></i> 
+                      </a>    
+                      </div>
+                      <div  className="d-flex card_hover_icon">
+                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-facebook-f icons"></i> 
+                       </a>  
+                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-instagram icons"></i>  
+                       </a>   
+                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                         <i className="fa fa-envelope fa-lg"  ></i>
+                        </a>
+                       </div> 
+                   </div>
+                 </div> 
+                 <div class="card-content">
+                   <div className="row"> 
+                        <a href="#!">
+                        <Typography variant="body2">
+                        Name Of NFT:<span></span>
+                        </Typography>
+                       </a> 
+                       <Typography variant="body2">
+                        Type Of NFT: <span></span>
+                       </Typography>   
+                      <Typography variant="body2">
+                         Price Of NFT(SGD):<span> </span>
+                        </Typography>
+                        <Typography variant="body2">
+                         Details Of NFT:<span> </span>
+                        </Typography> 
+                    </div>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <div className="d-flex card_bottom_btn_main">
+                      <div className="col-10 d-grid">
+                       <Link to={`/souvenirnft/souvenir_03`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                      </div> 
+                    </div> 
+                  </div>
+                 </div> 
+               </div>
+               <div className="d-item1">
+               <div class="card">
+                 <div className="nft__item_like like_card">
+                     <i className="fa fa-heart"></i>
+                     <span>90</span>
+                  </div>
+                 <div class="card-img" style={{backgroundImage:`url(https://i.ibb.co/HdR7nSP/logo-6.jpg)`}}>
+                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
+                      <div className="d-flex card_hover_icon">
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                           <i className="fa-brands fa-linkedin-in icons" ></i> 
+                       </a>    
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-twitter icons"></i> 
+                      </a>    
+                      </div>
+                      <div  className="d-flex card_hover_icon">
+                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-facebook-f icons"></i> 
+                       </a>  
+                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-instagram icons"></i>  
+                       </a>   
+                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                         <i className="fa fa-envelope fa-lg"  ></i>
+                        </a>
+                       </div> 
+                   </div>
+                 </div> 
+                 <div class="card-content">
+                   <div className="row"> 
+                        <a href="#!">
+                        <Typography variant="body2">
+                        Name Of NFT:<span></span>
+                        </Typography>
+                       </a> 
+                       <Typography variant="body2">
+                        Type Of NFT: <span></span>
+                       </Typography>   
+                      <Typography variant="body2">
+                         Price Of NFT(SGD):<span> </span>
+                        </Typography>
+                        <Typography variant="body2">
+                         Details Of NFT:<span> </span>
+                        </Typography> 
+                    </div>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <div className="d-flex card_bottom_btn_main">
+                      <div className="col-10 d-grid">
+                       <Link to={`/souvenirnft/souvenir_04`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                      </div> 
+                    </div> 
+                  </div>
+                 </div> 
+               </div>
+               <div className="d-item1">
+               <div class="card">
+                 <div className="nft__item_like like_card">
+                     <i className="fa fa-heart"></i>
+                     <span>90</span>
+                  </div>
+                 <div class="card-img" style={{backgroundImage:`url(https://i.ibb.co/HdR7nSP/logo-6.jpg)`}}>
+                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
+                      <div className="d-flex card_hover_icon">
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                           <i className="fa-brands fa-linkedin-in icons" ></i> 
+                       </a>    
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-twitter icons"></i> 
+                      </a>    
+                      </div>
+                      <div  className="d-flex card_hover_icon">
+                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-facebook-f icons"></i> 
+                       </a>  
+                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-instagram icons"></i>  
+                       </a>   
+                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                         <i className="fa fa-envelope fa-lg"  ></i>
+                        </a>
+                       </div> 
+                   </div>
+                 </div> 
+                 <div class="card-content">
+                   <div className="row"> 
+                        <a href="#!">
+                        <Typography variant="body2">
+                        Name Of NFT:<span></span>
+                        </Typography>
+                       </a> 
+                       <Typography variant="body2">
+                        Type Of NFT: <span></span>
+                       </Typography>   
+                      <Typography variant="body2">
+                         Price Of NFT(SGD):<span> </span>
+                        </Typography>
+                        <Typography variant="body2">
+                         Details Of NFT:<span> </span>
+                        </Typography> 
+                    </div>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <div className="d-flex card_bottom_btn_main">
+                      <div className="col-10 d-grid">
+                       <Link to={`/souvenirnft/souvenir_05`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                      </div> 
+                    </div> 
+                  </div>
+                 </div> 
+               </div>
+               <div className="d-item1">
+               <div class="card">
+                 <div className="nft__item_like like_card">
+                     <i className="fa fa-heart"></i>
+                     <span>70</span>
+                  </div>
+                 <div class="card-img" style={{backgroundImage:`url(https://i.ibb.co/HdR7nSP/logo-6.jpg)`}}>
+                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
+                      <div className="d-flex card_hover_icon">
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                           <i className="fa-brands fa-linkedin-in icons" ></i> 
+                       </a>    
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-twitter icons"></i> 
+                      </a>    
+                      </div>
+                      <div  className="d-flex card_hover_icon">
+                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-facebook-f icons"></i> 
+                       </a>  
+                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-instagram icons"></i>  
+                       </a>   
+                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                         <i className="fa fa-envelope fa-lg"  ></i>
+                        </a>
+                       </div> 
+                   </div>
+                 </div> 
+                 <div class="card-content">
+                   <div className="row"> 
+                        <a href="#!">
+                        <Typography variant="body2">
+                        Name Of NFT:<span></span>
+                        </Typography>
+                       </a> 
+                       <Typography variant="body2">
+                        Type Of NFT: <span></span>
+                       </Typography>   
+                      <Typography variant="body2">
+                         Price Of NFT(SGD):<span> </span>
+                        </Typography>
+                        <Typography variant="body2">
+                         Details Of NFT:<span> </span>
+                        </Typography> 
+                    </div>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <div className="d-flex card_bottom_btn_main">
+                      <div className="col-10 d-grid">
+                       <Link to={`/souvenirnft/souvenir_06`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                      </div> 
+                    </div> 
+                  </div>
+                 </div> 
+               </div>
+               <div className="d-item1">
+               <div class="card">
+                 <div className="nft__item_like like_card">
+                     <i className="fa fa-heart"></i>
+                     <span>56</span>
+                  </div>
+                 <div class="card-img" style={{backgroundImage:`url(https://i.ibb.co/HdR7nSP/logo-6.jpg)`}}>
+                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
+                      <div className="d-flex card_hover_icon">
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                           <i className="fa-brands fa-linkedin-in icons" ></i> 
+                       </a>    
+                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-twitter icons"></i> 
+                      </a>    
+                      </div>
+                      <div  className="d-flex card_hover_icon">
+                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-facebook-f icons"></i> 
+                       </a>  
+                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                           <i className="fa-brands fa-instagram icons"></i>  
+                       </a>   
+                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                         <i className="fa fa-envelope fa-lg"  ></i>
+                        </a>
+                       </div> 
+                   </div>
+                 </div> 
+                 <div class="card-content">
+                   <div className="row"> 
+                        <a href="#!">
+                        <Typography variant="body2">
+                        Name Of NFT:<span></span>
+                        </Typography>
+                       </a> 
+                       <Typography variant="body2">
+                        Type Of NFT: <span></span>
+                       </Typography>   
+                      <Typography variant="body2">
+                         Price Of NFT(SGD):<span> </span>
+                        </Typography>
+                        <Typography variant="body2">
+                         Details Of NFT:<span> </span>
+                        </Typography> 
+                    </div>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <div className="d-flex card_bottom_btn_main">
+                      <div className="d-grid">
+                       <Link to={`/souvenirnft/souvenir_07`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                      </div> 
+                    </div> 
+                  </div>
+                 </div> 
+               </div>
       </Slider>
     </div>
            

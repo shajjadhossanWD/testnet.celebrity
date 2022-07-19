@@ -8,8 +8,6 @@
   pointer-events: none;
 }
  
-
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -70,22 +68,23 @@ span.navbar-toggler-icon {
 .slick-prev:before {
   line-height: 0;
   font-size: 50px !important;
-  color: #ffffff48;
+  color: #ffffff48 !important;
 
 }
 
 button.slick-arrow.slick-prev {
   z-index: 500;
 }
-
-.slick-next:before { 
+ 
+.slick-next:before {
   line-height: 0;
-  font-size: 50px;
-  color: #ffffff48; 
+  font-size: 50px !important;
+  color: #ffffff48 !important;
 
 }
+
 button.slick-arrow.slick-next {
-  right: 0;
+  margin-right: 30px;
   z-index: 500;
 }
  

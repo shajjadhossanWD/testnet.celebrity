@@ -30,14 +30,10 @@ function Header() {
               <div class="menu-contents">
                 <Nav.Link as={HashLink}  href="#Souvenir" to="/souvenirNft#Souvenir" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
                 <Nav.Link as={HashLink}  href="#Meal" to="/mealnft#Meal"   className='menuText dropdown-text'>Meal NFT</Nav.Link>
-                 
-                <Nav.Link as={HashLink} href="#souven" to="/souvenirNft" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
-                <Nav.Link as={HashLink} to="/mealnft" href='#meal' className='menuText dropdown-text'>Meal NFT</Nav.Link>
-
               </div>
             </div>
 
-            <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link>
+            {/* <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link> */}
             <Nav.Link as={HashLink} to="/connect_wallet" className='menuText'><button class="button-18" role="button"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </Nav.Link>
           </Nav>
         </Navbar.Collapse>
