@@ -130,7 +130,7 @@ const DashboardAdmin = () => {
                 </div>
                 <div className="tableNormal ">
 
-                    <Table className='text-white adminDataTable '>
+                    <Table className='text-white adminDataTable' responsive>
 
 
                         <thead>

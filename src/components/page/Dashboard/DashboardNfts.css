@@ -1,0 +1,15 @@
+.nftsBox {
+    background-color: #272d47;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    height: auto;
+}
+
+/* .handleForDnoneinRespo {
+    display: block !important;
+} */
+
+@media screen and (max-width: 460px) {
+    .handleForDnoneinRespo {
+        display: none !important;
+    }
+}

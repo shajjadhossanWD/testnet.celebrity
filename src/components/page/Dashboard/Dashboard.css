@@ -6,15 +6,283 @@
     /* background-color: rgba(0, 0, 0, 0.87); */
 }
 
+.hanleMenuBarForRespo {
+    display: none;
+}
+
 .handleNested {
     width: 250px;
     border-right: 1px solid white;
+    display: block;
 }
 
 .handleOutlet {
-    margin-top: 100px;
+    margin-top: 0px;
     margin-left: 20px;
-    margin-right: 20px;
-    width: 100%;
+    /* margin-right: 200px; */
+    width: 98%;
     /* border: 1px solid red; */
+}
+
+.handleNavbarSecond {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+.imgDashDiv img {
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 80rem;
+}
+
+@media only screen and (max-width: 2100px) {
+
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 81rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 18%;
+        position: absolute;
+        margin-left: 80rem;
+    }
+
+}
+
+@media only screen and (max-width: 1900px) {
+
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 79rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 21%;
+        position: absolute;
+        margin-left: 78rem;
+    }
+
+}
+
+@media only screen and (max-width: 1700px) {
+
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 69.8rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 21%;
+        position: absolute;
+        margin-left: 73rem;
+    }
+
+}
+
+@media only screen and (max-width: 1600px) {
+
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 67.5rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 21%;
+        position: absolute;
+        margin-left: 71rem;
+    }
+
+}
+
+@media only screen and (max-width: 1400px) {
+
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 55rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 20%;
+        position: absolute;
+        margin-left: 62rem;
+    }
+
+}
+
+@media only screen and (max-width: 1294px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 49rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 30%;
+        position: absolute;
+        margin-left: 50rem;
+    }
+
+}
+
+@media only screen and (max-width: 1054px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 34rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 40%;
+        position: absolute;
+        margin-left: 35rem;
+    }
+
+}
+
+@media only screen and (max-width: 964px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 28.2rem;
+    }
+
+    .adminProfile {
+        background-color: #272d47;
+        width: 40%;
+        position: absolute;
+        margin-left: 32rem;
+    }
+
+}
+
+@media only screen and (max-width: 854px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 22.5rem;
+    }
+
+    .navIssue {
+        height: 80px;
+    }
+
+    /* .adminProfile {
+        background-color: #272d47;
+        width: 40%;
+        position: absolute;
+        margin-left: 29rem;
+    } */
+
+}
+
+@media only screen and (max-width: 774px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 19rem;
+    }
+
+    .handleNested {
+        display: none;
+    }
+
+    .hanleMenuBarForRespo {
+        display: block;
+    }
+
+    /* .adminProfile {
+        background-color: #272d47;
+        width: 40%;
+        position: absolute;
+        margin-left: 26rem;
+    } */
+
+}
+
+@media only screen and (max-width: 600px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 18rem;
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 9rem;
+    }
+
+    /* .adminProfile {
+        background-color: #272d47;
+        width: 70%;
+        position: absolute;
+        margin-left: 15rem;
+    } */
+
+}
+
+@media only screen and (max-width: 400px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 8.5rem;
+    }
+
+    /* .adminProfile {
+        background-color: #272d47;
+        width: 70%;
+        position: absolute;
+        margin-left: 15rem;
+    } */
+
+}
+
+@media only screen and (max-width: 365px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 7.6rem;
+    }
+
+    /* .adminProfile {
+        background-color: #272d47;
+        width: 70%;
+        position: absolute;
+        margin-left: 15rem;
+    } */
+
+}
+
+@media only screen and (max-width: 290px) {
+    .imgDashDiv img {
+        width: 42px;
+        border-radius: 50%;
+        margin-left: 3rem;
+    }
+
+    /* .adminProfile {
+        background-color: #272d47;
+        width: 70%;
+        position: absolute;
+        margin-left: 13rem;
+    } */
+
 }
