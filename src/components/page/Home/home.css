@@ -1,9 +1,9 @@
 .bannerBg{
-  background-image: url("https://i.ibb.co/z6W1CJf/20-dc5e2b870a07316225ec.jpg"); /* The image used */  
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
- 
+  /* background-image: url("https://i.ibb.co/z6W1CJf/20-dc5e2b870a07316225ec.jpg"); 
+  background-position: center;  
+  background-repeat: no-repeat;  
+  background-size: cover;   */
+  background: #1A1A25;
 }
 
 /* ----------------HowItWorks-------------- */

@@ -1,3 +1,4 @@
+ 
 .App {
   text-align: center;
 }
@@ -7,6 +8,7 @@
   pointer-events: none;
 }
  
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -61,7 +63,31 @@ span.navbar-toggler-icon {
   width: 23px;
 }
 
+/* ------------------ */
+.d-item1{
+  padding: 8px;
+}
+.slick-prev:before {
+  line-height: 0;
+  font-size: 50px !important;
+  color: #ffffff48;
 
+}
+
+button.slick-arrow.slick-prev {
+  z-index: 500;
+}
+
+.slick-next:before { 
+  line-height: 0;
+  font-size: 50px;
+  color: #ffffff48; 
+
+}
+button.slick-arrow.slick-next {
+  right: 0;
+  z-index: 500;
+}
  
 
 /* -------------Footer css---------------------- */

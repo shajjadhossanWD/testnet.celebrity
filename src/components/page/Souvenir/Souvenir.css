@@ -1,0 +1,39 @@
+.deteilsPageImage{
+    width: 90%;
+}
+.justify_items_center{
+    justify-items: center;
+}
+.align_content_center{
+    align-content: center
+}
+.justify_content_space_around{
+    justify-content: space-around;
+}
+  
+.icon_love_Dtl_box{
+    width: 70px;
+    display: flex;
+    background: #1b2131;
+    padding: 4px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+.justify_content_center{
+    justify-content: center;
+    text-decoration: none;
+}
+.button_dtl{
+    padding: 15px 26px 13px 12px;
+    width: 400px !important;
+}
+
+@media only screen and (max-width: 769px) {
+    .deteilsPageImage{
+        width: 100%;
+    }
+    .button_dtl{
+        width: 200px !important;
+    }
+  }

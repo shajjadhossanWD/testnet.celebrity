@@ -9,7 +9,196 @@
     background: #282c34;
     color: white;
 }
+.souvenirNFT_Box{
+  display: grid;
+  justify-items: center;
+  background: #1A1A25;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 
 .textDect{
     text-decoration: none;
 }
+/* ------------------------------- */
+ 
+.card {
+    width: auto;  
+    border-radius: 4px;
+    box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #242435; 
+  }
+  .card:hover, .card.hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 0 1px 0 rgba(0, 0, 0, 0.25);
+  }
+  .card:hover .card-content, .card.hover .card-content {
+    box-shadow: inset 0 3px 0 0 #ccb65e;
+    border-color: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%) 
+  }
+  .card:hover .card-img .overlay, .card.hover .card-img .overlay {
+    background-color: rgba(25, 29, 38, 0.85);
+    transition: opacity 0.2s ease;
+    opacity: 1;
+  }
+  .card-img {
+    position: relative;
+    height: 224px;
+    width: 224px;
+    background-color: #fff;
+    transition: opacity 0.2s ease;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 15px 15px 0px 15px ;
+    margin-top: 0 !important;
+  }
+  .card-img .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0;
+  }
+  .card-img .overlay .overlay-content {
+    line-height: 224px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+  }
+  .card-img .overlay .overlay-content a {
+    color: #fff;
+    padding: 0 2rem;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .card-img .overlay .overlay-content a:hover, .card-img .overlay .overlay-content a.hover {
+    background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%);
+    border:none;
+  }
+  .card-content {
+    width: 100%;
+    min-height: 104px;
+    background-color: #242435;
+    border-top: 1px solid #e9e9eb;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 15px 15px 10px 15px;
+    transition: all 0.2s ease;
+  }
+  .card-content a {
+    text-decoration: none;
+    color: #202927;
+  }
+  .card-content h2,
+  .card-content a h2 {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .card-content p,
+  .card-content a p {
+    font-size: 0.8rem;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .icon_div_main{
+    justify-content: space-between !important;
+    align-items: center
+  }
+  .icon_div{
+    justify-content: space-around;
+    color: white;
+
+  }
+  .icon_div a{
+    color: #fff !important;
+    font-size: 15px;
+  }
+  .like_card{
+    display: flex !important; 
+    position:static !important; 
+    width: 224px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+  }
+  .card_bottom_btn_main{
+    justify-content: center;
+  }
+
+.paddingDivNone{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.card_button{
+    font-size: 11px; 
+    border-radius: 20px;
+    padding: 9px 12px 6px 12px;
+    border: 1px solid #dee2e6 !important;
+    background: none;
+    color: #dee2e6 !important;
+}
+.card_button:hover{ 
+    background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%) !important;
+    color: #dee2e6 !important;
+    border:none !important;
+    border: 1px solid #242435 !important; 
+}
+.card_button:active{
+  border: none !important;
+}
+.card_button:focus{
+  border: none !important;
+}
+.card_button:disabled{
+  border: none !important;
+}
+.card_hover_icon{
+  align-items: center;
+  justify-content: space-evenly !important;
+
+}
+.card_icon_bg{
+    text-decoration: none;
+    margin: 5px;
+    display: flex;
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%) !important;
+    align-items: center;
+    justify-content: center;
+    color:rgb(255, 255, 255) !important;
+    cursor: pointer !important;
+}
+.icon_div a{
+  cursor: pointer !important;
+}
+
+  @media only screen and (max-width: 900px) {
+    .card {
+      margin: 5px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .card {
+      margin: 20px;
+    }
+  }

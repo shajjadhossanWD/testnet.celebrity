@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { FaFacebook, FaInstagram, FaLinkedin, FaMedium, FaPinterest, FaTelegram, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './Footer.css';
-import { FaFacebook, FaTwitter, FaInstagram, FaTiktok, FaLinkedin, FaPinterest, FaMedium, FaTelegram, FaYoutube } from 'react-icons/fa';
 
 
 const Footer = () => {
@@ -18,9 +17,9 @@ const Footer = () => {
         <>
             <div className='footerBody'>
                 <div className='mainPartFooter text-center'>
-                    <h4 className='pb-4'>Marketplace</h4>
+                    {/* <h4 className='pb-4'>Marketplace</h4> */}
                     <div>
-                        <Link to="/" className='text-decoration-none'><p className='handleSpace text-decoration-none'>All NFTs</p></Link>
+                        <Link to="/" className='text-decoration-none'><p className='handleSpace text-decoration-none' style={{paddingTop: '50px'}}>All NFTs</p></Link>
                         <Link to="/souvenirnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Souvenir NFT</p></Link>
                         <Link to="/mealnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Meal NFT</p></Link>
                     </div>

@@ -1,22 +1,11 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import MealSlider from '../MealNft/Meal.slider';
+import SouvenirSlider from '../Souvenir/Souvenir.slider';
 import './home.css';
-import MealSlider from './Meal.slider';
-import SouvenirSlider from './Souvenir.slider';
 
 
 function Home() {
 
-    const [newData, setData] = useState([]) 
-    useEffect(() => { 
-        axios.get("/celebrity.json")
-            .then(res => {
-                setData(res.data);
-                // setFilterData(res.data.slice(0, 5))
-            });
-        //  home auto open model set state
-            // setAutoOpen(true)
-    }, [])
+    
 
     return (
      <div>
@@ -130,7 +119,7 @@ function Home() {
             <div className="col-lg-12">
               <div className="text-center">
                 <h2>
-                  Celebrity Souvenir <span className="text-gradient">NFTs</span>
+                  Celebrity Souvenir NFTs 
                 </h2>
                 <div className="small-border bg-color-2"></div>
               </div>
@@ -140,8 +129,18 @@ function Home() {
              </div> 
              
              <div className="spacer-double"></div>
-             <MealSlider/>
-             </div>
+             <div className="row fadeIn">
+               <div className="col-lg-12">
+                 <div className="text-center">
+                   <h2>
+                     Celebrity Meal NFTs 
+                   </h2>
+                 <div className="small-border bg-color-2"></div>
+               </div>
+               <MealSlider/>
+              </div>
+            </div>  
+           </div>
          </div>
     </div>
     )

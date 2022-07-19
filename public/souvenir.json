@@ -1,0 +1,76 @@
+[ 
+    { 
+    "id":"souvenir_01",
+    "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+    "price": "Price Of NFT(SGD):", 
+    "name": "Name of NFT:",
+    "type": "Type of NFT:",
+    "details": "Details of NFT:", 
+    "fvt": "50"
+     },
+     { 
+     "id":"souvenir_02",
+     "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+     "price": "Price Of NFT(SGD):", 
+     "name": "Name of NFT:",
+     "type": "Type of NFT:",
+     "details": "Details of NFT:", 
+     "fvt": "60"
+      },
+      { 
+     "id":"souvenir_03",
+     "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+     "price": "Price Of NFT(SGD):", 
+     "name": "Name of NFT:",
+     "type": "Type of NFT:",
+     "details": "Details of NFT:", 
+     "fvt": "70"
+     },
+     { 
+     "id":"souvenir_04",
+     "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+     "price": "Price Of NFT(SGD):", 
+     "name": "Name of NFT:",
+     "type": "Type of NFT:",
+     "details": "Details of NFT:", 
+     "fvt": "50"
+    },
+    { 
+     "id":"souvenir_05",
+     "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+     "price": "Price Of NFT(SGD):", 
+     "name": "Name of NFT:",
+     "type": "Type of NFT:",
+     "details": "Details of NFT:", 
+     "fvt": "90"
+     },
+     { 
+     "id":"souvenir_06",
+     "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+     "price": "Price Of NFT(SGD):", 
+     "name": "Name of NFT:",
+     "type": "Type of NFT:",
+     "details": "Details of NFT:", 
+     "fvt": "110"
+     },
+     { 
+     "id":"souvenir_07",
+     "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+     "price": "Price Of NFT(SGD):", 
+     "name": "Name of NFT:",
+     "type": "Type of NFT:",
+     "details": "Details of NFT:", 
+     "fvt": "59"
+     },
+     { 
+     "id":"souvenir_08",
+     "image": "https://i.ibb.co/HdR7nSP/logo-6.jpg", 
+     "price": "Price Of NFT(SGD):", 
+     "name": "Name of NFT:",
+     "type": "Type of NFT:",
+     "details": "Details of NFT:", 
+     "fvt": "120"
+     }
+     
+        
+    ]

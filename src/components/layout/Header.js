@@ -28,8 +28,8 @@ function Header() {
             <div class="dropdown-menus">
               <button class="menu-btns">Types </button>
               <div class="menu-contents">
-                <Nav.Link as={HashLink} href="#souven" to="/souvenirNft" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
-                <Nav.Link as={HashLink} to="/mealnft" href='#meal' className='menuText dropdown-text'>Meal NFT</Nav.Link>
+                <Nav.Link as={HashLink}  href="#Souvenir" to="/souvenirNft#Souvenir" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
+                <Nav.Link as={HashLink}  href="#Meal" to="/mealnft#Meal"   className='menuText dropdown-text'>Meal NFT</Nav.Link>
                  
               </div>
             </div>
