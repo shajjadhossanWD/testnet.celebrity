@@ -1,0 +1,56 @@
+.addAdminImg {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.dailogueAdmin {
+    background-color: #272D47;
+}
+
+.adminBtnAdd {
+    background-color: #6958BE;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    margin: 1.5rem auto;
+    width: 25%;
+}
+
+.adminBtnAdd11 {
+    background-color: rgb(241, 89, 89);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    margin: 1.5rem auto;
+    width: 25%;
+}
+
+.addAdminImgBtn {
+    background-color: #6958BE;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    margin-bottom: 0.5rem;
+}
+
+.addAdminDiv p {
+    color: rgb(177, 185, 195);
+    margin-bottom: -0.2rem;
+    margin-top: 1rem;
+}
+
+.linkTitle {
+    color: rgb(177, 185, 195);
+}
+
+.addAdminDiv input,
+textarea {
+    background-color: transparent;
+    padding: 6px;
+    border: 1px solid rgb(177, 185, 195);
+    color: rgb(177, 185, 195);
+    border-radius: 5px;
+    width: 100%;
+}
