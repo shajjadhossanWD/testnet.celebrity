@@ -1,6 +1,26 @@
-import './layout/css/style.css';
+import "./layout/css/style.css";
+import { forwardRef, useContext } from "react";
+import { CelebrityContext } from "../context/CelebrityContext";
 
 export default function Connect_wallet() {
+  const {
+    connectWallet,
+    mintTicketNFTTestnetBNB,
+    mintTicketNFTTestnetUSDSC,
+    mintTicketNFTTestnetDSL,
+  } = useContext(CelebrityContext);
+  function test1() {
+    const price = 30;
+    const uri = "https://jsonkeeper.com/b/JD10";
+    //mintTicketNFTTestnetBNB(uri, price);
+    //mintTicketNFTTestnetUSDSC(uri, price);
+    mintTicketNFTTestnetDSL(uri, price);
+  }
+  function test() {
+    const wallet = "Metamask";
+    connectWallet(wallet);
+  }
+
   return (
     <div>
       <div className="no-bottom no-top" id="content">
@@ -19,7 +39,7 @@ export default function Connect_wallet() {
         </section>
 
         <section aria-label="section">
-          <div className="container">
+          <div className="container" onClick={test}>
             <div className="row">
               <div className="col-lg-12 mb30">
                 <a className="box-url">
@@ -40,6 +60,7 @@ export default function Connect_wallet() {
           </div>
         </section>
       </div>
+      {/* <button onClick={test1}>Test1</button> */}
     </div>
   );
 }
