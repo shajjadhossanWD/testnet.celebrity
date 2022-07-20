@@ -226,7 +226,7 @@ const DashboardAdmin = () => {
                                 <td className='text-start adminHidden'>	+8801317762775</td>
                                 <td className='action'>
                                     <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
+                                        <Link to='/dashboard/adminprofile'><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
                                         <button className="deleteBtn"><i className="fas fa-trash"></i></button>
                                     </div>
                                 </td>
