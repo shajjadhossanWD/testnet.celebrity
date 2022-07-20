@@ -24,7 +24,7 @@ const MealNFT = () => {
             <Container className="SouvenirNFT_card row pt-2 ">  
                 {
                   isMeal?.map((data, idx) => (
-                    <div key={{idx}} className="col-sm-12 col-md-4 col-lg-3 p-2">
+                    <div key={{idx}} className="col-sm-12 col-md-4 col-lg-3 p-2 d-flex" style={{justifyContent: 'center' }}>
                       <div class="card">
                          <div className="nft__item_like like_card">
                              <i className="fa fa-heart"></i>
@@ -64,10 +64,10 @@ const MealNFT = () => {
                                 {data.type} <span></span>
                                </Typography>   
                               <Typography variant="body2">
-                                 Price of NFT(SGD):<span> </span>
+                                {data.price}<span> </span>
                                 </Typography>
                                 <Typography variant="body2">
-                                {data.details}<span> </span>
+                                 Details: <Link to={`/mealnft/${data.id}`} classsName="clickHere"> For more details click here </Link>  
                                 </Typography> 
                             </div>
                             <hr style={{margin:"10px 0px 10px 0px"}}/>
@@ -82,6 +82,11 @@ const MealNFT = () => {
                   ))
                 }
              </Container>
+             <div className='d-flex' style={{ justifyContent: 'center'}}>
+                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px"}}>
+                  Pay by DSL and get 30% discount.
+                 </Typography>
+             </div>
            </Box>
         </Fragment>
     );

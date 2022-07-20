@@ -87,8 +87,13 @@ button.slick-arrow.slick-next {
   margin-right: 30px;
   z-index: 500;
 }
- 
-
+/* --------------------------------- */
+.CertificatModalButton{
+  border-radius: 5px !important;
+}
+.titelColor{
+  color:#4e95ff !important;
+}
 /* -------------Footer css---------------------- */
 .footer-main{
   background-color: #1A1A25;
@@ -144,9 +149,20 @@ p.text-light.mb-0 {
   .social_link_wrapper{
     justify-content: center !important;
   }
+  #certificatModal{
+    width: 80% !important;
+  }
 }
 /* --------------------------------- */
-
+.snbjasasdjh{
+  background: brown;
+  margin-top: 8px;
+  margin-bottom: -39px;
+  width: 47px;
+  z-index: 500;
+  height: 47px;
+  border-radius: 50%;
+}
 
 @media only screen and (max-width: 900px) and (min-width: 700px) {
   .line-one {

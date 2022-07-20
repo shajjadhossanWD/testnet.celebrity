@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import "../../App.css";
 import MealSlider from "../page/MealNft/Meal.slider";
@@ -135,6 +136,11 @@ export default function () {
             </div>
 
             <SouvenirSlider/>
+            <div className='d-flex' style={{ justifyContent: 'center'}}>
+                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px"}}>
+                  Pay by DSL and get 30% discount.
+                 </Typography>
+             </div>
           </div>
 
           <div className="spacer-double"></div>
@@ -149,6 +155,11 @@ export default function () {
               </div>
             </div> 
              <MealSlider/>
+             <div className='d-flex' style={{ justifyContent: 'center'}}>
+                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px"}}>
+                  Pay by DSL and get 30% discount.
+                 </Typography>
+             </div>
           </div>
         </div>
       </section>

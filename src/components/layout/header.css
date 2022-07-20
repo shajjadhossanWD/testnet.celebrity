@@ -16,7 +16,7 @@
 }
 
 .handleImage {
-  width: 10%;
+  width: 55%;
 }
  
 .NavbarToggle {
@@ -206,7 +206,7 @@ button.mt-2.navbar-toggler.collapsed {
 
 @media screen and (max-width: 440px) {
   .handleImage {
-    width: 30%;
+    width: 120% !important;
   }
 }
 
@@ -216,11 +216,28 @@ button.mt-2.navbar-toggler.collapsed {
   }
 }
 
-@media screen and (min-width: 441px) and (max-width: 575px) {
-  .handleImage {
-    width: 30%;
+@media screen and (max-width: 575px) {
+  .slick-prev {
+    left: -10px;
   }
+ .slick-next {
+  right: -10px;
+ }
 }
-
+@media screen and (min-width: 360px) and (max-width: 480px) {
+  .d-item1 {
+    display: flex !important;
+    justify-content: center;
+   }
+   .card {
+    width: 75% !important;
+   }
+   .slick-prev {
+    left: 1px;
+  }
+ .slick-next {
+  right: -1px;
+ }
+ }
 
  

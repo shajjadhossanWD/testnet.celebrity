@@ -37,7 +37,10 @@
     background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 90%) !important;
     border: 1px solid rgb(255, 255, 255) !important;
 }
-
+/* ------------------------- */
+.spanDiscount{
+    color:darkseagreen;
+}
 /* --------------------------------- */
 .swal-overlay--show-modal .swal-modal  {
     background: rgb(29, 34, 35)!important;
@@ -54,18 +57,36 @@
   }
   /* ------------------------------------ */
 
+ .card_top_icon {
+    justify-content: flex-end !important;
+    display: flex !important;
+    width: 90%;
+  }  
+  .card-content a {
+    text-decoration: none;
+    color: #71bdac;
+}
+  /* ----------------------------------- */
+
+
 @media only screen and (max-width: 769px) {
     .deteilsPageImage{
         width: 100%;
     }
     .button_dtl{
-        width: 200px !important;
-    }
-    .button_dtl{ 
+        width: 285px !important;
         font-size: 11px !important;
         font-weight: 500;
     }
-    .rpv_center{
-        justify-content: center;
-    }
+     
+    .card_top_icon {
+       
+        width: 100% !important;
+      } 
+   
+  }
+  @media only screen and (max-width: 600px) {
+    
+    
+     
   }

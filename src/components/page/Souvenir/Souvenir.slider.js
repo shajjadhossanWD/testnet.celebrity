@@ -88,17 +88,17 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Souvenir Of Celebrity <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Souvenir NFT <span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
-                        </Typography>
+                         Price Of NFT(SGD): 3000<span> </span>
+                        </Typography> 
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
+                         Details: <Link to={`/souvenirnft/souvenir_01`} classsName="clickHere"> For more details click here </Link>  
                         </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
@@ -143,17 +143,18 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Souvenir Of Celebrity <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Souvenir NFT <span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                         Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
+                         
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
+                         Details: <Link to={`/souvenirnft/souvenir_02`} classsName="clickHere"> For more details click here </Link>  
                         </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
@@ -198,17 +199,17 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Souvenir Of Celebrity <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Souvenir NFT <span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                         Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
+                         Details: <Link to={`/souvenirnft/souvenir_03`} classsName="clickHere"> For more details click here </Link>  
                         </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
@@ -253,17 +254,17 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Souvenir Of Celebrity <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Souvenir NFT <span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                         Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
+                         Details: <Link to={`/souvenirnft/souvenir_04`} classsName="clickHere"> For more details click here </Link>  
                         </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
@@ -308,17 +309,17 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Souvenir Of Celebrity <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Souvenir NFT <span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                         Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
+                         Details: <Link to={`/souvenirnft/souvenir_05`} classsName="clickHere"> For more details click here </Link>  
                         </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
@@ -363,17 +364,17 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Souvenir Of Celebrity <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Souvenir NFT <span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                         Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
+                         Details: <Link to={`/souvenirnft/souvenir_06`} classsName="clickHere"> For more details click here </Link>  
                         </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
@@ -418,25 +419,26 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Souvenir Of Celebrity <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Souvenir NFT <span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                         Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                         Details: <Link to={`/souvenirnft/souvenir_07`} classsName="clickHere"> For more details click here </Link>  
+                        </Typography>  
                     </div>
-                    <hr style={{margin:"10px 0px 10px 0px"}}/>
+                    <hr style={{margin:"10px 0px 10px 0px"}}/> 
                     <div className="d-flex card_bottom_btn_main">
-                      <div className="d-grid">
+                      <div className="col-10 d-grid">
                        <Link to={`/souvenirnft/souvenir_07`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
                       </div> 
                     </div> 
+                     
                   </div>
                  </div> 
                </div>

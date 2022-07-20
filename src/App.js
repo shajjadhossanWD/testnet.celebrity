@@ -6,10 +6,12 @@ import Connect_wallet from "./components/Connect_wallet";
 import Landing from "./components/layout/Landing";
 import NotFound from './components/layout/NotFound/NotFound';
 import Publiclayout from './components/layout/Publiclayout';
+import AboutUs from './components/page/AboutUs/AboutUs';
 import Dashboard from './components/page/Dashboard/Dashboard';
 import DashboardAdmin from './components/page/Dashboard/DashboardAdmin';
 import DashboardNfts from './components/page/Dashboard/DashboardNfts';
 import Home from './components/page/Home/Home';
+import HowItWorks from './components/page/HowItWorks/HowItWorks';
 import India from './components/page/India';
 import Malaysia from './components/page/Malaysia';
 import MealDetails from './components/page/MealNft/Details.Meal';
@@ -36,6 +38,8 @@ function App() {
             <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails/>} />
             <Route path="/mealnft" element={<MealNFT></MealNFT>} />
             <Route path="/mealnft/:mealnId" element={<MealDetails/>} />
+            <Route path="/about_us" element={<AboutUs/>} />
+            <Route path="/how_it_works" element={<HowItWorks/>} />
           </Route>
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
             <Route index element={<DashboardAdmin></DashboardAdmin>} />

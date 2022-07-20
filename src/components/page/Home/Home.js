@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import MealSlider from '../MealNft/Meal.slider';
 import SouvenirSlider from '../Souvenir/Souvenir.slider';
 import './home.css';
@@ -126,6 +127,11 @@ function Home() {
              </div>
 
              <SouvenirSlider/>
+             <div className='d-flex' style={{ justifyContent: 'center'}}>
+                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px"}}>
+                  Pay by DSL and get 30% discount.
+                 </Typography>
+             </div>
              </div> 
              
              <div className="spacer-double"></div>
@@ -138,6 +144,11 @@ function Home() {
                  <div className="small-border bg-color-2"></div>
                </div>
                <MealSlider/>
+               <div className='d-flex' style={{ justifyContent: 'center'}}>
+                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px"}}>
+                  Pay by DSL and get 30% discount.
+                 </Typography>
+             </div>
               </div>
             </div>  
            </div>

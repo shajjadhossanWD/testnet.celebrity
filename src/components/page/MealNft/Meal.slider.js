@@ -29,7 +29,7 @@ function MealSlider() {
             slidesToShow: 3,
             slidesToScroll: 1,
             infinite: true,
-            dots: true
+            dots: false
           }
         },
         {
@@ -37,13 +37,15 @@ function MealSlider() {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1, 
+            dots: false
           }
         },
         {
           breakpoint: 480,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            dots: false
           }
         }
       ]
@@ -85,18 +87,18 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Meal with Celebrity<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Meal NFT<span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
-                        </Typography>
-                        <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                        Price Of NFT(SGD): 3000<span> </span>
+                      </Typography> 
+                      <Typography variant="body2">
+                       Details: <Link to={`/mealnft/meal_01`} classsName="clickHere"> For more details click here </Link>  
+                      </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
                     <div className="d-flex card_bottom_btn_main">
@@ -140,18 +142,18 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Meal with Celebrity<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Meal NFT<span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                        Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                       Details: <Link to={`/mealnft/meal_02`} classsName="clickHere"> For more details click here </Link>  
+                      </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
                     <div className="d-flex card_bottom_btn_main">
@@ -195,18 +197,18 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Meal with Celebrity<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Meal NFT<span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                        Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                       Details: <Link to={`/mealnft/meal_03`} classsName="clickHere"> For more details click here </Link>  
+                      </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
                     <div className="d-flex card_bottom_btn_main">
@@ -250,18 +252,18 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Meal with Celebrity<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Meal NFT<span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                        Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                       Details: <Link to={`/mealnft/meal_04`} classsName="clickHere"> For more details click here.. </Link>  
+                      </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
                     <div className="d-flex card_bottom_btn_main">
@@ -305,18 +307,18 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Meal with Celebrity<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Meal NFT<span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                        Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                       Details: <Link to={`/mealnft/meal_05`} classsName="clickHere"> For more details click here </Link>  
+                      </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
                     <div className="d-flex card_bottom_btn_main">
@@ -360,18 +362,18 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Meal with Celebrity<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Meal NFT<span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                        Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                       Details: <Link to={`/mealnft/meal_06`} classsName="clickHere"> For more details click here </Link>  
+                      </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
                     <div className="d-flex card_bottom_btn_main">
@@ -415,18 +417,18 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT:<span></span>
+                        Name Of NFT : Meal with Celebrity<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
-                        Type Of NFT: <span></span>
+                        Type Of NFT : Celebrity Meal NFT<span></span>
                        </Typography>   
                       <Typography variant="body2">
-                         Price Of NFT(SGD):<span> </span>
+                        Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                         Details Of NFT:<span> </span>
-                        </Typography> 
+                       Details: <Link to={`/mealnft/meal_07`} classsName="clickHere"> For more details click here </Link>  
+                      </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
                     <div className="d-flex card_bottom_btn_main">
