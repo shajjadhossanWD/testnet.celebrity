@@ -42,8 +42,24 @@ const Dashboard = () => {
                             </Offcanvas.Header>
                             <Offcanvas.Body>
                                 <Nav className='d-flex flex-column justify-content-center align-items-center handleNav mx-auto text-center'>
-                                    <Nav.Link className='text-light mb-3' as={CustomLink} to='/dashboard'><span className='pe-3 fs-4'><TiGroup></TiGroup></span> <span className='pe-3'>Admin</span></Nav.Link>
-                                    <Nav.Link className='pe-4 text-light' as={CustomLink} to='/dashboard/dnfts'><span className='pe-4 fs-4'><HiCheckCircle></HiCheckCircle></span> <span>NFTS</span></Nav.Link>
+                                    <Nav.Link
+                                        className='text-light mb-3'
+                                        as={CustomLink}
+                                        to='/dashboard'>
+                                        <span className='pe-3 fs-4'><TiGroup></TiGroup></span> <span className=''>Dashboard</span>
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        className='text-light mb-3'
+                                        as={CustomLink}
+                                        to='/dashboard/dAdmin'>
+                                        <span className='pe-3 fs-4'><TiGroup></TiGroup></span> <span className='pe-3'>Admin</span>
+                                    </Nav.Link>
+                                    <Nav.Link
+                                        className='pe-4 text-light'
+                                        as={CustomLink}
+                                        to='/dashboard/dnfts'>
+                                        <span className='pe-4 fs-4'><HiCheckCircle></HiCheckCircle></span> <span>NFTS</span>
+                                    </Nav.Link>
                                 </Nav>
 
                             </Offcanvas.Body>
@@ -65,8 +81,24 @@ const Dashboard = () => {
                                     </Offcanvas.Header>
                                     <Offcanvas.Body style={{ backgroundColor: '#323246', color: 'white' }}>
                                         <Nav className='d-flex flex-column justify-content-center align-items-center handleNav ps-0 ms-0'>
-                                            <Nav.Link className='ps-2 pe-2 text-light' as={CustomLink} to='/dashboard' href="#admin"><span className='me-2 fs-4'><TiGroup></TiGroup></span> <span>Admin</span></Nav.Link>
-                                            <Nav.Link className='ps-2 pe-2 text-light' as={CustomLink} to='/dashboard/dnfts' href="#nfts"><span className='me-2 fs-4'><HiCheckCircle></HiCheckCircle></span> <span>NFTS</span></Nav.Link>
+                                            <Nav.Link
+                                                className='text-light mb-3'
+                                                as={CustomLink}
+                                                to='/dashboard'>
+                                                <span className='pe-3 fs-4'><TiGroup></TiGroup></span> <span className=''>Dashboard</span>
+                                            </Nav.Link>
+                                            <Nav.Link
+                                                className='text-light mb-3'
+                                                as={CustomLink}
+                                                to='/dashboard/dAdmin'>
+                                                <span className='pe-3 fs-4'><TiGroup></TiGroup></span> <span className='pe-3'>Admin</span>
+                                            </Nav.Link>
+                                            <Nav.Link
+                                                className='pe-4 text-light'
+                                                as={CustomLink}
+                                                to='/dashboard/dnfts'>
+                                                <span className='pe-4 fs-4'><HiCheckCircle></HiCheckCircle></span> <span>NFTS</span>
+                                            </Nav.Link>
                                         </Nav>
                                     </Offcanvas.Body>
                                 </Offcanvas>

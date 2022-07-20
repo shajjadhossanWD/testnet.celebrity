@@ -8,6 +8,7 @@ import NotFound from './components/layout/NotFound/NotFound';
 import Publiclayout from './components/layout/Publiclayout';
 import Dashboard from './components/page/Dashboard/Dashboard';
 import DashboardAdmin from './components/page/Dashboard/DashboardAdmin';
+import DashboardMenu from './components/page/Dashboard/DashboardMenu';
 import DashboardNfts from './components/page/Dashboard/DashboardNfts';
 import Home from './components/page/Home/Home';
 import India from './components/page/India';
@@ -23,7 +24,7 @@ function App() {
   return (
     <div className="dark-scheme de-clivus">
       <div id="wrapper">
-        <ScrollToTop/>      
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Publiclayout></Publiclayout>}>
             <Route path="/" element={<Landing />} />
@@ -33,12 +34,13 @@ function App() {
             <Route path="/malaysia" element={<Malaysia></Malaysia>} />
             <Route path="/singapore" element={<Singapore></Singapore>} />
             <Route path="/souvenirnft" element={<SouvenirNFT></SouvenirNFT>} />
-            <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails/>} />
+            <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails />} />
             <Route path="/mealnft" element={<MealNFT></MealNFT>} />
-            <Route path="/mealnft/:mealnId" element={<MealDetails/>} />
+            <Route path="/mealnft/:mealnId" element={<MealDetails />} />
           </Route>
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-            <Route index element={<DashboardAdmin></DashboardAdmin>} />
+            <Route index element={<DashboardMenu />} />
+            <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
             <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
           </Route>
           <Route path="*" element={<NotFound></NotFound>} />
