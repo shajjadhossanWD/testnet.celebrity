@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { AccountCircleRoundedIcon } from 'react-icons/ac';
-import { EmailRoundedIcon } from 'react-icons/em';
-import { LockOpenRoundedIcon } from 'react-icons/lo';
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import { MdAccountCircle } from 'react-icons/md';
+import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { BiLockOpen } from 'react-icons/bi';
+import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
 
 
@@ -16,7 +16,7 @@ const DashboardAdminEditProfile = () => {
                     <div className="row container mx-auto">
                         <div className="col-lg-7">
                             <p className="d-flex inputProfile">
-                                <span className='iconCreator'><AccountCircleRoundedIcon /></span>
+                                <span className='iconCreator'><MdAccountCircle /></span>
                                 <input
                                     className="creatorsInput form-control"
                                     type="text" name="name"
@@ -32,7 +32,7 @@ const DashboardAdminEditProfile = () => {
                                     placeholder='Username' />
                             </p>
                             <p className="d-flex inputProfile">
-                                <span className='iconCreator'><EmailRoundedIcon /></span>
+                                <span className='iconCreator'><MdOutlineAlternateEmail /></span>
                                 <input
                                     className="creatorsInput form-control"
                                     type="email" name="email" />
@@ -48,7 +48,7 @@ const DashboardAdminEditProfile = () => {
                                 />
                             </p>
                             <p className="d-flex inputProfile">
-                                <span className='iconCreator'><LockOpenRoundedIcon /></span>
+                                <span className='iconCreator'><BiLockOpen /></span>
                                 <input
                                     className="creatorsInput1 form-control"
                                     type="password"
@@ -59,7 +59,7 @@ const DashboardAdminEditProfile = () => {
 
                             </p>
                             <p className="d-flex inputProfile">
-                                <span className='iconCreator'><LockOpenRoundedIcon /></span>
+                                <span className='iconCreator'><BiLockOpen /></span>
                                 <input
                                     className="creatorsInput1 form-control"
                                     type="password"
@@ -69,7 +69,7 @@ const DashboardAdminEditProfile = () => {
 
                             </p>
                             <p className="d-flex inputProfile">
-                                <span className='iconCreator'><LockOpenRoundedIcon /></span>
+                                <span className='iconCreator'><BiLockOpen /></span>
                                 <input
                                     className="creatorsInput1 form-control"
                                     type="password"

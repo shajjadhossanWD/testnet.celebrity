@@ -8,6 +8,7 @@ import NotFound from './components/layout/NotFound/NotFound';
 import Publiclayout from './components/layout/Publiclayout';
 import Dashboard from './components/page/Dashboard/Dashboard';
 import DashboardAdmin from './components/page/Dashboard/DashboardAdmin';
+import DashboardAdminEditProfile from './components/page/Dashboard/DashboardAdminEditProfile';
 import DashboardNfts from './components/page/Dashboard/DashboardNfts';
 import EditNft from "./components/page/Dashboard/EditNft";
 import Home from "./components/page/Home/Home";
@@ -43,6 +44,10 @@ function App() {
           </Route>
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
             <Route index element={<DashboardAdmin></DashboardAdmin>} />
+            <Route
+              path="/dashboard/adminprofile"
+              element={<DashboardAdminEditProfile></DashboardAdminEditProfile>}
+            />
             <Route
               path="/dashboard/dnfts"
               element={<DashboardNfts></DashboardNfts>}
