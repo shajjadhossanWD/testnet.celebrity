@@ -8,6 +8,7 @@ import NotFound from './components/layout/NotFound/NotFound';
 import Publiclayout from './components/layout/Publiclayout';
 import Dashboard from './components/page/Dashboard/Dashboard';
 import DashboardAdmin from './components/page/Dashboard/DashboardAdmin';
+import DashboardMenu from './components/page/Dashboard/DashboardMenu';
 import DashboardNfts from './components/page/Dashboard/DashboardNfts';
 import EditNft from "./components/page/Dashboard/EditNft";
 import Home from "./components/page/Home/Home";
@@ -34,23 +35,15 @@ function App() {
             <Route path="/malaysia" element={<Malaysia></Malaysia>} />
             <Route path="/singapore" element={<Singapore></Singapore>} />
             <Route path="/souvenirnft" element={<SouvenirNFT></SouvenirNFT>} />
-            <Route
-              path="/souvenirnft/:souvenirId"
-              element={<SouvenirDetails />}
-            />
+            <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails />} />
             <Route path="/mealnft" element={<MealNFT></MealNFT>} />
             <Route path="/mealnft/:mealnId" element={<MealDetails />} />
           </Route>
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-            <Route index element={<DashboardAdmin></DashboardAdmin>} />
-            <Route
-              path="/dashboard/dnfts"
-              element={<DashboardNfts></DashboardNfts>}
-            />
-            <Route
-              path="/dashboard/dnfts/editNft"
-              element={<EditNft></EditNft>}
-            />
+            <Route index element={<DashboardMenu />} />
+            <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
+            <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
+            <Route path="/dashboard/dnfts/editNft" element={<EditNft></EditNft>} />
           </Route>
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>
