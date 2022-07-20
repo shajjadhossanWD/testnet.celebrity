@@ -4,9 +4,18 @@
     height: auto;
 }
 
+
 /* .handleForDnoneinRespo {
     display: block !important;
 } */
+
+.nft-edit-button {
+    cursor: pointer;
+}
+
+.nft-delete-button {
+    cursor: pointer;
+}
 
 @media screen and (max-width: 460px) {
     .handleForDnoneinRespo {

@@ -1,0 +1,46 @@
+.edit-nft-card {
+    background: #272d47;
+    margin: 16px;
+    padding: 1.5rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.edit-nft-card-contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.6rem;
+}
+
+.edit-nft-card-content-one {
+    width: 50%;
+}
+
+.edit-nft-card-content-two {
+    width: 50%;
+}
+
+.edit-nft-update-button {
+    color: #fff;
+    background-color: #705ec8;
+    border-color: #705ec8;
+    box-shadow: 0 0px 10px -5px rgb(112 94 200 / 50%);
+}
+
+.edit-nft-update-button:hover {
+    background-color: #6757bc !important;
+    border-color: #6757bc !important;
+}
+
+@media screen and (max-width: 992px) {
+    .edit-nft-card-contents {
+        flex-direction: column;
+    }
+    .edit-nft-card-content-one {
+        width: 100%;
+    }
+    .edit-nft-card-content-two {
+        width: 100%;
+    }
+}

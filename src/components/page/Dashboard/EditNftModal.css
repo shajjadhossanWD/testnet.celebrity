@@ -1,0 +1,35 @@
+.modal-wrap {
+    background-color: #272d47;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 36px 24px 36px 24px;
+    border: 1px solid #ecf0f1;
+    border-radius: 6px;
+}
+
+.modal-cancel-button {
+    width: 86px;
+    background-color: #ecf0f1;
+    border-color: #ecf0f1;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.modal-cancel-button:hover {
+    background-color: blueviolet !important;
+    color: #fff !important;
+    border-color: blueviolet !important;
+}
+
+.modal-ok-button {
+    width: 86px;
+    background-color: blueviolet;
+    border-color: blueviolet !important;
+    font-weight: 700;
+}
+
+.modal-ok-button:hover {
+    background-color: #ecf0f1 !important;
+    color: #2c3e50 !important;
+    border-color: #ecf0f1 !important;
+}

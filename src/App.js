@@ -10,15 +10,16 @@ import Dashboard from './components/page/Dashboard/Dashboard';
 import DashboardAdmin from './components/page/Dashboard/DashboardAdmin';
 import DashboardMenu from './components/page/Dashboard/DashboardMenu';
 import DashboardNfts from './components/page/Dashboard/DashboardNfts';
-import Home from './components/page/Home/Home';
-import India from './components/page/India';
-import Malaysia from './components/page/Malaysia';
-import MealDetails from './components/page/MealNft/Details.Meal';
-import MealNFT from './components/page/MealNft/MealNFT';
-import Singapore from './components/page/Singapore';
-import SouvenirDetails from './components/page/Souvenir/Details.Souvenir';
-import SouvenirNFT from './components/page/Souvenir/SouvenirNFT';
-import ScrollToTop from './components/ScrollToTop';
+import EditNft from "./components/page/Dashboard/EditNft";
+import Home from "./components/page/Home/Home";
+import India from "./components/page/India";
+import Malaysia from "./components/page/Malaysia";
+import MealDetails from "./components/page/MealNft/Details.Meal";
+import MealNFT from "./components/page/MealNft/MealNFT";
+import Singapore from "./components/page/Singapore";
+import SouvenirDetails from "./components/page/Souvenir/Details.Souvenir";
+import SouvenirNFT from "./components/page/Souvenir/SouvenirNFT";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route index element={<DashboardMenu />} />
             <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
             <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
+            <Route path="/dashboard/dnfts/editNft" element={<EditNft></EditNft>} />
           </Route>
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>
