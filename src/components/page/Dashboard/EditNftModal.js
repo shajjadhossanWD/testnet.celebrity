@@ -24,7 +24,7 @@ const EditNftModal = (props) => {
         </div>
         <p>Are you sure? You are going to change this NFT.</p>
         <div className="mt-5 edit-nft-modal-buttons">
-          <Button className="modal-cancel-button me-2">Cancel</Button>
+          <Button className="modal-cancel-button me-2" onClick={props.onHide}>Cancel</Button>
           <Button onClick={handleGoToEditNft} className="modal-ok-button ms-2">
             OK
           </Button>
