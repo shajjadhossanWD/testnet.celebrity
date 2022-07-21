@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
+import Loading from '../../Loading/Loading';
 import './DashboardAdmin.css';
 import DashboardModalNewAdmin from './DashboardModalNewAdmin';
 
@@ -8,18 +9,21 @@ import DashboardModalNewAdmin from './DashboardModalNewAdmin';
 const DashboardAdmin = () => {
     const [modalShowNewAdmin, setModalShowNewAdmin] = useState(false);
     // const [open, setOpen] = React.useState(false);
-    // const [allAdmin, setAllAdmin] = React.useState([]);
+    const [allAdmin, setAllAdmin] = useState([]);
     // const {chains, user1, logOut} = useContext(GrighundContext);
 
-    // useEffect(() => {
-    //   axios.get('https://backend.grighund.net/api/admin/all')
-    //     .then(res => {
-    //       setAllAdmin(res.data.admin);
-    //       console.log(res.data.admin)
-    //     })
-    // }, [open])
+    useEffect(() => {
+        fetch("https://backend.grighund.net/api/admin/all")
+            .then(res => res.json())
+            .then(data => setAllAdmin(data?.admin))
+    }, [])
 
+    // Loading Spinner
+    if (allAdmin <= 0) {
+        return <Loading></Loading>
+    }
 
+    // console.log(allAdmin.admin);
     const handleAdminDelete = (id) => {
         //   const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
         //   if (confirmDelete) {
@@ -48,14 +52,14 @@ const DashboardAdmin = () => {
         //   setOpen(false);
     };
 
-    const [openDelete, setOpenDelete] = React.useState(false);
+    // const [openDelete, setOpenDelete] = useState(false);
 
     // const handleClickOpenDelete = () => {
     //   setOpenDelete(true);
     // };
 
     const handleCloseDelete = () => {
-        setOpenDelete(false);
+        // setOpenDelete(false);
     };
 
     const changeStatus = (id) => {
@@ -145,96 +149,20 @@ const DashboardAdmin = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {
-                allAdmin.map(admin => ( */}
-                            <tr className='tableRow'>
-                                <td align='center'> <img className='imgAdmin' src="https://backend.grighund.net/assets/1652882066696.jpeg" alt="profilePic" /></td>
-                                <td style={{ textTransform: 'lowercase' }} className='text-start'>shajjadhossan</td>
-                                <td className='text-start adminHidden'>	shajjadhossan111@gmail.com</td>
-                                <td className='text-start adminHidden'>	+8801317762775</td>
-                                <td className='action'>
-                                    <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
-                                        <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr className='tableRow'>
-                                <td align='center'> <img className='imgAdmin' src="https://backend.grighund.net/assets/1652882066696.jpeg" alt="profilePic" /></td>
-                                <td style={{ textTransform: 'lowercase' }} className='text-start'>shajjadhossan</td>
-                                <td className='text-start adminHidden'>	shajjadhossan111@gmail.com</td>
-                                <td className='text-start adminHidden'>	+8801317762775</td>
-                                <td className='action'>
-                                    <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
-                                        <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr className='tableRow'>
-                                <td align='center'> <img className='imgAdmin' src="https://backend.grighund.net/assets/1652882066696.jpeg" alt="profilePic" /></td>
-                                <td style={{ textTransform: 'lowercase' }} className='text-start'>shajjadhossan</td>
-                                <td className='text-start adminHidden'>	shajjadhossan111@gmail.com</td>
-                                <td className='text-start adminHidden'>	+8801317762775</td>
-                                <td className='action'>
-                                    <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
-                                        <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr className='tableRow'>
-                                <td align='center'> <img className='imgAdmin' src="https://backend.grighund.net/assets/1652882066696.jpeg" alt="profilePic" /></td>
-                                <td style={{ textTransform: 'lowercase' }} className='text-start'>shajjadhossan</td>
-                                <td className='text-start adminHidden'>	shajjadhossan111@gmail.com</td>
-                                <td className='text-start adminHidden'>	+8801317762775</td>
-                                <td className='action'>
-                                    <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
-                                        <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr className='tableRow'>
-                                <td align='center'> <img className='imgAdmin' src="https://backend.grighund.net/assets/1652882066696.jpeg" alt="profilePic" /></td>
-                                <td style={{ textTransform: 'lowercase' }} className='text-start'>shajjadhossan</td>
-                                <td className='text-start adminHidden'>	shajjadhossan111@gmail.com</td>
-                                <td className='text-start adminHidden'>	+8801317762775</td>
-                                <td className='action'>
-                                    <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
-                                        <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr className='tableRow'>
-                                <td align='center'> <img className='imgAdmin' src="https://backend.grighund.net/assets/1652882066696.jpeg" alt="profilePic" /></td>
-                                <td style={{ textTransform: 'lowercase' }} className='text-start'>shajjadhossan</td>
-                                <td className='text-start adminHidden'>	shajjadhossan111@gmail.com</td>
-                                <td className='text-start adminHidden'>	+8801317762775</td>
-                                <td className='action'>
-                                    <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
-                                        <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr className='tableRow'>
-                                <td align='center'> <img className='imgAdmin' src="https://backend.grighund.net/assets/1652882066696.jpeg" alt="profilePic" /></td>
-                                <td style={{ textTransform: 'lowercase' }} className='text-start'>shajjadhossan</td>
-                                <td className='text-start adminHidden'>	shajjadhossan111@gmail.com</td>
-                                <td className='text-start adminHidden'>	+8801317762775</td>
-                                <td className='action'>
-                                    <div className="actionDiv text-start">
-                                        <Link to='/dashboard/adminprofile'><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
-                                        <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            {/* ))
-               } */}
-
-
+                            {
+                                allAdmin?.map(admin => <tr admin={admin} key={admin._id} className='tableRow'>
+                                    <td align='center'> <img className='imgAdmin' src={admin?.avatar} alt="profilePic" /></td>
+                                    <td style={{ textTransform: 'lowercase' }} className='text-start'>{admin?.username}</td>
+                                    <td className='text-start adminHidden'>{admin?.email}</td>
+                                    <td className='text-start adminHidden'>{admin?.phone}</td>
+                                    <td className='action'>
+                                        <div className="actionDiv text-start">
+                                            <Link to='/dashboard/adminprofile'><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
+                                            <button className="deleteBtn"><i className="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>)
+                            }
                         </tbody>
                     </Table>
                 </div>

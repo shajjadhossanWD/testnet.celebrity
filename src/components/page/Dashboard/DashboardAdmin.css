@@ -3,6 +3,10 @@
     border-radius: 50%;
 }
 
+.adminBody {
+    height: 740px;
+}
+
 .adminCard {
     background-color: #272D47;
     border-radius: 10px;
@@ -128,6 +132,10 @@
 @media only screen and (max-width: 500px) {
     .tableNormal {
         overflow: scroll;
+    }
+
+    .adminBody {
+        height: auto;
     }
 
     .AccessBtn {
