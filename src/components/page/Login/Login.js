@@ -12,8 +12,7 @@ const Login = () => {
 
     return (
         <div className='handleTheLoginBody'>
-            <div className='forFalseHeader'></div>
-            <div className='container mx-auto pt-5'>
+            <div className='container mx-auto'>
                 <div className='pt-5 forCard  w-50 p-5 rounded mx-auto'>
                     <div className='mx-auto text-center'>
                         <img src="https://testnet.grighund.net/static/media/logo192.ea779dfe5e580c22a76f.png" className='handleLogoLogin rounded-pill' alt="logo" />
@@ -53,9 +52,8 @@ const Login = () => {
                                 </Button>
                             </div>
                         </form>
-                    </div>
-
                 </div>
+            </div>
             </div>
         </div >
     );

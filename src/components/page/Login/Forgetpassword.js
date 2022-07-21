@@ -11,9 +11,8 @@ const Forgetpassword = () => {
     return (
         <div>
             <div className='handleTheLoginBody'>
-                <div className='forFalseHeader'></div>
-                <div className='container mx-auto pt-5'>
-                    <div className='pt-5 forCard  w-50 p-5 rounded mx-auto'>
+                <div className='container mx-auto'>
+                    <div className=' forCard  w-50 p-5 rounded mx-auto'>
                         <div className='mx-auto text-center'>
                             <img src="https://testnet.grighund.net/static/media/logo192.ea779dfe5e580c22a76f.png" className='handleLogoLogin rounded-pill' alt="logo" />
                             <p className='fs-1 text-light'>Forgot Password</p>
