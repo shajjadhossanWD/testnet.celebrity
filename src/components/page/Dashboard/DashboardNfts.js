@@ -28,7 +28,7 @@ const DashboardNfts = () => {
   const fakeData = [
     {
       image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Title of NFT",
+      title: "Name Of NFT",
       token: "DSl",
       amount: "1.0",
       price: "0.01038623",
@@ -38,7 +38,7 @@ const DashboardNfts = () => {
     },
     {
       image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Title of NFT",
+      title: "Name Of NFT",
       token: "DSl",
       amount: "1.0",
       price: "0.01038623",
@@ -48,7 +48,7 @@ const DashboardNfts = () => {
     },
     {
       image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Title of NFT",
+      title: "Name Of NFT",
       price: "0.01038623",
       category: "Meal",
       auctionEnd: "	February 19, 2022",
@@ -56,7 +56,7 @@ const DashboardNfts = () => {
     },
     {
       image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Title of NFT",
+      title: "Name Of NFT",
       amount: "1.0",
       price: "0.01038623",
       category: "Meal",
