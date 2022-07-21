@@ -23,6 +23,8 @@ import DashboardAdminEditProfile from './components/page/Dashboard/DashboardAdmi
 import DashboardNfts from './components/page/Dashboard/DashboardNfts';
 import EditNft from "./components/page/Dashboard/EditNft";
 import DashboardMenu from './components/page/Dashboard/DashboardMenu';
+import Login from './components/page/Login/Login';
+import Forgetpassword from './components/page/Login/Forgetpassword';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
@@ -43,6 +45,9 @@ function App() {
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/how_it_works" element={<HowItWorks />} />
           </Route>
+
+          <Route path="/login" element={<Login></Login>} />
+          <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
 
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
             <Route index element={<DashboardMenu></DashboardMenu>} />
