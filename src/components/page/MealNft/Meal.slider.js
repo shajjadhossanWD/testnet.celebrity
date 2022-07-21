@@ -427,7 +427,7 @@ function MealSlider() {
                         Price Of NFT(SGD): 3000<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                       Details: <Link to={`/mealnft/meal_07`} classsName="clickHere"> For more details click here </Link>  
+                       Details: <Link to={`/mealnft/meal_07`} className="clickHere"> For more details click here </Link>  
                       </Typography> 
                     </div>
                     <hr style={{margin:"10px 0px 10px 0px"}}/>
