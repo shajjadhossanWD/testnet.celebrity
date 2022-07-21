@@ -63,13 +63,13 @@ const DashboardNfts = () => {
       auctionEnd: "	February 19, 2022",
       id: 4,
     },
-   
-    
+
+
   ];
 
   return (
     <>
-      <div style={{ color: "white" }}>
+      <div className="handleHeightNFTS">
         <h5 className="ms-2 mb-3">NFTS</h5>
         <Container fluid>
           <div className="nftsBox">

@@ -97,14 +97,14 @@ const DashboardMenu = () => {
     // }
 
     return (
-        <div>
+        <div className='handleHeightDMenu'>
             <div className='container'>
 
-                <h4 className='text-white text-start'>Dashboard</h4>
-                <Row xs={1} md={2} lg={3} xl={4} className="g-4 card-row">
+                <h4 className='text-white text-start marginAlign'>Dashboard</h4>
+                <Row xs={1} md={2} lg={3} xl={4} className="gx-5 card-row">
 
-                    <Col onClick={handleClickOpenAdmin}>
-                        <Card className='cardDash '>
+                    <Col onClick={handleClickOpenAdmin} className="marginAlign">
+                        <Card className='cardDash mx-auto'>
                             <Card.Body className="card-body w-100 d-flex align-items-center justify-content-between">
                                 <Card.Text className='dashboardTxt'>
                                     <p>Admins</p>
@@ -119,8 +119,8 @@ const DashboardMenu = () => {
                         </Card>
                     </Col>
 
-                    <Col onClick={handleClickOpenPolygon}>
-                        <Card className='cardDash '>
+                    <Col onClick={handleClickOpenPolygon} className="marginAlign">
+                        <Card className='cardDash mx-auto'>
                             <Card.Body className="card-body w-100 d-flex align-items-center justify-content-between">
                                 <Card.Text className='dashboardTxt'>
                                     <p>NFTS</p>

@@ -22,6 +22,10 @@ import DashboardAdmin from './components/page/Dashboard/DashboardAdmin';
 import DashboardAdminEditProfile from './components/page/Dashboard/DashboardAdminEditProfile';
 import DashboardNfts from './components/page/Dashboard/DashboardNfts';
 import EditNft from "./components/page/Dashboard/EditNft";
+import DashboardMenu from './components/page/Dashboard/DashboardMenu';
+import Login from './components/page/Login/Login';
+import Forgetpassword from './components/page/Login/Forgetpassword';
+import Otp from './components/page/Login/Otp';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
@@ -36,17 +40,21 @@ function App() {
             <Route path="/malaysia" element={<Malaysia></Malaysia>} />
             <Route path="/singapore" element={<Singapore></Singapore>} />
             <Route path="/souvenirnft" element={<SouvenirNFT></SouvenirNFT>} />
-            <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails />}/>
+            <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails />} />
             <Route path="/mealnft" element={<MealNFT></MealNFT>} />
             <Route path="/mealnft/:mealnId" element={<MealDetails />} />
-            <Route path="/about_us" element={<AboutUs/>} />
-            <Route path="/how_it_works" element={<HowItWorks/>} />
+            <Route path="/about_us" element={<AboutUs />} />
+            <Route path="/how_it_works" element={<HowItWorks />} />
           </Route>
-    
+
+          <Route path="/login" element={<Login></Login>} />
+          <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
+          <Route path="/otp" element={<Otp></Otp>} />
+
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-            <Route index element={<DashboardNfts></DashboardNfts>} />
+            <Route index element={<DashboardMenu></DashboardMenu>} />
             <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
-            <Route path="/dashboard/adminprofile" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>}/>
+            <Route path="/dashboard/adminprofile" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
             <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
             <Route path="/dashboard/dnfts/editNft" element={<EditNft></EditNft>} />
           </Route>
