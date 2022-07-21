@@ -33,7 +33,7 @@
 
 .forCard {
     background-color: #717db33f;
-    margin-top: 150px;
+    margin-top: 130px;
 }
 
 .forCard:hover {
@@ -43,6 +43,18 @@
     -moz-box-shadow: 0px 0px 41px 1px rgba(0, 0, 0, 0.73);
 
 }
+
+.handleSendBtn {
+    background-color: #6958be;
+    border: none;
+}
+
+.handleSendBtn:hover {
+    background-color: #6958be !important;
+    border: none;
+}
+
+
 
 @media screen and (max-width:840px) {
     .handleTheLoginBody {

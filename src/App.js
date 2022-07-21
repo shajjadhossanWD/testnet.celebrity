@@ -25,6 +25,7 @@ import EditNft from "./components/page/Dashboard/EditNft";
 import DashboardMenu from './components/page/Dashboard/DashboardMenu';
 import Login from './components/page/Login/Login';
 import Forgetpassword from './components/page/Login/Forgetpassword';
+import Otp from './components/page/Login/Otp';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
@@ -48,6 +49,7 @@ function App() {
 
           <Route path="/login" element={<Login></Login>} />
           <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
+          <Route path="/otp" element={<Otp></Otp>} />
 
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
             <Route index element={<DashboardMenu></DashboardMenu>} />

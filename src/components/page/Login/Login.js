@@ -6,8 +6,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { Link } from 'react-router-dom';
 import { MdAlternateEmail } from 'react-icons/md';
 import { AiFillEye, AiFillEyeInvisible, AiFillLock } from 'react-icons/ai';
-import Card from 'react-bootstrap/Card';
-
 
 const Login = () => {
     const [visiblePassword, setVisiblePassword] = useState(false);
