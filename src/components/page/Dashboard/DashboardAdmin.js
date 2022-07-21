@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import './DashboardAdmin.css';
+import DashboardModalNewAdmin from './DashboardModalNewAdmin';
 
 
 const DashboardAdmin = () => {
+    const [modalShowNewAdmin, setModalShowNewAdmin] = useState(false);
     // const [open, setOpen] = React.useState(false);
     // const [allAdmin, setAllAdmin] = React.useState([]);
     // const {chains, user1, logOut} = useContext(GrighundContext);
@@ -92,7 +94,7 @@ const DashboardAdmin = () => {
     }
 
     return (
-        <div className='adminBody'>
+        <div className='adminBody overflow-hidden'>
             {/* { user1.walletAddress ?
           <div className='text-danger text-start'> { (chains === "0x61") ? 
           <p>
@@ -126,7 +128,7 @@ const DashboardAdmin = () => {
         ))}
         </div> */}
                 <div className="adminBtnDiv text-end">
-                    <button onClick={handleClickOpen} className='adminBtn'>New Admin</button>
+                    <button onClick={() => setModalShowNewAdmin(true)} className='adminBtn'>New Admin</button>
                 </div>
                 <div className="tableNormal ">
 
@@ -224,7 +226,7 @@ const DashboardAdmin = () => {
                                 <td className='text-start adminHidden'>	+8801317762775</td>
                                 <td className='action'>
                                     <div className="actionDiv text-start">
-                                        <button className="editBtn"><i className="fas fa-edit"></i></button>
+                                        <Link to='/dashboard/adminprofile'><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
                                         <button className="deleteBtn"><i className="fas fa-trash"></i></button>
                                     </div>
                                 </td>
@@ -249,6 +251,10 @@ const DashboardAdmin = () => {
 
         </DeletePopUp> */}
             </div>
+            <DashboardModalNewAdmin
+                show={modalShowNewAdmin}
+                onHide={() => setModalShowNewAdmin(false)}
+            />
         </div>
     );
 };

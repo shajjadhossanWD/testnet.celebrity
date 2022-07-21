@@ -19,12 +19,16 @@ function Home() {
                <div className="row align-items-center">
                  <div className="col-md-5">
                    <div className="spacer-single"></div>
+                   <p className=" lead" data-wow-delay="1s">
+                     <h4>First in the World</h4>
+                   </p>
                    <h6 className="s1  line-one text-uppercase line-one" style={{ lineHeight: '30px' }}>
                      DS Legends Pte Ltd
                    </h6>
                    <h6 className="s1 line-one text-uppercase line-one"   style={{ lineHeight: '30px' }}>
                      Presents
                    </h6>
+                   
                    <div className="spacer-10"></div>
                    <div className="banner-text d-grid">
                      <div

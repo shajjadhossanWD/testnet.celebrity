@@ -28,23 +28,39 @@ const DashboardModal = (props) => {
                 <div style={{ backgroundColor: "#272d47", color: 'white' }}>
                     <form onSubmit={onSubForm}>
                         <label className='mb-1'>NFT</label>
-                        <input type="file" className='border w-100 rounded mb-3' name='fileTake' style={{ backgroundColor: "#272d47", color: 'white' }} required />
-                        <label className='mb-1'>NFT Title</label>
-                        <input type="text" className='border w-100 rounded mb-3' style={{ backgroundColor: "#272d47", color: 'white' }} required />
+                        <input 
+                            type="file" 
+                            className='border w-100 rounded mb-3' 
+                            name='fileTake' 
+                            style={{ backgroundColor: "#272d47", color: 'white' }} 
+                            required 
+                        />
+
+                        <label className='mb-1'>Name Of NFT</label>
+                        <input 
+                            type="text" 
+                            className='border w-100 rounded mb-3' 
+                            style={{ backgroundColor: "#272d47", color: 'white' }} 
+                            required 
+                        />
+
+                        <label className='mb-1'>Price Of NFT</label>
+                        <input 
+                            type="number" 
+                            className='border w-100 rounded mb-3' 
+                            style={{ backgroundColor: "#272d47", color: 'white' }} 
+                            required 
+                        />
+
                         <label className='mb-1'>NFT Description</label>
-                        <textarea type="text" className='border w-100 rounded mb-3' style={{ backgroundColor: "#272d47", color: 'white' }} required />
-                        <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
-                            <InputGroup.Text style={{ backgroundColor: "#272d47", color: 'white' }}>Token</InputGroup.Text>
-                            <Form.Select aria-label="Default select example" className='me-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
-                                <option>Select token</option>
-                                <option value="1">BTC BITCOIN</option>
-                                <option value="2">LTC LITECOIN</option>
-                                <option value="3">EOS-EOS</option>
-                            </Form.Select>
-                            <InputGroup.Text className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>$</InputGroup.Text>
-                            <Form.Control aria-label="Amount (to the nearest dollar)" style={{ backgroundColor: "#272d47", color: 'white' }} />
-                        </InputGroup>
-                        <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
+                        <textarea 
+                            type="text" 
+                            className='border w-100 rounded mb-3' 
+                            style={{ backgroundColor: "#272d47", color: 'white' }} 
+                            required 
+                        />
+                        
+                         <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
                             <InputGroup.Text style={{ backgroundColor: "#272d47", color: 'white' }}>Countdown</InputGroup.Text>
                             <Form.Control
                                 placeholder="7/26/2022"
@@ -55,10 +71,9 @@ const DashboardModal = (props) => {
                                 style={{ backgroundColor: "#272d47", color: 'white' }}
                             />
                             <Form.Select aria-label="Default select example" className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
-                                <option>Select category</option>
-                                <option value="1">Art</option>
-                                <option value="2">Music</option>
-                                <option value="3">Video</option>
+                                <option>Type Of NFT</option>
+                                <option value="Celebrity Meal NFTs">Celebrity Souvenir NFTs</option>
+                                <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
                             </Form.Select>
                         </InputGroup>
                         <Modal.Footer className='justify-content-center'>
