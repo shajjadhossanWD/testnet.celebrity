@@ -4,10 +4,18 @@
     width: 100%;
 }
 
+.marginAlign {
+    margin-left: -20px;
+}
+
+.handleHeightDMenu {
+    height: 760px !important;
+}
+
 .dashboardTxt {
     color: white;
     line-height: 10px;
-    
+
 }
 
 .dashboardTxt p {
@@ -47,6 +55,12 @@ svg {
     width: 100%;
 }
 
+@media screen and (max-width: 500px) {
+    .handleHeightDMenu {
+        height: auto !important;
+    }
+}
+
 @media only screen and (max-width: 994px) {
     .dashboardDiv {
         background-color: #1A1C33;
@@ -54,5 +68,5 @@ svg {
         background-size: cover;
     }
 
-   
+
 }

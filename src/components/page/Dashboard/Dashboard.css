@@ -6,6 +6,12 @@
     /* background-color: rgba(0, 0, 0, 0.87); */
 }
 
+.positionHandleLogo {
+    width: 220px;
+    position: fixed !important;
+    /* top: 5px; */
+}
+
 .hanleMenuBarForRespo {
     display: none;
 }

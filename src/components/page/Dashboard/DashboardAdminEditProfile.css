@@ -1,0 +1,106 @@
+.profileDiv {
+    background-color: #272D47;
+    padding: 50px;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.handleEditAdminHeight {
+    height: 740px;
+}
+
+.iconBoxBtn {
+    background-color: #232741;
+    /* padding: 6px 20px; */
+    width: 2rem;
+}
+
+.iconCreator {
+    font-size: x-large;
+    background-color: #15182e;
+    border-radius: 5px 0 0 5px;
+    padding: 4px;
+}
+
+.creatorsInput {
+    background-color: transparent;
+    border: 0.2px solid #9a9ead54;
+    width: 80%;
+    border-radius: 0 10px 10px 0;
+    color: #ABB6BF;
+}
+
+.creatorsInput1 {
+    background-color: transparent;
+    border: 0.2px solid #9a9ead54;
+    width: 72%;
+    color: #ABB6BF;
+}
+
+.inputProfile {
+    margin-bottom: 1rem;
+}
+
+.ProfileImg {
+    width: 150px;
+    border-radius: 50%;
+    margin: auto !important;
+
+}
+
+
+.ImageInput {
+    background-color: transparent;
+    padding: 5px;
+    border: 1px solid #9a9ead54;
+    margin-top: 1rem;
+}
+
+.imgBtn {
+    background-color: white;
+    color: black;
+    padding: 5px;
+}
+
+.profileBtnChange {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #657eda;
+    margin-top: 1rem;
+}
+
+.cancelBtn {
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.countryInput {
+    width: 86%;
+}
+
+@media only screen and (max-width: 624px) {
+    .countryInput {
+        width: 100%;
+    }
+
+    .handleEditAdminHeight {
+        height: auto;
+    }
+
+    .creatorsInput {
+        background-color: transparent;
+        border: 0.2px solid #9a9ead54;
+        width: 100%;
+        border-radius: 0 10px 10px 0;
+        color: #ABB6BF;
+    }
+
+    .profileDiv {
+        padding: 45px 5px;
+    }
+
+    .ImageInput {
+        margin-top: 1rem;
+    }
+}

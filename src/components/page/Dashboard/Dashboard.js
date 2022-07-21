@@ -30,12 +30,14 @@ const Dashboard = () => {
         className="handleNested text-center"
         style={{ backgroundColor: "#323246", color: "white" }}
       >
-        <Link to='/'> <img
-          src="https://alpha.physicalnft.org/assets/frontend/images/png.png"
-          className="img-fluid w-25 h-auto mt-3"
-          alt="logo"
-        /></Link>
-        <hr />
+        <div className='positionHandleLogo'>
+          <Link to='/'> <img
+            src="https://alpha.physicalnft.org/assets/frontend/images/png.png"
+            className="img-fluid w-25 h-auto mt-3"
+            alt="logo"
+          /></Link>
+          <hr />
+        </div>
         <Navbar
           expand="sm"
           className="mb-3"
@@ -57,7 +59,7 @@ const Dashboard = () => {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="d-flex flex-column justify-content-center align-items-center handleNav mx-auto text-center">
-                
+
                   <Nav.Link
                     className="text-light mb-3"
                     as={CustomLink}
@@ -103,6 +105,8 @@ const Dashboard = () => {
           className="p-3 navIssue"
           style={{ backgroundColor: "#272D47", marginBottom: "50px" }}
           collapseOnSelect
+
+
         >
           <Container fluid>
             <Container className="d-flex justify-content-between align-items-center">
@@ -161,7 +165,7 @@ const Dashboard = () => {
                         </span>{" "}
                         <span>Admin</span>
                       </Nav.Link>
-                      
+
                       <Nav.Link
                         className="ps-2 pe-2 text-light"
                         as={CustomLink}
@@ -178,11 +182,11 @@ const Dashboard = () => {
                 </Offcanvas>
               </div>
               <div className="profile">
-                <div className="imgDashDiv">
-                  <img
+                <div className="imgDashDiv p-3">
+                  {/* <img
                     src="https://backend.grighund.net/assets/1658149611777.jpeg"
                     alt=""
-                  />
+                  /> */}
                 </div>
               </div>
             </Container>

@@ -4,6 +4,9 @@
     height: auto;
 }
 
+.handleHeightNFTS {
+    height: 740px;
+}
 
 /* .handleForDnoneinRespo {
     display: block !important;
@@ -20,5 +23,9 @@
 @media screen and (max-width: 460px) {
     .handleForDnoneinRespo {
         display: none !important;
+    }
+
+    .handleHeightNFTS {
+        height: auto;
     }
 }
