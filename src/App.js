@@ -26,16 +26,18 @@ import DashboardMenu from './components/page/Dashboard/DashboardMenu';
 import Login from './components/page/Login/Login';
 import Forgetpassword from './components/page/Login/Forgetpassword';
 import Otp from './components/page/Login/Otp';
+import WalletModal from './components/Shared/WalletModal';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
       <div id="wrapper">
         <ScrollToTop />
+        <WalletModal />
         <Routes>
           <Route path="/" element={<Publiclayout></Publiclayout>}>
             <Route path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/connect_wallet" element={<Connect_wallet />} />
+            {/* <Route path="/connect_wallet" element={<Connect_wallet />} /> */}
             <Route path="/india" element={<India></India>} />
             <Route path="/malaysia" element={<Malaysia></Malaysia>} />
             <Route path="/singapore" element={<Singapore></Singapore>} />
@@ -56,7 +58,7 @@ function App() {
             <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
             <Route path="/dashboard/adminprofile/:id" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
             <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
-            <Route path="/dashboard/dnfts/editNft" element={<EditNft></EditNft>} />
+            <Route path="/dashboard/dnfts/editNft/:id" element={<EditNft></EditNft>} />
           </Route>
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>

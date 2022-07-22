@@ -12,6 +12,7 @@ import "./DashboardNfts.css";
 import axios from 'axios';
 import swal from 'sweetalert';
 import Loading from '../../Loading/Loading';
+import { Link } from 'react-router-dom';
 
 const DashboardNfts = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -117,12 +118,9 @@ const DashboardNfts = () => {
                         </td>
                         <td className="pt-3">
                           <CustomTooltip title="Edit NFT">
-                            <span
-                              onClick={() => setEditNftModalShow(true)}
-                              className="bg-success p-2 rounded nft-edit-button"
-                            >
+                          <Link to={`editNft/${data._id}`}>
                               <BsPencilFill></BsPencilFill>
-                            </span>
+                            </Link>
                           </CustomTooltip>{" "}
                           <CustomTooltip title="Delete NFT">
                             <span className="bg-danger p-2 rounded nft-delete-button" onClick={() => handleOrderDelete(data._id)}>

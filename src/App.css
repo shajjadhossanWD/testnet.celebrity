@@ -52,6 +52,111 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+/* Wallet CSS */
+.titleWallet {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.alertWalletDiv {
+  margin-top: -2.5rem;
+}
+
+.walletIcon {
+  width: 40px;
+}
+
+.contents {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  color: #a2a2a2;
+  text-align: center;
+  margin-bottom: 0rem;
+
+}
+
+.contentDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.walletDiv span {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 2rem;
+  font-weight: bold;
+}
+
+.walletDiv {
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  padding-top: 26px;
+  color: #a2a2a2;
+  font-family: Montserrat;
+  font-weight: bold;
+  background-color: #060c13 !important;
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.imgWallet {
+  width: 50px !important;
+  margin: 0 auto;
+}
+
+.dialogWallet {
+  background-color: #060c13;
+  color: white;
+}
+
+.dialogDiv {
+  border-radius: 20px;
+}
+
+.walletName {
+  font-size: 1rem;
+  color: #a2a2a2;
+
+}
+
+.walletFont {
+  margin-right: 6px;
+}
+
+.contents1 {
+  color: #a2a2a2;
+  text-decoration: none;
+
+}
+
+.contents1:hover {
+  color: #fff;
+
+}
+
+.walletdiv {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.connectMenu {
+  border: none;
+  background-color: rgb(237, 41, 41);
+  color: white;
+  padding-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
  
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -242,3 +347,4 @@ p.text-light.mb-0 {
 }
 
  
+
