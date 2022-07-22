@@ -26,13 +26,13 @@ const DashboardAdmin = () => {
     }
 
     // console.log(allAdmin.admin);
-    const handleAdminDelete = (id) => {
+    const handleAdminDelete = async (id) => {
         const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
         if (confirmDelete) {
-            axios.delete(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
+            await axios.delete(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
                 headers: {
-                    // 'authorization': `Bearer ${localStorage.getItem('token')}`
-                    "content-type": "application/json"
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                    // "content-type": "application/json"
                 }
             })
                 .then(res => {

@@ -8,12 +8,15 @@ import 'react-phone-number-input/style.css';
 import './DashboardAdminEditProfile.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../../Loading/Loading';
 
 
 const DashboardAdminEditProfile = () => {
     const id = useParams();
     const idOrigin = id.id;
+    const [onLoading, setonLoading] = useState(false);
     // console.log(id.id);
+
     const [valueProfilePhn, setValueProfilePhn] = useState();
     const [visibleCPassword, setVisibleCPassword] = useState(false);
     const [visibleEnPassword, setVisibleEnPassword] = useState(false);
@@ -27,10 +30,15 @@ const DashboardAdminEditProfile = () => {
             .then(res => res.json())
             .then(data => setSingleAdmin(data.admin))
     }, [idOrigin])
-    console.log(singleAdmin);
+
+    // console.log(singleAdmin);
+    if (onLoading) {
+        return <Loading></Loading>
+    }
+
     const subProfile = async event => {
         event.preventDefault();
-
+        setonLoading(true);
         const name = event.target.name.value;
         const username = event.target.username.value;
         const email = event.target.email.value;
@@ -52,17 +60,19 @@ const DashboardAdminEditProfile = () => {
 
         await axios.post(`https://backend.celebrity.sg/api/admin/update-all-profile/${idOrigin}`, formDataSingleAdmin, {
             headers: {
-                // 'authorization': `Bearer ${localStorage.getItem('token')}`
-                "content-type": "application/json"
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+                // "content-type": "application/json"
             }
         })
             .then(res => {
                 if (res.status === 200) {
                     alert(res.data.message);
+                    setonLoading(false);
                 }
             })
             .catch(error => {
                 alert(error.response.data.message);
+                setonLoading(false);
             })
     }
 
