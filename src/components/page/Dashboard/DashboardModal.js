@@ -7,35 +7,37 @@ import axios from 'axios';
 
 const DashboardModal = (props) => {
 
-    const [data, setData] = useState({
-        name: '',
-        price: '',
-        date: '',
-        description: '',
-        type: '',
-        image: '',
-      });
-      const handleChange = (e, name) => {
-        let value = name === "image" ? e.target.files[0] : e.target?.value;
-        if (name === 'phone') {
-          setData({ ...data, [name]: e });
-        } else {
-          setData({ ...data, [name]: value });
-        }
-    
-      };
+  var newDate = new Date();
+  let dd = String(newDate.getDate()).padStart(2, '0');
+  let mm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = newDate.getFullYear();
+  let hh = newDate.getHours();
+  let min = newDate.getMinutes();
+  let ss = newDate.getSeconds();
+
+  if (min < 10) {
+      newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + 0 + min + ':' + ss;
+
+  } else {
+      newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
+  }
+
       const onSubForm = async (e) => {
         e.preventDefault();
-    
-        
+        const name = e.target.name.value;
+        const price = e.target.price.value;
+        const description = e.target.description.value;
+        const type = e.target.type.value;
+        const image = e.target.image.files[0];
+
         const formData = new FormData()
-        formData.append('name', data.name)
-        formData.append('username', data.price)
-        formData.append('email', data.date)
-        formData.append('phone', data.description)
-        formData.append('password', data.type)
-        formData.append('image', data.image)
-    
+        formData.append('name', name)
+        formData.append('price', price)
+        formData.append('date', newDate)
+        formData.append('description', description)
+        formData.append('type', type)
+        formData.append('image', image)
+        // console.log(fromData)
         await axios.post('https://backend.celebrity.sg/api/nft/add', formData, {
           headers: {
             'authorization': `Bearer ${localStorage.getItem('token')}`
@@ -44,7 +46,6 @@ const DashboardModal = (props) => {
           .then(res => {
             if (res.status === 200) {
               alert(res.data.message);
-              setData({ name: '', price: '', date: '', description: '', type: '', image: '' });
             }
           })
           .catch(error => {
@@ -74,7 +75,6 @@ const DashboardModal = (props) => {
                             type="file"
                             accept='image/*'
                             name="image"
-                            onChange={(e) => handleChange(e, 'image')}
                             className='border w-100 rounded mb-3' 
                             style={{ backgroundColor: "#272d47", color: 'white' }} 
                             required 
@@ -84,8 +84,6 @@ const DashboardModal = (props) => {
                         <input 
                             type="text" 
                             name="name"
-                            value={data.name}
-                            onChange={(e) => handleChange(e, "name")}
                             className='border w-100 rounded mb-3' 
                             style={{ backgroundColor: "#272d47", color: 'white' }} 
                             required 
@@ -95,8 +93,6 @@ const DashboardModal = (props) => {
                         <input 
                             type="number"
                             name="price"
-                            value={data.price}
-                            onChange={(e) => handleChange(e, "price")}
                             className='border w-100 rounded mb-3' 
                             style={{ backgroundColor: "#272d47", color: 'white' }} 
                             required 
@@ -106,30 +102,24 @@ const DashboardModal = (props) => {
                         <textarea 
                             type="text" 
                             name="description"
-                            value={data.description}
-                            onChange={(e) => handleChange(e, "description")}
                             className='border w-100 rounded mb-3' 
                             style={{ backgroundColor: "#272d47", color: 'white' }} 
                             required 
                         />
                         
                          <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
-                            <InputGroup.Text style={{ backgroundColor: "#272d47", color: 'white' }}>Countdown</InputGroup.Text>
+                            <InputGroup.Text style={{ backgroundColor: "#272d47", color: 'white' }}>Timestamp</InputGroup.Text>
                             <Form.Control
-                                placeholder="7/26/2022"
                                 aria-describedby="basic-addon1"
                                 name="date"
-                                value={data.date}
-                                onChange={(e) => handleChange(e, "date")}
-                                type='date'
+                                type='text'
+                                value={newDate}
                                 className='me-3'
                                 style={{ backgroundColor: "#272d47", color: 'white' }}
                             />
-                            <select name="" id=""></select>
                             <Form.Select aria-label="Default select example" 
-                              value={data.type} 
                               name="type"
-                              onChange={(e) => handleChange(e, "type")} className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
+                              className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
                                 <option>Type Of NFT</option>
                                 <option value="Celebrity Meal NFTs">Celebrity Souvenir NFTs</option>
                                 <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>

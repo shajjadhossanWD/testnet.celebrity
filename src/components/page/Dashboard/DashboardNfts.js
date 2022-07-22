@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import DashboardModal from "./DashboardModal";
@@ -9,11 +9,14 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import EditNftModal from "./EditNftModal";
 import "./DashboardNfts.css";
+import axios from 'axios';
+import swal from 'sweetalert';
 
 const DashboardNfts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [editNftmodalShow, setEditNftModalShow] = useState(false);
-
+  const [nfts, setnfts] = useState([])
+  
   const CustomTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -23,49 +26,36 @@ const DashboardNfts = () => {
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: theme.palette.common.black,
     },
-  }));
+  }))
 
-  const fakeData = [
-    {
-      image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Name Of NFT",
-      token: "DSl",
-      amount: "1.0",
-      price: "0.01038623",
-      category: "Meal",
-      auctionEnd: "	February 19, 2022",
-      id: 1,
-    },
-    {
-      image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Name Of NFT",
-      token: "DSl",
-      amount: "1.0",
-      price: "0.01038623",
-      category: "Meal",
-      auctionEnd: "	February 19, 2022",
-      id: 2,
-    },
-    {
-      image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Name Of NFT",
-      price: "0.01038623",
-      category: "Meal",
-      auctionEnd: "	February 19, 2022",
-      id: 3,
-    },
-    {
-      image: "https://alpha.physicalnft.org/assets/frontend/images/png.png",
-      title: "Name Of NFT",
-      amount: "1.0",
-      price: "0.01038623",
-      category: "Meal",
-      auctionEnd: "	February 19, 2022",
-      id: 4,
-    },
+  useEffect(() => {
+    axios.get('https://backend.celebrity.sg/api/nft/all')
+      .then(res => {
+        setnfts(res.data.nft);
+      })
+  }, [])
 
-
-  ];
+  const handleOrderDelete = (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this NFT? You can't recover.")
+    if (confirmDelete) {
+      axios.delete(`https://backend.celebrity.sg/api/nft/delete/${id}`)
+        .then(res => {
+          if (res.status === 200) {
+            swal({
+              title: "Succesfully deleted",
+              text: "You successfully deleted the NFT",
+              icon: "success",
+              button: "OK",
+              className: "modal_class_success",
+            });
+            setnfts(nfts.filter(nft => nft._id !== id))
+          }
+        })
+        .catch(error => {
+          alert(error.response.data.message);
+        })
+    }
+  }
 
   return (
     <>
@@ -93,23 +83,23 @@ const DashboardNfts = () => {
                       <th>Name</th>
                       <th>Price</th>
                       <th className="handleForDnoneinRespo">Type</th>
-                      <th className="handleForDnoneinRespo">Auction</th>
+                      <th className="handleForDnoneinRespo">Timestamp</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {fakeData?.map((data) => (
+                    {nfts?.map((data) => (
                       <tr data={data} key={data?.id}>
                         <td>
-                          <img src={data.image} alt="" />
+                          <img src={data.avatar} alt="" style={{width:"65px", hight:"65px"}} />
                         </td>
-                        <td>{data.title}</td>
+                        <td>{data.name}</td>
                         <td>{data.price}</td>
                         <td className="handleForDnoneinRespo">
-                          {data.category}
+                          {data.type}
                         </td>
                         <td className="handleForDnoneinRespo">
-                          {data.auctionEnd}
+                          {data.date}
                         </td>
                         <td className="pt-3">
                           <CustomTooltip title="Edit NFT">
@@ -121,7 +111,7 @@ const DashboardNfts = () => {
                             </span>
                           </CustomTooltip>{" "}
                           <CustomTooltip title="Delete NFT">
-                            <span className="bg-danger p-2 rounded nft-delete-button">
+                            <span className="bg-danger p-2 rounded nft-delete-button" onClick={()=>handleOrderDelete(data._id)}>
                               <RiDeleteBin6Line></RiDeleteBin6Line>
                             </span>
                           </CustomTooltip>

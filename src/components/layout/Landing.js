@@ -105,17 +105,17 @@ export default function () {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="de-card has-border text-center">
-                <i className="wow fadeInUp bg-color-2 i-boxed icon_menu-square_alt2"></i>
+                <i className="wow fadeInUp bg-color-2 i-boxed icon_cart_alt"></i>
                 <div className="text">
-                  <h4 className="wow fadeInUp">Browse our NFTs</h4>
+                  <h4 className="wow fadeInUp">Buy our NFTs</h4>
                 </div>
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="de-card has-border text-center">
-                <i className="wow fadeInUp bg-color-2 i-boxed icon_cart_alt"></i>
+                <i className="wow fadeInUp bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
-                  <h4 className="wow fadeInUp">Buy our NFTs</h4>
+                  <h4 className="wow fadeInUp">Use our NFTs</h4>
                 </div>
               </div>
             </div>

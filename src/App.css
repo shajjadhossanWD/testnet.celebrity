@@ -1,4 +1,49 @@
- 
+/* modal css  */
+.swal-content {
+  padding: 0 20px;
+  margin-top: 9px;
+  font-size: 15px;
+  overflow-wrap: break-word;
+  color: white;
+}
+
+.link_hash {
+  color: white;
+}
+
+.modal_class {
+  background-color: #0c2347;
+}
+
+.swal-modal {
+  background-color: #0c2347;
+}
+
+.modal_class_success .swal-icon::before {
+  background-color: transparent;
+}
+
+.modal_class_success .swal-icon::after {
+  background-color: transparent;
+}
+
+.swal-icon--success__hide-corners {
+  background-color: transparent;
+}
+
+.success {
+  color: #FF343F;
+  margin-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.swal-text {
+  text-align: center;
+  color: #FF343F;
+  font-weight: bold;
+}
+
+
 .App {
   text-align: center;
 }
