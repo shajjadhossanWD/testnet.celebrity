@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
@@ -10,39 +11,41 @@ const DashboardAdmin = () => {
     const [modalShowNewAdmin, setModalShowNewAdmin] = useState(false);
     // const [open, setOpen] = React.useState(false);
     const [allAdmin, setAllAdmin] = useState([]);
+    const [isLoadingAdmin, setIsLoadingAdmin] = useState(false);
     // const {chains, user1, logOut} = useContext(GrighundContext);
 
     useEffect(() => {
-        fetch("https://backend.grighund.net/api/admin/all")
+        fetch("https://backend.celebrity.sg/api/admin/all")
             .then(res => res.json())
             .then(data => setAllAdmin(data?.admin))
     }, [])
 
     // Loading Spinner
-    if (allAdmin <= 0) {
+    if (allAdmin <= 0 || isLoadingAdmin) {
         return <Loading></Loading>
     }
 
     // console.log(allAdmin.admin);
     const handleAdminDelete = (id) => {
-        //   const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
-        //   if (confirmDelete) {
-        //     axios.delete(`https://backend.grighund.net/api/admin/delete/${id}`, {
-        //       headers: {
-        //         'authorization': `Bearer ${localStorage.getItem('token')}`
-        //       }
-        //     })
-        //       .then(res => {
-        //         if (res.status === 200) {
-        //           alert(res.data.message);
-        //           setAllAdmin(allAdmin.filter(admin => admin._id !== id))
-        //         }
-        //       })
-        //       .catch(error => {
-        //         alert(error.response.data.message);
-        //       })
-
-        //   }
+        const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
+        if (confirmDelete) {
+            axios.delete(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
+                headers: {
+                    // 'authorization': `Bearer ${localStorage.getItem('token')}`
+                    "content-type": "application/json"
+                }
+            })
+                .then(res => {
+                    if (res.status === 200) {
+                        alert(res.data.message);
+                        setAllAdmin(allAdmin.filter(admin => admin._id !== id))
+                    }
+                })
+                .catch(error => {
+                    alert(error.response.data.message);
+                    console.log(error);
+                })
+        }
     }
 
     const handleClickOpen = () => {
@@ -157,8 +160,8 @@ const DashboardAdmin = () => {
                                     <td className='text-start adminHidden'>{admin?.phone}</td>
                                     <td className='action'>
                                         <div className="actionDiv text-start">
-                                            <Link to='/dashboard/adminprofile'><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
-                                            <button className="deleteBtn"><i className="fas fa-trash"></i></button>
+                                            <Link to={`/dashboard/adminprofile/${admin?._id}`}><button className="editBtn"><i className="fas fa-edit"></i></button></Link>
+                                            <button className="deleteBtn" onClick={() => handleAdminDelete(admin?._id)}><i className="fas fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>)
@@ -181,6 +184,8 @@ const DashboardAdmin = () => {
             </div>
             <DashboardModalNewAdmin
                 show={modalShowNewAdmin}
+                setIsLoadingAdmin={setIsLoadingAdmin}
+                setModalShowNewAdmin={setModalShowNewAdmin}
                 onHide={() => setModalShowNewAdmin(false)}
             />
         </div>

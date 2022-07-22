@@ -1,13 +1,57 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { RiAdminFill } from 'react-icons/ri';
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import PhoneInput from 'react-phone-number-input';
 import './DashboardModalNewAdmin.css';
-import 'react-phone-number-input/style.css'
+import 'react-phone-number-input/style.css';
+import axios from 'axios';
 
 const DashboardModalNewAdmin = (props) => {
+    const { setIsLoadingAdmin, setModalShowNewAdmin } = props;
     const [value, setValue] = useState();
+
+    const subNewAdmin = async event => {
+        event.preventDefault();
+        setIsLoadingAdmin(true);
+
+        const avatar = event.target.image.files[0];
+        const name = event.target.name.value;
+        const username = event.target.username.value;
+        const phone = value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        const confirmPassword = event.target.confirmPassword.value;
+        // const newAdminData = { image, name, username, phone, email, password, confirmPassword };
+        // console.log(newAdminData);
+
+        const formDataAddAdmin = new FormData()
+        formDataAddAdmin.append('name', name)
+        formDataAddAdmin.append('username', username)
+        formDataAddAdmin.append('email', email)
+        formDataAddAdmin.append('phone', phone)
+        formDataAddAdmin.append('avatar', avatar)
+        formDataAddAdmin.append('password', password)
+        formDataAddAdmin.append('confirmPassword', confirmPassword)
+
+        await axios.post("https://backend.celebrity.sg/api/admin/add", formDataAddAdmin, {
+            headers: {
+                // 'authorization': `Bearer ${localStorage.getItem('token')}`
+                "content-type": "application/json"
+            }
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    alert(res.data.message);
+                    setIsLoadingAdmin(false);
+                    setModalShowNewAdmin(false);
+                    event.target.reset();
+                }
+            })
+            .catch(error => {
+                alert(error.response.data.message);
+                setIsLoadingAdmin(false);
+            })
+    }
 
     return (
         <Modal
@@ -24,7 +68,7 @@ const DashboardModalNewAdmin = (props) => {
             <Modal.Body style={{ backgroundColor: "#272d47", color: 'white' }}>
                 <div>
                     <div>
-                        <form >
+                        <form onSubmit={subNewAdmin}>
                             <div className="row addAdminDiv">
                                 <div className="col-lg-12">
                                     <p className='mb-1'>Image</p>
