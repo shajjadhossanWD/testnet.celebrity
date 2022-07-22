@@ -4,26 +4,31 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios';
+import Loading from '../../Loading/Loading';
 
 const DashboardModal = (props) => {
+    const { setRefetch, refetch, setModalShow, SetIsloading } = props;
 
-  var newDate = new Date();
-  let dd = String(newDate.getDate()).padStart(2, '0');
-  let mm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-  let yyyy = newDate.getFullYear();
-  let hh = newDate.getHours();
-  let min = newDate.getMinutes();
-  let ss = newDate.getSeconds();
+    var newDate = new Date();
+    let dd = String(newDate.getDate()).padStart(2, '0');
+    let mm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = newDate.getFullYear();
+    let hh = newDate.getHours();
+    let min = newDate.getMinutes();
+    let ss = newDate.getSeconds();
 
-  if (min < 10) {
-      newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + 0 + min + ':' + ss;
+    if (min < 10) {
+        newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + 0 + min + ':' + ss;
 
-  } else {
-      newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
-  }
+    } else {
+        newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
+    }
 
-      const onSubForm = async (e) => {
+    const onSubForm = async (e) => {
         e.preventDefault();
+        SetIsloading(true);
+        setModalShow(false);
+
         const name = e.target.name.value;
         const price = e.target.price.value;
         const description = e.target.description.value;
@@ -39,19 +44,23 @@ const DashboardModal = (props) => {
         formData.append('image', image)
         // console.log(fromData)
         await axios.post('https://backend.celebrity.sg/api/nft/add', formData, {
-          headers: {
-            'authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-          .then(res => {
-            if (res.status === 200) {
-              alert(res.data.message);
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('token')}`
             }
-          })
-          .catch(error => {
-            alert(error.response.data.message);
-          });
-      };
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    alert(res.data.message);
+                    setRefetch(!refetch);
+                    SetIsloading(false);
+
+                }
+            })
+            .catch(error => {
+                alert(error.response.data.message);
+                SetIsloading(false);
+            });
+    };
 
 
     return (
@@ -71,43 +80,43 @@ const DashboardModal = (props) => {
                 <div style={{ backgroundColor: "#272d47", color: 'white' }}>
                     <form onSubmit={onSubForm}>
                         <label className='mb-1'>NFT</label>
-                        <input 
+                        <input
                             type="file"
                             accept='image/*'
                             name="image"
-                            className='border w-100 rounded mb-3' 
-                            style={{ backgroundColor: "#272d47", color: 'white' }} 
-                            required 
+                            className='border w-100 rounded mb-3'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
                         />
 
                         <label className='mb-1'>Name Of NFT</label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             name="name"
-                            className='border w-100 rounded mb-3' 
-                            style={{ backgroundColor: "#272d47", color: 'white' }} 
-                            required 
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
                         />
 
                         <label className='mb-1'>Price Of NFT</label>
-                        <input 
+                        <input
                             type="number"
                             name="price"
-                            className='border w-100 rounded mb-3' 
-                            style={{ backgroundColor: "#272d47", color: 'white' }} 
-                            required 
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
                         />
 
                         <label className='mb-1'>NFT Description</label>
-                        <textarea 
-                            type="text" 
+                        <textarea
+                            type="text"
                             name="description"
-                            className='border w-100 rounded mb-3' 
-                            style={{ backgroundColor: "#272d47", color: 'white' }} 
-                            required 
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
                         />
-                        
-                         <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
+
+                        <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
                             <InputGroup.Text style={{ backgroundColor: "#272d47", color: 'white' }}>Timestamp</InputGroup.Text>
                             <Form.Control
                                 aria-describedby="basic-addon1"
@@ -117,16 +126,16 @@ const DashboardModal = (props) => {
                                 className='me-3'
                                 style={{ backgroundColor: "#272d47", color: 'white' }}
                             />
-                            <Form.Select aria-label="Default select example" 
-                              name="type"
-                              className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
+                            <Form.Select aria-label="Default select example"
+                                name="type"
+                                className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
                                 <option>Type Of NFT</option>
                                 <option value="Celebrity Meal NFTs">Celebrity Souvenir NFTs</option>
                                 <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
                             </Form.Select>
                         </InputGroup>
                         <Modal.Footer className='justify-content-center'>
-                            <Button type='submit' style={{ backgroundColor: 'blueviolet' }} className='border-0' >Save</Button>
+                            <Button type='submit' style={{ backgroundColor: 'blueviolet' }} className='border-0'>Save</Button>
                         </Modal.Footer>
                     </form>
                 </div>

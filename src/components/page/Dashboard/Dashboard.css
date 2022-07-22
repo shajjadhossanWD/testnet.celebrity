@@ -6,6 +6,12 @@
     /* background-color: rgba(0, 0, 0, 0.87); */
 }
 
+.navIssue {
+    background-color: #272D47;
+    margin-bottom: 50px;
+    height: 87px;
+}
+
 .positionHandleLogo {
     width: 220px;
     position: fixed !important;
@@ -185,6 +191,14 @@
 
     .navIssue {
         height: 80px;
+    }
+
+    .handleNested {
+        display: none;
+    }
+
+    .hanleMenuBarForRespo {
+        display: block;
     }
 
     /* .adminProfile {
