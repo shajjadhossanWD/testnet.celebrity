@@ -56,7 +56,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard></Dashboard>}>
             <Route index element={<DashboardMenu></DashboardMenu>} />
             <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
-            <Route path="/dashboard/adminprofile" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
+            <Route path="/dashboard/adminprofile/:id" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
             <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
             <Route path="/dashboard/dnfts/editNft/:id" element={<EditNft></EditNft>} />
           </Route>

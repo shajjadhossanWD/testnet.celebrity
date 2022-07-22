@@ -28,7 +28,6 @@ const DashboardModal = (props) => {
     const onSubForm = async (e) => {
         e.preventDefault();
         SetIsloading(true);
-        setModalShow(false);
 
         const name = e.target.name.value;
         const price = e.target.price.value;
@@ -53,11 +52,14 @@ const DashboardModal = (props) => {
                     alert(res.data.message);
                     setRefetch(!refetch);
                     SetIsloading(false);
+                    setModalShow(false);
+
                 }
             })
             .catch(error => {
                 alert(error.response.data.message);
                 SetIsloading(false);
+                setModalShow(false);
             });
     };
 

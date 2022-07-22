@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdAccountCircle } from 'react-icons/md';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { GrMail } from 'react-icons/gr';
@@ -6,16 +6,64 @@ import { BiLockOpen } from 'react-icons/bi';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import './DashboardAdminEditProfile.css';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 const DashboardAdminEditProfile = () => {
+    const id = useParams();
+    const idOrigin = id.id;
+    // console.log(id.id);
     const [valueProfilePhn, setValueProfilePhn] = useState();
     const [visibleCPassword, setVisibleCPassword] = useState(false);
     const [visibleEnPassword, setVisibleEnPassword] = useState(false);
     const [visibleCnPassword, setVisibleCnPassword] = useState(false);
+    const [singleAdmin, setSingleAdmin] = useState([]);
 
-    const subProfile = event => {
+    useEffect(() => {
+        fetch(`https://backend.celebrity.sg/api/admin/${idOrigin}`, {
+            method: "GET"
+        })
+            .then(res => res.json())
+            .then(data => setSingleAdmin(data.admin))
+    }, [idOrigin])
+    console.log(singleAdmin);
+    const subProfile = async event => {
         event.preventDefault();
+
+        const name = event.target.name.value;
+        const username = event.target.username.value;
+        const email = event.target.email.value;
+        const phone = valueProfilePhn;
+        const currentPassword = event.target.currentPassword.value;
+        const newPassword = event.target.newPassword.value;
+        const cPassword = event.target.cPassword.value;
+        const avatar = event.target.avatar.files[0];
+
+        const formDataSingleAdmin = new FormData()
+        formDataSingleAdmin.append('name', name)
+        formDataSingleAdmin.append('username', username)
+        formDataSingleAdmin.append('email', email)
+        formDataSingleAdmin.append('phone', phone)
+        formDataSingleAdmin.append('currentPassword', currentPassword)
+        formDataSingleAdmin.append('newPassword', newPassword)
+        formDataSingleAdmin.append('cPassword', cPassword)
+        formDataSingleAdmin.append('avatar', avatar)
+
+        await axios.post(`https://backend.celebrity.sg/api/admin/update-all-profile/${idOrigin}`, formDataSingleAdmin, {
+            headers: {
+                // 'authorization': `Bearer ${localStorage.getItem('token')}`
+                "content-type": "application/json"
+            }
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    alert(res.data.message);
+                }
+            })
+            .catch(error => {
+                alert(error.response.data.message);
+            })
     }
 
     return (
@@ -31,6 +79,7 @@ const DashboardAdminEditProfile = () => {
                                     className="creatorsInput form-control"
                                     type="text" name="name"
                                     placeholder='Admin Name'
+                                    defaultValue={singleAdmin?.name}
                                 />
                             </p>
                             <p className="d-flex inputProfile">
@@ -39,13 +88,14 @@ const DashboardAdminEditProfile = () => {
                                     className="creatorsInput form-control"
                                     style={{ textTransform: 'lowercase' }}
                                     type="text" name="username"
-                                    placeholder='Username' />
+                                    placeholder='Username' defaultValue={singleAdmin?.username} />
+
                             </p>
                             <p className="d-flex inputProfile">
                                 <span className='iconCreator'><GrMail /></span>
                                 <input
                                     className="creatorsInput form-control"
-                                    type="email" name="email" placeholder='email' />
+                                    type="email" name="email" placeholder='email' defaultValue={singleAdmin?.email} />
                             </p>
                             <p className="d-flex inputProfile">
                                 <PhoneInput
@@ -90,7 +140,7 @@ const DashboardAdminEditProfile = () => {
                             </p>
                         </div>
                         <div className="col-lg-5 text-center">
-                            <img className='ProfileImg' src="https://w7.pngwing.com/pngs/481/915/png-transparent-computer-icons-user-avatar-woman-avatar-computer-business-conversation-thumbnail.png" alt="avatar" /> <br />
+                            <img className='ProfileImg' src={singleAdmin?.avatar} alt="avatar" /> <br />
                             <input
                                 type="file"
                                 className='ImageInput text-white form-control'
