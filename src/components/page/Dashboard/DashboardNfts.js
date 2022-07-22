@@ -118,13 +118,13 @@ const DashboardNfts = () => {
                         </td>
                         <td className="pt-3">
                           <CustomTooltip title="Edit NFT">
-                          <Link to={`editNft/${data._id}`}>
-                              <BsPencilFill></BsPencilFill>
+                            <Link to={`editNft/${data._id}`}>
+                              <button className="editBtn"><i className="fas fa-edit"></i></button>
                             </Link>
                           </CustomTooltip>{" "}
                           <CustomTooltip title="Delete NFT">
-                            <span className="bg-danger p-2 rounded nft-delete-button" onClick={() => handleOrderDelete(data._id)}>
-                              <RiDeleteBin6Line></RiDeleteBin6Line>
+                            <span className="rounded nft-delete-button" onClick={() => handleOrderDelete(data._id)}>
+                              <button className="deleteBtn"><i className="fas fa-trash"></i></button>
                             </span>
                           </CustomTooltip>
                         </td>

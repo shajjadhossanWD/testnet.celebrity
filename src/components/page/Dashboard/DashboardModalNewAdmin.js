@@ -14,7 +14,7 @@ const DashboardModalNewAdmin = (props) => {
         event.preventDefault();
         setIsLoadingAdmin(true);
 
-        const avatar = event.target.image.files[0];
+        const avatar = event.target.avatar.files[0];
         const name = event.target.name.value;
         const username = event.target.username.value;
         const phone = value;
@@ -49,6 +49,7 @@ const DashboardModalNewAdmin = (props) => {
             })
             .catch(error => {
                 alert(error.response.data.message);
+                console.log(error);
                 setIsLoadingAdmin(false);
             })
     }
@@ -76,7 +77,7 @@ const DashboardModalNewAdmin = (props) => {
                                         className='form-control'
                                         type="file"
                                         accept='image/*'
-                                        name="image"
+                                        name="avatar"
 
                                     />
                                     <p className='mb-1'>Full Name</p>

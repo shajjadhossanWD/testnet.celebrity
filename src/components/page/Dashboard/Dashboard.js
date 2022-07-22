@@ -51,36 +51,36 @@ const Dashboard = () => {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={"offcanvasNavbarLabel-expand-sm"}>
-                  Offcanvas
+                  DS Legends Pte. Ltd.
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="d-flex flex-column justify-content-center align-items-center handleNav mx-auto text-center">
 
                   <Nav.Link
-                    className="text-light mb-3"
+                    className="text-light mb-3 text-start"
                     as={CustomLink}
                     to="/dashboard"
                   >
-                    <span className="pe-3 fs-4">
+                    <span className="pe-3 ps-3 fs-4">
                       <TiGroup></TiGroup>
                     </span>{" "}
                     <span className="pe-3">Dashboard</span>
                   </Nav.Link>
 
                   <Nav.Link
-                    className="text-light mb-3"
+                    className="text-light mb-3 text-start"
                     as={CustomLink}
                     to="/dashboard/dAdmin"
                   >
-                    <span className="pe-3 fs-4">
+                    <span className="pe-3 ps-3 fs-4">
                       <TiGroup></TiGroup>
                     </span>{" "}
                     <span className="pe-3">Admin</span>
                   </Nav.Link>
 
                   <Nav.Link
-                    className="pe-4 text-light"
+                    className="pe-4 text-light ps-4 text-start"
                     as={CustomLink}
                     to="/dashboard/dnfts"
                   >
@@ -139,7 +139,7 @@ const Dashboard = () => {
                   >
                     <Nav className="d-flex flex-column justify-content-center align-items-center handleNav ps-0 ms-0">
                       <Nav.Link
-                        className="ps-2 pe-2 text-light"
+                        className="ps-2 pe-2 text-light text-start"
                         as={CustomLink}
                         to="/dashboard"
                         href="#admin"
@@ -151,7 +151,7 @@ const Dashboard = () => {
                       </Nav.Link>
 
                       <Nav.Link
-                        className="ps-2 pe-2 text-light"
+                        className="ps-2 pe-2 text-light text-start"
                         as={CustomLink}
                         to="/dashboard/dAdmin"
                         href="#admin"
@@ -163,7 +163,7 @@ const Dashboard = () => {
                       </Nav.Link>
 
                       <Nav.Link
-                        className="ps-2 pe-2 text-light"
+                        className="ps-2 pe-2 text-light text-start"
                         as={CustomLink}
                         to="/dashboard/dnfts"
                         href="#nfts"

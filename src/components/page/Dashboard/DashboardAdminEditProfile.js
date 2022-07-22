@@ -31,7 +31,7 @@ const DashboardAdminEditProfile = () => {
             .then(data => setSingleAdmin(data.admin))
     }, [idOrigin])
 
-    // console.log(singleAdmin);
+    console.log(singleAdmin);
     if (onLoading) {
         return <Loading></Loading>
     }
@@ -153,7 +153,7 @@ const DashboardAdminEditProfile = () => {
                             <img className='ProfileImg' src={singleAdmin?.avatar} alt="avatar" /> <br />
                             <input
                                 type="file"
-                                className='ImageInput text-white form-control'
+                                className='ImageInput text-white form-control text-light'
                                 name="avatar" />
                         </div>
                     </div>
