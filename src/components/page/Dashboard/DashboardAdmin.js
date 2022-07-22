@@ -21,7 +21,7 @@ const DashboardAdmin = () => {
     }, [])
 
     // Loading Spinner
-    if (allAdmin <= 0 || isLoadingAdmin) {
+    if (isLoadingAdmin) {
         return <Loading></Loading>
     }
 
@@ -45,6 +45,21 @@ const DashboardAdmin = () => {
                     alert(error.response.data.message);
                     console.log(error);
                 })
+
+            // fetch(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
+            //     method: "DELETE",
+            //     headers: {
+            //         // 'authorization': `Bearer ${localStorage.getItem('token')}`,
+            //         "content-type": "application/json"
+            //     }
+            // })
+            //     .then(res => res.json())
+            //     .then(deleted => {
+            //         console.log(deleted);
+            //         if (deleted) {
+
+            //         }
+            //     })
         }
     }
 
