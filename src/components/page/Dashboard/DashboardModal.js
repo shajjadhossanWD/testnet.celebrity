@@ -9,7 +9,7 @@ const DashboardModal = (props) => {
 
   var newDate = new Date();
   let dd = String(newDate.getDate()).padStart(2, '0');
-  let mm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let mm = String(newDate.getMonth() + 1).padStart(2, '0'); 
   let yyyy = newDate.getFullYear();
   let hh = newDate.getHours();
   let min = newDate.getMinutes();
@@ -37,7 +37,6 @@ const DashboardModal = (props) => {
         formData.append('description', description)
         formData.append('type', type)
         formData.append('image', image)
-        // console.log(fromData)
         await axios.post('https://backend.celebrity.sg/api/nft/add', formData, {
           headers: {
             'authorization': `Bearer ${localStorage.getItem('token')}`
@@ -121,7 +120,7 @@ const DashboardModal = (props) => {
                               name="type"
                               className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
                                 <option>Type Of NFT</option>
-                                <option value="Celebrity Meal NFTs">Celebrity Souvenir NFTs</option>
+                                <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
                                 <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
                             </Form.Select>
                         </InputGroup>

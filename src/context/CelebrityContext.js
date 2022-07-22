@@ -58,6 +58,12 @@ export default function CelebrityProvider({ children }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [chain, setChain] = useState(null);
+  const [walletModal, setWalletModal] = useState(false);
+
+  const openWalletModal = () => {
+    (!user?.walletAddress || user?.walletAddress === "undefined") && setWalletModal(true)
+  };
+  const closeWalletModal = () => setWalletModal(false);
 
   const openLoginModal = () => setLoginModal(true);
   const closeLoginModal = () => setLoginModal(false);
@@ -402,6 +408,7 @@ export default function CelebrityProvider({ children }) {
               if (res.data.user) {
                 setUser(res.data.user);
                 setLoading(false);
+                closeWalletModal();
                 localStorage.setItem("token", res.data.token);
                 const wrapper = document.createElement("div");
                 wrapper.innerHTML = `<p class='text-break text-white fs-6'>You have succesfully logged in with <br/>Binance Chain.</p>`;
@@ -470,6 +477,9 @@ export default function CelebrityProvider({ children }) {
         currentAccount,
         loading,
         user,
+        walletModal,
+        openWalletModal,
+        closeWalletModal,
         setUser,
         chain,
         logOut,

@@ -26,11 +26,13 @@ import DashboardMenu from './components/page/Dashboard/DashboardMenu';
 import Login from './components/page/Login/Login';
 import Forgetpassword from './components/page/Login/Forgetpassword';
 import Otp from './components/page/Login/Otp';
+import WalletModal from './components/Shared/WalletModal';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
       <div id="wrapper">
         <ScrollToTop />
+        <WalletModal />
         <Routes>
           <Route path="/" element={<Publiclayout></Publiclayout>}>
             <Route path="/" element={<Landing />} />

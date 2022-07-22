@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { CelebrityContext } from '../../context/CelebrityContext';
 import './header.css';
 
 function Header() {
+  const { openWalletModal } = useContext(CelebrityContext);
 
   return (
     <Navbar bg="light" expand="lg" id='navbars' className='navbarsContainer' collapseOnSelect>
@@ -37,7 +40,7 @@ function Header() {
             </div>
 
             {/* <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link> */}
-            <Nav.Link as={HashLink} to="/connect_wallet" className='menuText'><button class="button-18" role="button"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </Nav.Link>
+            <Nav.Link as={HashLink} to="/connect_wallet" className='menuText'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

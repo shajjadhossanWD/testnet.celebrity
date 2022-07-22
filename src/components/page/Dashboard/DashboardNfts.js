@@ -16,7 +16,7 @@ const DashboardNfts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [editNftmodalShow, setEditNftModalShow] = useState(false);
   const [nfts, setnfts] = useState([])
-  
+
   const CustomTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
