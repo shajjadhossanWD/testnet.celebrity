@@ -11,11 +11,15 @@ import EditNftModal from "./EditNftModal";
 import "./DashboardNfts.css";
 import axios from 'axios';
 import swal from 'sweetalert';
+import Loading from '../../Loading/Loading';
+import { Link } from 'react-router-dom';
 
 const DashboardNfts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [editNftmodalShow, setEditNftModalShow] = useState(false);
-  const [nfts, setnfts] = useState([])
+  const [nfts, setnfts] = useState([]);
+  const [refetch, setRefetch] = useState(false);
+  const [isloading, SetIsloading] = useState(false);
 
   const CustomTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -29,11 +33,22 @@ const DashboardNfts = () => {
   }))
 
   useEffect(() => {
-    axios.get('https://backend.celebrity.sg/api/nft/all')
-      .then(res => {
-        setnfts(res.data.nft);
-      })
-  }, [])
+    fetch('https://backend.celebrity.sg/api/nft/all', {
+      method: "GET",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => setnfts(data.nft))
+  }, [refetch])
+
+  if (nfts.length <= 0) {
+    return <Loading></Loading>
+  }
+  if (isloading) {
+    return <Loading></Loading>
+  }
 
   const handleOrderDelete = (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this NFT? You can't recover.")
@@ -91,7 +106,7 @@ const DashboardNfts = () => {
                     {nfts?.map((data) => (
                       <tr data={data} key={data?.id}>
                         <td>
-                          <img src={data.avatar} alt="" style={{width:"65px", hight:"65px"}} />
+                          <img src={data.avatar} alt="" style={{ width: "65px", hight: "65px" }} />
                         </td>
                         <td>{data.name}</td>
                         <td>{data.price}</td>
@@ -103,15 +118,12 @@ const DashboardNfts = () => {
                         </td>
                         <td className="pt-3">
                           <CustomTooltip title="Edit NFT">
-                            <span
-                              onClick={() => setEditNftModalShow(true)}
-                              className="bg-success p-2 rounded nft-edit-button"
-                            >
+                          <Link to={`editNft/${data._id}`}>
                               <BsPencilFill></BsPencilFill>
-                            </span>
+                            </Link>
                           </CustomTooltip>{" "}
                           <CustomTooltip title="Delete NFT">
-                            <span className="bg-danger p-2 rounded nft-delete-button" onClick={()=>handleOrderDelete(data._id)}>
+                            <span className="bg-danger p-2 rounded nft-delete-button" onClick={() => handleOrderDelete(data._id)}>
                               <RiDeleteBin6Line></RiDeleteBin6Line>
                             </span>
                           </CustomTooltip>
@@ -126,7 +138,7 @@ const DashboardNfts = () => {
         </Container>
       </div>
 
-      <DashboardModal show={modalShow} onHide={() => setModalShow(false)} />
+      <DashboardModal show={modalShow} setModalShow={setModalShow} onHide={() => setModalShow(false)} setRefetch={setRefetch} refetch={refetch} SetIsloading={SetIsloading} />
       <EditNftModal
         show={editNftmodalShow}
         onHide={() => setEditNftModalShow(false)}

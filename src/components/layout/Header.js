@@ -40,7 +40,7 @@ function Header() {
             </div>
 
             {/* <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link> */}
-            <Nav.Link as={HashLink} to="/connect_wallet" className='menuText'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </Nav.Link>
+            <div className='menuText'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </div>
           </Nav>
         </Navbar.Collapse>
       </Container>
