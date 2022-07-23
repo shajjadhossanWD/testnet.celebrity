@@ -14,30 +14,28 @@ const DashboardModalNewAdmin = (props) => {
         event.preventDefault();
         setIsLoadingAdmin(true);
 
-        const avatar = event.target.avatar.files[0];
+        const image = event.target.image.files[0];
         const name = event.target.name.value;
         const username = event.target.username.value;
         const phone = value;
         const email = event.target.email.value;
         const password = event.target.password.value;
         const confirmPassword = event.target.confirmPassword.value;
-        // const newAdminData = { image, name, username, phone, email, password, confirmPassword };
-        // console.log(newAdminData);
+       
 
         const formDataAddAdmin = new FormData()
         formDataAddAdmin.append('name', name)
         formDataAddAdmin.append('username', username)
         formDataAddAdmin.append('email', email)
         formDataAddAdmin.append('phone', phone)
-        formDataAddAdmin.append('avatar', avatar)
+        formDataAddAdmin.append('image', image)
         formDataAddAdmin.append('password', password)
         formDataAddAdmin.append('confirmPassword', confirmPassword)
 
         await axios.post("https://backend.celebrity.sg/api/admin/add", formDataAddAdmin, {
             headers: {
-                // 'authorization': `Bearer ${localStorage.getItem('token')}`
-                "content-type": "application/json"
-            }
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+              }
         })
             .then(res => {
                 if (res.status === 200) {
@@ -77,7 +75,7 @@ const DashboardModalNewAdmin = (props) => {
                                         className='form-control'
                                         type="file"
                                         accept='image/*'
-                                        name="avatar"
+                                        name="image"
 
                                     />
                                     <p className='mb-1'>Full Name</p>

@@ -55,7 +55,7 @@ const Dashboard = () => {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <Nav className="d-flex flex-column justify-content-center align-items-center handleNav mx-auto text-center">
+                <Nav className="d-flex flex-column justify-content-center align-items-start handleNav  text-start">
 
                   <Nav.Link
                     className="text-light mb-3 text-start"

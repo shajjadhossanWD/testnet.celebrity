@@ -19,7 +19,7 @@ const Footer = () => {
                 <div className='mainPartFooter text-center'>
                     {/* <h4 className='pb-4'>Marketplace</h4> */}
                     <div>
-                        <Link to="/" className='text-decoration-none'><p className='handleSpace text-decoration-none' style={{paddingTop: '50px'}}>All NFTs</p></Link>
+                        <a href="https://dsl.sg/contact" target="_any" className='text-decoration-none'><p className='handleSpace text-decoration-none' style={{paddingTop: '50px'}}>Contact Us</p></a>
                         <Link to="/souvenirnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Souvenir NFT</p></Link>
                         <Link to="/mealnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Meal NFT</p></Link>
                     </div>
