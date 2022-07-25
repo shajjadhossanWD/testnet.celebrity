@@ -27,6 +27,7 @@ import Login from './components/page/Login/Login';
 import Forgetpassword from './components/page/Login/Forgetpassword';
 import Otp from './components/page/Login/Otp';
 import WalletModal from './components/Shared/WalletModal';
+import Profile from './components/page/Profile/Profile';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
@@ -47,6 +48,7 @@ function App() {
             <Route path="/mealnft/:mealnId" element={<MealDetails />} />
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/how_it_works" element={<HowItWorks />} />
+            <Route path="/profile" element={<Profile></Profile>} />
           </Route>
 
           <Route path="/login" element={<Login></Login>} />
