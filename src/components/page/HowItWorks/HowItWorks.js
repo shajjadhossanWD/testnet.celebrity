@@ -14,7 +14,7 @@ function HowItWorks() {
                        <Typography className="titelColor" variant="h5" gutterBottom component="div">
                          Celebrity Souvenir NFT
                         </Typography>
-                        <Typography className="pt-1" variant="h6"   component="div">
+                        <Typography className="pt-2 pb-2 text-primary" variant="h6"   component="div">
                          What is it? 
                         </Typography>
                         <Typography className="pt-1" variant="subtitle2"   component="div">
@@ -29,7 +29,7 @@ function HowItWorks() {
                         <Typography className="pt-1" variant="subtitle2"   component="div">
                         4. A digital certificate of the Souvenir 
                         </Typography>
-                        <Typography className="pt-1" variant="h6"   component="div">
+                        <Typography className="pt-2 pb-2 text-primary" variant="h6"   component="div">
                         Benefits for Buyer:
                         </Typography>
                         <Typography className="pt-1" variant="subtitle2"   component="div">
@@ -46,7 +46,7 @@ function HowItWorks() {
                       <Typography className="titelColor" variant="h5" gutterBottom component="div">
                         Celebrity Meal NFT
                         </Typography>
-                        <Typography className="pt-1" variant="h6"   component="div">
+                        <Typography className="pt-2 pb-2 text-primary" variant="h6"   component="div">
                          What is it? 
                         </Typography>
                         <Typography className="pt-1" variant="subtitle2"   component="div">
@@ -61,7 +61,7 @@ function HowItWorks() {
                         <Typography className="pt-1" variant="subtitle2"   component="div">
                         4. Selfie Section with the Celebrity
                         </Typography>
-                        <Typography className="pt-1" variant="h6"   component="div">
+                        <Typography className="pt-2 pb-2 text-primary" variant="h6"   component="div">
                          Benefits for Buyer:
                         </Typography>
                         <Typography className="pt-1" variant="subtitle2"   component="div">

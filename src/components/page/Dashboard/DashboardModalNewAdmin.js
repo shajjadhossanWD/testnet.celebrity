@@ -33,9 +33,9 @@ const DashboardModalNewAdmin = (props) => {
         formDataAddAdmin.append('confirmPassword', confirmPassword)
 
         await axios.post("https://backend.celebrity.sg/api/admin/add", formDataAddAdmin, {
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('token')}`
-              }
+            // headers: {
+            //     'authorization': `Bearer ${localStorage.getItem('token')}`
+            //   }
         })
             .then(res => {
                 if (res.status === 200) {

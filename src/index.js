@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import AdminProvider from "./context/AdminContext";
 import CelebrityProvider from "./context/CelebrityContext";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -9,13 +10,13 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-        <CelebrityProvider>
-
+  <AdminProvider>
+    <CelebrityProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
     </CelebrityProvider>
-
+    </AdminProvider>
   </React.StrictMode>
 );
 

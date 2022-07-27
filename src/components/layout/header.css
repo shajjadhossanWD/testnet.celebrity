@@ -58,6 +58,9 @@
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;
+  margin: 0.8rem 0;
+
+
 }
 
 .button-18:hover,

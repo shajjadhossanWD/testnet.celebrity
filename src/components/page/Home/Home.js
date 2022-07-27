@@ -17,11 +17,10 @@ function Home() {
            <div className="v-center">
              <div className="container">
                <div className="row align-items-center">
+
                  <div className="col-md-5">
+
                    <div className="spacer-single"></div>
-                   <p className=" lead" data-wow-delay="1s">
-                     <h4>First in the World</h4>
-                   </p>
                    <h6 className="s1  line-one text-uppercase line-one" style={{ lineHeight: '30px' }}>
                      DS Legends Pte Ltd
                    </h6>
@@ -132,7 +131,7 @@ function Home() {
 
              <SouvenirSlider/>
              <div className='d-flex' style={{ justifyContent: 'center'}}>
-                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px"}}>
+                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px", marginTop: "1rem"}}>
                   Pay by DSL and get 30% discount.
                  </Typography>
              </div>

@@ -88,7 +88,7 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Souvenir Of Celebrity <span></span>
+                        Name Of NFT : Celebrity Souvenir NFT <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -143,7 +143,7 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Souvenir Of Celebrity <span></span>
+                        Name Of NFT : Celebrity Souvenir NFT <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -199,7 +199,7 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Souvenir Of Celebrity <span></span>
+                        Name Of NFT : Celebrity Souvenir NFT <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -254,7 +254,7 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Souvenir Of Celebrity <span></span>
+                        Name Of NFT : Celebrity Souvenir NFT <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -309,7 +309,7 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Souvenir Of Celebrity <span></span>
+                        Name Of NFT : Celebrity Souvenir NFT <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -364,7 +364,7 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Souvenir Of Celebrity <span></span>
+                        Name Of NFT : Celebrity Souvenir NFT <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -419,7 +419,7 @@ function SouvenirSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Souvenir Of Celebrity <span></span>
+                        Name Of NFT : Celebrity Souvenir NFT <span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">

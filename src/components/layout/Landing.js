@@ -25,6 +25,7 @@ export default function () {
              <div className="container">
                <div className="row align-items-center">
                  <div className="col-md-5">
+                  <h5 className="text-warning mb-0">First In The World</h5>
                    <div className="spacer-single"></div>
                    <h6 className="s1 wow fadeInUp line-one text-uppercase line-one" data-wow-delay=".5s" style={{ lineHeight: '30px' }}>
                      DS Legends Pte Ltd

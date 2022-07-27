@@ -127,7 +127,7 @@ const Dashboard = () => {
                         >
                           <img
                             src="https://alpha.physicalnft.org/assets/frontend/images/png.png"
-                            className="w-50"
+                            style={{ width: "50px", marginLeft: "-100px" }}
                             alt="logo"
                           />
                         </Nav.Link>
@@ -139,7 +139,7 @@ const Dashboard = () => {
                   >
                     <Nav className="d-flex flex-column justify-content-center align-items-center handleNav ps-0 ms-0">
                       <Nav.Link
-                        className="ps-2 pe-2 text-light text-start"
+                        className="text-center ps-2 text-light text-start"
                         as={CustomLink}
                         to="/dashboard"
                         href="#admin"
@@ -151,7 +151,7 @@ const Dashboard = () => {
                       </Nav.Link>
 
                       <Nav.Link
-                        className="ps-2 pe-2 text-light text-start"
+                        className="text-center pe-4 text-light text-start"
                         as={CustomLink}
                         to="/dashboard/dAdmin"
                         href="#admin"
@@ -163,7 +163,7 @@ const Dashboard = () => {
                       </Nav.Link>
 
                       <Nav.Link
-                        className="ps-2 pe-2 text-light text-start"
+                        className="text-center pe-5 ps-3 text-light text-start"
                         as={CustomLink}
                         to="/dashboard/dnfts"
                         href="#nfts"

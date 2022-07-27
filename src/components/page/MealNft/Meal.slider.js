@@ -87,7 +87,7 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Meal with Celebrity<span></span>
+                        Name Of NFT : Celebrity Meal NFT
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -142,7 +142,7 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Meal with Celebrity<span></span>
+                        Name Of NFT : Celebrity Meal NFT<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -197,7 +197,7 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Meal with Celebrity<span></span>
+                        Name Of NFT : Celebrity Meal NFT<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -252,7 +252,7 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Meal with Celebrity<span></span>
+                        Name Of NFT : Celebrity Meal NFT<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -307,7 +307,7 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Meal with Celebrity<span></span>
+                        Name Of NFT : Celebrity Meal NFT<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -362,7 +362,7 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Meal with Celebrity<span></span>
+                        Name Of NFT : Celebrity Meal NFT<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">
@@ -417,7 +417,7 @@ function MealSlider() {
                    <div className="row"> 
                         <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : Meal with Celebrity<span></span>
+                        Name Of NFT : Celebrity Meal NFT<span></span>
                         </Typography>
                        </a> 
                        <Typography variant="body2">

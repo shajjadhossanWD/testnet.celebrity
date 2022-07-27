@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import Loading from '../../Loading/Loading';
@@ -22,7 +22,7 @@ const DashboardAdmin = () => {
 
     // Loading Spinner
     if (isLoadingAdmin) {
-        return <Loading></Loading>
+        return <Loading/>
     }
 
     // console.log(allAdmin.admin);

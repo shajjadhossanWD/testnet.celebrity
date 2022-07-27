@@ -1,14 +1,43 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Login.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdAlternateEmail } from 'react-icons/md';
 import { AiFillEye, AiFillEyeInvisible, AiFillLock } from 'react-icons/ai';
+import { AdminContext } from '../../../context/AdminContext';
+import axios from 'axios';
 
 const Login = () => {
     const [visiblePassword, setVisiblePassword] = useState(false);
+    const { admin} = useContext(AdminContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (admin?._id) {
+            navigate("/dashboard");
+        }
+    }, [admin]);
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        axios.post("https://backend.celebrity.sg/api/v1/admin/login", {
+            email, password
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    navigate(`/otp/${res.data.token}`)
+                }
+            })
+            .catch(err => {
+                alert(err.response.data.message);
+            })
+    }
 
     return (
         <div className='handleTheLoginBody'>
@@ -19,7 +48,7 @@ const Login = () => {
                     </div>
                     <hr />
                     <div className='mt-4 pt-2'>
-                        <form >
+                        <form onSubmit={handleLogin}>
                             <Form.Label className='text-light'>Email address</Form.Label>
                             <InputGroup>
                                 <InputGroup.Text id="basic-addon1" className='bg-dark border-0'><MdAlternateEmail></MdAlternateEmail></InputGroup.Text>
@@ -28,6 +57,7 @@ const Login = () => {
                                     placeholder="email"
                                     aria-label="Username"
                                     type='email'
+                                    name="email"
                                     required
                                     aria-describedby="basic-addon1"
                                 />
@@ -37,7 +67,7 @@ const Login = () => {
                             </Form.Text>
                             <InputGroup className="mb-3 mt-3">
                                 <InputGroup.Text className='bg-dark border-0'><AiFillLock></AiFillLock></InputGroup.Text>
-                                <Form.Control aria-label="Amount (to the nearest dollar)" className='inputBackground' placeholder='password' type={visiblePassword ? "text" : "password"} required />
+                                <Form.Control aria-label="Amount (to the nearest dollar)" name='password' className='inputBackground' placeholder='password' type={visiblePassword ? "text" : "password"} required />
                                 <InputGroup.Text className='bg-dark border-0 cursor-pointer' role="button" onClick={() => setVisiblePassword(!visiblePassword)}>{
                                     visiblePassword ? <AiFillEye></AiFillEye> : <AiFillEyeInvisible></AiFillEyeInvisible>
                                 }</InputGroup.Text>

@@ -1,13 +1,45 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Login.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiFillLock } from 'react-icons/ai';
+import axios from 'axios';
+import { AdminContext } from '../../../context/AdminContext';
 
 const Otp = () => {
+    const { token } = useParams();
+    const { admin, setAdmin } = useContext(AdminContext);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if (admin?._id) {
+            navigate("/dashboard");
+        }
+    }, [admin]);
+
+    const handleOTP = (e) => {
+        e.preventDefault();
+
+        const otp = e.target.otp.value;
+        axios.post(`https://backend.celebrity.sg/api/v1/admin/verify-otp/`, {
+            otp
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    localStorage.setItem("adminID", res.data.token);
+                    setAdmin(res.data.admin);
+                }
+            })
+            .catch(err => {
+                alert(err.response.data.message);
+            })
+    }
     return (
         <div>
             <div className='handleTheLoginBody'>
@@ -19,7 +51,7 @@ const Otp = () => {
                         </div>
                         <hr />
                         <div className='mt-4 pt-2'>
-                            <form>
+                            <form onSubmit={handleOTP}>
 
                                 <InputGroup className="mb-3 mt-3">
                                     <InputGroup.Text className='bg-dark border-0'><AiFillLock></AiFillLock></InputGroup.Text>

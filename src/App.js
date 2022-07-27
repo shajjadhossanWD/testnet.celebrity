@@ -27,6 +27,7 @@ import Login from './components/page/Login/Login';
 import Forgetpassword from './components/page/Login/Forgetpassword';
 import Otp from './components/page/Login/Otp';
 import WalletModal from './components/Shared/WalletModal';
+import AdminRoute from './components/AdminRoute/AdminRoute';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
@@ -49,17 +50,25 @@ function App() {
             <Route path="/how_it_works" element={<HowItWorks />} />
           </Route>
 
-          <Route path="/login" element={<Login></Login>} />
-          <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
-          <Route path="/otp" element={<Otp></Otp>} />
+         
 
-          <Route path="/dashboard" element={<Dashboard></Dashboard>}>
+          <Route path="/dashboard" element={
+          <AdminRoute>
+          <Dashboard></Dashboard>
+          </AdminRoute>
+
+          }>
             <Route index element={<DashboardMenu></DashboardMenu>} />
             <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
             <Route path="/dashboard/adminprofile/:id" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
             <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
             <Route path="/dashboard/dnfts/editNft/:id" element={<EditNft></EditNft>} />
           </Route>
+          
+          <Route path="/login" element={<Login></Login>} />
+          <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
+          <Route path="/otp/:token" element={<Otp></Otp>} />
+
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>
       </div>
