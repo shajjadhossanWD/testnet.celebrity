@@ -55,9 +55,9 @@ function App() {
 
 
           <Route path="/dashboard" element={
-            // <AdminRoute>
-            <Dashboard></Dashboard>
-            // </AdminRoute>
+            <AdminRoute>
+              <Dashboard></Dashboard>
+            </AdminRoute>
 
           }>
             <Route index element={<DashboardMenu></DashboardMenu>} />
