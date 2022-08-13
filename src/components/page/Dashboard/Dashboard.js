@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/login");
   }
 
   return (
@@ -186,7 +186,7 @@ const Dashboard = () => {
                         <span>NFTS</span>
                       </Nav.Link>
                       <div>
-                        <Button variant="danger" className='text-uppercase w-100 me-5 pt-2 pb-2 mt-4' size="sm" onClick={() => handleLogout()}>Log Out</Button>
+                        <Button variant="danger" className='text-uppercase w-100 me-5 pt-2 pb-2 mt-3' size="sm" onClick={() => handleLogout()}>Log Out</Button>
                       </div>
                     </Nav>
                   </Offcanvas.Body>

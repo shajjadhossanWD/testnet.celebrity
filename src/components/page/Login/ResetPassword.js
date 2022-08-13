@@ -52,7 +52,7 @@ const ResetPassword = () => {
                     <div className=' forCard  w-50 p-5 rounded mx-auto'>
                         <div className='mx-auto text-center'>
                             <img src="https://testnet.grighund.net/static/media/logo192.ea779dfe5e580c22a76f.png" className='handleLogoLogin rounded-pill' alt="logo" />
-                            <p className='text-dark mt-3 pb-3'>Please enter your new password</p>
+                            <p className='text-light mt-3 pb-3'>Please enter your new password</p>
                         </div>
                         <hr />
                         <div className='mt-4 pt-2'>
@@ -61,8 +61,8 @@ const ResetPassword = () => {
                                     <InputGroup.Text className='bg-dark border-0 text-white'><i class="fas fa-lock"></i></InputGroup.Text>
                                     <Form.Control aria-label="Amount (to the nearest dollar)" className='inputBackground' placeholder='Enter New Password' required name="password" type={visiblePassword ? "text" : "password"} />
                                     <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={() => setVisiblePassword(!visiblePassword)}>{
-                                    visiblePassword ? <i class="fas fa-eye"></i> : <i class="fas fa-eye-slash"></i>
-                                }</InputGroup.Text>
+                                        visiblePassword ? <i class="fas fa-eye"></i> : <i class="fas fa-eye-slash"></i>
+                                    }</InputGroup.Text>
                                 </InputGroup>
 
                                 <div className='mx-auto text-center'>

@@ -85,7 +85,7 @@
     }
 
     .handleEditAdminHeight {
-        height: auto;
+        height: 100vh;
     }
 
     .creatorsInput {
