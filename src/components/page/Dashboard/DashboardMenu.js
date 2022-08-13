@@ -47,7 +47,7 @@ const DashboardMenu = () => {
         <div className='handleHeightDMenu'>
             <div className='container'>
 
-                <h4 className='text-white text-start marginAlign'>Dashboard</h4>
+                <h4 className='text-white text-start marginAlign dashboardTitle'>Dashboard</h4>
                 <Row xs={1} md={2} lg={3} xl={4} className="gx-5 card-row">
 
                     <Col onClick={handleClickOpenAdmin} className="marginAlign">

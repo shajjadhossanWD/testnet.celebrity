@@ -144,7 +144,7 @@ const DashboardModal = (props) => {
                             </Form.Select>
                         </InputGroup>
                         <Modal.Footer className='justify-content-center'>
-                            <Button type='submit' style={{ backgroundColor: 'blueviolet' }} className='border-0'>Save</Button>
+                            <Button type='submit' style={{ backgroundColor: 'blueviolet' }} className='border-0 text-uppercase'>Save</Button>
                         </Modal.Footer>
                     </form>
                 </div>
