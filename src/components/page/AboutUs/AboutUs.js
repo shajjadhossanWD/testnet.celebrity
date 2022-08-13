@@ -10,7 +10,7 @@ function AboutUs() {
 
     useEffect(() => {
         setLoading(true)
-        axios.get("https://dslegends.org/api/about-dsl")
+        axios.get("https://alpha.dsl.sg/api/about-dsl.php")
             .then(res => {
                 setData(res.data)
             })

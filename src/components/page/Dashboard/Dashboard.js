@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import CustomLink from '../../CustomLink';
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -10,13 +11,20 @@ import { TiGroup } from 'react-icons/ti';
 import { HiCheckCircle } from 'react-icons/hi';
 import './Dashboard.css';
 import { MdMenuOpen } from 'react-icons/md';
+import { AdminContext } from '../../../context/AdminContext';
 
 const Dashboard = () => {
-
+  const { logout } = useContext(AdminContext);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  }
 
   return (
     <div
@@ -89,7 +97,11 @@ const Dashboard = () => {
                     </span>{" "}
                     <span>NFTS</span>
                   </Nav.Link>
+                  <div>
+                    <Button variant="danger" className='text-uppercase w-100 me-5 pt-2 pb-2 mt-4' size="sm" onClick={() => handleLogout()}>Log Out</Button>
+                  </div>
                 </Nav>
+
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
@@ -173,6 +185,9 @@ const Dashboard = () => {
                         </span>{" "}
                         <span>NFTS</span>
                       </Nav.Link>
+                      <div>
+                        <Button variant="danger" className='text-uppercase w-100 me-5 pt-2 pb-2 mt-4' size="sm" onClick={() => handleLogout()}>Log Out</Button>
+                      </div>
                     </Nav>
                   </Offcanvas.Body>
                 </Offcanvas>

@@ -174,7 +174,7 @@ const DashboardAdmin = () => {
 
                         <thead>
                             <tr>
-                                <th>Image</th>
+                                <th className='text-center'>Image</th>
                                 <th className='text-start'>Username</th>
                                 <th className='text-start adminHidden'>Email</th>
                                 <th className='text-start adminHidden'>Mobile</th>
