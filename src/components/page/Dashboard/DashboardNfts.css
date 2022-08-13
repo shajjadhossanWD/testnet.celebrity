@@ -5,7 +5,7 @@
 }
 
 .handleHeightNFTS {
-    height: 100vh;
+    height: auto;
 }
 
 /* .handleForDnoneinRespo {
@@ -26,6 +26,6 @@
     }
 
     .handleHeightNFTS {
-        height: 100vh;
+        height: auto;
     }
 }
