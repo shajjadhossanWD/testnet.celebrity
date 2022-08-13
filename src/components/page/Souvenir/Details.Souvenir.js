@@ -1,4 +1,3 @@
-
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
@@ -41,7 +40,7 @@ function SouvenirDetails() {
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
       <div className="d-grid justify_items_center">
-        <Container className="row" style={{ marginTop: "100px" }}>
+        <Container className="row" style={{ marginTop: "100px", alignItems: 'flex-start' }}>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid justify_items_center pt-2">
             <Box className=" col-12 card_top_icon mb-2">
               <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1">
@@ -105,14 +104,22 @@ function SouvenirDetails() {
                 3. Use it and Feel like the Celebrity
               </Typography>
             </Box>
+            <div style={{color: '#ffffff', marginTop: '2rem', textAlign: 'center'}}>
+                {token === "bnb" && <p style={{margin: '0'}}>You need to pay 8.85 BNB</p>}
+                {token === "usdsc" && <p style={{margin: '0'}}>You need to pay 2144.36 USDSC</p>}
+                {token === "dsl" && <p>You need to pay 143484.98 DSL</p>}
+            </div>
+            <div className="dslDiscountForPayment">
+                {token === "dsl" && <p style={{margin: '0'}}>YOU GET DISCOUNT OF : SGD 900 (RS 51,095.89 ) : USD 641.06</p>}
+            </div>
             <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
               <Link to="#" className=" justify_content_center mt-4 mb-1">
                 {token === "bnb" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT WITH 3000 BNB</button>}
+                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR 8.85 BNB</button>}
                 {token === "usdsc" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT WITH 3000 USDSC</button>}
+                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR 2144.36 USDSC</button>}
                 {token === "dsl" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT WITH 2100 DSL</button>}
+                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR 143484.98 DSL</button>}
               </Link>
             </div>
           </div>

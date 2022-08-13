@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios';
 import Loading from '../../Loading/Loading';
+import swal from 'sweetalert';
 
 const DashboardModal = (props) => {
     const { setRefetch, refetch, setModalShow, SetIsloading } = props;
@@ -49,7 +50,14 @@ const DashboardModal = (props) => {
         })
             .then(res => {
                 if (res.status === 200) {
-                    alert(res.data.message);
+                    // alert(res.data.message);
+                    swal({
+                        title: "Success",
+                        text: `${res.data.message}`,
+                        icon: "success",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
                     setRefetch(!refetch);
                     SetIsloading(false);
                     setModalShow(false);

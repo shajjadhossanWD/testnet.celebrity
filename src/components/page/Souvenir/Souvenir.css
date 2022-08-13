@@ -1,6 +1,10 @@
 .deteilsPageImage{
     width: 90%;
 }
+.deteilsPageImage2{
+    width: 90%;
+    margin-top: -1px;
+}
 .justify_items_center{
     justify-items: center;
 }
@@ -12,7 +16,8 @@
 }
   
 .icon_love_Dtl_box{
-    width: 70px;
+    width: 48px;
+    height: 42px;
     display: flex;
     background: #2d384f;
     padding: 4px;
@@ -58,13 +63,27 @@
   /* ------------------------------------ */
 
  .card_top_icon {
-    justify-content: flex-end !important;
-    display: flex !important;
     width: 90%;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    margin-top: 40px;
   }  
   .card-content a {
     text-decoration: none;
     color: #71bdac;
+}
+
+.dslDiscountForPayment{
+    font-family: "Avenir Next", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+    /* font-style: italic; */
+    letter-spacing: 0.01em;
+    color: #d6579f;
 }
   /* ----------------------------------- */
 
@@ -72,6 +91,10 @@
 @media only screen and (max-width: 769px) {
     .deteilsPageImage{
         width: 100%;
+    }
+    .deteilsPageImage2{
+        width: 100%;
+        margin-top: 0px;
     }
     .button_dtl{
         width: 285px !important;

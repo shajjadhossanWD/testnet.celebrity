@@ -7,8 +7,10 @@ import Slider from "react-slick";
 function MealSlider() {
   const [isMeal, setMeal] = useState([])
 
+  console.log(isMeal);
+
   useEffect(() => { 
-    axios.get("/mealData.json")
+    axios.get("https://backend.celebrity.sg/api/nft/allmeal")
         .then(res => {
           setMeal(res.data);
             // setFilterData(res.data.slice(0, 5))

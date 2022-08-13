@@ -294,13 +294,19 @@ p.text-light.mb-0 {
   display: flex;
   justify-content: center;
 }
- 
+.headerButtonW{
+  padding-left: 25px;
+}
 @media only screen and (max-width: 769px) {
   .social_link_wrapper{
     justify-content: center !important;
   }
   #certificatModal{
     width: 80% !important;
+  }
+
+  .headerButtonW{
+    padding-left: 0px;
   }
 }
 /* --------------------------------- */
@@ -313,6 +319,7 @@ p.text-light.mb-0 {
   height: 47px;
   border-radius: 50%;
 }
+
 
 @media only screen and (max-width: 900px) and (min-width: 700px) {
   .line-one {

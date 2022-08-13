@@ -28,6 +28,8 @@ import Forgetpassword from './components/page/Login/Forgetpassword';
 import Otp from './components/page/Login/Otp';
 import WalletModal from './components/Shared/WalletModal';
 import AdminRoute from './components/AdminRoute/AdminRoute';
+import Profile from './components/page/Profile/Profile';
+import ResetPassword from './components/page/Login/ResetPassword';
 function App() {
   return (
     <div className="dark-scheme de-clivus">
@@ -38,7 +40,6 @@ function App() {
           <Route path="/" element={<Publiclayout></Publiclayout>}>
             <Route path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
-            {/* <Route path="/connect_wallet" element={<Connect_wallet />} /> */}
             <Route path="/india" element={<India></India>} />
             <Route path="/malaysia" element={<Malaysia></Malaysia>} />
             <Route path="/singapore" element={<Singapore></Singapore>} />
@@ -48,26 +49,28 @@ function App() {
             <Route path="/mealnft/:mealnId" element={<MealDetails />} />
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/how_it_works" element={<HowItWorks />} />
+            <Route path="/profile" element={<Profile></Profile>} />
           </Route>
 
          
 
           <Route path="/dashboard" element={
-          <AdminRoute>
+          // <AdminRoute>
           <Dashboard></Dashboard>
-          </AdminRoute>
+          // </AdminRoute> 
 
           }>
             <Route index element={<DashboardMenu></DashboardMenu>} />
-            <Route path="/dashboard/dAdmin" element={<DashboardAdmin></DashboardAdmin>} />
+            <Route path="/dashboard/admin" element={<DashboardAdmin></DashboardAdmin>} />
             <Route path="/dashboard/adminprofile/:id" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
-            <Route path="/dashboard/dnfts" element={<DashboardNfts></DashboardNfts>} />
-            <Route path="/dashboard/dnfts/editNft/:id" element={<EditNft></EditNft>} />
+            <Route path="/dashboard/nfts" element={<DashboardNfts></DashboardNfts>} />
+            <Route path="/dashboard/nfts/editNft/:id" element={<EditNft></EditNft>} />
           </Route>
           
           <Route path="/login" element={<Login></Login>} />
           <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
           <Route path="/otp/:token" element={<Otp></Otp>} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
 
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>

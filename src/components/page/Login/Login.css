@@ -5,11 +5,15 @@
     align-items: center;
     justify-content: center;
 }
-.logindiv{
+a{
+    color: white;
+}
+.logindiv {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .inputBackground {
     background-color: #272D47;
     color: white;
@@ -30,6 +34,7 @@
 .handleLogInButton:hover {
     background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%) !important;
     border: none;
+    cursor: pointer;
 }
 
 .handleLogoLogin {

@@ -1,16 +1,11 @@
-import { forwardRef, useContext } from "react";
-import React, { createContext, useState, useEffect } from "react";
 import { ethers } from "ethers";
+import { createContext, useEffect, useState } from "react";
 
-import swal from "sweetalert";
 import axios from "axios";
+import swal from "sweetalert";
 import {
-  mintABITestnet,
-  mintAddressTestnet,
-  USDSCtokenAddressTestnet,
-  USDSCtokenABITestnet,
-  DSLtokenAddressTestnet,
-  DSLtokenABITestnet,
+  DSLtokenABITestnet, DSLtokenAddressTestnet, mintABITestnet,
+  mintAddressTestnet, UsdscContractAbi, UsdscContractAddress, USDSCtokenABITestnet, USDSCtokenAddressTestnet
 } from "../utils/constant";
 export const CelebrityContext = createContext();
 
@@ -59,6 +54,8 @@ export default function CelebrityProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [chain, setChain] = useState(null);
   const [walletModal, setWalletModal] = useState(false);
+  const [metamaskBalance, setMetamaskBalance] = useState({});
+  const [metamaskBalanceLoading, setMetamaskBalanceLoading] = useState(false);
 
   const openWalletModal = () => {
     (!user?.walletAddress || user?.walletAddress === "undefined") && setWalletModal(true)
@@ -401,11 +398,12 @@ export default function CelebrityProvider({ children }) {
           setCurrentAccount(accounts[0]);
 
           await axios
-            .post(`https://backend.indianfilmtitles.com/api/v1/user/`, {
+            .post(`https://backend.celebrity.sg/api/v1/user/`, {
               walletAddress: accounts[0],
             })
             .then((res) => {
               if (res.data.user) {
+                getBalanceTestnet();
                 setUser(res.data.user);
                 setLoading(false);
                 closeWalletModal();
@@ -467,6 +465,38 @@ export default function CelebrityProvider({ children }) {
     }
   }, [currentAccount]);
 
+  const getUsdscContracttestnet = () => {
+    // const provider = new ethers.providers.Web3Provider(ethereum);
+    const UsdscContractInstance = new ethers.Contract(
+      UsdscContractAddress,
+      UsdscContractAbi,
+    );
+    return UsdscContractInstance;
+  };
+
+  const getBalanceTestnet = async () => {
+    try {
+      setMetamaskBalanceLoading(true);
+      const USDSCtokenContract = getUsdscContracttestnet();
+      const balance = await USDSCtokenContract.balanceOf(currentAccount);
+      const amount = ethers.utils.formatEther(balance);
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const balance1 = await provider.getBalance(currentAccount)
+      console.log("usdsc: " + amount);
+      console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
+      const metamask = {
+        usdsc: amount,
+        bnb: ethers.utils.formatEther(balance1)
+      }
+      setMetamaskBalanceLoading(false);
+      return setMetamaskBalance(metamask);
+    } catch (error) {
+      console.log(error);
+      throw new Error("No ethereum object");
+    }
+  }
+
+
   return (
     <CelebrityContext.Provider
       value={{
@@ -486,6 +516,8 @@ export default function CelebrityProvider({ children }) {
         mintTicketNFTTestnetBNB,
         mintTicketNFTTestnetUSDSC,
         mintTicketNFTTestnetDSL,
+        metamaskBalance,
+        metamaskBalanceLoading
       }}
     >
       {children}

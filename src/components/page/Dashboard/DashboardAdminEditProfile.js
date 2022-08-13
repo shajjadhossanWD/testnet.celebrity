@@ -6,9 +6,10 @@ import { BiLockOpen } from 'react-icons/bi';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import './DashboardAdminEditProfile.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../Loading/Loading';
+import swal from 'sweetalert';
 
 
 const DashboardAdminEditProfile = () => {
@@ -16,6 +17,7 @@ const DashboardAdminEditProfile = () => {
     const idOrigin = id.id;
     const [onLoading, setonLoading] = useState(false);
     // console.log(id.id);
+    const navigate = useNavigate();
 
     const [valueProfilePhn, setValueProfilePhn] = useState();
     const [visibleCPassword, setVisibleCPassword] = useState(false);
@@ -24,56 +26,82 @@ const DashboardAdminEditProfile = () => {
     const [singleAdmin, setSingleAdmin] = useState([]);
 
     useEffect(() => {
-        fetch(`https://backend.celebrity.sg/api/admin/${idOrigin}`, {
+        fetch(`https://backend.celebrity.sg/api/v1/admin/${idOrigin}`, {
             method: "GET"
         })
             .then(res => res.json())
             .then(data => setSingleAdmin(data.admin))
     }, [idOrigin])
 
-    console.log(singleAdmin);
+    // console.log(singleAdmin);
     if (onLoading) {
         return <Loading></Loading>
     }
 
     const subProfile = async event => {
         event.preventDefault();
-        setonLoading(true);
         const name = event.target.name.value;
         const username = event.target.username.value;
         const email = event.target.email.value;
         const phone = valueProfilePhn;
-        const currentPassword = event.target.currentPassword.value;
-        const newPassword = event.target.newPassword.value;
-        const cPassword = event.target.cPassword.value;
+        const password = event.target.password.value;
         const avatar = event.target.avatar.files[0];
+        const currentPassword = event.target.currentPassword.value;
+        const cPassword = event.target.cPassword.value;
 
         const formDataSingleAdmin = new FormData()
         formDataSingleAdmin.append('name', name)
         formDataSingleAdmin.append('username', username)
         formDataSingleAdmin.append('email', email)
         formDataSingleAdmin.append('phone', phone)
-        formDataSingleAdmin.append('currentPassword', currentPassword)
-        formDataSingleAdmin.append('newPassword', newPassword)
-        formDataSingleAdmin.append('cPassword', cPassword)
-        formDataSingleAdmin.append('avatar', avatar)
+        formDataSingleAdmin.append('password', password)
+        formDataSingleAdmin.append('image', avatar)
+        console.log(...formDataSingleAdmin)
+        setonLoading(true);
 
-        await axios.post(`https://backend.celebrity.sg/api/admin/update-all-profile/${idOrigin}`, formDataSingleAdmin, {
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('token')}`
-                // "content-type": "application/json"
-            }
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    alert(res.data.message);
-                    setonLoading(false);
+        if (currentPassword === cPassword) {
+            await axios.put(`https://backend.celebrity.sg/api/v1/admin/update/${idOrigin}`, formDataSingleAdmin, {
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
                 }
             })
-            .catch(error => {
-                alert(error.response.data.message);
-                setonLoading(false);
-            })
+                .then(res => {
+                    if (res.status === 200) {
+                        // alert(res.data.message);
+                        swal({
+                            title: "Success",
+                            text: res.data.message,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
+                        setonLoading(false);
+                        setSingleAdmin(res.data.admin);
+                        navigate("/dashboard/admin");
+                    }
+                })
+                .catch(error => {
+                    // alert(error.response.data.message);
+                    swal({
+                        title: "Attention",
+                        text: `${error.response.data.message}`,
+                        icon: "warning",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
+                    setonLoading(false);
+                })
+        }
+        else {
+            swal({
+                title: "Attention",
+                text: "Password does not matched",
+                icon: "warning",
+                button: "OK!",
+                className: "modal_class_success",
+            });
+        }
+
     }
 
     return (
@@ -133,7 +161,7 @@ const DashboardAdminEditProfile = () => {
                                 <input
                                     className="creatorsInput1 form-control"
                                     type={visibleEnPassword ? "text" : "password"}
-                                    name="newPassword"
+                                    name="password"
                                     placeholder='Enter New Password' />
                                 <button type='button' onClick={() => setVisibleEnPassword(!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
 
@@ -150,7 +178,7 @@ const DashboardAdminEditProfile = () => {
                             </p>
                         </div>
                         <div className="col-lg-5 text-center">
-                            <img className='ProfileImg' src={singleAdmin?.avatar} alt="avatar" /> <br />
+                            <img className='ProfileImg' src={`https://backend.celebrity.sg/${singleAdmin?.avatar}`} alt="avatar" /> <br />
                             <input
                                 type="file"
                                 className='ImageInput text-white form-control text-light'

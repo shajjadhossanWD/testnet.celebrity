@@ -1,10 +1,9 @@
-import { forwardRef, useContext } from 'react';
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
+import { forwardRef, useContext } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { CelebrityContext } from '../../context/CelebrityContext';
 
@@ -14,9 +13,10 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const WalletModal = () => {
-    const { connectWallet, walletModal, closeWalletModal, } = useContext(CelebrityContext);
-    return (
-        <div className='dialogDiv'>
+  const { connectWallet, walletModal, closeWalletModal, } = useContext(CelebrityContext);
+  
+  return (
+    <div className='dialogDiv'>
       <Dialog
         open={walletModal}
         TransitionComponent={Transition}
@@ -27,9 +27,9 @@ const WalletModal = () => {
       >
         <div className="dialogWallet pt-4">
 
-        
+
           <DialogContent className='alertWalletDiv'>
-            
+
 
             <DialogContentText id="alert-dialog-slide-description">
               <div className="">
@@ -37,6 +37,7 @@ const WalletModal = () => {
                 <p className='contents text-center mb-0' style={{ fontSize: 14 }}>1. Login to Metamask before clicking the metamask icon below.</p>
                 <p className='contents text-center mb-0' style={{ fontSize: 14 }}>2. Click again if you are not connected.</p>
               </div>
+             
               <Row xs={1} md={1} className="g-2">
                 <Col>
                   <Card className='walletDiv' onClick={() => connectWallet('Metamask')} >
@@ -61,7 +62,7 @@ const WalletModal = () => {
         </div>
       </Dialog>
     </div>
-    );
+  );
 };
 
 export default WalletModal;

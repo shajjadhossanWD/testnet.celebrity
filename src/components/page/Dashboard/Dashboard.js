@@ -55,7 +55,7 @@ const Dashboard = () => {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <Nav className="d-flex flex-column justify-content-center align-items-start handleNav  text-start">
+                <Nav className="d-flex flex-column justify-content-center align-items-start  text-start">
 
                   <Nav.Link
                     className="text-light mb-3 text-start"
@@ -71,7 +71,7 @@ const Dashboard = () => {
                   <Nav.Link
                     className="text-light mb-3 text-start"
                     as={CustomLink}
-                    to="/dashboard/dAdmin"
+                    to="/dashboard/admin"
                   >
                     <span className="pe-3 ps-3 fs-4">
                       <TiGroup></TiGroup>
@@ -82,7 +82,7 @@ const Dashboard = () => {
                   <Nav.Link
                     className="pe-4 text-light ps-4 text-start"
                     as={CustomLink}
-                    to="/dashboard/dnfts"
+                    to="/dashboard/nfts"
                   >
                     <span className="pe-4 fs-4">
                       <HiCheckCircle></HiCheckCircle>
@@ -153,7 +153,7 @@ const Dashboard = () => {
                       <Nav.Link
                         className="text-center pe-4 text-light text-start"
                         as={CustomLink}
-                        to="/dashboard/dAdmin"
+                        to="/dashboard/admin"
                         href="#admin"
                       >
                         <span className="me-2 fs-4">
@@ -165,7 +165,7 @@ const Dashboard = () => {
                       <Nav.Link
                         className="text-center pe-5 ps-3 text-light text-start"
                         as={CustomLink}
-                        to="/dashboard/dnfts"
+                        to="/dashboard/nfts"
                         href="#nfts"
                       >
                         <span className="me-2 fs-4">

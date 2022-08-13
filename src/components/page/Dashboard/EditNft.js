@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import "./EditNft.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
 
 const EditNft = () => {
   const [Nfts, setNfts] = React.useState([]);
@@ -57,9 +58,16 @@ const EditNft = () => {
     axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${Nfts._id}`, formData)
         .then(res => {
             if (res.status === 200) {
-                alert(res.data.message);
+                // alert(res.data.message);
+                swal({
+                  title: "Success",
+                  text: `${res.data.message}`,
+                  icon: "success",
+                  button: "OK!",
+                  className: "modal_class_success",
+              });
                 setNfts(res.data.nft);
-                navigate("/dashboard/dnfts")
+                navigate("/dashboard/nfts")
             }
         })
         .catch(err => {

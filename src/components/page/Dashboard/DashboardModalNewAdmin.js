@@ -5,15 +5,18 @@ import PhoneInput from 'react-phone-number-input';
 import './DashboardModalNewAdmin.css';
 import 'react-phone-number-input/style.css';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const DashboardModalNewAdmin = (props) => {
-    const { setIsLoadingAdmin, setModalShowNewAdmin } = props;
+    const { setIsLoadingAdmin, setModalShowNewAdmin, refetch, setRefetch } = props;
     const [value, setValue] = useState();
-
+    // if (isLoadingAdmin) {
+    //     return <Loader></Loader>
+    // }
     const subNewAdmin = async event => {
         event.preventDefault();
-        setIsLoadingAdmin(true);
 
+        setIsLoadingAdmin(true);
         const image = event.target.image.files[0];
         const name = event.target.name.value;
         const username = event.target.username.value;
@@ -21,7 +24,18 @@ const DashboardModalNewAdmin = (props) => {
         const email = event.target.email.value;
         const password = event.target.password.value;
         const confirmPassword = event.target.confirmPassword.value;
-       
+
+        if (password !== confirmPassword) {
+            setIsLoadingAdmin(false);
+            // return alert("Confirm Password not match!");
+            return swal({
+                title: "Attention",
+                text: "Confirm Password not match!",
+                icon: "warning",
+                button: "OK!",
+                className: "modal_class_success",
+            });
+        }
 
         const formDataAddAdmin = new FormData()
         formDataAddAdmin.append('name', name)
@@ -30,26 +44,42 @@ const DashboardModalNewAdmin = (props) => {
         formDataAddAdmin.append('phone', phone)
         formDataAddAdmin.append('image', image)
         formDataAddAdmin.append('password', password)
-        formDataAddAdmin.append('confirmPassword', confirmPassword)
 
-        await axios.post("https://backend.celebrity.sg/api/admin/add", formDataAddAdmin, {
-            // headers: {
-            //     'authorization': `Bearer ${localStorage.getItem('token')}`
-            //   }
+        await axios.post("https://backend.celebrity.sg/api/v1/admin/", formDataAddAdmin, {
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
+            }
         })
             .then(res => {
-                if (res.status === 200) {
-                    alert(res.data.message);
+                if (res.status === 201) {
+                    // setAllAdmin(res.data.newAdmin);
                     setIsLoadingAdmin(false);
                     setModalShowNewAdmin(false);
+                    setRefetch(!refetch);
                     event.target.reset();
+                    swal({
+                        title: "Success",
+                        text: `${res.data.message}`,
+                        icon: "success",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
+                    // alert(res.data.message);
                 }
             })
             .catch(error => {
-                alert(error.response.data.message);
-                console.log(error);
+                // alert(error.response.data.message);
+                // console.log(error);
                 setIsLoadingAdmin(false);
+                swal({
+                    title: "Attention",
+                    text: `${error.response.data.message}`,
+                    icon: "warning",
+                    button: "OK!",
+                    className: "modal_class_success",
+                });
             })
+        // setIsLoadingAdmin(false);
     }
 
     return (

@@ -8,7 +8,7 @@ import { CelebrityContext } from '../../context/CelebrityContext';
 import './header.css';
 
 function Header() {
-  const { openWalletModal } = useContext(CelebrityContext);
+  const { openWalletModal, user} = useContext(CelebrityContext);
 
   return (
     <Navbar bg="light" expand="lg" id='navbars' className='navbarsContainer' collapseOnSelect>
@@ -18,6 +18,8 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/home" href="#home" className='menuText'>Home</Nav.Link>
+            <Nav.Link href="https://dsl.sg/testnet" target="_blank" className='menuText'>Testnet</Nav.Link>
+
             <Nav.Link as={Link} to="/about_us" href="#home" className='menuText'>About Us</Nav.Link>
             <Nav.Link as={Link} to="/how_it_works" href="#home" className='menuText'>How it works</Nav.Link>
 
@@ -40,8 +42,13 @@ function Header() {
             </div>
 
             {/* <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link> */}
-            <div className='menuText'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </div>
-          </Nav>
+           {
+            (!user.walletAddress || user.walletAddress === "undefined") ?
+            <div className='menuText headerButtonW'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </div>
+            :
+            <Nav.Link as={HashLink}  href="#Meal" to="/profile" className='menuText dropdown-text'>Profile</Nav.Link>
+           }
+            </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

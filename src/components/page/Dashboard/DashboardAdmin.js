@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import Loading from '../../Loading/Loading';
 import './DashboardAdmin.css';
 import DashboardModalNewAdmin from './DashboardModalNewAdmin';
@@ -12,38 +13,52 @@ const DashboardAdmin = () => {
     // const [open, setOpen] = React.useState(false);
     const [allAdmin, setAllAdmin] = useState([]);
     const [isLoadingAdmin, setIsLoadingAdmin] = useState(false);
+    const [refetch, setRefetch] = useState(false);
     // const {chains, user1, logOut} = useContext(GrighundContext);
 
     useEffect(() => {
-        fetch("https://backend.celebrity.sg/api/admin/all")
+        fetch("https://backend.celebrity.sg/api/v1/admin/")
             .then(res => res.json())
-            .then(data => setAllAdmin(data?.admin))
-    }, [])
-
+            .then(data => setAllAdmin(data))
+    }, [refetch])
+    // console.log(allAdmin)
     // Loading Spinner
     if (isLoadingAdmin) {
-        return <Loading/>
+        return <Loading />
     }
 
     // console.log(allAdmin.admin);
     const handleAdminDelete = async (id) => {
         const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
         if (confirmDelete) {
-            await axios.delete(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
+            await axios.delete(`https://backend.celebrity.sg/api/v1/admin/${id}`, {
                 headers: {
-                    'authorization': `Bearer ${localStorage.getItem('token')}`
-                    // "content-type": "application/json"
+                    'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
                 }
             })
                 .then(res => {
                     if (res.status === 200) {
-                        alert(res.data.message);
+                        // alert(res.data.message);
+                        swal({
+                            title: "Success",
+                            text: `${res.data.message}`,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
                         setAllAdmin(allAdmin.filter(admin => admin._id !== id))
                     }
                 })
                 .catch(error => {
-                    alert(error.response.data.message);
-                    console.log(error);
+                    // alert(error.response.data.message);
+                    // console.log(error);
+                    swal({
+                        title: "Attention",
+                        text: `${error.response.data.message}`,
+                        icon: "warning",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
                 })
 
             // fetch(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
@@ -169,7 +184,7 @@ const DashboardAdmin = () => {
                         <tbody>
                             {
                                 allAdmin?.map(admin => <tr admin={admin} key={admin._id} className='tableRow'>
-                                    <td align='center'> <img className='imgAdmin' src={admin?.avatar} alt="profilePic" /></td>
+                                    <td align='center'> <img className='imgAdmin' src={`https://backend.celebrity.sg/${admin?.avatar}`} alt="profilePic" /></td>
                                     <td style={{ textTransform: 'lowercase' }} className='text-start'>{admin?.username}</td>
                                     <td className='text-start adminHidden'>{admin?.email}</td>
                                     <td className='text-start adminHidden'>{admin?.phone}</td>
@@ -201,6 +216,8 @@ const DashboardAdmin = () => {
                 show={modalShowNewAdmin}
                 setIsLoadingAdmin={setIsLoadingAdmin}
                 setModalShowNewAdmin={setModalShowNewAdmin}
+                setRefetch={setRefetch}
+                refetch={refetch}
                 onHide={() => setModalShowNewAdmin(false)}
             />
         </div>
