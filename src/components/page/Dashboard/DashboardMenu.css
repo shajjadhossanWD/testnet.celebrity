@@ -57,7 +57,7 @@ svg {
 
 @media screen and (max-width: 500px) {
     .handleHeightDMenu {
-        height: auto !important;
+        height: 100vh !important;
     }
 }
 
