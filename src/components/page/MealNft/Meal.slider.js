@@ -5,17 +5,17 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 const MealSlider = () => {
-  const [isSouvenir, setSouvenir] = useState([])
+  const [isMeal, setIsMeal] = useState([])
 
-   const allNft = isSouvenir.nft;
+   const allNft = isMeal.nft;
 
   useEffect(() => { 
-    axios.get("https://backend.celebrity.sg/api/nft/allsouvenir")
+    axios.get("https://backend.celebrity.sg/api/nft/allmeal")
         .then(res => {
-          setSouvenir(res.data);
+          setIsMeal(res.data);
             // setFilterData(res.data.slice(0, 5))
         }); 
-    }, [isSouvenir])
+    }, [isMeal])
 
   var settings = {
     dots: true,
