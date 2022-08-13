@@ -55,9 +55,20 @@ svg {
     width: 100%;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 350px) {
     .handleHeightDMenu {
         height: 100vh !important;
+    }
+
+}
+
+@media screen and (min-width: 351px) and (max-width: 500px) {
+    .handleHeightDMenu {
+        height: 100vh !important;
+    }
+
+    .dashboardTitle {
+        padding-left: 48px;
     }
 }
 

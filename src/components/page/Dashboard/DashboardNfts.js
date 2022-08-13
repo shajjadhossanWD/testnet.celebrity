@@ -82,7 +82,7 @@ const DashboardNfts = () => {
             <Container fluid className="mt-3">
               <Button
                 variant="primary"
-                className="border-0"
+                className="border-0 text-uppercase"
                 style={{ backgroundColor: "blueviolet" }}
                 onClick={() => setModalShow(true)}
               >
@@ -118,16 +118,18 @@ const DashboardNfts = () => {
                           {data.date}
                         </td>
                         <td className="pt-3">
-                          <CustomTooltip title="Edit NFT">
-                            <Link to={`editNft/${data._id}`}>
-                              <button className="editBtn"><i className="fas fa-edit"></i></button>
-                            </Link>
-                          </CustomTooltip>{" "}
-                          <CustomTooltip title="Delete NFT">
-                            <span className="rounded nft-delete-button" onClick={() => handleOrderDelete(data._id)}>
-                              <button className="deleteBtn"><i className="fas fa-trash"></i></button>
-                            </span>
-                          </CustomTooltip>
+                          <div className='d-flex justify-content-center align-items-center'>
+                            <CustomTooltip title="Edit NFT">
+                              <Link to={`editNft/${data._id}`}>
+                                <button className="editBtn"><i className="fas fa-edit"></i></button>
+                              </Link>
+                            </CustomTooltip>{" "}
+                            <CustomTooltip title="Delete NFT">
+                              <span className="rounded nft-delete-button" onClick={() => handleOrderDelete(data._id)}>
+                                <button className="deleteBtn"><i className="fas fa-trash"></i></button>
+                              </span>
+                            </CustomTooltip>
+                          </div>
                         </td>
                       </tr>
                     ))}

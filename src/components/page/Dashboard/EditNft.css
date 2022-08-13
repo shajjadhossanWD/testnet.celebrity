@@ -37,10 +37,20 @@
     .edit-nft-card-contents {
         flex-direction: column;
     }
+
     .edit-nft-card-content-one {
         width: 100%;
     }
+
     .edit-nft-card-content-two {
         width: 100%;
+    }
+
+    .edit-nft-card {
+        background: #272d47;
+        margin: 16px;
+        margin-right: 50px;
+        padding: 1.5rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.02);
     }
 }

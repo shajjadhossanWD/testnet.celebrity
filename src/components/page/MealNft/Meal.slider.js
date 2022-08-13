@@ -7,17 +7,22 @@ import Slider from "react-slick";
 function MealSlider() {
   const [isMeal, setMeal] = useState([])
 
+  useEffect(() => {
+    const meal = async () => {
+      await axios.get("https://backend.celebrity.sg/api/nft/allmeal").then((res) => {
+        setMeal(res.data);
+        // setFilterData(res.data.slice(0, 5))
+      });
+    }
+    meal();
+  }, [isMeal]);
   const allNft = isMeal.nft;
 
-  useEffect(() => {
-    axios.get("https://backend.celebrity.sg/api/nft/allmeal").then((res) => {
-      setMeal(res.data);
-      // setFilterData(res.data.slice(0, 5))
-    });
-  }, [isMeal]);
+  console.log(allNft);
+
 
   var settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 1000,
     slidesToShow: 4,
@@ -54,7 +59,7 @@ function MealSlider() {
 
   return (
     <Slider {...settings} className="gap-2">
-      {allNft.map((aNft) => (
+      {allNft?.map((aNft) => (
         <div key={aNft._id} className="d-item1">
           <div class="card">
             <div className="nft__item_like like_card">

@@ -169,8 +169,8 @@ const DashboardModalNewAdmin = (props) => {
                                     />
                                 </div>
                                 <Modal.Footer className='mt-5'>
-                                    <button type="button" className='adminBtnAdd11' onClick={props.onHide}>Cancel</button>
-                                    <button type="submit" className='adminBtnAdd'>Add</button>
+                                    <button type="button" className='adminBtnAdd11 text-uppercase' onClick={props.onHide}>Cancel</button>
+                                    <button type="submit" className='adminBtnAdd text-uppercase'>Add</button>
                                 </Modal.Footer>
 
                             </div>
