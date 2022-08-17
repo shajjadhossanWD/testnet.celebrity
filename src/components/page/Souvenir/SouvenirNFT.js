@@ -52,21 +52,21 @@ const SouvenirNFT = () => {
                           <i className="fa fa-envelope fa-lg"  ></i>
                         </a>
                       </div> */}
-                      <button className="card_hover_button mt-5" href="#!">BUY NOW</button>
+                      <Link to={`/souvenirnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                     </div>
                   </div>
                   <div class="card-content">
                     <div className="row">
                       <a href="#!">
                         <Typography variant="body2">
-                        Name Of NFT : {data?.name} <span></span>
+                          Name Of NFT : {data?.name} <span></span>
                         </Typography>
                       </a>
                       <Typography variant="body2">
-                      Type Of NFT : {data?.type} <span></span>
+                        Type Of NFT : {data?.type} <span></span>
                       </Typography>
                       <Typography variant="body2">
-                      Price Of NFT(SGD): {data?.price}<span> </span>
+                        Price Of NFT(SGD): {data?.price}<span> </span>
                       </Typography>
                       <Typography variant="body2">
                         Details: <Link to={`/souvenirnft/${data?._id}`} classsName="clickHere"> For more details click here </Link>
