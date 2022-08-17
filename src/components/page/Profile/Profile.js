@@ -41,7 +41,7 @@ const Profile = () => {
     <div className='handleTheProfileBody'>
       <div className="container pt-3 text-white">
         <h3 className='mb-4 ms-2 ms-md-0'>Profile</h3>
-        <form className='mb-5 shadow-lg rounded-lg py-5 px-4 p-md-5 align-items-center' >
+        <form className='shadow-lg rounded-lg py-5 px-4 p-md-5 align-items-center' >
           <div className='row' style={{ rowGap: "10px" }}>
             <div className='col-md-6 px-4'>
               <div className="mb-2">

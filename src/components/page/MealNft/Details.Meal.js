@@ -139,25 +139,26 @@ function MealDetails() {
                     </div>
                     <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
                       <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
-                        <div className="d-flex card_hover_icon">
-                          <a className="card_icon_bg" target="_blank" rel="noopener noreferrer ">
-                            <i className="fa-brands fa-linkedin-in icons" ></i>
-                          </a>
-                          <a className="card_icon_bg" target="_blank" rel="noopener noreferrer">
-                            <i className="fa-brands fa-twitter icons"></i>
-                          </a>
-                        </div>
-                        <div className="d-flex card_hover_icon">
-                          <a className="card_icon_bg" target="_blank" rel="noopener noreferrer">
-                            <i className="fa-brands fa-facebook-f icons"></i>
-                          </a>
-                          <a className="card_icon_bg" target="_blank" rel="noopener noreferrer">
-                            <i className="fa-brands fa-instagram icons"></i>
-                          </a>
-                          <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
-                            <i className="fa fa-envelope fa-lg"  ></i>
-                          </a>
-                        </div>
+                        {/* <div className="d-flex card_hover_icon">
+                               <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
+                                   <i className="fa-brands fa-linkedin-in icons" ></i> 
+                               </a>    
+                               <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
+                                   <i className="fa-brands fa-twitter icons"></i> 
+                              </a>    
+                              </div>
+                              <div  className="d-flex card_hover_icon">
+                                <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                                   <i className="fa-brands fa-facebook-f icons"></i> 
+                               </a>  
+                               <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
+                                   <i className="fa-brands fa-instagram icons"></i>  
+                               </a>   
+                               <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                                 <i className="fa fa-envelope fa-lg"  ></i>
+                                </a>
+                               </div> */}
+                        <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                       </div>
                     </div>
                     <div class="card-content">

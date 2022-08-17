@@ -8,7 +8,7 @@ import { CelebrityContext } from '../../context/CelebrityContext';
 import './header.css';
 
 function Header() {
-  const { openWalletModal, user} = useContext(CelebrityContext);
+  const { openWalletModal, user } = useContext(CelebrityContext);
 
   return (
     <Navbar bg="light" expand="lg" id='navbars' className='navbarsContainer' collapseOnSelect>
@@ -36,19 +36,19 @@ function Header() {
             <div class="dropdown-menus">
               <button class="menu-btns">Types </button>
               <div class="menu-contents">
-                <Nav.Link as={HashLink}  href="#Souvenir" to="/souvenirNft#Souvenir" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
-                <Nav.Link as={HashLink}  href="#Meal" to="/mealnft#Meal" className='menuText dropdown-text'>Meal NFT</Nav.Link>
+                <Nav.Link as={HashLink} href="#Souvenir" to="/souvenirNft#Souvenir" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
+                <Nav.Link as={HashLink} href="#Meal" to="/mealnft#Meal" className='menuText dropdown-text'>Meal NFT</Nav.Link>
               </div>
             </div>
 
             {/* <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link> */}
-           {
-            (!user.walletAddress || user.walletAddress === "undefined") ?
-            <div className='menuText headerButtonW'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </div>
-            :
-            <Nav.Link as={HashLink}  href="#Meal" to="/profile" className='menuText dropdown-text'>Profile</Nav.Link>
-           }
-            </Nav>
+            {
+              (!user.walletAddress || user.walletAddress === "undefined") ?
+                <div className='menuText headerButtonW'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </div>
+                :
+                <Nav.Link as={HashLink} href="#Meal" to="/profile" className='menuText dropdown-text'><div className='menuText headerButtonW'><button class="button-18" role="button" >Profile</button> </div></Nav.Link>
+            }
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

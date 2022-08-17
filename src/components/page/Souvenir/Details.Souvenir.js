@@ -139,7 +139,7 @@ function SouvenirDetails() {
                     <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
                       <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
                         <div className="d-flex card_hover_icon">
-                          <a className="card_icon_bg" target="_blank" rel="noopener noreferrer ">
+                          {/* <a className="card_icon_bg" target="_blank" rel="noopener noreferrer ">
                             <i className="fa-brands fa-linkedin-in icons" ></i>
                           </a>
                           <a className="card_icon_bg" target="_blank" rel="noopener noreferrer">
@@ -155,7 +155,8 @@ function SouvenirDetails() {
                           </a>
                           <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
                             <i className="fa fa-envelope fa-lg"  ></i>
-                          </a>
+                          </a> */}
+                          <Link to={`/souvenirnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                         </div>
                       </div>
                     </div>
