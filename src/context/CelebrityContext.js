@@ -4,8 +4,11 @@ import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import {
-  DSLtokenABITestnet, DSLtokenAddressTestnet, mintABITestnet,
-  mintAddressTestnet, UsdscContractAbi, UsdscContractAddress, USDSCtokenABITestnet, USDSCtokenAddressTestnet
+  DSLtokenABITestnet, DSLtokenAddressTestnet, 
+  mintABITestnet,mintAddressTestnet, 
+  USDSCtokenABITestnet, USDSCtokenAddressTestnet,
+  USDSCtokenAddressMainnet, USDSCtokenABIMainnet,
+  DSLtokenAddressMainnet, DSLtokenABIMainnet
 } from "../utils/constant";
 export const CelebrityContext = createContext();
 
@@ -47,6 +50,22 @@ const getDSLtokenContractTestnet = () => {
   return tokenContract;
 };
 
+const getUSDSCtokenContractMainnet = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(USDSCtokenAddressMainnet, USDSCtokenABIMainnet, signer);
+
+  return tokenContract;
+}
+
+const getDSLtokenContractMainnet = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(DSLtokenAddressMainnet, DSLtokenABIMainnet, signer);
+
+  return tokenContract;
+}
+
 export default function CelebrityProvider({ children }) {
   const [loginModal, setLoginModal] = useState(false);
   const [currentAccount, setCurrentAccount] = useState(null);
@@ -68,6 +87,46 @@ export default function CelebrityProvider({ children }) {
   useEffect(() => {
     checkIfWalletIsConnect();
   }, []);
+
+  const getBalanceTestnet = async () => {
+    const USDSCtokenContract = getUSDSCtokenContractTestnet();
+    const DSLtokenContract = getDSLtokenContractTestnet();
+    const USDSCbalance = await USDSCtokenContract.balanceOf(currentAccount);
+    const USDSCamount = ethers.utils.formatEther(USDSCbalance);
+    const DSLbalance = await DSLtokenContract.balanceOf(currentAccount);
+    const DSLamount = ethers.utils.formatEther(DSLbalance);
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const balance1 = await provider.getBalance(currentAccount)
+    console.log("usdsc: " + USDSCamount);
+    console.log("dsl: " + DSLamount);
+    console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
+    const wallet = {
+      usdsc: USDSCamount,
+      bnb: ethers.utils.formatEther(balance1),
+      dsl: DSLamount
+    }
+    return setMetamaskBalance(wallet);
+  }
+
+  const getBalanceMainnet = async () => {
+    const USDSCtokenContract = getUSDSCtokenContractMainnet();
+    const DSLtokenContract = getDSLtokenContractMainnet();
+    const USDSCbalance = await USDSCtokenContract.balanceOf(currentAccount);
+    const USDSCamount = ethers.utils.formatEther(USDSCbalance);
+    const DSLbalance = await DSLtokenContract.balanceOf(currentAccount);
+    const DSLamount = ethers.utils.formatEther(DSLbalance);
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const balance1 = await provider.getBalance(currentAccount)
+    console.log("usdsc: " + USDSCamount);
+    console.log("dsl: " + DSLamount);
+    console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
+    const metamask = {
+      usdsc: USDSCamount,
+      bnb: ethers.utils.formatEther(balance1),
+      dsl: DSLamount
+    }
+    return setMetamaskBalance(metamask);
+  }
 
   const mintTicketNFTTestnetBNB = async (uriNft, mintPrice) => {
     try {
@@ -403,7 +462,7 @@ export default function CelebrityProvider({ children }) {
             })
             .then((res) => {
               if (res.data.user) {
-                getBalanceTestnet();
+                // getBalanceTestnet();
                 setUser(res.data.user);
                 setLoading(false);
                 closeWalletModal();
@@ -465,37 +524,6 @@ export default function CelebrityProvider({ children }) {
     }
   }, [currentAccount]);
 
-  const getUsdscContracttestnet = () => {
-    // const provider = new ethers.providers.Web3Provider(ethereum);
-    const UsdscContractInstance = new ethers.Contract(
-      UsdscContractAddress,
-      UsdscContractAbi,
-    );
-    return UsdscContractInstance;
-  };
-
-  const getBalanceTestnet = async () => {
-    try {
-      setMetamaskBalanceLoading(true);
-      const USDSCtokenContract = getUsdscContracttestnet();
-      const balance = await USDSCtokenContract.balanceOf(currentAccount);
-      const amount = ethers.utils.formatEther(balance);
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const balance1 = await provider.getBalance(currentAccount)
-      console.log("usdsc: " + amount);
-      console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
-      const metamask = {
-        usdsc: amount,
-        bnb: ethers.utils.formatEther(balance1)
-      }
-      setMetamaskBalanceLoading(false);
-      return setMetamaskBalance(metamask);
-    } catch (error) {
-      console.log(error);
-      throw new Error("No ethereum object");
-    }
-  }
-
 
   return (
     <CelebrityContext.Provider
@@ -517,7 +545,9 @@ export default function CelebrityProvider({ children }) {
         mintTicketNFTTestnetUSDSC,
         mintTicketNFTTestnetDSL,
         metamaskBalance,
-        metamaskBalanceLoading
+        metamaskBalanceLoading,
+        getBalanceTestnet,
+        getBalanceMainnet
       }}
     >
       {children}
