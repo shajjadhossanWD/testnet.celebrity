@@ -13,6 +13,8 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { CelebrityContext } from '../../../context/CelebrityContext';
 import swal from 'sweetalert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
   const { user, logOut, metamaskBalance } = useContext(CelebrityContext);
@@ -23,7 +25,7 @@ const Profile = () => {
     alert("Copied!")
   }
 
-  const LogOut = () =>{
+  const LogOut = () => {
     logOut();
     navigate("/")
     swal({
@@ -48,7 +50,7 @@ const Profile = () => {
               </div>
               <div className="mb-2">
                 <label htmlFor='usdsc'>USDSC in wallet</label>
-                 <input type="text" id='usdsc' name="usdsc" value={metamaskBalance?.usdsc && parseFloat(metamaskBalance?.usdsc).toFixed(4)} className='form-control bg-transparent text-white' disabled />
+                <input type="text" id='usdsc' name="usdsc" value={metamaskBalance?.usdsc && parseFloat(metamaskBalance?.usdsc).toFixed(4)} className='form-control bg-transparent text-white' disabled />
               </div>
               <div className="mb-2">
                 <label htmlFor='bnb'>BNB in wallet</label>
@@ -61,34 +63,40 @@ const Profile = () => {
                 <label htmlFor='referralID'>Referral ID</label>
                 <div className='d-flex'>
                   <input type="text" id='referralID' name="referralID" value={user?.myReferralCode} className='form-control bg-transparent text-white' disabled />
-                  <button type="button" onClick={() => copyToClipboard(user?.myReferralCode)} className="border"><i className="fa-regular fa-copy"></i></button>
+                  <button type="button" onClick={() => copyToClipboard(user?.myReferralCode)} className="border bg-success">
+                    <FontAwesomeIcon icon={faCopy} />
+                  </button>
                 </div>
               </div>
 
               <div className="mb-2">
                 <label htmlFor='referralID'>Affiliate Link</label>
                 <div className="d-flex">
-                  <input type="text" id='referralID' name="referralID" value={window.location.origin + "/" + user?.myReferralCode} className='form-control bg-transparent text-white' disabled /> 
-                  <button type="button" onClick={() => copyToClipboard(window.location.origin + "/" + user?.myReferralCode)} className="border"><i className="fa-regular fa-copy"></i></button> 
-                  <button type="button" className="border"><i className="fa-regular fa-copy"></i></button>
+                  <input type="text" id='referralID' name="referralID" value={window.location.origin + "/" + user?.myReferralCode} className='form-control bg-transparent text-white' disabled />
+                  <button type="button" onClick={() => copyToClipboard(window.location.origin + "/" + user?.myReferralCode)} className="border bg-success">
+                    <FontAwesomeIcon icon={faCopy} className='' />
+                  </button>
+
                 </div>
               </div>
-              <div className="mb-2">
-                <label>Share Affiliate Link</label>
-                <div className='d-flex gap-2 mt-1'>
-                  {/* <FacebookShareButton url={window.location.origin + "/dapps/" + user?.myReferralCode} quote={`Get USDSC now! You can swap to BUSD anytime. When the stability increases, you can get 1.05 times in terms of BUSD. Use my referral code to get 50% discount in service charges. My Referral Code is ${user?.myReferralCode}`}>
+              <div className="mb-2 social-div">
+                <div>
+                  <label className=''>Share Affiliate Link</label>
+                  <div className='d-flex gap-2 mt-1'>
+                    {/* <FacebookShareButton url={window.location.origin + "/dapps/" + user?.myReferralCode} quote={`Get USDSC now! You can swap to BUSD anytime. When the stability increases, you can get 1.05 times in terms of BUSD. Use my referral code to get 50% discount in service charges. My Referral Code is ${user?.myReferralCode}`}>
                                         <FacebookIcon size={40} round={true} />
                                     </FacebookShareButton> */}
-                  <TwitterShareButton url={window.location.origin + "/" + user?.myReferralCode} title={``}>
-                    <TwitterIcon size={40} round={true} />
-                  </TwitterShareButton>
-                  <LinkedinShareButton url={window.location.origin + "/" + user?.myReferralCode} summary={``}>
-                    <LinkedinIcon size={40} round={true} />
-                  </LinkedinShareButton>
-                  <WhatsappShareButton url={window.location.origin + "/" + user?.myReferralCode} title={``}>
-                    <WhatsappIcon size={40} round={true} />
-                  </WhatsappShareButton>
+                    <TwitterShareButton url={window.location.origin + "/" + user?.myReferralCode} title={``}>
+                      <TwitterIcon size={40} round={true} />
+                    </TwitterShareButton>
+                    <LinkedinShareButton url={window.location.origin + "/" + user?.myReferralCode} summary={``}>
+                      <LinkedinIcon size={40} round={true} />
+                    </LinkedinShareButton>
+                    <WhatsappShareButton url={window.location.origin + "/" + user?.myReferralCode} title={``}>
+                      <WhatsappIcon size={40} round={true} />
+                    </WhatsappShareButton>
 
+                  </div>
                 </div>
               </div>
 
@@ -97,7 +105,7 @@ const Profile = () => {
               <Link to="/" className='btn btn-danger'>Cancel</Link>
             </div>
             <div className='col-6 text-center'>
-             <button className='btn btn-danger' type='button' onClick={LogOut}>Logout</button>
+              <button className='btn btn-danger' type='button' onClick={LogOut}>Logout</button>
             </div>
           </div>
         </form>

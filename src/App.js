@@ -52,12 +52,12 @@ function App() {
             <Route path="/profile" element={<Profile></Profile>} />
           </Route>
 
-         
+
 
           <Route path="/dashboard" element={
-          // <AdminRoute>
-          <Dashboard></Dashboard>
-          // </AdminRoute> 
+            <AdminRoute>
+              <Dashboard></Dashboard>
+            </AdminRoute>
 
           }>
             <Route index element={<DashboardMenu></DashboardMenu>} />
@@ -66,7 +66,7 @@ function App() {
             <Route path="/dashboard/nfts" element={<DashboardNfts></DashboardNfts>} />
             <Route path="/dashboard/nfts/editNft/:id" element={<EditNft></EditNft>} />
           </Route>
-          
+
           <Route path="/login" element={<Login></Login>} />
           <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
           <Route path="/otp/:token" element={<Otp></Otp>} />

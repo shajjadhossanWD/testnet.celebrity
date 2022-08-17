@@ -8,23 +8,23 @@ import swal from "sweetalert";
 
 function MealDetails() {
   const { mealnId } = useParams();
-  const [isDetails, setDetails] = useState([])
+  const [isDetails, setDetails] = useState({})
   const [isSouvenir, setSouvenir] = useState([])
   const [token, setToken] = useState("bnb");
 
 
   useEffect(() => {
-    axios.get("/mealData.json")
+    axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
       .then(res => {
-        setDetails(res.data?.find((data) => data.id === mealnId));
+        setDetails(res.data?.nft);
       });
-  }, [])
+  }, [mealnId])
 
 
   useEffect(() => {
-    axios.get("/souvenir.json")
+    axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
-        setSouvenir(res.data.slice(0, 4))
+        setSouvenir(res.data.nft.slice(0, 4))
       });
   }, [])
 
@@ -45,10 +45,10 @@ function MealDetails() {
             <Box className=" col-12 card_top_icon mb-2">
               <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1">
                 <i className="fa fa-heart"></i>
-                <span className="ps-1">{isDetails.fvt}</span>
+                <span className="ps-1">{isDetails?.__v}</span>
               </Box>
             </Box>
-            <img alt="Souvenir_Image" src="/assets/images/logo-6.jpg" className='deteilsPageImage2' />
+            <img alt="Souvenir_Image" src={isDetails?.avatar} className='deteilsPageImage2' />
 
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
@@ -61,14 +61,14 @@ function MealDetails() {
                 <option value="dsl">DSL</option>
               </select>
               <Typography variant="subtitle2" gutterBottom component="div">
-                <span>Name Of NFT :</span> Celebrity Meal NFT
+                <span>Name Of NFT :</span> {isDetails?.name}
               </Typography>
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span>Type Of NFT :</span> Celebrity Meal NFT
+                <span>Type Of NFT :</span> {isDetails?.type}
               </Typography>
               <Typography className="pt-1" variant="subtitle2" component="div">
                 <span>Price Of NFT(SGD):</span>{
-                  token === "bnb" || token === "usdsc" ? 3000 : 2100
+                  token === "bnb" || token === "usdsc" ? `${isDetails?.price}` : 2100
                 }
               </Typography>
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
@@ -137,7 +137,7 @@ function MealDetails() {
                       <i className="fa fa-heart"></i>
                       <span>{data.fvt}</span>
                     </div>
-                    <div class="card-img" style={{ backgroundImage: `url(${data.image})` }}>
+                    <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
                       <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
                         <div className="d-flex card_hover_icon">
                           <a className="card_icon_bg" target="_blank" rel="noopener noreferrer ">
@@ -164,23 +164,23 @@ function MealDetails() {
                       <div className="row">
                         <a href="#!">
                           <Typography variant="body2">
-                            {data.name} <span></span>
+                            Name Of NFT : {data.name} <span></span>
                           </Typography>
                         </a>
                         <Typography variant="body2">
-                          {data.type} <span></span>
+                          Type Of NFT : {data.type} <span></span>
                         </Typography>
                         <Typography variant="body2">
-                          {data.price}<span> </span>
+                          Price Of NFT(SGD): {data.price}<span> </span>
                         </Typography>
                         <Typography variant="body2">
-                          Details: <Link to={`/souvenirnft/${data.id}`} classsName="clickHere"> For more details click here </Link>
+                          Details: <Link to={`/souvenirnft/${data._id}`} classsName="clickHere"> For more details click here </Link>
                         </Typography>
                       </div>
                       <hr style={{ margin: "10px 0px 10px 0px" }} />
                       <div className="d-flex card_bottom_btn_main">
                         <div className="col-10 d-grid">
-                          <Link to={`/souvenirnft/${data.id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                          <Link to={`/souvenirnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
                         </div>
                       </div>
                     </div>

@@ -10,9 +10,9 @@ import Loading from "../../Loading/Loading";
 const SouvenirNFT = () => {
   const [isSouvenir, setSouvenir] = useState([])
   useEffect(() => {
-    axios.get("/souvenir.json")
+    axios.get("https://backend.celebrity.sg/api/nft/allsouvenir")
       .then(res => {
-        setSouvenir(res.data.slice(0, 4))
+        setSouvenir(res.data.nft.slice(0, 4))
       });
   }, [])
 
@@ -24,16 +24,16 @@ const SouvenirNFT = () => {
         </div>
         <Container className="SouvenirNFT_card row pt-2">
           {
-            isSouvenir.map((data, idx) => (
+            isSouvenir?.map((data, idx) => (
               <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 p-2 d-flex" style={{ justifyContent: 'center' }}>
                 <div class="card">
                   <div className="nft__item_like like_card">
                     <i className="fa fa-heart"></i>
-                    <span>{data.fvt}</span>
+                    <span>{data?.__v}</span>
                   </div>
-                  <div class="card-img" style={{ backgroundImage: `url(${data.image})` }}>
+                  <div class="card-img" style={{ backgroundImage: `url(${data?.avatar})` }}>
                     <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
-                      <div className="d-flex card_hover_icon">
+                      {/* <div className="d-flex card_hover_icon">
                         <a className="card_icon_bg" target="_blank" rel="noopener noreferrer ">
                           <i className="fa-brands fa-linkedin-in icons" ></i>
                         </a>
@@ -51,30 +51,31 @@ const SouvenirNFT = () => {
                         <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
                           <i className="fa fa-envelope fa-lg"  ></i>
                         </a>
-                      </div>
+                      </div> */}
+                      <button className="card_hover_button mt-5" href="#!">BUY NOW</button>
                     </div>
                   </div>
                   <div class="card-content">
                     <div className="row">
                       <a href="#!">
                         <Typography variant="body2">
-                          {data.name} <span></span>
+                        Name Of NFT : {data?.name} <span></span>
                         </Typography>
                       </a>
                       <Typography variant="body2">
-                        {data.type} <span></span>
+                      Type Of NFT : {data?.type} <span></span>
                       </Typography>
                       <Typography variant="body2">
-                        {data.price}<span> </span>
+                      Price Of NFT(SGD): {data?.price}<span> </span>
                       </Typography>
                       <Typography variant="body2">
-                        Details: <Link to={`/souvenirnft/${data.id}`} classsName="clickHere"> For more details click here </Link>
+                        Details: <Link to={`/souvenirnft/${data?._id}`} classsName="clickHere"> For more details click here </Link>
                       </Typography>
                     </div>
                     <hr style={{ margin: "10px 0px 10px 0px" }} />
                     <div className="d-flex card_bottom_btn_main">
                       <div className="col-10 d-grid">
-                        <Link to={`/souvenirnft/${data.id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                        <Link to={`/souvenirnft/${data?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
                       </div>
                     </div>
                   </div>

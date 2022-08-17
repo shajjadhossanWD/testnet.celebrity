@@ -176,6 +176,14 @@
   justify-content: space-evenly !important;
 
 }
+.card_hover_button {
+  background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%) !important;
+  color: #dee2e6 !important;
+  font-size: 11px; 
+  padding: 9px 12px 6px 12px;
+  border:none !important;
+  border-radius: 25px;
+}
 .card_icon_bg{
     text-decoration: none;
     margin: 5px;

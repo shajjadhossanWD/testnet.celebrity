@@ -3,23 +3,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
- 
+
 
 function SouvenirSlider() {
-   const [isSouvenir, setSouvenir] = useState([])
+  const [isSouvenir, setSouvenir] = useState([])
 
-   const allNft = isSouvenir.nft;
+  const allNft = isSouvenir.nft;
 
-  useEffect(() => { 
+  useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/nft/allsouvenir")
-        .then(res => {
-          setSouvenir(res.data);
-            // setFilterData(res.data.slice(0, 5))
-        }); 
-    }, [isSouvenir])
+      .then(res => {
+        setSouvenir(res.data);
+        // setFilterData(res.data.slice(0, 5))
+      });
+  }, [isSouvenir])
+
 
   var settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 1000,
     slidesToShow: 4,
@@ -32,7 +33,7 @@ function SouvenirSlider() {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
+          dots: false
         }
       },
       {
@@ -41,31 +42,33 @@ function SouvenirSlider() {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          arrows:false
+          arrows: false
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          initialSlide: 1,
+          infinite: true,
         }
       }
     ]
   };
 
-    return ( 
-      <div> 
+  return (
+    <div>
       <Slider {...settings} className="gap-2">
-      {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
-               <div class="card">
-                 <div className="nft__item_like like_card">
-                     <i className="fa fa-heart"></i>
-                     <span>50</span>
-                  </div>
-                 <div class="card-img" style={{backgroundImage:`url(${aNft?.avatar})`}}>
-                   <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
-                      <div className="d-flex card_hover_icon">
+        {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
+          <div class="card">
+            <div className="nft__item_like like_card">
+              <i className="fa fa-heart"></i>
+              <span>{aNft?.__v}</span>
+            </div>
+            <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>
+              <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
+                {/* <div className="d-flex card_hover_icon">
                        <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
                            <i className="fa-brands fa-linkedin-in icons" ></i> 
                        </a>    
@@ -83,39 +86,41 @@ function SouvenirSlider() {
                        <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
                          <i className="fa fa-envelope fa-lg"  ></i>
                         </a>
-                       </div> 
-                   </div>
-                 </div> 
-                 <div class="card-content">
-                   <div className="row"> 
-                        <a href="#!">
-                        <Typography variant="body2">
-                        Name Of NFT : {aNft?.name} <span></span>
-                        </Typography>
-                       </a> 
-                       <Typography variant="body2">
-                        Type Of NFT : {aNft?.type} <span></span>
-                       </Typography>   
-                      <Typography variant="body2">
-                         Price Of NFT(SGD): {aNft?.price}<span> </span>
-                        </Typography> 
-                        <Typography variant="body2">
-                         Details: <Link to={`/souvenirnft/souvenir_01`} classsName="clickHere"> For more details click here </Link>  
-                        </Typography> 
-                    </div>
-                    <hr style={{margin:"10px 0px 10px 0px"}}/>
-                    <div className="d-flex card_bottom_btn_main">
-                      <div className="col-10 d-grid">
-                       <Link to={`/souvenirnft/souvenir_01`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
-                      </div> 
-                    </div> 
-                  </div>
-                 </div> 
-               </div>))}
+                       </div> */}
+                <button className="card_hover_button mt-5" href="#!">BUY NOW</button>
+              </div>
+            </div>
+            <div class="card-content">
+              <div className="row">
+                <a href="#!">
+                  <Typography variant="body2">
+                    Name Of NFT : {aNft?.name} <span></span>
+                  </Typography>
+                </a>
+                <Typography variant="body2">
+                  Type Of NFT : {aNft?.type} <span></span>
+                </Typography>
+                <Typography variant="body2">
+                  Price Of NFT(SGD): {aNft?.price}<span> </span>
+                </Typography>
+                <Typography variant="body2">
+                  Details: <Link to={`/souvenirnft/${aNft?._id}`} classsName="clickHere"> For more details click here </Link>
+                </Typography>
+              </div>
+              <hr style={{ margin: "10px 0px 10px 0px" }} />
+              <div className="d-flex card_bottom_btn_main">
+                <div className="col-10 d-grid">
+                  <Link to={`/souvenirnft/${aNft?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>))}
+
       </Slider>
     </div>
-           
-    )
-} 
+
+  )
+}
 
 export default SouvenirSlider

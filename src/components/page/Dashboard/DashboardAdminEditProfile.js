@@ -30,7 +30,10 @@ const DashboardAdminEditProfile = () => {
             method: "GET"
         })
             .then(res => res.json())
-            .then(data => setSingleAdmin(data.admin))
+            .then(data => {
+                setSingleAdmin(data.admin)
+                setValueProfilePhn(data.admin.phone)
+            })
     }, [idOrigin])
 
     // console.log(singleAdmin);
@@ -187,8 +190,8 @@ const DashboardAdminEditProfile = () => {
                     </div>
 
                     <div className='mx-auto text-center'>
-                        <button className="profileBtnChange bg-danger w-25 me-3 text-white" type='click'>Cancel</button>
-                        <button className="profileBtnChange text-white w-25" type='submit'>Save</button>
+                        <button className="profileBtnChange bg-danger w-25 me-3 text-white text-uppercase" type='click'>Cancel</button>
+                        <button className="profileBtnChange text-white w-25 text-uppercase" type='submit'>Save</button>
                     </div>
                 </div>
             </form>

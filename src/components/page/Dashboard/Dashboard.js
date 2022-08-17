@@ -129,17 +129,17 @@ const Dashboard = () => {
                   onHide={handleClose}
                   style={{ backgroundColor: "#323246", color: "white" }}
                 >
-                  <Offcanvas.Header closeButton>
+                  <Offcanvas.Header closeButton className='mb-4'>
                     <Offcanvas.Title className="text-light">
                       <Nav className="d-flex flex-column justify-content-center align-items-center handleNav mx-auto text-center">
                         <Nav.Link
-                          className="text-light mb-3"
+                          className="text-light"
                           as={CustomLink}
                           to="/"
                         >
                           <img
                             src="https://alpha.physicalnft.org/assets/frontend/images/png.png"
-                            style={{ width: "50px", marginLeft: "-100px" }}
+                            style={{ width: "50px", marginLeft: "-135px" }}
                             alt="logo"
                           />
                         </Nav.Link>
@@ -155,6 +155,7 @@ const Dashboard = () => {
                         as={CustomLink}
                         to="/dashboard"
                         href="#admin"
+                        onClick={handleClose}
                       >
                         <span className="me-2 fs-4">
                           <TiGroup></TiGroup>
@@ -167,6 +168,7 @@ const Dashboard = () => {
                         as={CustomLink}
                         to="/dashboard/admin"
                         href="#admin"
+                        onClick={handleClose}
                       >
                         <span className="me-2 fs-4">
                           <TiGroup></TiGroup>
@@ -179,6 +181,7 @@ const Dashboard = () => {
                         as={CustomLink}
                         to="/dashboard/nfts"
                         href="#nfts"
+                        onClick={handleClose}
                       >
                         <span className="me-2 fs-4">
                           <HiCheckCircle></HiCheckCircle>

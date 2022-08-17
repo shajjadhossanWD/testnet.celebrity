@@ -22,19 +22,19 @@ const EditNft = () => {
   let ss = newDate.getSeconds();
 
   if (min < 10) {
-      newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + 0 + min + ':' + ss;
+    newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + 0 + min + ':' + ss;
 
   } else {
-      newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
+    newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
   }
 
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
-        .then(res => {
-          setNfts(res.data.nft);
-            console.log(res.data.nft)
-        })
-}, [id])
+      .then(res => {
+        setNfts(res.data.nft);
+        console.log(res.data.nft)
+      })
+  }, [id])
 
   // form submit funtion
   const onSubForm = (e) => {
@@ -46,7 +46,7 @@ const EditNft = () => {
     const type = e.target.type.value;
     const avatar = e.target.avatar.files[0];
 
-    
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('price', price);
@@ -56,26 +56,30 @@ const EditNft = () => {
     formData.append('image', avatar);
 
     axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${Nfts._id}`, formData)
-        .then(res => {
-            if (res.status === 200) {
-                // alert(res.data.message);
-                swal({
-                  title: "Success",
-                  text: `${res.data.message}`,
-                  icon: "success",
-                  button: "OK!",
-                  className: "modal_class_success",
-              });
-                setNfts(res.data.nft);
-                navigate("/dashboard/nfts")
-            }
-        })
-        .catch(err => {
-            alert(err.response.data.message);
-        })
-       
-      
-      };
+      .then(res => {
+        if (res.status === 200) {
+          // alert(res.data.message);
+          swal({
+            title: "Success",
+            text: `${res.data.message}`,
+            icon: "success",
+            button: "OK!",
+            className: "modal_class_success",
+          });
+          setNfts(res.data.nft);
+          navigate("/dashboard/nfts")
+        }
+      })
+      .catch(err => {
+        alert(err.response.data.message);
+      })
+
+
+  };
+
+  const redirectToNftPage = () => {
+    navigate("/dashboard/nfts");
+  }
 
   return (
     <div style={{ width: "100%", marginLeft: "0" }}>
@@ -115,7 +119,7 @@ const EditNft = () => {
                   name="name"
                   defaultValue={Nfts.name}
                   style={{ backgroundColor: "#272d47", color: "white" }}
-                  
+
                 />
 
                 <label className="mb-1">NFT Price</label>
@@ -125,7 +129,7 @@ const EditNft = () => {
                   name="price"
                   defaultValue={Nfts.price}
                   style={{ backgroundColor: "#272d47", color: "white" }}
-                  
+
                 />
                 <label className="mb-1">NFT Description</label>
                 <textarea
@@ -173,7 +177,10 @@ const EditNft = () => {
                     marginTop: "1rem",
                   }}
                 >
-                  <Button type="submit" className="edit-nft-update-button">
+                  <Button type="button" onClick={redirectToNftPage} className="btn btn-danger me-2 text-uppercase" style={{backgroundColor: '#dc3545'}}>
+                    CANCEL
+                  </Button>
+                  <Button type="submit" className="edit-nft-update-button ms-2 text-uppercase">
                     Update
                   </Button>
                 </div>

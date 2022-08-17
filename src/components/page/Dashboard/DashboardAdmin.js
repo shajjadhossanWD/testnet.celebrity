@@ -147,7 +147,7 @@ const DashboardAdmin = () => {
           :
           <p className='text-danger text-start'><span>You are not connected to Binance Chain</span></p>
         } */}
-            <h5 className='text-white text-start'>Admins</h5>
+            <h5 className='text-white text-start ps-1'>Admins</h5>
             <div className='adminCard py-2'>
                 {/* <h5 className='text-start text-white ms-4 mt-4 activeLegends'>Legend</h5>
       <div className="actions ">
@@ -165,7 +165,7 @@ const DashboardAdmin = () => {
         ))}
         </div> */}
                 <div className="adminBtnDiv text-end">
-                    <button onClick={() => setModalShowNewAdmin(true)} className='adminBtn'>New Admin</button>
+                    <button onClick={() => setModalShowNewAdmin(true)} className='adminBtn text-uppercase'>New Admin</button>
                 </div>
                 <div className="tableNormal ">
 
@@ -178,7 +178,7 @@ const DashboardAdmin = () => {
                                 <th className='text-start'>Username</th>
                                 <th className='text-start adminHidden'>Email</th>
                                 <th className='text-start adminHidden'>Mobile</th>
-                                <th className='text-start'>Action</th>
+                                <th className='text-start action'>Actions</th>
                             </tr>
                         </thead>
                         <tbody>

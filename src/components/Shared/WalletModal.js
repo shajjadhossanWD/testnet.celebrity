@@ -40,7 +40,7 @@ const WalletModal = () => {
              
               <Row xs={1} md={1} className="g-2">
                 <Col>
-                  <Card className='walletDiv' onClick={() => connectWallet('Metamask')} >
+                  <Card className='walletDiv walletModal_icon' onClick={() => connectWallet('Metamask')} >
                     <Card.Img variant="top" src="https://i.ibb.co/vVf533V/1.png" className="imgWallet" />
                     <Card.Body>
                       <Card.Title className='walletName'>Metamask</Card.Title>

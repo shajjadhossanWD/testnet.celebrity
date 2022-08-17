@@ -157,6 +157,11 @@
     .profileUser input {
         width: 81.2%;
     }
+
+    .social-div {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 @media only screen and (max-width: 535px) {

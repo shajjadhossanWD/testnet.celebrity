@@ -9,9 +9,9 @@ const MealNFT = () => {
 
   const [isMeal, setMeal] = useState([])
   useEffect(() => { 
-    axios.get("/mealData.json")
+    axios.get("https://backend.celebrity.sg/api/nft/allmeal")
         .then(res => { 
-          setMeal(res.data.slice(0, 4))
+          setMeal(res.data.nft.slice(0, 4))
         }); 
     }, [])
 
@@ -28,11 +28,11 @@ const MealNFT = () => {
                       <div class="card">
                          <div className="nft__item_like like_card">
                              <i className="fa fa-heart"></i>
-                             <span>{data.fvt}</span>
+                             <span>{data?.__v}</span>
                           </div>
-                         <div class="card-img" style={{backgroundImage:`url(${data.image})`}}>
+                         <div class="card-img" style={{backgroundImage:`url(${data?.avatar})`}}>
                            <div class="overlay d-grid " style={{alignContent: 'center',justifyItems: 'center'}}>
-                         		 <div className="d-flex card_hover_icon">
+                         		 {/* <div className="d-flex card_hover_icon">
                                <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
                                    <i className="fa-brands fa-linkedin-in icons" ></i> 
                                </a>    
@@ -50,30 +50,31 @@ const MealNFT = () => {
                                <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
                                  <i className="fa fa-envelope fa-lg"  ></i>
                                 </a>
-                               </div> 
+                               </div> */}
+                               <button className="card_hover_button mt-5" href="#!">BUY NOW</button>
                            	</div>
                           </div> 
                           <div class="card-content">
                              <div className="row"> 
                                 <a href="#!">
                                 <Typography variant="body2">
-                                 {data.name} <span></span>
+                                Name Of NFT : {data?.name} <span></span>
                                 </Typography>
                              	</a> 
                                <Typography variant="body2">
-                                {data.type} <span></span>
+                               Type Of NFT : {data?.type} <span></span>
                                </Typography>   
                               <Typography variant="body2">
-                                {data.price}<span> </span>
+                              Price Of NFT(SGD): {data?.price}<span> </span>
                                 </Typography>
                                 <Typography variant="body2">
-                                 Details: <Link to={`/mealnft/${data.id}`} classsName="clickHere"> For more details click here </Link>  
+                                 Details: <Link to={`/mealnft/${data?._id}`} classsName="clickHere"> For more details click here </Link>  
                                 </Typography> 
                             </div>
                             <hr style={{margin:"10px 0px 10px 0px"}}/>
                             <div className="d-flex card_bottom_btn_main">
                               <div className="col-10 d-grid">
-                               <Link to={`/mealnft/${data.id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                               <Link to={`/mealnft/${data?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
                               </div> 
                             </div> 
 	                        </div>
