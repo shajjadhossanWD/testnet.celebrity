@@ -44,12 +44,12 @@ const DashboardNfts = () => {
   }, [refetch])
 
 
-  if (nfts.length <= 0) {
-    return <Loading></Loading>
-  }
-  if (isloading) {
-    return <Loading></Loading>
-  }
+  // if (nfts.length <= 0) {
+  //   return <Loading></Loading>
+  // }
+  // if (isloading) {
+  //   return <Loading></Loading>
+  // }
 
   const handleOrderDelete = (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this NFT? You can't recover.")

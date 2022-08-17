@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
-const MealSlider = () => {
+const MealSlider = (props) => {
   const [isMeal, setIsMeal] = useState([])
 
   const allNft = isMeal.nft;
@@ -16,6 +16,9 @@ const MealSlider = () => {
         // setFilterData(res.data.slice(0, 5))
       });
   }, [isMeal])
+
+  props.func(allNft);
+
 
 
 

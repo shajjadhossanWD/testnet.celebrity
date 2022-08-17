@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 
-function SouvenirSlider() {
+function SouvenirSlider(props) {
   const [isSouvenir, setSouvenir] = useState([])
 
   const allNft = isSouvenir.nft;
@@ -17,6 +17,8 @@ function SouvenirSlider() {
         // setFilterData(res.data.slice(0, 5))
       });
   }, [isSouvenir])
+
+  props.func(allNft);
 
 
   var settings = {

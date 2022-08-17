@@ -6,78 +6,82 @@ import './home.css';
 
 function Home() {
 
-    
+  const pull_data = (data) => {
+    console.log(data);
+  }
 
-    return (
-     <div>
-        <div className="bannerBg mt-5 pt-4">
-         <div  
-           className="text-white no-top no-bottom vh-100" 
-         >
-           <div className="v-center">
-             <div className="container">
-               <div className="row align-items-center">
 
-                 <div className="col-md-5">
 
-                   <div className="spacer-single"></div>
-                   <h6 className="s1  line-one text-uppercase line-one" style={{ lineHeight: '30px' }}>
-                     DS Legends Pte Ltd
-                   </h6>
-                   <h6 className="s1 line-one text-uppercase line-one"   style={{ lineHeight: '30px' }}>
-                     Presents
-                   </h6>
-                   
-                   <div className="spacer-10"></div>
-                   <div className="banner-text d-grid">
-                     <div
-                       className="s1 text-uppercase font-resize me-3"
-                       
-                     >
-                       CELEBRITY
-                     </div>
-                     <div
-                       className="s1 text-uppercase font-resize"
-                        
-                       style={{ lineHeight: '76px' }}
-                     >
-                       NFTs
-                     </div>
-                   </div>
-                   <p className=" lead" data-wow-delay="2s">
-                     <h4>The largest collection of NFTs with purpose</h4>
-                   </p>
-                   <div className="mb-sm-30"></div> 
- 
-                   <a
-                     href="03_grey-explore.html"
-                     className="btn-main lead mt-3" 
-                   >
-                     Explore
-                   </a>
-                 </div>
-                 <div className="col-md-6 offset-md-1 d-flex" style={{justifyContent: 'center'}}>
-                   <img
-                     src="/assets/images/misc/women-statue.png"
-                     className="lazy img-fluid fadeIn handleImgforRespons" 
-                     alt=""
-                   />
-                 </div>
-               </div>
-             </div>
-           </div>
-           <a
-             href="#section-intro"
-             className="mouse-icon-click scroll-to wow "
-             data-wow-delay="2s"
-           >
-             <span className="mouse fadeScroll relative" data-scroll-speed="2">
-               <span className="scroll"></span>
-             </span>
-           </a>
-         </div>
-        </div> 
-        <div className="no-bottom backgroundSection">
+  return (
+    <div>
+      <div className="bannerBg mt-5 pt-4">
+        <div
+          className="text-white no-top no-bottom vh-100"
+        >
+          <div className="v-center">
+            <div className="container">
+              <div className="row align-items-center">
+
+                <div className="col-md-5">
+
+                  <div className="spacer-single"></div>
+                  <h6 className="s1  line-one text-uppercase line-one" style={{ lineHeight: '30px' }}>
+                    DS Legends Pte Ltd
+                  </h6>
+                  <h6 className="s1 line-one text-uppercase line-one" style={{ lineHeight: '30px' }}>
+                    Presents
+                  </h6>
+
+                  <div className="spacer-10"></div>
+                  <div className="banner-text d-grid">
+                    <div
+                      className="s1 text-uppercase font-resize me-3"
+
+                    >
+                      CELEBRITY
+                    </div>
+                    <div
+                      className="s1 text-uppercase font-resize"
+
+                      style={{ lineHeight: '76px' }}
+                    >
+                      NFTs
+                    </div>
+                  </div>
+                  <p className=" lead" data-wow-delay="2s">
+                    <h4>The largest collection of NFTs with purpose</h4>
+                  </p>
+                  <div className="mb-sm-30"></div>
+
+                  <a
+                    href="03_grey-explore.html"
+                    className="btn-main lead mt-3"
+                  >
+                    Explore
+                  </a>
+                </div>
+                <div className="col-md-6 offset-md-1 d-flex" style={{ justifyContent: 'center' }}>
+                  <img
+                    src="/assets/images/misc/women-statue.png"
+                    className="lazy img-fluid fadeIn handleImgforRespons"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <a
+            href="#section-intro"
+            className="mouse-icon-click scroll-to wow "
+            data-wow-delay="2s"
+          >
+            <span className="mouse fadeScroll relative" data-scroll-speed="2">
+              <span className="scroll"></span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div className="no-bottom backgroundSection">
         <div className="container">
           <div className="row g-4">
             <div className="col-lg-12">
@@ -113,51 +117,51 @@ function Home() {
                 </div>
               </div>
             </div>
-           </div>
           </div>
         </div>
+      </div>
 
-         <div className='backgroundSection'>
-             <div className="container"> 
-             <div className="row wow fadeIn">
+      <div className='backgroundSection'>
+        <div className="container">
+          <div className="row wow fadeIn">
             <div className="col-lg-12">
               <div className="text-center">
                 <h2>
-                  Celebrity Souvenir NFTs 
+                  Celebrity Souvenir NFTs
                 </h2>
                 <div className="small-border bg-color-2"></div>
               </div>
-             </div>
+            </div>
 
-             <SouvenirSlider/>
-             <div className='d-flex' style={{ justifyContent: 'center'}}>
-                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px", marginTop: "1rem"}}>
-                  Pay by DSL and get 30% discount.
-                 </Typography>
-             </div>
-             </div> 
-             
-             <div className="spacer-double"></div>
-             <div className="row fadeIn">
-               <div className="col-lg-12">
-                 <div className="text-center">
-                   <h2>
-                     Celebrity Meal NFTs 
-                   </h2>
-                 <div className="small-border bg-color-2"></div>
-               </div>
-               <MealSlider/>
-               <div className='d-flex' style={{ justifyContent: 'center'}}>
-                 <Typography variant="h6" style={{color:'#d0d7c2', fontSize:"16px"}}>
-                  Pay by DSL and get 30% discount.
-                 </Typography>
-             </div>
+            <SouvenirSlider func={pull_data} />
+            <div className='d-flex' style={{ justifyContent: 'center' }}>
+              <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+                Pay by DSL and get 30% discount.
+              </Typography>
+            </div>
+          </div>
+
+          <div className="spacer-double"></div>
+          <div className="row fadeIn">
+            <div className="col-lg-12">
+              <div className="text-center">
+                <h2>
+                  Celebrity Meal NFTs
+                </h2>
+                <div className="small-border bg-color-2"></div>
               </div>
-            </div>  
-           </div>
-         </div>
+              <MealSlider func={pull_data} />
+              <div className='d-flex' style={{ justifyContent: 'center' }}>
+                <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px" }}>
+                  Pay by DSL and get 30% discount.
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    )
+  )
 }
 
 export default Home
