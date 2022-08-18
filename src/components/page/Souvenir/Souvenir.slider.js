@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 
-function SouvenirSlider() {
+function SouvenirSlider({ pull_souvenir }) {
   const [isSouvenir, setSouvenir] = useState([])
+  console.log(pull_souvenir);
 
   const allNft = isSouvenir.nft;
 
@@ -17,6 +18,8 @@ function SouvenirSlider() {
         // setFilterData(res.data.slice(0, 5))
       });
   }, [isSouvenir])
+
+  // props.func(allNft);
 
 
   var settings = {
@@ -87,7 +90,7 @@ function SouvenirSlider() {
                          <i className="fa fa-envelope fa-lg"  ></i>
                         </a>
                        </div> */}
-                <button className="card_hover_button mt-5" href="#!">BUY NOW</button>
+                <Link to={`/souvenirnft/${aNft?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
               </div>
             </div>
             <div class="card-content">
@@ -118,6 +121,18 @@ function SouvenirSlider() {
         </div>))}
 
       </Slider>
+
+      <div className='d-flex' style={{ justifyContent: 'center' }}>
+
+        {allNft?.length > 0 ?
+          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+            Pay by DSL and get 30% discount.
+          </Typography>
+          :
+          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+            Stay Tuned!
+          </Typography>}
+      </div>
     </div>
 
   )

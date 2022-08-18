@@ -6,9 +6,13 @@ import './DashboardModalNewAdmin.css';
 import 'react-phone-number-input/style.css';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { MdClose } from 'react-icons/md';
+import { BiLockOpen } from 'react-icons/bi';
 
 const DashboardModalNewAdmin = (props) => {
     const { setIsLoadingAdmin, setModalShowNewAdmin, refetch, setRefetch } = props;
+    const [visibleEnPassword, setVisibleEnPassword] = useState(false);
+    const [visibleCnPassword, setVisibleCnPassword] = useState(false);
     const [value, setValue] = useState();
     // if (isLoadingAdmin) {
     //     return <Loader></Loader>
@@ -89,10 +93,11 @@ const DashboardModalNewAdmin = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton style={{ backgroundColor: "#272d47", color: 'white' }}>
+            <Modal.Header style={{ backgroundColor: "#272d47", color: 'white' }}>
                 <Modal.Title id="contained-modal-title-vcenter" className='fs-5 text-light'>
                     <RiAdminFill className='fs-4'></RiAdminFill>  Add Admin
                 </Modal.Title>
+                <MdClose onClick={props.onHide} color='#fff' size={30} style={{cursor: 'pointer'}} />
             </Modal.Header>
             <Modal.Body style={{ backgroundColor: "#272d47", color: 'white' }}>
                 <div>
@@ -152,21 +157,27 @@ const DashboardModalNewAdmin = (props) => {
                                         style={{ backgroundColor: "#272d47", color: 'white' }}
                                     />
                                     <p className='mb-1'>Password</p>
+                                    <div className="d-flex inputProfile">
                                     <input
                                         className='form-control'
                                         placeholder='Enter Password'
-                                        type="password"
+                                        type={visibleEnPassword ? "text" : "password"}
                                         name="password"
                                         required
                                     />
+                                    <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleEnPassword (!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                    </div>
                                     <p className='mb-1'>Re Enter Password</p>
+                                    <div className="d-flex inputProfile">
                                     <input
                                         className='form-control'
                                         placeholder='Confirm password'
-                                        type="password"
+                                        type={visibleCnPassword ? "text" : "password"}
                                         name="confirmPassword"
                                         required
                                     />
+                                    <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleCnPassword(!visibleCnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                    </div>
                                 </div>
                                 <Modal.Footer className='mt-5'>
                                     <button type="button" className='adminBtnAdd11 text-uppercase' onClick={props.onHide}>Cancel</button>

@@ -18,7 +18,7 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/home" href="#home" className='menuText'>Home</Nav.Link>
-            <Nav.Link href="https://dsl.sg/testnet" target="_blank" className='menuText'>Testnet</Nav.Link>
+            <Nav.Link href="https://dsl.sg/testnet" target="_blank" className='menuText'>Get Testnet Tokens</Nav.Link>
 
             <Nav.Link as={Link} to="/about_us" href="#home" className='menuText'>About Us</Nav.Link>
             <Nav.Link as={Link} to="/how_it_works" href="#home" className='menuText'>How it works</Nav.Link>
@@ -33,13 +33,13 @@ function Header() {
               </div>
             </div> */}
 
-            <div class="dropdown-menus">
+            {/* <div class="dropdown-menus">
               <button class="menu-btns">Types </button>
               <div class="menu-contents">
                 <Nav.Link as={HashLink} href="#Souvenir" to="/souvenirNft#Souvenir" className='menuText dropdown-text'>Souvenir NFT</Nav.Link>
                 <Nav.Link as={HashLink} href="#Meal" to="/mealnft#Meal" className='menuText dropdown-text'>Meal NFT</Nav.Link>
               </div>
-            </div>
+            </div> */}
 
             {/* <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link> */}
             {

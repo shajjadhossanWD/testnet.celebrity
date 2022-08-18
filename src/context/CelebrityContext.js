@@ -108,6 +108,9 @@ export default function CelebrityProvider({ children }) {
     return setMetamaskBalance(wallet);
   }
 
+  console.log(metamaskBalance)
+
+
   const getBalanceMainnet = async () => {
     const USDSCtokenContract = getUSDSCtokenContractMainnet();
     const DSLtokenContract = getDSLtokenContractMainnet();
@@ -402,7 +405,7 @@ export default function CelebrityProvider({ children }) {
             })
             .then((res) => {
               if (res.data.user) {
-                // getBalanceTestnet();
+                getBalanceTestnet();
                 setUser(res.data.user);
                 setLoading(false);
                 closeWalletModal();

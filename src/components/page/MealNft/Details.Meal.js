@@ -158,7 +158,7 @@ function MealDetails() {
                                  <i className="fa fa-envelope fa-lg"  ></i>
                                 </a>
                                </div> */}
-                        <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                        <Link to={`/souvenirnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                       </div>
                     </div>
                     <div class="card-content">
@@ -191,9 +191,14 @@ function MealDetails() {
             }
           </div>
           <div className='d-flex mt-1' style={{ justifyContent: 'center' }}>
-            <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px" }}>
-              Pay by DSL and get 30% discount.
-            </Typography>
+            {isSouvenir?.length > 0 ?
+              <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+                Pay by DSL and get 30% discount.
+              </Typography>
+              :
+              <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+                Stay Tuned!
+              </Typography>}
           </div>
         </Container>
       </div>

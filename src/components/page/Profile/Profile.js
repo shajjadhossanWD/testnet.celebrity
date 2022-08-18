@@ -25,6 +25,8 @@ const Profile = () => {
     alert("Copied!")
   }
 
+  console.log(metamaskBalance)
+
   const LogOut = () => {
     logOut();
     navigate("/")

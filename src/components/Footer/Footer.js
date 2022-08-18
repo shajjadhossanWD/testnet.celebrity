@@ -20,7 +20,7 @@ const Footer = () => {
                     {/* <h4 className='pb-4'>Marketplace</h4> */}
                     <div>
                         <a href="https://dsl.sg/contact" target="_any" className='text-decoration-none'><p className='handleSpace text-decoration-none' style={{paddingTop: '50px'}}>Contact Us</p></a>
-                        <Link to="/souvenirnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Souvenir NFT</p></Link>
+                        {/* <Link to="/souvenirnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Souvenir NFT</p></Link> */}
                         <Link to="/mealnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Meal NFT</p></Link>
                     </div>
                 </div>

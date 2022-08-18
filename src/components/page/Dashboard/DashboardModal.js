@@ -6,10 +6,10 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios';
 import Loading from '../../Loading/Loading';
 import swal from 'sweetalert';
+import { MdClose } from 'react-icons/md';
 
 const DashboardModal = (props) => {
     const { setRefetch, refetch, setModalShow, SetIsloading } = props;
-
 
     var newDate = new Date();
     let dd = String(newDate.getDate()).padStart(2, '0');
@@ -80,15 +80,35 @@ const DashboardModal = (props) => {
             centered
 
         >
-            <Modal.Header closeButton style={{ backgroundColor: "#272d47", color: 'white' }}>
+            <Modal.Header style={{ backgroundColor: "#272d47", color: 'white' }}>
                 <Modal.Title id="contained-modal-title-vcenter" style={{ color: 'white' }}>
                     New NFT
                 </Modal.Title>
+                <MdClose onClick={() => setModalShow(false)} color='#fff' size={30} style={{cursor: 'pointer'}} />
             </Modal.Header>
             <Modal.Body style={{ backgroundColor: "#272d47", color: 'white' }}>
                 <div style={{ backgroundColor: "#272d47", color: 'white' }}>
                     <form onSubmit={onSubForm}>
-                        <label className='mb-1'>NFT</label>
+
+                        <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
+                            {/* <InputGroup.Text style={{ backgroundColor: "#272d47", color: 'white' }}>Timestamp</InputGroup.Text>
+                            <Form.Control
+                                aria-describedby="basic-addon1"
+                                name="date"
+                                type='text'
+                                value={newDate}
+                                className='me-3'
+                                style={{ backgroundColor: "#272d47", color: 'white' }}
+                            /> */}
+                            <Form.Select aria-label="Default select example"
+                                name="type"
+                                className='' style={{ backgroundColor: "#272d47", color: 'white' }}>
+                                <option>Type Of NFT</option>
+                                <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
+                                <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
+                            </Form.Select>
+                        </InputGroup>
+                        <label className='mb-1'>Image of NFT</label>
                         <input
                             type="file"
                             accept='image/*'
@@ -98,7 +118,7 @@ const DashboardModal = (props) => {
                             required
                         />
 
-                        <label className='mb-1'>Name Of NFT</label>
+                        <label className='mb-1'>Name of NFT</label>
                         <input
                             type="text"
                             name="name"
@@ -107,7 +127,7 @@ const DashboardModal = (props) => {
                             required
                         />
 
-                        <label className='mb-1'>Price Of NFT</label>
+                        <label className='mb-1'>Price of NFT(SGD)</label>
                         <input
                             type="number"
                             name="price"
@@ -116,7 +136,7 @@ const DashboardModal = (props) => {
                             required
                         />
 
-                        <label className='mb-1'>NFT Description</label>
+                        <label className='mb-1'>NFT Details</label>
                         <textarea
                             type="text"
                             name="description"
@@ -125,24 +145,7 @@ const DashboardModal = (props) => {
                             required
                         />
 
-                        <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
-                            <InputGroup.Text style={{ backgroundColor: "#272d47", color: 'white' }}>Timestamp</InputGroup.Text>
-                            <Form.Control
-                                aria-describedby="basic-addon1"
-                                name="date"
-                                type='text'
-                                value={newDate}
-                                className='me-3'
-                                style={{ backgroundColor: "#272d47", color: 'white' }}
-                            />
-                            <Form.Select aria-label="Default select example"
-                                name="type"
-                                className='ms-3' style={{ backgroundColor: "#272d47", color: 'white' }}>
-                                <option>Type Of NFT</option>
-                                <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
-                                <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
-                            </Form.Select>
-                        </InputGroup>
+
                         <Modal.Footer className='justify-content-center'>
                             <Button type='button' onClick={() => setModalShow(false)} style={{ backgroundColor: '#dc3545', width: '100px' }} className='border-0 text-uppercase'>CANCEL</Button>
                             <Button type='submit' style={{ backgroundColor: 'blueviolet', width: '100px' }} className='border-0 text-uppercase'>Save</Button>

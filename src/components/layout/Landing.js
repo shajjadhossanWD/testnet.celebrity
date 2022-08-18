@@ -51,7 +51,7 @@ export default function () {
                     </div>
                   </div>
                   <p className="wow fadeInUp lead" data-wow-delay="2s">
-                    <h4>The largest collection of NFTs with purpose</h4>
+                    <h4 style={{fontSize: '1rem', marginTop: '1.2rem'}}>The largest collection of NFTs with purpose</h4>
                   </p>
                   <div className="mb-sm-30"></div>
 
@@ -98,26 +98,26 @@ export default function () {
             </div>
 
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center">
+              <div className="de-card has-border text-center boxesNft">
                 <i className="wow fadeInUp bg-color-2 i-boxed icon_wallet"></i>
                 <div className="text">
-                  <h4 className="wow fadeInUp">Login with your wallet</h4>
+                  <h6 className="wow fadeInUp home-txt">Login with your wallet</h6>
                 </div>
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center">
+              <div className="de-card has-border text-center boxesNft">
                 <i className="wow fadeInUp bg-color-2 i-boxed icon_cart_alt"></i>
                 <div className="text">
-                  <h4 className="wow fadeInUp">Buy our NFTs</h4>
+                  <h6 className="wow fadeInUp home-txt">Buy our NFTs and utilize the perks</h6>
                 </div>
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center">
+              <div className="de-card has-border text-center boxesNft">
                 <i className="wow fadeInUp bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
-                  <h4 className="wow fadeInUp">Use our NFTs</h4>
+                  <h6 className="wow fadeInUp home-txt">Sell the NFTs with digital art and memorabilia of the celebrity</h6>
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@ export default function () {
 
       <section id="section-collections">
         <div className="container">
-          <div className="row wow fadeIn">
+          {/* <div className="row wow fadeIn">
             <div className="col-lg-12">
               <div className="text-center">
                 <h2>
@@ -143,7 +143,7 @@ export default function () {
                 Pay by DSL and get 30% discount.
               </Typography>
             </div>
-          </div>
+          </div> */}
 
           <div className="spacer-double"></div>
 
@@ -157,11 +157,11 @@ export default function () {
               </div>
             </div>
             <MealSlider />
-            <div className='d-flex' style={{ justifyContent: 'center' }}>
+            {/* <div className='d-flex' style={{ justifyContent: 'center' }}>
               <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px" }}>
                 Pay by DSL and get 30% discount.
               </Typography>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

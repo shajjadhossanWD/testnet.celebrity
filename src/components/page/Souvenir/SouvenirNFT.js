@@ -85,9 +85,14 @@ const SouvenirNFT = () => {
           }
         </Container>
         <div className='d-flex' style={{ justifyContent: 'center' }}>
-          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px" }}>
-            Pay by DSL and get 30% discount.
-          </Typography>
+          {isSouvenir?.length > 0 ?
+            <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+              Pay by DSL and get 30% discount.
+            </Typography>
+            :
+            <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+              Stay Tuned!
+            </Typography>}
         </div>
       </Box>
     </Fragment>

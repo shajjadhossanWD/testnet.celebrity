@@ -41,6 +41,11 @@
     /* height: 100vh; */
 }
 
+.nav_start {
+    display: flex !important;
+    align-items: flex-start !important;
+}
+
 .handleNavbarSecond {
     /* height: 100vh; */
     width: 100%;
