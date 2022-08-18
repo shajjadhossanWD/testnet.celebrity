@@ -56,7 +56,7 @@ function Home() {
                     </div>
                   </div>
                   <p className=" lead" data-wow-delay="2s">
-                    <h4>The largest collection of NFTs with purpose</h4>
+                    <h4 style={{fontSize: '1rem', marginTop: '1.2rem'}}>The largest collection of NFTs with purpose</h4>
                   </p>
                   <div className="mb-sm-30"></div>
 
@@ -101,7 +101,7 @@ function Home() {
             </div>
 
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center">
+              <div className="de-card has-border text-center boxesNft">
                 <i className=" bg-color-2 i-boxed icon_wallet"></i>
                 <div className="text">
                   <h6 className="home-txt">Login with your wallet</h6>
@@ -109,7 +109,7 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center">
+              <div className="de-card has-border text-center boxesNft">
                 <i className=" bg-color-2 i-boxed icon_cart_alt"></i>
                 <div className="text">
                   <h6 className="home-txt">Buy our NFTs and utilize the perks</h6>
@@ -117,10 +117,10 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center">
+              <div className="de-card has-border text-center boxesNft">
                 <i className=" bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
-                  <h6 className="home-txt">Sell the NFTs</h6>
+                  <h6 className="home-txt">Sell the NFTs with digital art and memorabilia of the celebrity</h6>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ function Home() {
 
       <div className='backgroundSection'>
         <div className="container">
-          <div className="row wow fadeIn">
+          {/* <div className="row wow fadeIn">
             <div className="col-lg-12">
               <div className="text-center">
                 <h2>
@@ -141,7 +141,7 @@ function Home() {
             </div>
 
             <SouvenirSlider />
-            {/* <div className='d-flex' style={{ justifyContent: 'center' }}>
+            <div className='d-flex' style={{ justifyContent: 'center' }}>
               {souvenirs ?
                 <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
                   Pay by DSL and get 30% discount.
@@ -150,8 +150,8 @@ function Home() {
                 <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
                   Stay Tuned!
                 </Typography>}
-            </div> */}
-          </div>
+            </div>
+          </div> */}
 
           <div className="spacer-double"></div>
           <div className="row fadeIn">

@@ -28,7 +28,7 @@ function HowItWorks() {
               Each NFT starts from Singapore Three Hundred only. It comes with a digital art of the celebrity, meal with the celebrity, a memorabilia of the celebrity and a selfie session with the celebrity.
             </Typography>
 
-            <Typography className="titelColor" variant="h5" gutterBottom component="div">
+            {/* <Typography className="titelColor" variant="h5" gutterBottom component="div">
               Celebrity Souvenir NFT
             </Typography>
             <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
@@ -57,7 +57,7 @@ function HowItWorks() {
             </Typography>
             <Typography className="pt-1" variant="subtitle2" component="div">
               3. Use it and Feel like the Celebrity
-            </Typography>
+            </Typography> */}
           </div>
           <div className="text-white mt-3 p-2">
             <Typography className="titelColor" variant="h5" gutterBottom component="div">
@@ -67,16 +67,19 @@ function HowItWorks() {
               What is it?
             </Typography>
             <Typography className="pt-1" variant="subtitle2" component="div">
-              1. NFT in BSC network
+              1. Digital Art of Celebrity
             </Typography>
             <Typography className="pt-1" variant="subtitle2" component="div">
-              2. Digital Artwork of the Celebrity
+              2. Exclusive Memorabilia signed by Celebrity
             </Typography>
             <Typography className="pt-1" variant="subtitle2" component="div">
-              3. A Meal Section with the Celebrity
+              3. 5 mins Live Performance
             </Typography>
             <Typography className="pt-1" variant="subtitle2" component="div">
-              4. Selfie Section with the Celebrity
+              4. Meal Session with Celebrity
+            </Typography>
+            <Typography className="pt-1" variant="subtitle2" component="div">
+              5. Selfie Session with Celebrity
             </Typography>
             <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
               Benefits for Buyer:
