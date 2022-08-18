@@ -10,7 +10,13 @@ function AboutUs() {
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false);
 
-    const {getBalanceTestnet, getBalanceMainnet} = useContext(CelebrityContext);
+    const {
+            getBalanceTestnet, 
+            getBalanceMainnet, 
+            mintTicketNFTTestnetBNB, 
+            mintTicketNFTTestnetUSDSC, 
+            mintTicketNFTTestnetDSL
+        } = useContext(CelebrityContext);
 
 
     useEffect(() => {
@@ -26,9 +32,14 @@ function AboutUs() {
         setOpen(true)
     }
 
-    function getBalance(){
+    function Mint(){
         // getBalanceTestnet();
-        getBalanceMainnet();
+        // getBalanceMainnet();
+        const uriNft = "https://jsonkeeper.com/b/QNEQ";
+        const price = "100";
+        // mintTicketNFTTestnetBNB(uriNft,price) 
+        // mintTicketNFTTestnetUSDSC(uriNft,price) 
+        mintTicketNFTTestnetDSL(uriNft,price)
     }
     return (
         <div style={{ backgroundColor: '#1A1A25' }}>
@@ -46,7 +57,7 @@ function AboutUs() {
                 </Container>
             </div>
             <CertificatModal open={open} setOpen={setOpen} />
-            {/* <button onClick={getBalance}>getBalance</button> */}
+            {/* <button onClick={Mint}>Mint</button> */}
         </div>
     )
 }

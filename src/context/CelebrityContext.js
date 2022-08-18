@@ -131,32 +131,15 @@ export default function CelebrityProvider({ children }) {
   const mintTicketNFTTestnetBNB = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
-        const chainid = await window.ethereum.request({
-          method: "eth_chainId",
-        });
-        console.log("This is Chain ID: ", chainid);
-        if (chainid === "0x38" || chainid === "0x61") {
           const MintNFTContract = getMintContractTestnet();
           console.log(MintNFTContract);
           const provider = new ethers.providers.Web3Provider(ethereum);
-          // const conversion = await axios.get("https://free.currconv.com/api/v7/convert?q=USD_SGD&compact=ultra&apiKey=e5b6419c6d8fc5692df5");
-          // const USD = 3000/conversion.data.USD_SGD;
-          const USD = mintPrice / 1.4;
-          console.log(USD);
-          const price1 = await axios.get(
-            "https://api.pancakeswap.info/api/v2/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
-          );
+          const price1 = await axios.get("https://api.pancakeswap.info/api/v2/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c");
           console.log(price1.data.data.price);
-          const price = (
-            parseFloat(USD) / parseFloat(price1.data.data.price)
-          ).toString();
-          console.log(price);
-          console.log(typeof price);
+          const price = (parseFloat(mintPrice) / parseFloat(price1.data.data.price)).toString();
           const parsedAmount = ethers.utils.parseEther(price);
           const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
-          const payment = await MintNFTContract.charge(admin, {
-            value: parsedAmount._hex,
-          });
+          const payment = await MintNFTContract.charge(admin, {value: parsedAmount._hex,});
           let payment_test = await provider.getTransaction(payment.hash);
           while (payment_test.blockNumber === null) {
             console.log("Payment In Progress...");
@@ -180,13 +163,10 @@ export default function CelebrityProvider({ children }) {
           let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
           console.log("Mint link: " + mint_hash);
           return mint_hash;
-        } else {
-          console.log("No ethereum object");
-          //setRequestLoading(false);
-        }
       }
     } catch (error) {
       console.log(error);
+      console.log("No ethereum object");
       //setRequestLoading(false);
       if (error.code === -32603) {
         swal({
@@ -214,32 +194,16 @@ export default function CelebrityProvider({ children }) {
   const mintTicketNFTTestnetUSDSC = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
-        const chainid = await window.ethereum.request({
-          method: "eth_chainId",
-        });
-        console.log("This is Chain ID: ", chainid);
-        if (chainid === "0x38" || chainid === "0x61") {
           const MintNFTContract = getMintContractTestnet();
           console.log(MintNFTContract);
           const USDSCTokenContract = getUSDSCtokenContractTestnet();
           console.log(USDSCTokenContract);
           const provider = new ethers.providers.Web3Provider(ethereum);
-          // const conversion = await axios.get("https://free.currconv.com/api/v7/convert?q=USD_SGD&compact=ultra&apiKey=e5b6419c6d8fc5692df5");
-          const USD = (mintPrice / 1.4).toString();
-          // const USD = 300/conversion.data.USD_SGD;
-          console.log(USD);
-          const parsedAmount = ethers.utils.parseEther(USD);
+          const parsedAmount = ethers.utils.parseEther(mintPrice);
           const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
-          const gasLimit = await USDSCTokenContract.estimateGas.transfer(
-            admin,
-            parsedAmount._hex
-          );
+          const gasLimit = await USDSCTokenContract.estimateGas.transfer(admin,parsedAmount._hex);
           const gasPrice = await await provider.getGasPrice();
-          const payment = await USDSCTokenContract.transfer(
-            admin,
-            parsedAmount._hex,
-            { gasLimit: gasLimit, gasPrice: gasPrice }
-          );
+          const payment = await USDSCTokenContract.transfer(admin,parsedAmount._hex,{ gasLimit: gasLimit, gasPrice: gasPrice });
           let payment_test = await provider.getTransaction(payment.hash);
           while (payment_test.blockNumber === null) {
             console.log("Payment In Progress...");
@@ -270,13 +234,10 @@ export default function CelebrityProvider({ children }) {
           let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
           console.log("Mint link: " + mint_hash);
           return mint_hash;
-        } else {
-          console.log("No ethereum object");
-          //setRequestLoading(false);
-        }
       }
     } catch (error) {
       console.log(error);
+      console.log("No ethereum object");
       //setRequestLoading(false);
       if (error.code === -32603) {
         swal({
@@ -304,32 +265,14 @@ export default function CelebrityProvider({ children }) {
   const mintTicketNFTTestnetDSL = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
-        const chainid = await window.ethereum.request({
-          method: "eth_chainId",
-        });
-        console.log("This is Chain ID: ", chainid);
-        if (chainid === "0x38" || chainid === "0x61") {
-          const MintNFTContract = getMintContractTestnet();
-          console.log(MintNFTContract);
-          const USDSCTokenContract = getDSLtokenContractTestnet();
-          console.log(USDSCTokenContract);
+        const MintNFTContract = getMintContractTestnet();
+        const USDSCTokenContract = getDSLtokenContractTestnet();
           const provider = new ethers.providers.Web3Provider(ethereum);
-          // const conversion = await axios.get("https://free.currconv.com/api/v7/convert?q=USD_SGD&compact=ultra&apiKey=e5b6419c6d8fc5692df5");
-          const USD = (mintPrice / 1.4).toString();
-          // const USD = 300/conversion.data.USD_SGD;
-          console.log(USD);
-          const parsedAmount = ethers.utils.parseEther(USD);
+          const parsedAmount = ethers.utils.parseEther(mintPrice);
           const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
-          const gasLimit = await USDSCTokenContract.estimateGas.transfer(
-            admin,
-            parsedAmount._hex
-          );
+          const gasLimit = await USDSCTokenContract.estimateGas.transfer(admin,parsedAmount._hex);
           const gasPrice = await await provider.getGasPrice();
-          const payment = await USDSCTokenContract.transfer(
-            admin,
-            parsedAmount._hex,
-            { gasLimit: gasLimit, gasPrice: gasPrice }
-          );
+          const payment = await USDSCTokenContract.transfer(admin,parsedAmount._hex,{ gasLimit: gasLimit, gasPrice: gasPrice });
           let payment_test = await provider.getTransaction(payment.hash);
           while (payment_test.blockNumber === null) {
             console.log("Payment In Progress...");
@@ -353,13 +296,10 @@ export default function CelebrityProvider({ children }) {
           let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
           console.log("Mint link: " + mint_hash);
           return mint_hash;
-        } else {
-          console.log("No ethereum object");
-          //setRequestLoading(false);
-        }
       }
     } catch (error) {
       console.log(error);
+      console.log("No ethereum object");
       //setRequestLoading(false);
       if (error.code === -32603) {
         swal({
