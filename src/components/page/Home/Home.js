@@ -56,7 +56,7 @@ function Home() {
                     </div>
                   </div>
                   <p className=" lead" data-wow-delay="2s">
-                    <h4 style={{fontSize: '1rem', marginTop: '1.2rem'}}>The largest collection of NFTs with purpose</h4>
+                    <h4 style={{ fontSize: '1rem', marginTop: '1.2rem' }}>The largest collection of NFTs with purpose</h4>
                   </p>
                   <div className="mb-sm-30"></div>
 
