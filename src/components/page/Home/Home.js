@@ -1,13 +1,20 @@
 import { Typography } from '@mui/material';
+import { useState } from 'react';
 import MealSlider from '../MealNft/Meal.slider';
 import SouvenirSlider from '../Souvenir/Souvenir.slider';
 import './home.css';
 
 
 function Home() {
+  const [meals, setMeals] = useState([]);
+  const [souvenirs, setSouvenirs] = useState([]);
+  console.log(meals, souvenirs)
 
-  const pull_data = (data) => {
-    console.log(data);
+  const pull_meal = (meal) => {
+    setMeals(meal)
+  }
+  const pull_souvenir = (souvenir) => {
+    setSouvenirs(souvenir)
   }
 
 
@@ -97,7 +104,7 @@ function Home() {
               <div className="de-card has-border text-center">
                 <i className=" bg-color-2 i-boxed icon_wallet"></i>
                 <div className="text">
-                  <h4 className="">Login with your wallet</h4>
+                  <h6 className="home-txt">Login with your wallet</h6>
                 </div>
               </div>
             </div>
@@ -105,7 +112,7 @@ function Home() {
               <div className="de-card has-border text-center">
                 <i className=" bg-color-2 i-boxed icon_cart_alt"></i>
                 <div className="text">
-                  <h4 className="">Buy our NFTs</h4>
+                  <h6 className="home-txt">Buy our NFTs and utilize the perks</h6>
                 </div>
               </div>
             </div>
@@ -113,7 +120,7 @@ function Home() {
               <div className="de-card has-border text-center">
                 <i className=" bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
-                  <h4 className="">Use our NFTs</h4>
+                  <h6 className="home-txt">Sell the NFTs</h6>
                 </div>
               </div>
             </div>
@@ -133,12 +140,17 @@ function Home() {
               </div>
             </div>
 
-            <SouvenirSlider func={pull_data} />
-            <div className='d-flex' style={{ justifyContent: 'center' }}>
-              <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
-                Pay by DSL and get 30% discount.
-              </Typography>
-            </div>
+            <SouvenirSlider />
+            {/* <div className='d-flex' style={{ justifyContent: 'center' }}>
+              {souvenirs ?
+                <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+                  Pay by DSL and get 30% discount.
+                </Typography>
+                :
+                <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+                  Stay Tuned!
+                </Typography>}
+            </div> */}
           </div>
 
           <div className="spacer-double"></div>
@@ -150,12 +162,17 @@ function Home() {
                 </h2>
                 <div className="small-border bg-color-2"></div>
               </div>
-              <MealSlider func={pull_data} />
-              <div className='d-flex' style={{ justifyContent: 'center' }}>
-                <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px" }}>
-                  Pay by DSL and get 30% discount.
-                </Typography>
-              </div>
+              <MealSlider />
+              {/* <div className='d-flex' style={{ justifyContent: 'center' }}>
+                {meals ?
+                  <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+                    Pay by DSL and get 30% discount.
+                  </Typography>
+                  :
+                  <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+                    Stay Tuned!
+                  </Typography>}
+              </div> */}
             </div>
           </div>
         </div>

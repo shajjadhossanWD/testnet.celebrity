@@ -66,10 +66,10 @@ const Forgetpassword = () => {
 
                                 <div className='mx-auto text-center' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
                                     <Button style={{ backgroundColor: '#f74545', color: "#fff" }} className='button-34 ps-5 pe-5 pt-2 pb-2' type="submit">
-                                        <FiSend></FiSend> Send
+                                        Send
                                     </Button>
                                     <Button style={{ backgroundColor: '#f74545', color: "#fff" }} onClick={handleGoToLogin} className='button-34 ps-5 pe-5 pt-2 pb-2' type="button">
-                                        <AiOutlineLogin /> Login
+                                        Login
                                     </Button>
                                 </div>
                             </form>

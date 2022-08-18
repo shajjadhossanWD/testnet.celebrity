@@ -107,12 +107,16 @@ const DashboardAdminEditProfile = () => {
 
     }
 
+    const handleRedirectAdmin = () => {
+        navigate("/dashboard/admin");
+    }
+
     return (
         <div className='handleEditAdminHeight'>
             <h5 className='text-start text-white'>Profile</h5>
             <form onSubmit={subProfile}>
                 <div className="profileDiv ">
-                    <div className="row container mx-auto g-5">
+                    <div className="row mx-auto g-5">
                         <div className="col-lg-7">
                             <p className="d-flex inputProfile">
                                 <span className='iconCreator'><MdAccountCircle /></span>
@@ -156,7 +160,7 @@ const DashboardAdminEditProfile = () => {
                                     name="currentPassword"
                                     placeholder='Current Password'
                                 />
-                                <button type='button' onClick={() => setVisibleCPassword(!visibleCPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleCPassword(!visibleCPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
 
                             </p>
                             <p className="d-flex inputProfile">
@@ -166,7 +170,7 @@ const DashboardAdminEditProfile = () => {
                                     type={visibleEnPassword ? "text" : "password"}
                                     name="password"
                                     placeholder='Enter New Password' />
-                                <button type='button' onClick={() => setVisibleEnPassword(!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleEnPassword(!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
 
                             </p>
                             <p className="d-flex inputProfile">
@@ -176,7 +180,7 @@ const DashboardAdminEditProfile = () => {
                                     type={visibleCnPassword ? "text" : "password"}
                                     name="cPassword"
                                     placeholder='Confirm New Password' />
-                                <button type='button' onClick={() => setVisibleCnPassword(!visibleCnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleCnPassword(!visibleCnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
 
                             </p>
                         </div>
@@ -190,7 +194,7 @@ const DashboardAdminEditProfile = () => {
                     </div>
 
                     <div className='mx-auto text-center'>
-                        <button className="profileBtnChange bg-danger w-25 me-3 text-white text-uppercase" type='click'>Cancel</button>
+                        <button onClick={handleRedirectAdmin} className="profileBtnChange bg-danger w-25 me-3 text-white text-uppercase" type='button'>Cancel</button>
                         <button className="profileBtnChange text-white w-25 text-uppercase" type='submit'>Save</button>
                     </div>
                 </div>

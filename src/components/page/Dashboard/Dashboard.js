@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { TiGroup } from 'react-icons/ti';
 import { HiCheckCircle } from 'react-icons/hi';
 import './Dashboard.css';
-import { MdMenuOpen } from 'react-icons/md';
+import { MdMenuOpen, MdClose } from 'react-icons/md';
 import { AdminContext } from '../../../context/AdminContext';
 
 const Dashboard = () => {
@@ -129,7 +129,7 @@ const Dashboard = () => {
                   onHide={handleClose}
                   style={{ backgroundColor: "#323246", color: "white" }}
                 >
-                  <Offcanvas.Header closeButton className='mb-4'>
+                  <Offcanvas.Header className='mb-4'>
                     <Offcanvas.Title className="text-light">
                       <Nav className="d-flex flex-column justify-content-center align-items-center handleNav mx-auto text-center">
                         <Nav.Link
@@ -145,11 +145,12 @@ const Dashboard = () => {
                         </Nav.Link>
                       </Nav>
                     </Offcanvas.Title>
+                    <MdClose onClick={handleClose} color='#fff' size={30} style={{cursor: 'pointer'}} />
                   </Offcanvas.Header>
                   <Offcanvas.Body
                     style={{ backgroundColor: "#323246", color: "white" }}
                   >
-                    <Nav className="d-flex flex-column justify-content-center align-items-center handleNav ps-0 ms-0">
+                    <Nav className="d-flex flex-column justify-content-center align-items-start handleNav nav_start ps-0 ms-0">
                       <Nav.Link
                         className="text-center ps-2 text-light text-start"
                         as={CustomLink}
@@ -188,7 +189,7 @@ const Dashboard = () => {
                         </span>{" "}
                         <span>NFTS</span>
                       </Nav.Link>
-                      <div>
+                      <div className='ms-4'>
                         <Button variant="danger" className='text-uppercase w-100 me-5 pt-2 pb-2 mt-3' size="sm" onClick={() => handleLogout()}>Log Out</Button>
                       </div>
                     </Nav>

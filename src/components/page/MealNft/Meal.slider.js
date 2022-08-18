@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
-const MealSlider = (props) => {
+const MealSlider = ({ pull_meal }) => {
   const [isMeal, setIsMeal] = useState([])
 
   const allNft = isMeal.nft;
@@ -17,7 +17,7 @@ const MealSlider = (props) => {
       });
   }, [isMeal])
 
-  props.func(allNft);
+  // props.func(allNft);
 
 
 
@@ -90,7 +90,7 @@ const MealSlider = (props) => {
                          <i className="fa fa-envelope fa-lg"  ></i>
                         </a>
                        </div> */}
-                <button className="card_hover_button mt-5" href="#!">BUY NOW</button>
+                <Link to={`/mealnft/${aNft?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
               </div>
             </div>
             <div class="card-content">
@@ -120,6 +120,18 @@ const MealSlider = (props) => {
           </div>
         </div>))}
       </Slider>
+
+      <div className='d-flex' style={{ justifyContent: 'center' }}>
+
+        {allNft?.length > 0 ?
+          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+            Pay by DSL and get 30% discount.
+          </Typography>
+          :
+          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+            Stay Tuned!
+          </Typography>}
+      </div>
     </div>
   );
 };

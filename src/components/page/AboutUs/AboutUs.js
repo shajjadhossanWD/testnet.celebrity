@@ -1,13 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Container } from "react-bootstrap";
 import Loading from "../../Loading/Loading";
 import CertificatModal from "./CertificatModal";
+import { CelebrityContext } from "../../../context/CelebrityContext";
 
 function AboutUs() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false);
+
+    const {getBalanceTestnet, getBalanceMainnet} = useContext(CelebrityContext);
+
 
     useEffect(() => {
         setLoading(true)
@@ -20,6 +24,11 @@ function AboutUs() {
 
     const handelOnclik = () => {
         setOpen(true)
+    }
+
+    function getBalance(){
+        // getBalanceTestnet();
+        getBalanceMainnet();
     }
     return (
         <div style={{ backgroundColor: '#1A1A25' }}>
@@ -37,6 +46,7 @@ function AboutUs() {
                 </Container>
             </div>
             <CertificatModal open={open} setOpen={setOpen} />
+            {/* <button onClick={getBalance}>getBalance</button> */}
         </div>
     )
 }

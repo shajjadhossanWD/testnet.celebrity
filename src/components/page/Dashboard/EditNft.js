@@ -105,14 +105,14 @@ const EditNft = () => {
           <div className="edit-nft-card-content-two">
             <div style={{ backgroundColor: "#272d47", color: "white" }}>
               <form onSubmit={onSubForm}>
-                <label className="mb-1">NFT</label>
+                <label className="mb-1">Image of NFT</label>
                 <input
                   type="file"
                   className="border w-100 rounded mb-3"
                   name="avatar"
                   style={{ backgroundColor: "#272d47", color: "white" }}
                 />
-                <label className="mb-1">NFT Name</label>
+                <label className="mb-1">Name of NFT</label>
                 <input
                   type="text"
                   className="border w-100 rounded mb-3"
@@ -122,7 +122,7 @@ const EditNft = () => {
 
                 />
 
-                <label className="mb-1">NFT Price</label>
+                <label className="mb-1">Price of NFT(SGD)</label>
                 <input
                   type="text"
                   className="border w-100 rounded mb-3"
@@ -131,7 +131,7 @@ const EditNft = () => {
                   style={{ backgroundColor: "#272d47", color: "white" }}
 
                 />
-                <label className="mb-1">NFT Description</label>
+                <label className="mb-1">NFT Details</label>
                 <textarea
                   type="text"
                   name="description"
@@ -139,7 +139,7 @@ const EditNft = () => {
                   className="border w-100 rounded mb-3"
                   style={{ backgroundColor: "#272d47", color: "white" }}
                 />
-                <InputGroup
+                {/* <InputGroup
                   className="mb-3"
                   style={{ backgroundColor: "#272d47", color: "white" }}
                 >
@@ -154,7 +154,7 @@ const EditNft = () => {
                     value={newDate}
                     style={{ backgroundColor: "#272d47", color: "white" }}
                   />
-                </InputGroup>
+                </InputGroup> */}
                 <InputGroup
                   className="mb-3"
                   style={{ backgroundColor: "#272d47", color: "white" }}
@@ -177,7 +177,7 @@ const EditNft = () => {
                     marginTop: "1rem",
                   }}
                 >
-                  <Button type="button" onClick={redirectToNftPage} className="btn btn-danger me-2 text-uppercase" style={{backgroundColor: '#dc3545'}}>
+                  <Button type="button" onClick={redirectToNftPage} className="btn btn-danger me-2 text-uppercase" style={{ backgroundColor: '#dc3545' }}>
                     CANCEL
                   </Button>
                   <Button type="submit" className="edit-nft-update-button ms-2 text-uppercase">

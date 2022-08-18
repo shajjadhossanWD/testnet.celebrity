@@ -121,13 +121,13 @@ const Otp = () => {
 
                                 <br />
                                 <div className='mx-auto text-center'>
-                                    <Button className='button-34 submit_OTP_btn ps-4 pe-4' type="submit">
+                                    <Button className='otp-btn sbmt-btn submit_OTP_btn ' type="submit">
                                         Submit
                                     </Button>
                                 </div>
                             </form>
                             <div className='mx-auto text-center mt-3'>
-                                <Button disabled={!forEnable} className='button-34 resend_OTP_btn border-0 text-center ps-4 pe-4 pt-2 pb-2' type="button" onClick={() => resendOTP()}>
+                                <Button disabled={!forEnable} className='otp-btn resend_OTP_btn border-0 text-center  pt-2 pb-2' type="button" onClick={() => resendOTP()}>
                                     Re-Send OTP
                                 </Button>
                             </div>

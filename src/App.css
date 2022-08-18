@@ -11,6 +11,20 @@
   color: white;
 }
 
+.otp-btn {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.sbmt-btn {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+
+.home-txt {
+  font-size: 0.9rem;
+}
+
 .modal_class {
   background-color: #0c2347;
 }
