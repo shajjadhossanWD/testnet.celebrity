@@ -1,20 +1,31 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import swal from "sweetalert";
+import * as htmlToImage from 'html-to-image';
+import { CelebrityContext } from "../../../context/CelebrityContext";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 function MealDetails() {
   const { mealnId } = useParams();
+  // const native = window.location.search;
+  // const { title, language } = useParams();
+  // const params = new URLSearchParams(native);
+  // const nativeTitle = params.get('native');
   const [isDetails, setDetails] = useState({})
   const [isSouvenir, setSouvenir] = useState([])
   const [token, setToken] = useState("bnb");
+<<<<<<< HEAD
   const [bnbToken, setBnbToken] = useState();
   const [dslToken, setDslToken] = useState();
   const [s39Token, setS39Token] = useState();
 
+=======
+  // const { loginModal, openLoginModal, closeLoginModal, connectWallet, currentAccount, loading, user, walletModal, openWalletModal, closeWalletModal, setUser, chain, logOut, mintTicketNFTTestnetBNB, mintTicketNFTTestnetUSDSC, mintTicketNFTTestnetDSL, metamaskBalance, metamaskBalanceLoading, getBalanceTestnet, getBalanceMainnet } = useContext(CelebrityContext);
+>>>>>>> c72c27f6c76f9ea45227103a5a67143bd0e7a7b0
 
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
@@ -40,6 +51,7 @@ function MealDetails() {
     });
   }
 
+<<<<<<< HEAD
   useEffect(() => {
     axios.get('https://dslegends.org/api/get-asset-price.php?asset=BNB', {
       headers: {
@@ -118,6 +130,102 @@ function MealDetails() {
   // USD Discount
   const discountUsd = 30 / 100 * usd;
   const disUsdTwoDec = discountUsd.toFixed(2);
+=======
+  //minit
+
+  const certificateTemplate = useRef();
+
+  // const mintFilmTitle = async () => {
+  //   if (!user?.walletAddress) {
+  //     return openLoginModal();
+  //   }
+  //   // setRequestLoading(true);
+  //   const dataUrl = await htmlToImage.toPng(certificateTemplate.current);
+  //   const data = new FormData();
+  //   data.append('file', dataUrl);
+  //   // data.append('name', name);
+  //   // data.append('image', image);
+  //   // data.append('external_url', external_url);
+  //   // data.append('attributes', attributes);
+
+  //   await axios.post('', data, {
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`
+  //     }
+  //   })
+  //     .then(async (res) => {
+  //       let mint_hash;
+  //       if (res.status === 200) {
+  //         data.append('certificate', res.data.certificate);
+  //         if (token === "bnb") {
+  //           mint_hash = await mintTicketNFTTestnetBNB(res.data.uri, "0.1");
+  //         }
+  //         else if (token === "usdsc") {
+  //           mint_hash = await mintTicketNFTTestnetUSDSC(res.data.uri, 3);
+  //         }
+  //         else if (token === "dsl") {
+  //           mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, 3);
+  //         }
+  //         data.append("mint_hash", mint_hash);
+  //         await axios.post("", data, {
+  //           headers: {
+  //             Authorization: `Bearer ${localStorage.getItem("token")}`
+  //           }
+  //         })
+  //           .then(res => {
+  //             if (res.status === 200) {
+  //               // setRequestLoading(false);
+  //               const wrapper = document.createElement("div");
+  //               wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted.<b></p>`
+  //               swal({
+  //                 title: "Minted",
+  //                 content: wrapper,
+  //                 icon: "success",
+  //                 button: "OK",
+  //                 className: "modal_class_success",
+  //               });
+  //             }
+  //           })
+  //           .catch(err => {
+  //             console.log(err);
+  //             // setRequestLoading(false);
+  //             const wrapper = document.createElement("div");
+  //             wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted but error in while saving data.<b></p>`
+  //             swal({
+  //               title: "Warning",
+  //               content: wrapper,
+  //               icon: "warning",
+  //               button: "OK",
+  //               className: "modal_class_success",
+  //             });
+  //           })
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       // setRequestLoading(false);
+  //       if (err.code === 4001) {
+  //         return swal({
+  //           title: "Failed",
+  //           text: "Minting Failed!",
+  //           icon: "warning",
+  //           button: "OK",
+  //           dangerMode: true,
+  //           className: "modal_class_success",
+  //         });
+  //       }
+  //       return swal({
+  //         title: "Attention",
+  //         text: "Something went wrong. Please try again later.",
+  //         icon: "warning",
+  //         button: "OK",
+  //         dangerMode: true,
+  //         className: "modal_class_success",
+  //       });
+  //     })
+  // }
+
+>>>>>>> c72c27f6c76f9ea45227103a5a67143bd0e7a7b0
 
 
   return (
