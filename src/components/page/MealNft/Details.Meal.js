@@ -18,14 +18,10 @@ function MealDetails() {
   const [isDetails, setDetails] = useState({})
   const [isSouvenir, setSouvenir] = useState([])
   const [token, setToken] = useState("bnb");
-<<<<<<< HEAD
   const [bnbToken, setBnbToken] = useState();
   const [dslToken, setDslToken] = useState();
   const [s39Token, setS39Token] = useState();
-
-=======
   // const { loginModal, openLoginModal, closeLoginModal, connectWallet, currentAccount, loading, user, walletModal, openWalletModal, closeWalletModal, setUser, chain, logOut, mintTicketNFTTestnetBNB, mintTicketNFTTestnetUSDSC, mintTicketNFTTestnetDSL, metamaskBalance, metamaskBalanceLoading, getBalanceTestnet, getBalanceMainnet } = useContext(CelebrityContext);
->>>>>>> c72c27f6c76f9ea45227103a5a67143bd0e7a7b0
 
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
@@ -51,7 +47,6 @@ function MealDetails() {
     });
   }
 
-<<<<<<< HEAD
   useEffect(() => {
     axios.get('https://dslegends.org/api/get-asset-price.php?asset=BNB', {
       headers: {
@@ -130,7 +125,6 @@ function MealDetails() {
   // USD Discount
   const discountUsd = 30 / 100 * usd;
   const disUsdTwoDec = discountUsd.toFixed(2);
-=======
   //minit
 
   const certificateTemplate = useRef();
@@ -224,9 +218,6 @@ function MealDetails() {
   //       });
   //     })
   // }
-
->>>>>>> c72c27f6c76f9ea45227103a5a67143bd0e7a7b0
-
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
