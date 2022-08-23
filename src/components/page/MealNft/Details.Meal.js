@@ -11,6 +11,7 @@ import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 function MealDetails() {
   const { mealnId } = useParams();
+  // console.log(mealnId);
   // const native = window.location.search;
   // const { title, language } = useParams();
   // const params = new URLSearchParams(native);
@@ -246,6 +247,7 @@ function MealDetails() {
                 <option value="usdsc">USDSC</option>
                 <option value="dsl">DSL</option>
                 <option value="s39">S39</option>
+                <option value="s39">QUEST</option>
               </select>
               <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
@@ -264,6 +266,9 @@ function MealDetails() {
               {/* <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
               </Typography> */}
+              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
+                <span className="text-primary">Available NFTs: 50</span>
+              </Typography>
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary">NFT Details:</span>
               </Typography>
@@ -387,8 +392,8 @@ function MealDetails() {
                     </div>
                     <div class="card-content">
                       <div className="row">
-                        <a href="#!">
-                          <Typography variant="body2">
+                        {/* <a href="#!"> */}
+                        {/* <Typography variant="body2">
                             Name Of NFT : {data.name} <span></span>
                           </Typography>
                         </a>
@@ -400,6 +405,32 @@ function MealDetails() {
                         </Typography>
                         <Typography variant="body2">
                           Details: <Link to={`/souvenirnft/${data._id}`} classsName="clickHere"> For more details click here </Link>
+                        </Typography> */}
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Type of NFT :</span> {data?.type}
+                        </Typography>
+                        <a href="#!">
+                          <Typography className="mt-1" variant="body2">
+                            <span className="text-primary">Name of NFT :</span> {data.name}
+                          </Typography>
+                        </a>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Price of NFT(SGD):</span> {data.price}
+                        </Typography>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Available NFTs:</span>
+                        </Typography>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Date:</span> {`${data?.startDate.slice(8, 10)}/${data?.startDate.slice(5, 7)}/${data?.startDate.slice(0, 4)}`}
+                        </Typography>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Start Time:</span> {data?.startTime}
+                        </Typography>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">End Time:</span> {data?.endTime}
+                        </Typography>
+                        <Typography className="mt-2 mb-1" variant="body2">
+                          <span className="text-primary">Venue:</span> {data?.venue}
                         </Typography>
                       </div>
                       <hr style={{ margin: "10px 0px 10px 0px" }} />

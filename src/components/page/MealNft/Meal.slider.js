@@ -107,7 +107,7 @@ const MealSlider = ({ pull_meal }) => {
                   <span className="text-primary">Price of NFT(SGD):</span> {aNft?.price}
                 </Typography>
                 <Typography className="mt-2" variant="body2">
-                  <span className="text-primary">Available NFTs:</span>
+                  <span className="text-primary">Available NFTs: 50</span>
                 </Typography>
                 {/* <Typography className="mt-2" variant="body2">
                   Details: <Link to={`/mealnft/${aNft?._id}`} classsName="clickHere"> For more details click here </Link>
