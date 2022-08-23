@@ -91,22 +91,21 @@ const DashboardNfts = () => {
     <>
       <div className="handleHeightNFTS">
         {/* <p className="ms-2 mb-3 d-inline">NdFTS</p> */}
-
+        {/* /dashboard/addnfts */}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', marginRight: '40px' }}>
-          <Button
+          <Link to={"/dashboard/addnfts"}><Button
             variant="primary"
             className="border-0 text-uppercase"
             style={{ backgroundColor: "blueviolet" }}
-            onClick={() => setModalShow(true)}
           >
             New NFT
-          </Button>
+          </Button></Link>
         </div>
 
         <div className='mb-3 ps-1'>
           <Button
             variant="primary"
-            className="ms-2 border-0 text-uppercase bg-success"
+            className={`ms-2 border-0 text-uppercase ${(selectedTab === "nft") ? "bg-danger" : "bg-success"}`}
             style={{ backgroundColor: "blueviolet" }}
             onClick={() => setSelectedTab("nft")}
           >
@@ -115,7 +114,7 @@ const DashboardNfts = () => {
 
           <Button
             variant="primary"
-            className="ms-2 border-0 text-uppercase bg-success"
+            className={`ms-2 border-0 text-uppercase ${(selectedTab === "expired") ? "bg-danger" : "bg-success"}`}
             style={{ backgroundColor: "blueviolet" }}
             onClick={() => setSelectedTab("expired")}
           >
@@ -123,7 +122,7 @@ const DashboardNfts = () => {
           </Button>
           <Button
             variant="primary"
-            className="ms-2 border-0 text-uppercase  bg-success"
+            className={`ms-2 border-0 text-uppercase ${(selectedTab === "draft") ? "bg-danger" : "bg-success"}`}
             style={{ backgroundColor: "blueviolet" }}
             onClick={() => setSelectedTab("draft")}
           >

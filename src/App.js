@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import ScrollToTop from "./components/ScrollToTop";
 import Landing from "./components/layout/Landing";
 import NotFound from './components/layout/NotFound/NotFound';
@@ -31,6 +32,7 @@ import AdminRoute from './components/AdminRoute/AdminRoute';
 import Profile from './components/page/Profile/Profile';
 import ResetPassword from './components/page/Login/ResetPassword';
 import NftDetailsPage from './components/page/Dashboard/NftDetailsPage';
+import DashboardAddNft from './components/page/Dashboard/DashboardAddNft';
 function App() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 180);
@@ -56,8 +58,6 @@ function App() {
             <Route path="/profile" element={<Profile></Profile>} />
           </Route>
 
-
-
           <Route path="/dashboard" element={
             <AdminRoute>
               <Dashboard></Dashboard>
@@ -69,6 +69,7 @@ function App() {
             <Route path="/dashboard/nftDetails" element={<NftDetailsPage />} />
             <Route path="/dashboard/adminprofile/:id" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
             <Route path="/dashboard/nfts" element={<DashboardNfts></DashboardNfts>} />
+            <Route path="/dashboard/addnfts" element={<DashboardAddNft></DashboardAddNft>} />
             <Route path="/dashboard/nfts/editNft/:id" element={<EditNft></EditNft>} />
           </Route>
 

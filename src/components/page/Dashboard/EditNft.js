@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
@@ -6,11 +6,20 @@ import "./EditNft.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { ContentState, convertToRaw, EditorState } from "draft-js";
+import htmlToDraft from 'html-to-draftjs';
+import draftToHtml from "draftjs-to-html";
+import { Editor } from "react-draft-wysiwyg";
 
 const EditNft = () => {
   const [Nfts, setNfts] = React.useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [firstValue, setFirstValue] = useState(() => EditorState.createEmpty());
+  const stepOne = draftToHtml(convertToRaw(firstValue.getCurrentContent()));
+
+  const [secondValue, setSecondValue] = useState(() => EditorState.createEmpty());
+  const stepTwo = draftToHtml(convertToRaw(secondValue.getCurrentContent()));
 
 
   var newDate = new Date();
@@ -32,7 +41,19 @@ const EditNft = () => {
     axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
       .then(res => {
         setNfts(res.data.nft);
-        console.log(res.data.nft)
+        const description = res.data.nft.description;
+        const briefDetails = res.data.nft.briefDetails;
+        const blocksFromHtml = htmlToDraft(description);
+        const blocksFromHtmlTwo = htmlToDraft(briefDetails);
+        const { contentBlocks, entityMap } = blocksFromHtml;
+        const content = blocksFromHtmlTwo.contentBlocks;
+        const entri = blocksFromHtmlTwo.entityMap;
+        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+        const contentStateTwo = ContentState.createFromBlockArray(content, entri);
+        setFirstValue(EditorState.createWithContent(contentState));
+        setSecondValue(EditorState.createWithContent(contentStateTwo));
+
+        console.log(res.data);
       })
   }, [id])
 
@@ -42,13 +63,13 @@ const EditNft = () => {
 
     const name = e.target.name.value;
     const price = e.target.price.value;
-    const description = e.target.description.value;
+    const description = stepOne;
     const startDate = e.target.startDate.value;
     const startTime = e.target.startTime.value;
     const endTime = e.target.endTime.value;
     const venue = e.target.venue.value;
     const purchaseDate = e.target.purchaseDate.value;
-    const briefDetails = e.target.briefDetails.value;
+    const briefDetails = stepTwo;
     const type = e.target.type.value;
     const avatar = e.target.avatar.files[0];
 
@@ -117,6 +138,20 @@ const EditNft = () => {
           <div className="edit-nft-card-content-two">
             <div style={{ backgroundColor: "#272d47", color: "white" }}>
               <form onSubmit={onSubForm}>
+                <InputGroup
+                  className="mb-3"
+                  style={{ backgroundColor: "#272d47", color: "white" }}
+                >
+                  <Form.Select
+                    aria-label="Default select example"
+                    style={{ backgroundColor: "#272d47", color: "white" }}
+                    name="type"
+                  >
+                    <option>{Nfts.type}</option>
+                    <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
+                    <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
+                  </Form.Select>
+                </InputGroup>
                 <label className="mb-1">Image of NFT</label>
                 <input
                   type="file"
@@ -143,13 +178,41 @@ const EditNft = () => {
                   style={{ backgroundColor: "#272d47", color: "white" }}
 
                 />
-                <label className="mb-1">NFT Details</label>
-                <textarea
+                <label className="mb-2">NFT Details</label>
+                {/* <textarea
                   type="text"
                   name="description"
                   defaultValue={Nfts.description}
                   className="border w-100 rounded mb-3"
                   style={{ backgroundColor: "#272d47", color: "white" }}
+                /> */}
+                <Editor
+                  editorState={firstValue}
+                  onEditorStateChange={setFirstValue}
+                  wrapperClassName="wrapper-class"
+                  editorClassName="editor-class border mt-2 p-2 bg-white text-black"
+                  toolbarClassName="toolbar-class text-black"
+                  toolbar={{
+                    image: {
+                      urlEnabled: true,
+                      uploadEnabled: true,
+                      alignmentEnabled: true,
+                      uploadCallback: undefined,
+                      previewImage: true,
+                      inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                      alt: { present: false, mandatory: false },
+                      defaultSize: {
+                        height: 'auto',
+                        width: 'auto',
+                      },
+                      fontFamily: {
+                        options: ['sans-serif', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],
+                        className: undefined,
+                        component: undefined,
+                        dropdownClassName: undefined,
+                      },
+                    },
+                  }}
                 />
 
                 <label className='mb-1'>Date</label>
@@ -201,14 +264,34 @@ const EditNft = () => {
                   required
                 />
 
-                <label className='mb-1'>Brief Details of Celebrity</label>
-                <textarea
-                  type="text"
-                  name="briefDetails"
-                  defaultValue={Nfts.briefDetails}
-                  className="border w-100 rounded mb-3"
-                  style={{ backgroundColor: "#272d47", color: 'white' }}
-                  required
+                <label className='mb-2 mt-3'>Brief Details of Celebrity</label>
+                <Editor
+                  editorState={secondValue}
+                  onEditorStateChange={setSecondValue}
+                  wrapperClassName="wrapper-class"
+                  editorClassName="editor-class border mt-2 p-2 bg-white text-black"
+                  toolbarClassName="toolbar-class text-black"
+                  toolbar={{
+                    image: {
+                      urlEnabled: true,
+                      uploadEnabled: true,
+                      alignmentEnabled: true,
+                      uploadCallback: undefined,
+                      previewImage: true,
+                      inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                      alt: { present: false, mandatory: false },
+                      defaultSize: {
+                        height: 'auto',
+                        width: 'auto',
+                      },
+                      fontFamily: {
+                        options: ['sans-serif', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],
+                        className: undefined,
+                        component: undefined,
+                        dropdownClassName: undefined,
+                      },
+                    },
+                  }}
                 />
 
 
@@ -228,20 +311,6 @@ const EditNft = () => {
                     style={{ backgroundColor: "#272d47", color: "white" }}
                   />
                 </InputGroup> */}
-                <InputGroup
-                  className="mb-3"
-                  style={{ backgroundColor: "#272d47", color: "white" }}
-                >
-                  <Form.Select
-                    aria-label="Default select example"
-                    style={{ backgroundColor: "#272d47", color: "white" }}
-                    name="type"
-                  >
-                    <option>{Nfts.type}</option>
-                    <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
-                    <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
-                  </Form.Select>
-                </InputGroup>
                 <hr />
                 <div
                   style={{
