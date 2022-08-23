@@ -30,7 +30,10 @@ import WalletModal from './components/Shared/WalletModal';
 import AdminRoute from './components/AdminRoute/AdminRoute';
 import Profile from './components/page/Profile/Profile';
 import ResetPassword from './components/page/Login/ResetPassword';
+import NftDetailsPage from './components/page/Dashboard/NftDetailsPage';
 function App() {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 180);
   return (
     <div className="dark-scheme de-clivus">
       <div id="wrapper">
@@ -63,6 +66,7 @@ function App() {
           }>
             <Route index element={<DashboardMenu></DashboardMenu>} />
             <Route path="/dashboard/admin" element={<DashboardAdmin></DashboardAdmin>} />
+            <Route path="/dashboard/nftDetails" element={<NftDetailsPage />} />
             <Route path="/dashboard/adminprofile/:id" element={<DashboardAdminEditProfile></DashboardAdminEditProfile>} />
             <Route path="/dashboard/nfts" element={<DashboardNfts></DashboardNfts>} />
             <Route path="/dashboard/nfts/editNft/:id" element={<EditNft></EditNft>} />
@@ -70,7 +74,7 @@ function App() {
 
           <Route path="/login" element={<Login></Login>} />
           <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
-          <Route path="/otp/:token" element={<Otp></Otp>} />
+          <Route path="/otp/:token" element={<Otp expiryTimestamp={time}></Otp>} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
 
           <Route path="*" element={<NotFound></NotFound>} />

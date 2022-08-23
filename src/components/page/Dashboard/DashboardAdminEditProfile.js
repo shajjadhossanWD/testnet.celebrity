@@ -43,14 +43,14 @@ const DashboardAdminEditProfile = () => {
 
     const subProfile = async event => {
         event.preventDefault();
-        const name = event.target.name.value;
-        const username = event.target.username.value;
-        const email = event.target.email.value;
+        const name = event.target.name?.value;
+        const username = event.target.username?.value;
+        const email = event.target.email?.value;
         const phone = valueProfilePhn;
-        const password = event.target.password.value;
-        const avatar = event.target.avatar.files[0];
-        const currentPassword = event.target.currentPassword.value;
-        const cPassword = event.target.cPassword.value;
+        const password = event.target.password?.value;
+        const avatar = event.target.avatar?.files[0];
+        const currentPassword = event.target.currentPassword?.value;
+        const cPassword = event.target.cPassword?.value;
 
         const formDataSingleAdmin = new FormData()
         formDataSingleAdmin.append('name', name)
@@ -62,7 +62,7 @@ const DashboardAdminEditProfile = () => {
         console.log(...formDataSingleAdmin)
         setonLoading(true);
 
-        if (currentPassword === cPassword) {
+        if (password === cPassword) {
             await axios.put(`https://backend.celebrity.sg/api/v1/admin/update/${idOrigin}`, formDataSingleAdmin, {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
@@ -152,7 +152,7 @@ const DashboardAdminEditProfile = () => {
                                     className="countryInput form-control"
                                 />
                             </p>
-                            <p className="d-flex inputProfile">
+                            {/* <p className="d-flex inputProfile">
                                 <span className='iconCreator'><BiLockOpen /></span>
                                 <input
                                     className="creatorsInput1 form-control"
@@ -162,7 +162,7 @@ const DashboardAdminEditProfile = () => {
                                 />
                                 <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleCPassword(!visibleCPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
 
-                            </p>
+                            </p> */}
                             <p className="d-flex inputProfile">
                                 <span className='iconCreator'><BiLockOpen /></span>
                                 <input
@@ -170,7 +170,7 @@ const DashboardAdminEditProfile = () => {
                                     type={visibleEnPassword ? "text" : "password"}
                                     name="password"
                                     placeholder='Enter New Password' />
-                                <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleEnPassword(!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                <button style={{ borderTop: '2px solid #767676', borderLeft: '2px solid #767676' }} type='button' onClick={() => setVisibleEnPassword(!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
 
                             </p>
                             <p className="d-flex inputProfile">
@@ -180,7 +180,7 @@ const DashboardAdminEditProfile = () => {
                                     type={visibleCnPassword ? "text" : "password"}
                                     name="cPassword"
                                     placeholder='Confirm New Password' />
-                                <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleCnPassword(!visibleCnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                <button style={{ borderTop: '2px solid #767676', borderLeft: '2px solid #767676' }} type='button' onClick={() => setVisibleCnPassword(!visibleCnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
 
                             </p>
                         </div>

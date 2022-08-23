@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import Loading from '../../Loading/Loading';
 import './DashboardAdmin.css';
 import DashboardModalNewAdmin from './DashboardModalNewAdmin';
+import Swal from 'sweetalert2';
 
 
 const DashboardAdmin = () => {
@@ -28,55 +29,67 @@ const DashboardAdmin = () => {
     }
 
     // console.log(allAdmin.admin);
-    const handleAdminDelete = async (id) => {
-        const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
-        if (confirmDelete) {
-            await axios.delete(`https://backend.celebrity.sg/api/v1/admin/${id}`, {
-                headers: {
-                    'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
-                }
-            })
-                .then(res => {
-                    if (res.status === 200) {
-                        // alert(res.data.message);
+    const handleAdminDelete = (id) => {
+        // const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
+
+        Swal.fire({
+            title: "Are you sure, you want to delete this admin?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`https://backend.celebrity.sg/api/v1/admin/${id}`, {
+                    headers: {
+                        'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
+                    }
+                })
+                    .then(res => {
+                        if (res.status === 200) {
+                            // alert(res.data.message);
+                            swal({
+                                title: "Success",
+                                text: `${res.data.message}`,
+                                icon: "success",
+                                button: "OK!",
+                                className: "modal_class_success",
+                            });
+                            setAllAdmin(allAdmin.filter(admin => admin._id !== id))
+                        }
+                    })
+                    .catch(error => {
+                        // alert(error.response.data.message);
+                        // console.log(error);
                         swal({
-                            title: "Success",
-                            text: `${res.data.message}`,
-                            icon: "success",
+                            title: "Attention",
+                            text: `${error.response.data.message}`,
+                            icon: "warning",
                             button: "OK!",
                             className: "modal_class_success",
                         });
-                        setAllAdmin(allAdmin.filter(admin => admin._id !== id))
-                    }
-                })
-                .catch(error => {
-                    // alert(error.response.data.message);
-                    // console.log(error);
-                    swal({
-                        title: "Attention",
-                        text: `${error.response.data.message}`,
-                        icon: "warning",
-                        button: "OK!",
-                        className: "modal_class_success",
-                    });
-                })
+                    })
+            }
+        })
 
-            // fetch(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
-            //     method: "DELETE",
-            //     headers: {
-            //         // 'authorization': `Bearer ${localStorage.getItem('token')}`,
-            //         "content-type": "application/json"
-            //     }
-            // })
-            //     .then(res => res.json())
-            //     .then(deleted => {
-            //         console.log(deleted);
-            //         if (deleted) {
 
-            //         }
-            //     })
-        }
+
+        // fetch(`https://backend.celebrity.sg/api/admin/delete/${id}`, {
+        //     method: "DELETE",
+        //     headers: {
+        //         // 'authorization': `Bearer ${localStorage.getItem('token')}`,
+        //         "content-type": "application/json"
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(deleted => {
+        //         console.log(deleted);
+        //         if (deleted) {
+
+        //         }
+        //     })
     }
+
 
     const handleClickOpen = () => {
         //   setOpen(true);

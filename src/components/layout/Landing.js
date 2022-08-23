@@ -51,7 +51,7 @@ export default function () {
                     </div>
                   </div>
                   <p className="wow fadeInUp lead" data-wow-delay="2s">
-                    <h4 style={{fontSize: '1rem', marginTop: '1.2rem'}}>The largest collection of NFTs with purpose</h4>
+                    <h4 style={{ fontSize: '1rem', marginTop: '1.2rem' }}>The largest collection of NFTs with purposes</h4>
                   </p>
                   <div className="mb-sm-30"></div>
 
@@ -117,7 +117,7 @@ export default function () {
               <div className="de-card has-border text-center boxesNft">
                 <i className="wow fadeInUp bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
-                  <h6 className="wow fadeInUp home-txt">Sell the NFTs with digital art and memorabilia of the celebrity</h6>
+                  <h6 className="wow fadeInUp home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
                 </div>
               </div>
             </div>

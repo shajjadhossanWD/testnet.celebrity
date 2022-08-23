@@ -19,7 +19,7 @@ const MealNFT = () => {
     <Fragment>
       <Box className="souvenirNFT_Box" id="Meal">
         <div style={{ backgroundColor: '#1A1A25' }}>
-          <h1 style={{ marginTop: '80px' }} className='text-gradient text-center pt-5 text-uppercase'>Meal NFT</h1>
+          <h1 style={{ marginTop: '80px' }} className='text-gradient text-center pt-5'>Celebrity Meal NFT</h1>
         </div>
         <Container className="SouvenirNFT_card row pt-2 ">
           {
@@ -51,30 +51,30 @@ const MealNFT = () => {
                                  <i className="fa fa-envelope fa-lg"  ></i>
                                 </a>
                                </div> */}
-                      <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                      <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY THIS NFT FOR SGD {data?.price}</button></Link>
                     </div>
                   </div>
                   <div class="card-content">
                     <div className="row">
                       <a href="#!">
-                        <Typography variant="body2">
+                        <Typography className="mt-1" variant="body2">
                           Name Of NFT : {data?.name} <span></span>
                         </Typography>
                       </a>
-                      <Typography variant="body2">
+                      <Typography className="mt-2" variant="body2">
                         Type Of NFT : {data?.type} <span></span>
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography className="mt-2" variant="body2">
                         Price Of NFT(SGD): {data?.price}<span> </span>
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography className="mt-2 mb-1" variant="body2">
                         Details: <Link to={`/mealnft/${data?._id}`} classsName="clickHere"> For more details click here </Link>
                       </Typography>
                     </div>
                     <hr style={{ margin: "10px 0px 10px 0px" }} />
                     <div className="d-flex card_bottom_btn_main">
                       <div className="col-10 d-grid">
-                        <Link to={`/mealnft/${data?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                        <Link to={`/mealnft/${data?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
                       </div>
                     </div>
                   </div>

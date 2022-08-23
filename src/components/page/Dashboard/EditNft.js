@@ -43,6 +43,12 @@ const EditNft = () => {
     const name = e.target.name.value;
     const price = e.target.price.value;
     const description = e.target.description.value;
+    const startDate = e.target.startDate.value;
+    const startTime = e.target.startTime.value;
+    const endTime = e.target.endTime.value;
+    const venue = e.target.venue.value;
+    const purchaseDate = e.target.purchaseDate.value;
+    const briefDetails = e.target.briefDetails.value;
     const type = e.target.type.value;
     const avatar = e.target.avatar.files[0];
 
@@ -51,6 +57,12 @@ const EditNft = () => {
     formData.append('name', name);
     formData.append('price', price);
     formData.append('description', description);
+    formData.append('startDate', startDate)
+    formData.append('startTime', startTime)
+    formData.append('endTime', endTime)
+    formData.append('venue', venue)
+    formData.append('purchaseDate', purchaseDate)
+    formData.append('briefDetails', briefDetails)
     formData.append('type', type);
     formData.append('date', newDate);
     formData.append('image', avatar);
@@ -139,6 +151,67 @@ const EditNft = () => {
                   className="border w-100 rounded mb-3"
                   style={{ backgroundColor: "#272d47", color: "white" }}
                 />
+
+                <label className='mb-1'>Date</label>
+                <input
+                  type="date"
+                  name="startDate"
+                  defaultValue={Nfts.startDate}
+                  className='border w-100 rounded mb-3'
+                  style={{ backgroundColor: "#272d47", color: "white" }}
+                  required
+                />
+
+                <label className='mb-1'>Start Time</label>
+                <input
+                  type="text"
+                  name="startTime"
+                  defaultValue={Nfts.startTime}
+                  className="border w-100 rounded mb-3"
+                  style={{ backgroundColor: "#272d47", color: 'white' }}
+                  required
+                />
+                <label className='mb-1'>End Time</label>
+                <input
+                  type="text"
+                  name="endTime"
+                  defaultValue={Nfts.endTime}
+                  className="border w-100 rounded mb-3"
+                  style={{ backgroundColor: "#272d47", color: 'white' }}
+                  required
+                />
+
+                <label className='mb-1'>Venue</label>
+                <input
+                  type="text"
+                  name="venue"
+                  defaultValue={Nfts.venue}
+                  className="border w-100 rounded mb-3"
+                  style={{ backgroundColor: "#272d47", color: 'white' }}
+                  required
+                />
+
+                <label className='mb-1'>Purchase Till</label>
+                <input
+                  type="date"
+                  name="purchaseDate"
+                  defaultValue={Nfts.purchaseDate}
+                  className="border w-100 rounded mb-3"
+                  style={{ backgroundColor: "#272d47", color: 'white' }}
+                  required
+                />
+
+                <label className='mb-1'>Brief Details of Celebrity</label>
+                <textarea
+                  type="text"
+                  name="briefDetails"
+                  defaultValue={Nfts.briefDetails}
+                  className="border w-100 rounded mb-3"
+                  style={{ backgroundColor: "#272d47", color: 'white' }}
+                  required
+                />
+
+
                 {/* <InputGroup
                   className="mb-3"
                   style={{ backgroundColor: "#272d47", color: "white" }}

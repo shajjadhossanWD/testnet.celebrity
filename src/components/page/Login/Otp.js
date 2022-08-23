@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
+import { useTimer } from 'react-timer-hook';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -11,10 +12,22 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import './Login.css';
 import swal from 'sweetalert';
 
-const Otp = () => {
+const Otp = ({ expiryTimestamp }) => {
+    const {
+        seconds,
+        minutes,
+        hours,
+        days,
+        isRunning,
+        start,
+        pause,
+        resume,
+        restart,
+    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
     const { token } = useParams();
     const { admin, setAdmin } = useContext(AdminContext);
     const [forEnable, setForEnable] = useState(false);
+    const [againEnable, setAgainEnable] = useState(true);
     const [pasteText, setPasteText] = useState(null);
     const navigate = useNavigate();
 
@@ -23,6 +36,30 @@ const Otp = () => {
             navigate("/dashboard");
         }
     }, [admin, navigate]);
+
+    useEffect(() => {
+        if (token) {
+            const time = new Date();
+            time.setSeconds(time.getSeconds() + 180);
+            restart(time)
+            setForEnable(false);
+        }
+    }, [])
+
+    const restarting = (sec) => {
+
+        if (againEnable) {
+            setAgainEnable(false);
+            const time = new Date();
+            time.setSeconds(time.getSeconds() + sec);
+            restart(time)
+        }
+        setTimeout(reenabling, 180000);
+    }
+
+    const reenabling = () => {
+        setAgainEnable(true);
+    }
 
     // for maintaining re-send otp button's disable enable
     const enableing = () => {
@@ -41,8 +78,16 @@ const Otp = () => {
             .then(res => {
                 if (res.status === 200) {
                     // alert(res.data.message);
-                    alert("OTP resent");
+                    // alert("OTP resent");
+                    swal({
+                        title: "Success",
+                        text: `OTP resent`,
+                        icon: "success",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
                     setForEnable(false);
+                    restarting(180);
                 }
             })
             .catch(err => {
@@ -127,9 +172,12 @@ const Otp = () => {
                                 </div>
                             </form>
                             <div className='mx-auto text-center mt-3'>
-                                <Button disabled={!forEnable} className='otp-btn resend_OTP_btn border-0 text-center  pt-2 pb-2' type="button" onClick={() => resendOTP()}>
+                                <Button disabled={!forEnable || !againEnable} className='otp-btn resend_OTP_btn border-0 text-center  pt-2 pb-2' type="button" onClick={() => resendOTP()}>
                                     Re-Send OTP
                                 </Button>
+                            </div>
+                            <div className='text-center text-white mt-3'>
+                                <span>{minutes}</span>:<span>{seconds < 10 ? `0${seconds}` : seconds}</span>
                             </div>
                         </div>
 
@@ -141,9 +189,6 @@ const Otp = () => {
 };
 
 export default Otp;
-
-
-
 
 
 

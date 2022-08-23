@@ -57,6 +57,7 @@ function SouvenirDetails() {
                 <option value="bnb">BNB</option>
                 <option value="usdsc">USDSC</option>
                 <option value="dsl">DSL</option>
+                <option value="s39">S39</option>
               </select>
 
               <Typography variant="subtitle2" gutterBottom component="div">
@@ -76,7 +77,7 @@ function SouvenirDetails() {
               <Typography className="pt-1 text-primary" variant="subtitle2" gutterBottom component="div">
                 Details Of NFT:
               </Typography>
-              <Typography className="pt-2 pb-2 text-primary" variant="subtitle2" component="div">
+              {/* <Typography className="pt-2 pb-2 text-primary" variant="subtitle2" component="div">
                 What is it?
               </Typography>
               <Typography className="pt-1" variant="subtitle2" component="div">
@@ -102,6 +103,22 @@ function SouvenirDetails() {
               </Typography>
               <Typography className="pt-1" variant="subtitle2" component="div">
                 3. Use it and Feel like the Celebrity
+              </Typography> */}
+
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                Date:
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                Start Time: {isDetails?.startTime}
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                End Time:{isDetails?.endTime}
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                Venue:
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                Purchase Till:
               </Typography>
             </Box>
             <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'center' }}>

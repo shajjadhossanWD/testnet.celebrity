@@ -52,7 +52,7 @@ const Forgetpassword = () => {
                     <div className=' forCard  w-50 p-5 rounded mx-auto'>
                         <div className='mx-auto text-center'>
                             <img src="https://testnet.grighund.net/static/media/logo192.ea779dfe5e580c22a76f.png" className='handleLogoLogin rounded-pill' alt="logo" />
-                            <p className='fs-1 Forgot'>Password Reset</p>
+                            <p className='fs-1 Forgot'>Forgot Password?</p>
                             <p className='pb-2'>Enter your email address to receive reset password link.</p>
                         </div>
                         <hr />

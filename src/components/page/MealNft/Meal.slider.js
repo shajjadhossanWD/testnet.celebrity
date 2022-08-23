@@ -90,30 +90,45 @@ const MealSlider = ({ pull_meal }) => {
                          <i className="fa fa-envelope fa-lg"  ></i>
                         </a>
                        </div> */}
-                <Link to={`/mealnft/${aNft?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                <Link to={`/mealnft/${aNft?._id}`}><button className="card_hover_button mt-5" href="#!">BUY THIS NFT FOR SGD {aNft?.price}</button></Link>
               </div>
             </div>
             <div class="card-content">
               <div className="row">
+                <Typography className="mt-2" variant="body2">
+                  <span className="text-primary">Type of NFT :</span> {aNft?.type}
+                </Typography>
                 <a href="#!">
-                  <Typography variant="body2">
-                    Name Of NFT : {aNft?.name} <span></span>
+                  <Typography className="mt-1" variant="body2">
+                    <span className="text-primary">Name of NFT :</span> {aNft?.name}
                   </Typography>
                 </a>
-                <Typography variant="body2">
-                  Type Of NFT : {aNft?.type} <span></span>
+                <Typography className="mt-2" variant="body2">
+                  <span className="text-primary">Price of NFT(SGD):</span> {aNft?.price}
                 </Typography>
-                <Typography variant="body2">
-                  Price Of NFT(SGD): {aNft?.price}<span> </span>
+                <Typography className="mt-2" variant="body2">
+                  <span className="text-primary">Available NFTs:</span>
                 </Typography>
-                <Typography variant="body2">
+                {/* <Typography className="mt-2" variant="body2">
                   Details: <Link to={`/mealnft/${aNft?._id}`} classsName="clickHere"> For more details click here </Link>
+                </Typography> */}
+                <Typography className="mt-2" variant="body2">
+                  <span className="text-primary">Date:</span> {`${aNft?.startDate.slice(8, 10)}/${aNft?.startDate.slice(5, 7)}/${aNft?.startDate.slice(0, 4)}`}
+                </Typography>
+                <Typography className="mt-2" variant="body2">
+                  <span className="text-primary">Start Time:</span> {aNft?.startTime}
+                </Typography>
+                <Typography className="mt-2" variant="body2">
+                  <span className="text-primary">End Time:</span> {aNft?.endTime}
+                </Typography>
+                <Typography className="mt-2 mb-1" variant="body2">
+                  <span className="text-primary">Venue:</span> {aNft?.venue}
                 </Typography>
               </div>
               <hr style={{ margin: "10px 0px 10px 0px" }} />
               <div className="d-flex card_bottom_btn_main">
                 <div className="col-10 d-grid">
-                  <Link to={`/mealnft/${aNft?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                  <Link to={`/mealnft/${aNft?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {aNft?.price}</button> </Link>
                 </div>
               </div>
             </div>

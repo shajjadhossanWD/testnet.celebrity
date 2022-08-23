@@ -9,8 +9,26 @@
 
 .handleSpace {
     margin-top: -1px;
-    color: rgb(145, 145, 145);
+    margin-bottom: 10px;
+    padding-top: 100px;
+    color: #0d6efd;
+    font-weight: 700;
 }
+
+.handleSpace:hover{
+    color: #134faa;
+}
+
+.made-love{
+    /* color: rgb(203, 52, 52); */
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 16px;
+}
+
+/* .made-love:hover{
+    color: rgb(203, 52, 52);
+} */
 
 .footerBody {
     background-color: #1A1A25;

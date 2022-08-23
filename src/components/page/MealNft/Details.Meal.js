@@ -11,6 +11,9 @@ function MealDetails() {
   const [isDetails, setDetails] = useState({})
   const [isSouvenir, setSouvenir] = useState([])
   const [token, setToken] = useState("bnb");
+  const [bnbToken, setBnbToken] = useState();
+  const [dslToken, setDslToken] = useState();
+  const [s39Token, setS39Token] = useState();
 
 
   useEffect(() => {
@@ -37,10 +40,93 @@ function MealDetails() {
     });
   }
 
+  useEffect(() => {
+    axios.get('https://dslegends.org/api/get-asset-price.php?asset=BNB', {
+      headers: {
+        Tokenkey: `f02063004b60270f693bfefcbd8a37e91273a4290fdcc9e4ea7b0f531a9d9e64`
+      }
+    })
+      .then(res => {
+        setBnbToken(res.data.message);
+        console.log(res.data.message)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('https://dslegends.org/api/get-asset-price.php?asset=DSL', {
+      headers: {
+        Tokenkey: `f02063004b60270f693bfefcbd8a37e91273a4290fdcc9e4ea7b0f531a9d9e64`
+      }
+    })
+      .then(res => {
+        setDslToken(res.data.message);
+        console.log(res.data.message)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('https://dslegends.org/api/get-asset-price.php?asset=S39', {
+      headers: {
+        Tokenkey: `f02063004b60270f693bfefcbd8a37e91273a4290fdcc9e4ea7b0f531a9d9e64`
+      }
+    })
+      .then(res => {
+        setS39Token(res.data.message);
+        console.log(res.data.message)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }, []);
+
+  // Calculation
+  const totalSgd = isDetails?.price;
+  const usdPerSgd = 0.72;
+  const rsPerSgd = 57.45;
+  const usd = totalSgd * usdPerSgd;
+  const rs = totalSgd * rsPerSgd;
+
+  // BNB Price
+  const bnb = usd / bnbToken;
+  const bnbTwoDec = bnb.toFixed(2);
+
+  // DSL Price
+  const dsl = usd / dslToken;
+  const dslTwoDec = dsl.toFixed(2);
+
+  // USDSC Price
+  const usdsc = usd.toFixed(2);
+
+  // S39 Price
+  const s39 = usd / s39Token;
+  const s39TwoDec = s39.toFixed(2);
+
+  // Discount (30%)
+  const discountSgd = 30 / 100 * totalSgd;
+  const disSgdTwoDec = discountSgd.toFixed(2);
+
+  // RS Discount
+  const discountRs = 30 / 100 * rs;
+  const disRsTwoDec = discountRs.toFixed(2);
+
+  // USD Discount
+  const discountUsd = 30 / 100 * usd;
+  const disUsdTwoDec = discountUsd.toFixed(2);
+
+
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
       <div className="d-grid justify_items_center">
-        <Container className="row" style={{ marginTop: "100px", alignItems: 'flex-start' }}>
+        <Container className="row" style={{ marginTop: "124px", alignItems: 'flex-start' }}>
+          <Typography className="meal_details_type_title text-gradient" variant="subtitle2" gutterBottom component="div">
+            <span>Type Of NFT :</span> {isDetails?.type}
+          </Typography>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid justify_items_center pt-2">
             <Box className=" col-12 card_top_icon mb-2">
               <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1">
@@ -48,51 +134,62 @@ function MealDetails() {
                 <span className="ps-1">{isDetails?.__v}</span>
               </Box>
             </Box>
-            <img alt="Souvenir_Image" src={isDetails?.avatar} className='deteilsPageImage2' />
+            <img alt="Meal_Image" src={isDetails?.avatar} className='deteilsPageImage2' />
 
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
+            <h5 className="paymentOptionsChoose">Choose how you want to pay</h5>
 
             <Box className="pt-5" style={{ color: "white" }}>
               {/* dropdown */}
               <select className='form-control mb-3 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%" }}>
-                <option value="bnb">BNBs</option>
+                <option value="bnb">BNB</option>
                 <option value="usdsc">USDSC</option>
                 <option value="dsl">DSL</option>
+                <option value="s39">S39</option>
               </select>
-              <Typography variant="subtitle2" gutterBottom component="div">
-                <span>Name Of NFT :</span> {isDetails?.name}
-              </Typography>
-              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span>Type Of NFT :</span> {isDetails?.type}
-              </Typography>
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                <span>Price Of NFT(SGD):</span>{
-                  token === "bnb" || token === "usdsc" ? `${isDetails?.price}` : 2100
-                }
-              </Typography>
-              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
+              <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
               </Typography>
+              <Typography variant="subtitle2" gutterBottom component="div">
+                <span className="text-primary">Name Of NFT :<br /></span> {isDetails?.name}
+              </Typography>
+              {/* <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
+                <span>Type Of NFT :</span> {isDetails?.type}
+              </Typography> */}
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                <span className="text-primary">Price Of NFT(SGD):<br /> </span>{
+                  token === "bnb" || token === "usdsc" ? `${isDetails?.price}` : `${isDetails?.price}`
+                }
+              </Typography>
+              {/* <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
+                ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
+              </Typography> */}
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">Details Of NFT:</span>
+                <span className="text-primary">NFT Details:</span>
               </Typography>
-              <Typography className="pt-2 pb-2 text-primary" variant="subtitle2" component="div">
-                What is it?
-              </Typography>
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                1. NFT in BSC network
-              </Typography>
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                2. Digital Artwork of the Celebrity
+              {/* <Typography variant="subtitle2" gutterBottom component="div">
+                <span>{isDetails?.description}</span>
+              </Typography> */}
+              <Typography className="pb-1" variant="subtitle2" component="div">
+                What do you get?
               </Typography>
               <Typography className="pt-1" variant="subtitle2" component="div">
-                3. A Meal Section with the Celebrity
+                1. Digital Art of Celebrity
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                2. Exclusive Memorabilia signed by Celebrity
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                3. 5 mins Live Performance
               </Typography>
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                4. Selfie Section with the Celebrity
+                4. Meal Session with Celebrity
               </Typography>
-              <Typography className="pt-2 pb-2 text-primary" variant="subtitle2" component="div">
+              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
+                5. Selfie Session with Celebrity
+              </Typography>
+              {/* <Typography className="pt-2 pb-2 text-primary" variant="subtitle2" component="div">
                 Benefits for Buyer
               </Typography>
               <Typography className="pt-1" variant="subtitle2" component="div">
@@ -103,24 +200,52 @@ function MealDetails() {
               </Typography>
               <Typography className="pt-1" variant="subtitle2" component="div">
                 3. Lifetime Experience with the Celebrity
+              </Typography> */}
+
+
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                <span className="text-primary">Date:</span><br /> {`${isDetails?.startDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`}
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                <span className="text-primary">Start Time:</span><br /> {isDetails?.startTime}
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                <span className="text-primary">End Time:
+                </span><br />
+                {isDetails?.endTime}
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                <span className="text-primary">Venue:</span><br /> {isDetails?.venue}
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                <span className="text-primary">Purchase Till:</span><br /> {`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.purchaseDate?.slice(5, 7)}/${isDetails?.purchaseDate?.slice(0, 4)}`}
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
+                <span className="text-primary">Brief Details of Celebrity:</span>
+              </Typography>
+              <Typography className="pt-1" variant="subtitle2" component="div">
+                {isDetails?.briefDetails}
               </Typography>
             </Box>
             <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'center' }}>
-              {token === "bnb" && <p style={{ margin: '0' }}>You need to pay 8.85 BNB</p>}
-              {token === "usdsc" && <p style={{ margin: '0' }}>You need to pay 2144.36 USDSC</p>}
-              {token === "dsl" && <p>You need to pay 143484.98 DSL</p>}
+              {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
+              {token === "usdsc" && <p style={{ margin: '0' }}>You need to pay {usdsc} USDSC</p>}
+              {token === "dsl" && <p>You need to pay {dslTwoDec} DSL</p>}
+              {token === "s39" && <p>You need to pay {s39TwoDec} S39</p>}
             </div>
             <div className="dslDiscountForPayment">
-              {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD 900 (RS 51,095.89 ) : USD 641.06</p>}
+              {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
             </div>
             <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
               <Link to="#" className=" justify_content_center mt-4 mb-1">
                 {token === "bnb" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR 8.85 BNB</button>}
+                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
                 {token === "usdsc" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR 2144.36 USDSC</button>}
+                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
                 {token === "dsl" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR 143484.98 DSL</button>}
+                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
+                {token === "s39" &&
+                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
               </Link>
             </div>
           </div>
@@ -128,7 +253,7 @@ function MealDetails() {
         <Container>
           <h3 className="text-white text-start mb-0 mt-5 mb-3 d-grid justify_items_center" style={{ fontFamily: "system-ui" }}>Related NFTs</h3>
           <div className="small-border bg-color-2"></div>
-          <div className="row" >
+          {isSouvenir?.length < 2 ? <h4 className="text-gradient text-center mb-5">No related NFTs for now.</h4> : <div className="row" >
             {
               isSouvenir?.map((data, idx) => (
                 <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
@@ -189,7 +314,7 @@ function MealDetails() {
                 </div>
               ))
             }
-          </div>
+          </div>}
           <div className='d-flex mt-1' style={{ justifyContent: 'center' }}>
             {isSouvenir?.length > 0 ?
               <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>

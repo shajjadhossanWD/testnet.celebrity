@@ -10,6 +10,9 @@ import { MdClose } from 'react-icons/md';
 
 const DashboardModal = (props) => {
     const { setRefetch, refetch, setModalShow, SetIsloading } = props;
+    const [saveAsDraft, setSaveAsDraft] = useState('');
+
+    console.log(saveAsDraft)
 
     var newDate = new Date();
     let dd = String(newDate.getDate()).padStart(2, '0');
@@ -33,6 +36,12 @@ const DashboardModal = (props) => {
         const name = e.target.name.value;
         const price = e.target.price.value;
         const description = e.target.description.value;
+        const startDate = e.target.startDate.value;
+        const startTime = e.target.startTime.value;
+        const endTime = e.target.endTime.value;
+        const venue = e.target.venue.value;
+        const purchaseDate = e.target.purchaseDate.value;
+        const briefDetails = e.target.briefDetails.value;
         const type = e.target.type.value;
         const image = e.target.image.files[0];
 
@@ -41,34 +50,74 @@ const DashboardModal = (props) => {
         formData.append('price', price)
         formData.append('date', newDate)
         formData.append('description', description)
+        formData.append('startDate', startDate)
+        formData.append('startTime', startTime)
+        formData.append('endTime', endTime)
+        formData.append('venue', venue)
+        formData.append('purchaseDate', purchaseDate)
+        formData.append('briefDetails', briefDetails)
         formData.append('type', type)
         formData.append('image', image)
-        await axios.post('https://backend.celebrity.sg/api/nft/add', formData, {
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    // alert(res.data.message);
-                    swal({
-                        title: "Success",
-                        text: `${res.data.message}`,
-                        icon: "success",
-                        button: "OK!",
-                        className: "modal_class_success",
-                    });
-                    setRefetch(!refetch);
-                    SetIsloading(false);
-                    setModalShow(false);
 
+
+        if (saveAsDraft === "save") {
+            await axios.post('https://backend.celebrity.sg/api/nft/add', formData, {
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            .catch(error => {
-                alert(error.response.data.message);
-                SetIsloading(false);
-                setModalShow(false);
-            });
+                .then(res => {
+                    if (res.status === 200) {
+                        // alert(res.data.message);
+                        swal({
+                            title: "Success",
+                            text: `${res.data.message}`,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
+                        setRefetch(!refetch);
+                        SetIsloading(false);
+                        setModalShow(false);
+
+                    }
+                })
+                .catch(error => {
+                    alert(error.response.data.message);
+                    SetIsloading(false);
+                    setModalShow(false);
+                });
+
+        }
+        else {
+            await axios.post('https://backend.celebrity.sg/api/nft/saveAsDraft', formData, {
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+                .then(res => {
+                    if (res.status === 200) {
+                        // alert(res.data.message);
+                        swal({
+                            title: "Success",
+                            text: `${res.data.message}`,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
+                        setRefetch(!refetch);
+                        SetIsloading(false);
+                        setModalShow(false);
+
+                    }
+                })
+                .catch(error => {
+                    alert(error.response.data.message);
+                    SetIsloading(false);
+                    setModalShow(false);
+                });
+
+        }
     };
 
 
@@ -84,7 +133,7 @@ const DashboardModal = (props) => {
                 <Modal.Title id="contained-modal-title-vcenter" style={{ color: 'white' }}>
                     New NFT
                 </Modal.Title>
-                <MdClose onClick={() => setModalShow(false)} color='#fff' size={30} style={{cursor: 'pointer'}} />
+                <MdClose onClick={() => setModalShow(false)} color='#fff' size={30} style={{ cursor: 'pointer' }} />
             </Modal.Header>
             <Modal.Body style={{ backgroundColor: "#272d47", color: 'white' }}>
                 <div style={{ backgroundColor: "#272d47", color: 'white' }}>
@@ -103,9 +152,9 @@ const DashboardModal = (props) => {
                             <Form.Select aria-label="Default select example"
                                 name="type"
                                 className='' style={{ backgroundColor: "#272d47", color: 'white' }}>
-                                <option>Type Of NFT</option>
-                                <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
+                                {/* <option>Type Of NFT</option> */}
                                 <option value="Celebrity Meal NFTs">Celebrity Meal NFTs</option>
+                                <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
                             </Form.Select>
                         </InputGroup>
                         <label className='mb-1'>Image of NFT</label>
@@ -140,15 +189,74 @@ const DashboardModal = (props) => {
                         <textarea
                             type="text"
                             name="description"
+                            className='border w-100 rounded mb-3 px-2 pt-2 pb-5 '
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
+                        />
+
+                        <label className='mb-1'>Date</label>
+                        <input
+                            type="date"
+                            name="startDate"
                             className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
+                        />
+
+                        <label className='mb-1'>Start Time</label>
+                        <input
+                            type="text"
+                            name="startTime"
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
+                        />
+
+                        <label className='mb-1'>End Time</label>
+                        <input
+                            type="text"
+                            name="endTime"
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
+                        />
+
+                        <label className='mb-1'>Venue</label>
+                        <input
+                            type="text"
+                            name="venue"
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
+                        />
+
+                        <label className='mb-1'>Purchase Till</label>
+                        <input
+                            type="date"
+                            name="purchaseDate"
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
+                        />
+
+                        <label className='mb-1'>Brief Details of Celebrity</label>
+                        <textarea
+                            type="text"
+                            name="briefDetails"
+                            className='border w-100 rounded mb-3 px-2 pt-2 pb-5 '
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
                         />
 
 
                         <Modal.Footer className='justify-content-center'>
-                            <Button type='button' onClick={() => setModalShow(false)} style={{ backgroundColor: '#dc3545', width: '100px' }} className='border-0 text-uppercase'>CANCEL</Button>
-                            <Button type='submit' style={{ backgroundColor: 'blueviolet', width: '100px' }} className='border-0 text-uppercase'>Save</Button>
+                            <Button type='button' onClick={() => setModalShow(false)} style={{ backgroundColor: '#dc3545', width: '120px', fontSize: "13px" }} className='border-0 text-uppercase modal-btn'>CANCEL</Button>
+                            <Button
+                                onClick={() => setSaveAsDraft("draft")}
+                                type='submit' style={{ backgroundColor: 'blueviolet', width: '120px', fontSize: "13px" }} className='bg-primary border-0 text-uppercase modal-btn'>Save as Draft</Button>
+                            <Button
+                                onClick={() => setSaveAsDraft("save")}
+                                type='submit' style={{ backgroundColor: 'blueviolet', width: '120px', fontSize: "13px" }} className='border-0 text-uppercase modal-btn'>Save</Button>
                         </Modal.Footer>
                     </form>
                 </div>

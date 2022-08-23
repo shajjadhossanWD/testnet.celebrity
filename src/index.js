@@ -10,12 +10,12 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-  <AdminProvider>
-    <CelebrityProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-    </CelebrityProvider>
+    <AdminProvider>
+      <CelebrityProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CelebrityProvider>
     </AdminProvider>
   </React.StrictMode>
 );

@@ -86,13 +86,23 @@ const Dashboard = () => {
                     </span>{" "}
                     <span className="pe-3">Admin</span>
                   </Nav.Link>
+                  <Nav.Link
+                    className="text-light mb-3 text-start"
+                    as={CustomLink}
+                    to="/dashboard/nftDetails"
+                  >
+                    <span className="pe-3 ps-3 fs-4">
+                    <HiCheckCircle></HiCheckCircle>
+                    </span>{" "}
+                    <span className="pe-3">NFT Details</span>
+                  </Nav.Link>
 
                   <Nav.Link
                     className="pe-4 text-light ps-4 text-start"
                     as={CustomLink}
                     to="/dashboard/nfts"
                   >
-                    <span className="pe-4 fs-4">
+                    <span className="pe-3 fs-4">
                       <HiCheckCircle></HiCheckCircle>
                     </span>{" "}
                     <span>NFTS</span>
@@ -145,7 +155,7 @@ const Dashboard = () => {
                         </Nav.Link>
                       </Nav>
                     </Offcanvas.Title>
-                    <MdClose onClick={handleClose} color='#fff' size={30} style={{cursor: 'pointer'}} />
+                    <MdClose onClick={handleClose} color='#fff' size={30} style={{ cursor: 'pointer' }} />
                   </Offcanvas.Header>
                   <Offcanvas.Body
                     style={{ backgroundColor: "#323246", color: "white" }}
@@ -175,6 +185,18 @@ const Dashboard = () => {
                           <TiGroup></TiGroup>
                         </span>{" "}
                         <span>Admin</span>
+                      </Nav.Link>
+                      <Nav.Link
+                        className="text-center pe-4 text-light text-start"
+                        as={CustomLink}
+                        to="/dashboard/nftDetails"
+                        href="#admin"
+                        onClick={handleClose}
+                      >
+                        <span className="me-2 fs-4">
+                        <HiCheckCircle></HiCheckCircle>
+                        </span>{" "}
+                        <span>NFT Details</span>
                       </Nav.Link>
 
                       <Nav.Link
