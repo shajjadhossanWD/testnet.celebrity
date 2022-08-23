@@ -45,10 +45,14 @@ const DashboardNfts = () => {
       }
     })
       .then(res => res.json())
-      .then(data => setnfts(data.nft))
+      .then(data => {
+        console.log(data);
+        const filtering = data.nft.filter(items => items.isDraft === false);
+        setnfts(filtering);
+      })
   }, [refetch])
 
-
+  console.log(nfts);
   // if (nfts.length <= 0) {
   //   return <Loading></Loading>
   // }
