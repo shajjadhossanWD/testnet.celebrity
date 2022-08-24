@@ -1,21 +1,25 @@
-.deteilsPageImage{
+.deteilsPageImage {
     width: 90%;
 }
-.deteilsPageImage2{
+
+.deteilsPageImage2 {
     width: 90%;
     margin-top: -1px;
 }
-.justify_items_center{
+
+.justify_items_center {
     justify-items: center;
 }
-.align_content_center{
+
+.align_content_center {
     align-content: center
 }
-.justify_content_space_around{
+
+.justify_content_space_around {
     justify-content: space-around;
 }
-  
-.icon_love_Dtl_box{
+
+.icon_love_Dtl_box {
     width: 48px;
     height: 42px;
     display: flex;
@@ -25,11 +29,13 @@
     justify-content: center;
     border-radius: 4px;
 }
-.justify_content_center{
+
+.justify_content_center {
     justify-content: center;
     text-decoration: none;
 }
-.button_dtl{
+
+.button_dtl {
     padding: 15px 26px 13px 12px;
     width: 400px !important;
     background: linear-gradient(to right, var(--secondary-color) -10%, var(--secondary-color-2) 120%) !important;
@@ -37,44 +43,52 @@
     font-size: 14px !important;
     font-weight: 500;
 }
-.button_dtl:hover{
+
+.button_dtl:hover {
     box-shadow: 2px 2px 20px 0px rgba(var(--secondary-color-rgb), 0.3);
     background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 90%) !important;
     border: 1px solid rgb(255, 255, 255) !important;
 }
-/* ------------------------- */
-.spanDiscount{
-    color:darkseagreen;
-}
-/* --------------------------------- */
-.swal-overlay--show-modal .swal-modal  {
-    background: rgb(29, 34, 35)!important;
-    color: white !important
-  }
-  .swal-title {
-    color: #cecece;
-  }
-  button.swal-button.swal-button--confirm {
-    background: cadetblue;
-  }
-  .swal-modal{
-    background: rgb(29, 34, 35)!important;
-  }
-  /* ------------------------------------ */
 
- .card_top_icon {
+/* ------------------------- */
+.spanDiscount {
+    color: darkseagreen;
+}
+
+/* --------------------------------- */
+.swal-overlay--show-modal .swal-modal {
+    background: rgb(29, 34, 35) !important;
+    color: white !important
+}
+
+.swal-title {
+    color: #cecece;
+}
+
+button.swal-button.swal-button--confirm {
+    background: cadetblue;
+}
+
+.swal-modal {
+    background: rgb(29, 34, 35) !important;
+}
+
+/* ------------------------------------ */
+
+.card_top_icon {
     width: 90%;
     display: flex !important;
     justify-content: flex-end !important;
     align-items: flex-start !important;
     margin-top: 40px;
-  }  
-  .card-content a {
+}
+
+.card-content a {
     text-decoration: none;
     color: #71bdac;
 }
 
-.dslDiscountForPayment{
+.dslDiscountForPayment {
     font-family: "Avenir Next", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -85,31 +99,39 @@
     letter-spacing: 0.01em;
     color: #d6579f;
 }
-  /* ----------------------------------- */
+
+/* ----------------------------------- */
 
 
 @media only screen and (max-width: 769px) {
-    .deteilsPageImage{
+    .deteilsPageImage {
         width: 100%;
     }
-    .deteilsPageImage2{
+
+    .deteilsPageImage2 {
         width: 100%;
         margin-top: 0px;
     }
-    .button_dtl{
+
+    .button_dtl {
         width: 285px !important;
         font-size: 11px !important;
         font-weight: 500;
     }
-     
+
     .card_top_icon {
-       
+
         width: 100% !important;
-      } 
-   
-  }
-  @media only screen and (max-width: 600px) {
-    
-    
-     
-  }
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .deteilsPageImage2 {
+        width: 50%;
+        margin-top: 0px;
+        margin-right: 40%;
+    }
+
+}

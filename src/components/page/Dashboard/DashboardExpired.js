@@ -10,7 +10,7 @@ import { FaSave } from 'react-icons/fa';
 
 const DashboardExpired = () => {
     const [dates, setDates] = useState([]);
-    console.log(dates)
+    console.log(dates);
     const [nftsPro, setNftsPro] = useState([]);
     const [refetch, setRefetch] = useState(false);
     const CustomTooltip = styled(({ className, ...props }) => (
@@ -141,9 +141,15 @@ const DashboardExpired = () => {
             }
         })
     }
+
+    // Date
+    const todayDate = new Date();
+    const expireDate = new Date(`${dates.slice(3, 5)}/${dates.slice(0, 2)}/${dates.slice(6, 10)}`);
+    console.log(todayDate, "EX", expireDate);
+
     return (
         <div>
-            <div className="mt-4">
+            {/* <div className="mt-4">
                 <Table bordered responsive className="border-0 text-light">
                     <thead>
                         <tr>
@@ -156,7 +162,7 @@ const DashboardExpired = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {dates?.map((data) => (
+                        {nfts?.map((data) => (
                             <tr data={data} key={data?.id}>
                                 <td>
                                     <img src={data.avatar} alt="" style={{ width: "65px", hight: "65px" }} />
@@ -188,7 +194,7 @@ const DashboardExpired = () => {
                         ))}
                     </tbody>
                 </Table>
-            </div>
+            </div> */}
         </div>
     );
 };

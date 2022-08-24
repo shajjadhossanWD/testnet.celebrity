@@ -13,6 +13,7 @@ import htmlToDraft from 'html-to-draftjs';
 import swal from 'sweetalert';
 import { MdClose } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { TimePicker } from 'antd';
 
 const DashboardAddNft = () => {
     const [saveAsDraft, setSaveAsDraft] = useState();
@@ -198,14 +199,14 @@ const DashboardAddNft = () => {
                         />
 
                         <label className='mb-1'>Start Time</label>
-                        <input
+                        {/* <input
                             type="text"
                             name="startTime"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
-                        />
-
+                        /> */}
+                        <TimePicker className='border w-100 rounded mb-3 p-2' />
                         <label className='mb-1'>End Time</label>
                         <input
                             type="text"

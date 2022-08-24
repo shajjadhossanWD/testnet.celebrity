@@ -223,7 +223,7 @@ function MealDetails() {
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
-      <div className="container d-grid justify_items_center">
+      <div className="container d-grid justify_items_center pe-5">
         <Container className="row" style={{ marginTop: "124px", alignItems: 'flex-start' }}>
           <Typography className="meal_details_type_title text-gradient" variant="subtitle2" gutterBottom component="div">
             <span>Type Of NFT :</span> {isDetails?.type}
@@ -238,7 +238,7 @@ function MealDetails() {
             <img alt="Meal_Image" src={isDetails?.avatar} className='deteilsPageImage2' />
 
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
+          <div className="col-sm-12 col-md-6 col-lg-6 d-grid me-5">
             <h5 className="paymentOptionsChoose">Choose how you want to pay</h5>
 
             <Box className="pt-5" style={{ color: "white" }}>
@@ -334,27 +334,29 @@ function MealDetails() {
               </Typography> */}
               <div className="pb-1" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
             </Box>
-            <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'center' }}>
-              {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
-              {token === "usdsc" && <p style={{ margin: '0' }}>You need to pay {usdsc} USDSC</p>}
-              {token === "dsl" && <p>You need to pay {dslTwoDec} DSL</p>}
-              {token === "s39" && <p>You need to pay {s39TwoDec} S39</p>}
-            </div>
-            <div className="dslDiscountForPayment">
-              {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
-            </div>
-            <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
-              <Link to="#" className=" justify_content_center mt-4 mb-1">
-                {token === "bnb" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
-                {token === "usdsc" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
-                {token === "dsl" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
-                {token === "s39" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
-              </Link>
-            </div>
+            <Box>
+              <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'center' }}>
+                {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
+                {token === "usdsc" && <p style={{ margin: '0' }}>You need to pay {usdsc} USDSC</p>}
+                {token === "dsl" && <p>You need to pay {dslTwoDec} DSL</p>}
+                {token === "s39" && <p>You need to pay {s39TwoDec} S39</p>}
+              </div>
+              <div className="dslDiscountForPayment">
+                {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
+              </div>
+              <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
+                <Link to="#" className=" justify_content_center mt-4 mb-1">
+                  {token === "bnb" &&
+                    <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
+                  {token === "usdsc" &&
+                    <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
+                  {token === "dsl" &&
+                    <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
+                  {token === "s39" &&
+                    <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
+                </Link>
+              </div>
+            </Box>
           </div>
         </Container>
         <Container>
