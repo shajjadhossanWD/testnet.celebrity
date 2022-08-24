@@ -13,16 +13,11 @@ import htmlToDraft from 'html-to-draftjs';
 import swal from 'sweetalert';
 import { MdClose } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import TextField from '@mui/material/TextField';
 
 const DashboardAddNft = () => {
     const [saveAsDraft, setSaveAsDraft] = useState();
     const [firstValue, setfirstValue] = useState(() => EditorState.createEmpty());
     const stepOne = draftToHtml(convertToRaw(firstValue.getCurrentContent()));
-
-    // Time Picker
-    const [timePickerValue, setTimePickerValue] = React.useState(new Date());
 
     const [secondValue, setSecondValue] = useState(() => EditorState.createEmpty());
     const stepTwo = draftToHtml(convertToRaw(secondValue.getCurrentContent()));
@@ -203,17 +198,12 @@ const DashboardAddNft = () => {
                         />
 
                         <label className='mb-1'>Start Time</label>
-                        {/* <input
+                        <input
                             type="text"
                             name="startTime"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
-                        /> */}
-                        <TimePicker
-                        value={timePickerValue}
-                        onChange={(newValue) => setTimePickerValue(newValue)}
-                        renderInput={(params) => <TextField {...params} />}
                         />
 
                         <label className='mb-1'>End Time</label>

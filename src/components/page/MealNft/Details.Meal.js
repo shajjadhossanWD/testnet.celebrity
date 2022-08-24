@@ -38,7 +38,7 @@ function MealDetails() {
         setSouvenir(res.data.nft.slice(0, 4))
       });
   }, [])
-  
+
 
   const hendelButton = () => {
     swal({
@@ -223,7 +223,7 @@ function MealDetails() {
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
-      <div className="d-grid justify_items_center">
+      <div className="container d-grid justify_items_center">
         <Container className="row" style={{ marginTop: "124px", alignItems: 'flex-start' }}>
           <Typography className="meal_details_type_title text-gradient" variant="subtitle2" gutterBottom component="div">
             <span>Type Of NFT :</span> {isDetails?.type}
