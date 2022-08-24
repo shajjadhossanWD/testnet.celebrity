@@ -86,16 +86,6 @@ const Dashboard = () => {
                     </span>{" "}
                     <span className="pe-3">Admin</span>
                   </Nav.Link>
-                  <Nav.Link
-                    className="text-light mb-3 text-start"
-                    as={CustomLink}
-                    to="/dashboard/nftDetails"
-                  >
-                    <span className="pe-3 ps-3 fs-4">
-                    <HiCheckCircle></HiCheckCircle>
-                    </span>{" "}
-                    <span className="pe-3">NFT Details</span>
-                  </Nav.Link>
 
                   <Nav.Link
                     className="pe-4 text-light ps-4 text-start"
@@ -185,18 +175,6 @@ const Dashboard = () => {
                           <TiGroup></TiGroup>
                         </span>{" "}
                         <span>Admin</span>
-                      </Nav.Link>
-                      <Nav.Link
-                        className="text-center pe-4 text-light text-start"
-                        as={CustomLink}
-                        to="/dashboard/nftDetails"
-                        href="#admin"
-                        onClick={handleClose}
-                      >
-                        <span className="me-2 fs-4">
-                        <HiCheckCircle></HiCheckCircle>
-                        </span>{" "}
-                        <span>NFT Details</span>
                       </Nav.Link>
 
                       <Nav.Link

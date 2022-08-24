@@ -11,7 +11,7 @@ import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 function MealDetails() {
   const { mealnId } = useParams();
-  // console.log(mealnId);
+  console.log(mealnId);
   // const native = window.location.search;
   // const { title, language } = useParams();
   // const params = new URLSearchParams(native);
@@ -38,6 +38,7 @@ function MealDetails() {
         setSouvenir(res.data.nft.slice(0, 4))
       });
   }, [])
+  
 
   const hendelButton = () => {
     swal({
@@ -267,7 +268,7 @@ function MealDetails() {
                 ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
               </Typography> */}
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">Available NFTs: 50</span>
+                <span className="text-primary">Available NFTs:<br /><span className="text-light">{isDetails?.availableNfts}</span></span>
               </Typography>
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary">NFT Details:</span>
@@ -275,10 +276,11 @@ function MealDetails() {
               {/* <Typography variant="subtitle2" gutterBottom component="div">
                 <span>{isDetails?.description}</span>
               </Typography> */}
-              <Typography className="pb-1" variant="subtitle2" component="div">
-                What do you get?
-              </Typography>
-              <Typography className="pt-1" variant="subtitle2" component="div">
+              {/* <Typography className="pb-1" variant="subtitle2" component="div">
+                
+              </Typography> */}
+              <div className="pb-1" dangerouslySetInnerHTML={{ __html: isDetails?.description }}></div>
+              {/* <Typography className="pt-1" variant="subtitle2" component="div">
                 1. Digital Art of Celebrity
               </Typography>
               <Typography className="pt-1" variant="subtitle2" component="div">
@@ -292,7 +294,7 @@ function MealDetails() {
               </Typography>
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
                 5. Selfie Session with Celebrity
-              </Typography>
+              </Typography> */}
               {/* <Typography className="pt-2 pb-2 text-primary" variant="subtitle2" component="div">
                 Benefits for Buyer
               </Typography>
@@ -327,9 +329,10 @@ function MealDetails() {
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary">Brief Details of Celebrity:</span>
               </Typography>
-              <Typography className="pt-1" variant="subtitle2" component="div">
+              {/* <Typography className="pt-1" variant="subtitle2" component="div">
                 {isDetails?.briefDetails}
-              </Typography>
+              </Typography> */}
+              <div className="pb-1" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
             </Box>
             <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'center' }}>
               {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
@@ -387,7 +390,7 @@ function MealDetails() {
                                  <i className="fa fa-envelope fa-lg"  ></i>
                                 </a>
                                </div> */}
-                        <Link to={`/souvenirnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                        <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                       </div>
                     </div>
                     <div class="card-content">
@@ -418,7 +421,7 @@ function MealDetails() {
                           <span className="text-primary">Price of NFT(SGD):</span> {data.price}
                         </Typography>
                         <Typography className="mt-2" variant="body2">
-                          <span className="text-primary">Available NFTs:</span>
+                          <span className="text-primary">Available NFTs: <span className="text-light">50</span></span>
                         </Typography>
                         <Typography className="mt-2" variant="body2">
                           <span className="text-primary">Date:</span> {`${data?.startDate.slice(8, 10)}/${data?.startDate.slice(5, 7)}/${data?.startDate.slice(0, 4)}`}
@@ -436,7 +439,7 @@ function MealDetails() {
                       <hr style={{ margin: "10px 0px 10px 0px" }} />
                       <div className="d-flex card_bottom_btn_main">
                         <div className="col-10 d-grid">
-                          <Link to={`/souvenirnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                          <Link to={`/mealnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
                         </div>
                       </div>
                     </div>

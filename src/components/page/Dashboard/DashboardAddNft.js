@@ -44,6 +44,7 @@ const DashboardAddNft = () => {
 
         const name = e.target.name.value;
         const price = e.target.price.value;
+        const availableNfts = e.target.availableNfts.value;
         const description = stepOne;
         const startDate = e.target.startDate.value;
         const startTime = e.target.startTime.value;
@@ -58,6 +59,7 @@ const DashboardAddNft = () => {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('price', price)
+        formData.append('availableNfts', availableNfts)
         formData.append('date', newDate)
         formData.append('description', description)
         formData.append('startDate', startDate)
@@ -135,6 +137,15 @@ const DashboardAddNft = () => {
                         <input
                             type="number"
                             name="price"
+                            className='border w-100 rounded mb-3 p-2'
+                            style={{ backgroundColor: "#272d47", color: 'white' }}
+                            required
+                        />
+
+                        <label className='mb-1'>Available NFTs</label>
+                        <input
+                            type="text"
+                            name="availableNfts"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
@@ -262,7 +273,7 @@ const DashboardAddNft = () => {
                             <Button type='button' style={{ backgroundColor: '#dc3545', width: '120px', fontSize: "13px" }} className='border-0 text-uppercase modal-btn ms-3 me-3 extraCare'>CANCEL</Button>
                             <Button
                                 onClick={() => setSaveAsDraft(true)}
-                                type='submit' style={{ backgroundColor: 'blueviolet', width: '120px', fontSize: "13px" }} className='bg-primary border-0 text-uppercase modal-btn ms-3 me-3 extraCare'>Save as Draft</Button>
+                                type='submit' style={{ backgroundColor: 'blueviolet', width: '120px', fontSize: "13px" }} className='bg-primary border-0 text-uppercase modal-btn ms-3 me-3 extraCare'>Draft</Button>
                             <Button
                                 onClick={() => setSaveAsDraft(false)}
                                 type='submit' style={{ backgroundColor: 'blueviolet', width: '120px', fontSize: "13px" }} className='border-0 text-uppercase modal-btn ms-3 me-3 extraCare'>Save</Button>

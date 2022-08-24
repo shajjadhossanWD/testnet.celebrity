@@ -17,6 +17,8 @@ const MealSlider = ({ pull_meal }) => {
       });
   }, [isMeal])
 
+  
+
   // props.func(allNft);
 
 
@@ -107,7 +109,7 @@ const MealSlider = ({ pull_meal }) => {
                   <span className="text-primary">Price of NFT(SGD):</span> {aNft?.price}
                 </Typography>
                 <Typography className="mt-2" variant="body2">
-                  <span className="text-primary">Available NFTs: 50</span>
+                  <span className="text-primary">Available NFTs: <span className="text-light">{aNft?.availableNfts}</span></span>
                 </Typography>
                 {/* <Typography className="mt-2" variant="body2">
                   Details: <Link to={`/mealnft/${aNft?._id}`} classsName="clickHere"> For more details click here </Link>
@@ -147,6 +149,7 @@ const MealSlider = ({ pull_meal }) => {
             Stay Tuned!
           </Typography>}
       </div>
+      <p className="text-gradient text-center fs-4 pt-4">No of NFTs available: 50</p>
     </div>
   );
 };

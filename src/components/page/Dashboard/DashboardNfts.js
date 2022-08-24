@@ -50,6 +50,7 @@ const DashboardNfts = () => {
         const filtering = data.nft.filter(items => items.isDraft === false);
         setnfts(filtering);
       })
+    // setRefetch(true);
   }, [refetch])
 
   console.log(nfts);
@@ -64,9 +65,9 @@ const DashboardNfts = () => {
     // const confirmDelete = window.confirm("Are you sure you want to delete this NFT? You can't recover.")
 
     Swal.fire({
-      title: "Are you sure you want to delete this NFT? You can't recover.",
+      text: "Are you sure you want to delete this NFT? You can't recover.",
       showDenyButton: true,
-      showCancelButton: true,
+      showCancelButton: false,
       confirmButtonText: 'Yes',
       // denyButtonText: `Don't save`,
     }).then((result) => {
@@ -113,7 +114,7 @@ const DashboardNfts = () => {
             style={{ backgroundColor: "blueviolet" }}
             onClick={() => setSelectedTab("nft")}
           >
-            Acitve
+            Active
           </Button>
 
           <Button

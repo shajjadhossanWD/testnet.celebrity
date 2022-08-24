@@ -41,71 +41,73 @@ const DashboardDraft = () => {
     // console.log(nfts);
 
     const saveIssue = (id) => {
-        // axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
-        //     .then(res => {
-        //         setNftsPro(res.data.nft);
-        //         // console.log(res.data);
-        //     })
-        // console.log(nftsPro);
-        // const name = nftsPro.name;
-        // const date = nftsPro.date;
-        // const description = nftsPro.description;
-        // const startDate = nftsPro.startDate;
-        // const startTime = nftsPro.startTime;
-        // const endTime = nftsPro.endTime;
-        // const venue = nftsPro.venue;
-        // const briefDetails = nftsPro.briefDetails;
-        // const isDraft = false;
-        // const avatar = nftsPro.avatar;
-        // const price = nftsPro.price;
-        // const type = nftsPro.type;
-        // const purchaseDate = nftsPro.purchaseDate;
+        axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+            .then(res => {
+                setNftsPro(res.data.nft);
+                // console.log(res.data);
+            })
+        console.log(nftsPro);
+        const name = nftsPro.name;
+        const date = nftsPro.date;
+        const availableNfts = nftsPro.availableNfts;
+        const description = nftsPro.description;
+        const startDate = nftsPro.startDate;
+        const startTime = nftsPro.startTime;
+        const endTime = nftsPro.endTime;
+        const venue = nftsPro.venue;
+        const briefDetails = nftsPro.briefDetails;
+        const isDraft = true;
+        const avatar = nftsPro.avatar;
+        const price = nftsPro.price;
+        const type = nftsPro.type;
+        const purchaseDate = nftsPro.purchaseDate;
 
-        // // const updated = { name, date, description, startDate, startTime, endTime, venue, briefDetails, isDraft, avatar, price, type };
+        // const updated = { name, date, description, startDate, startTime, endTime, venue, briefDetails, isDraft, avatar, price, type };
 
-        // const formData = new FormData();
-        // formData.append('name', name);
-        // formData.append('price', price);
-        // formData.append('description', description);
-        // formData.append('startDate', startDate)
-        // formData.append('startTime', startTime)
-        // formData.append('endTime', endTime)
-        // formData.append('venue', venue)
-        // formData.append('purchaseDate', purchaseDate)
-        // formData.append('briefDetails', briefDetails)
-        // formData.append('type', type);
-        // formData.append('date', date);
-        // formData.append('ifDraft', isDraft);
-        // formData.append('image', avatar);
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('availableNfts', availableNfts);
+        formData.append('description', description);
+        formData.append('startDate', startDate)
+        formData.append('startTime', startTime)
+        formData.append('endTime', endTime)
+        formData.append('venue', venue)
+        formData.append('purchaseDate', purchaseDate)
+        formData.append('briefDetails', briefDetails)
+        formData.append('type', type);
+        formData.append('date', date);
+        formData.append('ifDraft', isDraft);
+        formData.append('image', avatar);
 
-        // Swal.fire({
-        //     title: "Are you sure you want to save this NFT?",
-        //     showDenyButton: true,
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Yes',
-        //     // denyButtonText: `Don't save`,
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${id}`, formData)
-        //             .then(res => {
-        //                 if (res.status === 200) {
-        //                     // alert(res.data.message);
-        //                     swal({
-        //                         title: "Success",
-        //                         text: "Saved successfully",
-        //                         icon: "success",
-        //                         button: "OK!",
-        //                         className: "modal_class_success",
-        //                     });
-        //                     
-        //                     setRefetch(!refetch);
-        //                 }
-        //             })
-        //             .catch(err => {
-        //                 alert(err.response.data.message);
-        //             })
-        //     }
-        // })
+        Swal.fire({
+            title: "Are you sure you want to save this NFT?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            // denyButtonText: `Don't save`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${id}`, formData)
+                    .then(res => {
+                        if (res.status === 200) {
+                            // alert(res.data.message);
+                            swal({
+                                title: "Success",
+                                text: "Saved successfully",
+                                icon: "success",
+                                button: "OK!",
+                                className: "modal_class_success",
+                            });
+
+                            // setRefetch(!refetch);
+                        }
+                    })
+                    .catch(err => {
+                        alert(err.response.data.message);
+                    })
+            }
+        })
 
     }
 
@@ -113,9 +115,9 @@ const DashboardDraft = () => {
         // const confirmDelete = window.confirm("Are you sure you want to delete this NFT? You can't recover.")
 
         Swal.fire({
-            title: "Are you sure you want to delete this NFT? You can't recover.",
+            text: "Are you sure you want to delete this NFT? You can't recover.",
             showDenyButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             confirmButtonText: 'Yes',
             // denyButtonText: `Don't save`,
         }).then((result) => {
