@@ -7,12 +7,15 @@ import Slider from "react-slick";
 const MealSlider = ({ pull_meal }) => {
   const [isMeal, setIsMeal] = useState([])
 
-  const allNft = isMeal.nft;
+  const allNft = isMeal;
+
+  const todayDate = new Date();
 
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
-        setIsMeal(res.data);
+        const filtering = res.data.nft.filter(items => items.isDraft === false && new Date(`${items?.startDate.slice(5, 7)}/${items?.startDate.slice(8, 10)}/${items?.startDate.slice(0, 4)}`) > todayDate);
+        setIsMeal(filtering);
         // setFilterData(res.data.slice(0, 5))
       });
   }, [isMeal])
@@ -101,7 +104,7 @@ const MealSlider = ({ pull_meal }) => {
                   <span className="text-primary">Type of NFT :</span> {aNft?.type}
                 </Typography>
                 <a href="#!">
-                  <Typography className="mt-1" variant="body2">
+                  <Typography className="mt-1 slider_nft_text" variant="div">
                     <span className="text-primary">Name of NFT :</span> {aNft?.name}
                   </Typography>
                 </a>
@@ -123,7 +126,7 @@ const MealSlider = ({ pull_meal }) => {
                 <Typography className="mt-2" variant="body2">
                   <span className="text-primary">End Time:</span> {aNft?.endTime}
                 </Typography>
-                <Typography className="mt-2 mb-1" variant="body2">
+                <Typography className="mt-2 mb-1 slider_nft_text" variant="div">
                   <span className="text-primary">Venue:</span> {aNft?.venue}
                 </Typography>
               </div>

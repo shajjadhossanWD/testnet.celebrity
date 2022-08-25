@@ -131,7 +131,43 @@ button.swal-button.swal-button--confirm {
     .deteilsPageImage2 {
         width: 50%;
         margin-top: 0px;
+        margin-right: 20%;
+    }
+
+    /* .details-box {
+        margin-right: 33%;
+    }
+
+    .details-box2 {
+        margin-right: 35%;
+
+    }
+
+    .details-box3 {
+
+        margin-right: 55%;
+    } */
+}
+
+@media only screen and (max-width: 425px) {
+
+    .deteilsPageImage2 {
+        width: 50%;
+        margin-top: 0px;
         margin-right: 40%;
     }
 
+    /* .details-box {
+        margin-right: 33%;
+    }
+
+    .details-box2 {
+        margin-right: 35%;
+
+    }
+
+    .details-box3 {
+
+        margin-right: 150% !important;
+    } */
 }

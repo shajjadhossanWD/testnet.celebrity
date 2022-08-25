@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import swal from 'sweetalert';
 import { FaSave } from 'react-icons/fa';
 
-const DashboardDraft = () => {
+const DashboardDraft = ({setSelectedTab}) => {
     const [nfts, setNfts] = useState([]);
     const [nftsPro, setNftsPro] = useState([]);
     const [refetch, setRefetch] = useState(false);
@@ -81,9 +81,9 @@ const DashboardDraft = () => {
         formData.append('image', avatar);
 
         Swal.fire({
-            title: "Are you sure you want to save this NFT?",
+            text: "Are you sure you want to save this NFT?",
             showDenyButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             confirmButtonText: 'Yes',
             // denyButtonText: `Don't save`,
         }).then((result) => {
@@ -175,7 +175,12 @@ const DashboardDraft = () => {
                                 </td>
                                 <td className="pt-3">
                                     <div className='d-flex justify-content-center align-items-center'>
-                                        <Button variant="secondary" className='me-1' onClick={() => saveIssue(data._id)} title='Save NFT'><FaSave></FaSave></Button>
+                                        {/* <Button variant="primary" className='me-1' onClick={() => saveIssue(data._id)} title='Save NFT'><FaSave></FaSave></Button> */}
+                                        <CustomTooltip title="Save NFT">
+                                            <div onClick={() => saveIssue(data._id)}>
+                                                <button className="saveBtn"><i className="fas fa-save"></i></button>
+                                            </div>
+                                        </CustomTooltip>{" "}
                                         <CustomTooltip title="Edit NFT">
                                             <Link to={`editNft/${data._id}`}>
                                                 <button className="editBtn"><i className="fas fa-edit"></i></button>

@@ -33,9 +33,9 @@ const DashboardAdmin = () => {
         // const confirmDelete = window.confirm('Are you sure, you want to delete this admin?')
 
         Swal.fire({
-            title: "Are you sure, you want to delete this admin?",
+            text: "Are you sure, you want to delete this admin?",
             showDenyButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             confirmButtonText: 'Yes',
 
         }).then((result) => {

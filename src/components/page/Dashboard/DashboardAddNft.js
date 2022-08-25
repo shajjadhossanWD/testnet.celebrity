@@ -199,17 +199,17 @@ const DashboardAddNft = () => {
                         />
 
                         <label className='mb-1'>Start Time</label>
-                        {/* <input
-                            type="text"
+                        <input
+                            type="time"
                             name="startTime"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
-                        /> */}
-                        <TimePicker className='border w-100 rounded mb-3 p-2' />
+                        />
+
                         <label className='mb-1'>End Time</label>
                         <input
-                            type="text"
+                            type="time"
                             name="endTime"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}

@@ -12243,6 +12243,10 @@ a.read_more i {
     color: #222;
 }
 
+.text-black a {
+    color: #222;
+    text-decoration: none;
+}
 
 #de-arrow-nav-set {
     text-align: center;

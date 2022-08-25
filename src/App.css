@@ -75,6 +75,12 @@
   pointer-events: none;
 }
 
+.slider_nft_text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
 /* Wallet CSS */
 .titleWallet {
   font-family: Arial, Helvetica, sans-serif;
@@ -426,8 +432,8 @@ p.text-light.mb-0 {
   }
 
   .forRespoMarginReduce {
-    margin-left: 30px !important;
-    margin-right: 50px !important;
+    margin-left: 0px !important;
+    margin-right: 30px !important;
   }
 }
 

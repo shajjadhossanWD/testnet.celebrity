@@ -37,6 +37,9 @@ const DashboardNfts = () => {
     },
   }))
 
+  // Date
+  const todayDate = new Date();
+
   useEffect(() => {
     fetch('https://backend.celebrity.sg/api/nft/all', {
       method: "GET",
@@ -47,7 +50,7 @@ const DashboardNfts = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        const filtering = data.nft.filter(items => items.isDraft === false);
+        const filtering = data.nft.filter(items => items.isDraft === false && new Date(`${items?.startDate.slice(5, 7)}/${items?.startDate.slice(8, 10)}/${items?.startDate.slice(0, 4)}`) > todayDate);
         setnfts(filtering);
       })
     // setRefetch(true);

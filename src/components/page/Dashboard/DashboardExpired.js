@@ -10,7 +10,7 @@ import { FaSave } from 'react-icons/fa';
 
 const DashboardExpired = () => {
     const [dates, setDates] = useState([]);
-    console.log(dates);
+    const [nfts, setNfts] = useState([]);
     const [nftsPro, setNftsPro] = useState([]);
     const [refetch, setRefetch] = useState(false);
     const CustomTooltip = styled(({ className, ...props }) => (
@@ -24,6 +24,9 @@ const DashboardExpired = () => {
         },
     }))
 
+    // Date
+    const todayDate = new Date();
+
     useEffect(() => {
         fetch('https://backend.celebrity.sg/api/nft/all', {
             method: "GET",
@@ -33,8 +36,8 @@ const DashboardExpired = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
-                data.nft.map(items => setDates(items?.date));
+                const filtering = data.nft.filter(items => new Date(`${items?.startDate.slice(5, 7)}/${items?.startDate.slice(8, 10)}/${items?.startDate.slice(0, 4)}`) < todayDate);
+                setNfts(filtering);
             })
 
     }, [refetch])
@@ -142,14 +145,11 @@ const DashboardExpired = () => {
         })
     }
 
-    // Date
-    const todayDate = new Date();
-    const expireDate = new Date(`${dates.slice(3, 5)}/${dates.slice(0, 2)}/${dates.slice(6, 10)}`);
-    console.log(todayDate, "EX", expireDate);
+    
 
     return (
         <div>
-            {/* <div className="mt-4">
+            <div className="mt-4">
                 <Table bordered responsive className="border-0 text-light">
                     <thead>
                         <tr>
@@ -177,7 +177,6 @@ const DashboardExpired = () => {
                                 </td>
                                 <td className="pt-3">
                                     <div className='d-flex justify-content-center align-items-center'>
-                                        <Button variant="secondary" className='me-1' onClick={() => saveIssue(data._id)} title='Save NFT'><FaSave></FaSave></Button>
                                         <CustomTooltip title="Edit NFT">
                                             <Link to={`editNft/${data._id}`}>
                                                 <button className="editBtn"><i className="fas fa-edit"></i></button>
@@ -194,7 +193,7 @@ const DashboardExpired = () => {
                         ))}
                     </tbody>
                 </Table>
-            </div> */}
+            </div>
         </div>
     );
 };
