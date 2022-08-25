@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import swal from 'sweetalert';
 import { FaSave } from 'react-icons/fa';
 
-const DashboardDraft = ({setSelectedTab}) => {
+const DashboardDraft = ({ setSelectedTab }) => {
     const [nfts, setNfts] = useState([]);
     const [nftsPro, setNftsPro] = useState([]);
     const [refetch, setRefetch] = useState(false);
@@ -104,7 +104,13 @@ const DashboardDraft = ({setSelectedTab}) => {
                         }
                     })
                     .catch(err => {
-                        alert(err.response.data.message);
+                        swal({
+                            title: "Attention",
+                            text: `${err.response.data.message}`,
+                            icon: "warning",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
                     })
             }
         })
@@ -136,7 +142,13 @@ const DashboardDraft = ({setSelectedTab}) => {
                         }
                     })
                     .catch(error => {
-                        alert(error.response.data.message);
+                        swal({
+                            title: "Attention",
+                            text: `${error.response.data.message}`,
+                            icon: "warning",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
                     })
             }
         })

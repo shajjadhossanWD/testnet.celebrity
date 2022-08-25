@@ -91,7 +91,13 @@ const Otp = ({ expiryTimestamp }) => {
                 }
             })
             .catch(err => {
-                alert(err.res.data.message);
+                swal({
+                    title: "Attention",
+                    text: `${err.res.data.message}`,
+                    icon: "warning",
+                    button: "OK!",
+                    className: "modal_class_success",
+                });
             })
     }
 

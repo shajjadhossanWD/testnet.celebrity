@@ -93,7 +93,14 @@ const DashboardAddNft = () => {
                 navigate(-1);
             })
             .catch(error => {
-                alert(error.response.data.message);
+                // alert(error.response.data.message);
+                swal({
+                    title: "Attention",
+                    text: `${error.response.data.message}`,
+                    icon: "warning",
+                    button: "OK!",
+                    className: "modal_class_success",
+                });
             });
 
     };

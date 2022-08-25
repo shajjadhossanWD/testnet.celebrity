@@ -14,7 +14,7 @@ const MealSlider = ({ pull_meal }) => {
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
-        const filtering = res.data.nft.filter(items => items.isDraft === false && new Date(`${items?.startDate.slice(5, 7)}/${items?.startDate.slice(8, 10)}/${items?.startDate.slice(0, 4)}`) > todayDate);
+        const filtering = res.data.nft.filter(items => items.isDraft === false && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
         setIsMeal(filtering);
         // setFilterData(res.data.slice(0, 5))
       });

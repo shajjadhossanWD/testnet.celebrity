@@ -83,7 +83,13 @@ const DashboardModal = (props) => {
                     }
                 })
                 .catch(error => {
-                    alert(error.response.data.message);
+                    swal({
+                        title: "Attention",
+                        text: `${error.response.data.message}`,
+                        icon: "warning",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
                     SetIsloading(false);
                     setModalShow(false);
                 });
@@ -112,7 +118,13 @@ const DashboardModal = (props) => {
                     }
                 })
                 .catch(error => {
-                    alert(error.response.data.message);
+                    swal({
+                        title: "Attention",
+                        text: `${error.response.data.message}`,
+                        icon: "warning",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
                     SetIsloading(false);
                     setModalShow(false);
                 });

@@ -106,7 +106,13 @@ const EditNft = () => {
         }
       })
       .catch(err => {
-        alert(err.response.data.message);
+        swal({
+          title: "Attention",
+          text: `${err.response.data.message}`,
+          icon: "warning",
+          button: "OK!",
+          className: "modal_class_success",
+        });
       })
 
 
@@ -240,7 +246,7 @@ const EditNft = () => {
 
                 <label className='mb-1'>Start Time</label>
                 <input
-                  type="text"
+                  type="time"
                   name="startTime"
                   defaultValue={Nfts.startTime}
                   className="border w-100 rounded mb-3"
@@ -249,7 +255,7 @@ const EditNft = () => {
                 />
                 <label className='mb-1'>End Time</label>
                 <input
-                  type="text"
+                  type="time"
                   name="endTime"
                   defaultValue={Nfts.endTime}
                   className="border w-100 rounded mb-3"

@@ -36,7 +36,7 @@ const DashboardExpired = () => {
         })
             .then(res => res.json())
             .then(data => {
-                const filtering = data.nft.filter(items => new Date(`${items?.startDate.slice(5, 7)}/${items?.startDate.slice(8, 10)}/${items?.startDate.slice(0, 4)}`) < todayDate);
+                const filtering = data.nft.filter(items => new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) < todayDate);
                 setNfts(filtering);
             })
 
@@ -107,7 +107,13 @@ const DashboardExpired = () => {
                         }
                     })
                     .catch(err => {
-                        alert(err.response.data.message);
+                        swal({
+                            title: "Attention",
+                            text: `${err.response.data.message}`,
+                            icon: "warning",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
                     })
             }
         })
@@ -139,13 +145,20 @@ const DashboardExpired = () => {
                         }
                     })
                     .catch(error => {
-                        alert(error.response.data.message);
+                        // alert(error.response.data.message);
+                        swal({
+                            title: "Attention",
+                            text: `${error.response.data.message}`,
+                            icon: "warning",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
                     })
             }
         })
     }
 
-    
+
 
     return (
         <div>

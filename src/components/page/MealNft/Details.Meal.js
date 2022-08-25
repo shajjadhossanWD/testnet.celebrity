@@ -36,7 +36,7 @@ function MealDetails() {
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
-        const filtering = res.data.nft.filter(items => items.isDraft === false && new Date(`${items?.startDate.slice(5, 7)}/${items?.startDate.slice(8, 10)}/${items?.startDate.slice(0, 4)}`) > todayDate);
+        const filtering = res.data.nft.filter(items => items.isDraft === false && items._id != mealnId && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
         setSouvenir(filtering?.slice(0, 4))
       });
   }, [])
@@ -339,7 +339,7 @@ function MealDetails() {
         <Container>
           <h3 className="text-white text-start mb-0 mt-5 mb-3 d-grid justify_items_center" style={{ fontFamily: "system-ui" }}>Related NFTs</h3>
           <div className="small-border bg-color-2"></div>
-          <div className="row d-flex justify-content-center" >
+          {isSouvenir?.length < 2 ? <div style={{marginTop: '-20px', marginBottom: '32px'}} className="text-gradient text-center fs-4 pt-4">No related NFTs for now!</div> : <div className="row d-flex justify-content-center" >
             {
               isSouvenir?.map((data, idx) => (
                 <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
@@ -398,8 +398,8 @@ function MealDetails() {
                 </div>
               ))
             }
-          </div>
-          <div className='d-flex mt-1' style={{ justifyContent: 'center' }}>
+          </div>}
+          {isSouvenir?.length > 1 && <div className='d-flex mt-1' style={{ justifyContent: 'center' }}>
             {isSouvenir?.length > 0 ?
               <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
                 Pay by DSL and get 30% discount.
@@ -408,7 +408,7 @@ function MealDetails() {
               <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
                 Stay Tuned!
               </Typography>}
-          </div>
+          </div>}
         </Container>
       </div>
     </div>
