@@ -70,10 +70,10 @@ const MealSlider = ({ pull_meal }) => {
       <Slider {...settings} className="gap-2">
         {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
           <div class="card">
-            <div className="nft__item_like like_card">
+            <span className="nft__item_like like_card">
               <i className="fa fa-heart"></i>
               <span>{aNft?.__v}</span>
-            </div>
+            </span>
             <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>
               <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
                 {/* <div className="d-flex card_hover_icon">
