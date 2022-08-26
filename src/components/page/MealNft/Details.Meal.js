@@ -162,7 +162,7 @@ function MealDetails() {
         let mint_hash;
         if (res.status === 200) {
           if (token === "bnb") {
-            mint_hash = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
+            mint_hash = await mintTicketNFTTestnetBNB(res.data.uri, "0.1");
           }
           else if (token === "usdsc") {
             mint_hash = await mintTicketNFTTestnetUSDSC(res.data.uri, usdsc);
@@ -330,7 +330,9 @@ function MealDetails() {
             <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
              {
               (!user.walletAddress || user.walletAddress === "undefined") ?
+              <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>
 
+              :
               <Link to="#" className=" justify_content_center mt-4 mb-1">
               {token === "bnb" &&
                 <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
@@ -343,8 +345,7 @@ function MealDetails() {
               {token === "finquest" &&
                 <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {finquestTwoDec} FINQUEST</button>}
             </Link>
-              :
-              <div className='menuText headerButtonW'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </div>
+              
             }
             
              

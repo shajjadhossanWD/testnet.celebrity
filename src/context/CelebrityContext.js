@@ -273,7 +273,7 @@ export default function CelebrityProvider({ children }) {
         let txn_test = await provider.getTransaction(Val.hash);
         if (txn_test) {
           const wrapper = document.createElement("div");
-          wrapper.innerHTML = `<p></p><div class="loader"></div> <p class="success"><b>Transaction Pending...<b></p> `;
+          wrapper.innerHTML = `<p></p><div class="loaders"></div> <p class="wait"><b>Transaction Pending...<b></p> `;
           swal({
             content: wrapper,
             button: false,
@@ -661,7 +661,7 @@ export default function CelebrityProvider({ children }) {
       setCurrentAccount(accounts[0]);
 
       await axios
-        .post(`https://backend.dsl.sg/api/v1/user/`, {
+        .post(`https://backend.celebrity.sg/api/v1/user/`, {
           walletAddress: accounts[0],
         })
         .then((res) => {
@@ -722,7 +722,7 @@ export default function CelebrityProvider({ children }) {
           setCurrentAccount(accounts[0]);
 
           await axios
-            .post(`https://backend.dsl.sg/api/v1/user/`, {
+            .post(`https://backend.celebrity.sg/api/v1/user/`, {
               walletAddress: accounts[0],
             })
             .then((res) => {
@@ -796,7 +796,7 @@ export default function CelebrityProvider({ children }) {
   useEffect(() => {
     if (requestLoading) {
       const wrapper = document.createElement("div");
-      wrapper.innerHTML = `<p></p><div class="loader"></div> <p class="success"><b>Please wait...<b></p> `;
+      wrapper.innerHTML = `<p></p><div class="loaders"></div> <p class="wait"><b>Please wait...<b></p> `;
       swal({
         content: wrapper,
         button: false,
@@ -833,6 +833,8 @@ export default function CelebrityProvider({ children }) {
         getBalanceMainnet,
         mintTitleNFTTestnetS39,
         mintTitleNFTTestnetQuest,
+        connectToMetamask,
+        connectToCoinbase
       }}
     >
       {children}
