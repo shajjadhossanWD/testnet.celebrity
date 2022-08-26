@@ -132,19 +132,24 @@ export default function CelebrityProvider({ children }) {
   const getBalanceTestnet = async () => {
     const USDSCtokenContract = getUSDSCtokenContractTestnet();
     const DSLtokenContract = getDSLtokenContractTestnet();
+    const S39tokenContract = getS39tokenContractTestnet();
     const USDSCbalance = await USDSCtokenContract.balanceOf(currentAccount);
     const USDSCamount = ethers.utils.formatEther(USDSCbalance);
     const DSLbalance = await DSLtokenContract.balanceOf(currentAccount);
     const DSLamount = ethers.utils.formatEther(DSLbalance);
+    const S39balance = await S39tokenContract.balanceOf(currentAccount);
+    const S39amount = ethers.utils.formatEther(S39balance);
     const provider = new ethers.providers.Web3Provider(ethereum);
     const balance1 = await provider.getBalance(currentAccount);
     console.log("usdsc: " + USDSCamount);
     console.log("dsl: " + DSLamount);
+    console.log("s39: " + S39amount);
     console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
     const wallet = {
       usdsc: USDSCamount,
       bnb: ethers.utils.formatEther(balance1),
       dsl: DSLamount,
+      s39: S39amount,
     };
     return setMetamaskBalance(wallet);
   };
