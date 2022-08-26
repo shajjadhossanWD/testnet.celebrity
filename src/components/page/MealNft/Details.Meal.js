@@ -24,7 +24,17 @@ function MealDetails() {
   const [s39Token, setS39Token] = useState();
   const [nftData, setNftData] = useState();
 
-  const { loginModal, setRequestLoading, openLoginModal, closeLoginModal, connectWallet, currentAccount, loading, user, walletModal, openWalletModal, closeWalletModal, setUser, chain, logOut, mintTicketNFTTestnetBNB, mintTicketNFTTestnetUSDSC, mintTicketNFTTestnetDSL, metamaskBalance, metamaskBalanceLoading, getBalanceTestnet, getBalanceMainnet } = useContext(CelebrityContext);
+  const { 
+    user, 
+    setRequestLoading, 
+    openWalletModal, 
+    mintTicketNFTTestnetBNB, 
+    mintTicketNFTTestnetUSDSC, 
+    mintTicketNFTTestnetDSL,
+    mintTitleNFTTestnetS39,
+    mintTitleNFTTestnetQuest,
+
+  } = useContext(CelebrityContext);
 
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
@@ -44,15 +54,6 @@ function MealDetails() {
       });
   }, [])
 
-
-  const hendelButton = () => {
-    swal({
-      title: "Coming soon!",
-      icon: "warning",
-      button: "Ok",
-
-    });
-  }
 
   useEffect(() => {
     axios.get('https://dslegends.org/api/get-asset-price.php?asset=BNB', {
@@ -139,24 +140,23 @@ function MealDetails() {
   //minit
 
 
-  const mintFilmTitle = async () => {
-    if (!user?.walletAddress) {
-      return openLoginModal();
-    }
+  const mintCelebrityNft = async () => {
+   
     setRequestLoading(true);
     const data = new FormData();
     data.append('name', nftData.name);
     data.append('image', nftData.avatar);
     data.append('description', nftData.description);
-    data.append('description', nftData.description);
+    data.append('type', nftData.type);
     data.append('date', nftData.date);
     data.append('price', nftData.price);
     data.append('venue', nftData.venue);
+    data.append('token', nftData.token);
 
-    await axios.post('', data, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
+    await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
+      // headers: {
+      //   Authorization: `Bearer ${localStorage.getItem("token")}`
+      // }
     })
       .then(async (res) => {
         let mint_hash;
@@ -171,16 +171,16 @@ function MealDetails() {
             mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, dslTwoDec);
           }
           else if (token === "s39") {
-            mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, s39TwoDec);
+            mint_hash = await mintTitleNFTTestnetS39(res.data.uri, s39TwoDec);
           }
           else if (token === "finquest") {
-            mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, finquestTwoDec);
+            mint_hash = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
           }
           data.append("mint_hash", mint_hash);
-          await axios.post("", data, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`
-            }
+          await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data, {
+            // headers: {
+            //   Authorization: `Bearer ${localStorage.getItem("token")}`
+            // }
           })
             .then(res => {
               if (res.status === 200) {
@@ -328,18 +328,26 @@ function MealDetails() {
               {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
             </div>
             <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
+             {
+              (!user.walletAddress || user.walletAddress === "undefined") ?
+
               <Link to="#" className=" justify_content_center mt-4 mb-1">
-                {token === "bnb" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
-                {token === "usdsc" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
-                {token === "dsl" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
-                {token === "s39" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
-                {token === "finquest" &&
-                  <button onClick={hendelButton} className="card_button button_dtl" href="#!">BUY THIS NFT FOR {finquestTwoDec} FINQUEST</button>}
-              </Link>
+              {token === "bnb" &&
+                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
+              {token === "usdsc" &&
+                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
+              {token === "dsl" &&
+                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
+              {token === "s39" &&
+                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
+              {token === "finquest" &&
+                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {finquestTwoDec} FINQUEST</button>}
+            </Link>
+              :
+              <div className='menuText headerButtonW'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span> </button> </div>
+            }
+            
+             
             </div>
             {/* </Box> */}
           </div>
