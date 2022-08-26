@@ -14,10 +14,10 @@ import {
   USDSCtokenABIMainnet,
   DSLtokenAddressMainnet,
   DSLtokenABIMainnet,
-  // S39tokenAddressTestnet,
-  // S39tokenABITestnet,
-  // QuesttokenAddressTestnet,
-  // QuesttokenABITestnet,
+  S39tokenAddressTestnet,
+  S39tokenABITestnet,
+  QuesttokenAddressTestnet,
+  QuesttokenABITestnet,
 } from "../utils/constant";
 export const CelebrityContext = createContext();
 
@@ -87,8 +87,8 @@ const getS39tokenContractTestnet = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const tokenContract = new ethers.Contract(
-    // S39tokenAddressTestnet,
-    // S39tokenABITestnet,
+    S39tokenAddressTestnet,
+    S39tokenABITestnet,
     signer
   );
 
@@ -98,8 +98,8 @@ const getQuesttokenContractTestnet = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const tokenContract = new ethers.Contract(
-    // QuesttokenAddressTestnet,
-    // QuesttokenABITestnet,
+    QuesttokenAddressTestnet,
+    QuesttokenABITestnet,
     signer
   );
   return tokenContract;
@@ -792,7 +792,6 @@ export default function CelebrityProvider({ children }) {
     }
   }, [currentAccount]);
 
-
   useEffect(() => {
     if (requestLoading) {
       const wrapper = document.createElement("div");
@@ -804,7 +803,6 @@ export default function CelebrityProvider({ children }) {
       });
     }
   }, [requestLoading]);
-
 
   return (
     <CelebrityContext.Provider
@@ -834,7 +832,8 @@ export default function CelebrityProvider({ children }) {
         mintTitleNFTTestnetS39,
         mintTitleNFTTestnetQuest,
         connectToMetamask,
-        connectToCoinbase
+        connectToCoinbase,
+        connectToMetamask,
       }}
     >
       {children}
