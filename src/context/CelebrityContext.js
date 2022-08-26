@@ -84,6 +84,7 @@ export default function CelebrityProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
+  const [requestLoading, setRequestLoading] = useState(false);
   const [chain, setChain] = useState(null);
   const [walletModal, setWalletModal] = useState(false);
   const [metamaskBalance, setMetamaskBalance] = useState({});
@@ -631,11 +632,26 @@ export default function CelebrityProvider({ children }) {
     }
   }, [currentAccount]);
 
+
+  useEffect(() => {
+    if (requestLoading) {
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = `<p></p><div class="loader"></div> <p class="success"><b>Please wait...<b></p> `;
+      swal({
+        content: wrapper,
+        button: false,
+        className: "modal_class_success",
+      });
+    }
+  }, [requestLoading]);
+
+
   return (
     <CelebrityContext.Provider
       value={{
         loginModal,
         openLoginModal,
+        requestLoading,
         closeLoginModal,
         connectWallet,
         currentAccount,
@@ -646,6 +662,7 @@ export default function CelebrityProvider({ children }) {
         closeWalletModal,
         setUser,
         chain,
+        setRequestLoading,
         logOut,
         mintTicketNFTTestnetBNB,
         mintTicketNFTTestnetUSDSC,

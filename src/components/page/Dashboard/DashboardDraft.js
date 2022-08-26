@@ -77,7 +77,7 @@ const DashboardDraft = ({ setSelectedTab }) => {
         formData.append('briefDetails', briefDetails)
         formData.append('type', type);
         formData.append('date', date);
-        formData.append('ifDraft', isDraft);
+        formData.append('isDraft', isDraft);
         formData.append('image', avatar);
 
         Swal.fire({

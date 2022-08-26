@@ -22,7 +22,9 @@ function MealDetails() {
   const [bnbToken, setBnbToken] = useState();
   const [dslToken, setDslToken] = useState();
   const [s39Token, setS39Token] = useState();
-  // const { loginModal, openLoginModal, closeLoginModal, connectWallet, currentAccount, loading, user, walletModal, openWalletModal, closeWalletModal, setUser, chain, logOut, mintTicketNFTTestnetBNB, mintTicketNFTTestnetUSDSC, mintTicketNFTTestnetDSL, metamaskBalance, metamaskBalanceLoading, getBalanceTestnet, getBalanceMainnet } = useContext(CelebrityContext);
+  const [nftData, setNftData] = useState();
+
+  const { loginModal, setRequestLoading, openLoginModal, closeLoginModal, connectWallet, currentAccount, loading, user, walletModal, openWalletModal, closeWalletModal, setUser, chain, logOut, mintTicketNFTTestnetBNB, mintTicketNFTTestnetUSDSC, mintTicketNFTTestnetDSL, metamaskBalance, metamaskBalanceLoading, getBalanceTestnet, getBalanceMainnet } = useContext(CelebrityContext);
 
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
@@ -36,6 +38,7 @@ function MealDetails() {
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
+        setNftData(res.data.nft);
         const filtering = res.data.nft.filter(items => items.isDraft === false && items._id != mealnId && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
         setSouvenir(filtering?.slice(0, 4))
       });
@@ -135,97 +138,102 @@ function MealDetails() {
   const disUsdTwoDec = discountUsd.toFixed(2);
   //minit
 
-  const certificateTemplate = useRef();
 
-  // const mintFilmTitle = async () => {
-  //   if (!user?.walletAddress) {
-  //     return openLoginModal();
-  //   }
-  //   // setRequestLoading(true);
-  //   const dataUrl = await htmlToImage.toPng(certificateTemplate.current);
-  //   const data = new FormData();
-  //   data.append('file', dataUrl);
-  //   // data.append('name', name);
-  //   // data.append('image', image);
-  //   // data.append('external_url', external_url);
-  //   // data.append('attributes', attributes);
+  const mintFilmTitle = async () => {
+    if (!user?.walletAddress) {
+      return openLoginModal();
+    }
+    setRequestLoading(true);
+    const data = new FormData();
+    data.append('name', nftData.name);
+    data.append('image', nftData.avatar);
+    data.append('description', nftData.description);
+    data.append('description', nftData.description);
+    data.append('date', nftData.date);
+    data.append('price', nftData.price);
+    data.append('venue', nftData.venue);
 
-  //   await axios.post('', data, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("token")}`
-  //     }
-  //   })
-  //     .then(async (res) => {
-  //       let mint_hash;
-  //       if (res.status === 200) {
-  //         data.append('certificate', res.data.certificate);
-  //         if (token === "bnb") {
-  //           mint_hash = await mintTicketNFTTestnetBNB(res.data.uri, "0.1");
-  //         }
-  //         else if (token === "usdsc") {
-  //           mint_hash = await mintTicketNFTTestnetUSDSC(res.data.uri, 3);
-  //         }
-  //         else if (token === "dsl") {
-  //           mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, 3);
-  //         }
-  //         data.append("mint_hash", mint_hash);
-  //         await axios.post("", data, {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`
-  //           }
-  //         })
-  //           .then(res => {
-  //             if (res.status === 200) {
-  //               // setRequestLoading(false);
-  //               const wrapper = document.createElement("div");
-  //               wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted.<b></p>`
-  //               swal({
-  //                 title: "Minted",
-  //                 content: wrapper,
-  //                 icon: "success",
-  //                 button: "OK",
-  //                 className: "modal_class_success",
-  //               });
-  //             }
-  //           })
-  //           .catch(err => {
-  //             console.log(err);
-  //             // setRequestLoading(false);
-  //             const wrapper = document.createElement("div");
-  //             wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted but error in while saving data.<b></p>`
-  //             swal({
-  //               title: "Warning",
-  //               content: wrapper,
-  //               icon: "warning",
-  //               button: "OK",
-  //               className: "modal_class_success",
-  //             });
-  //           })
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       // setRequestLoading(false);
-  //       if (err.code === 4001) {
-  //         return swal({
-  //           title: "Failed",
-  //           text: "Minting Failed!",
-  //           icon: "warning",
-  //           button: "OK",
-  //           dangerMode: true,
-  //           className: "modal_class_success",
-  //         });
-  //       }
-  //       return swal({
-  //         title: "Attention",
-  //         text: "Something went wrong. Please try again later.",
-  //         icon: "warning",
-  //         button: "OK",
-  //         dangerMode: true,
-  //         className: "modal_class_success",
-  //       });
-  //     })
-  // }
+    await axios.post('', data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+      .then(async (res) => {
+        let mint_hash;
+        if (res.status === 200) {
+          if (token === "bnb") {
+            mint_hash = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
+          }
+          else if (token === "usdsc") {
+            mint_hash = await mintTicketNFTTestnetUSDSC(res.data.uri, usdsc);
+          }
+          else if (token === "dsl") {
+            mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, dslTwoDec);
+          }
+          else if (token === "s39") {
+            mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, s39TwoDec);
+          }
+          else if (token === "finquest") {
+            mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, finquestTwoDec);
+          }
+          data.append("mint_hash", mint_hash);
+          await axios.post("", data, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          })
+            .then(res => {
+              if (res.status === 200) {
+                setRequestLoading(false);
+                const wrapper = document.createElement("div");
+                wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted.<b></p>`
+                swal({
+                  title: "Minted",
+                  content: wrapper,
+                  icon: "success",
+                  button: "OK",
+                  className: "modal_class_success",
+                });
+              }
+            })
+            .catch(err => {
+              console.log(err);
+              setRequestLoading(false);
+              const wrapper = document.createElement("div");
+              wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted but error in while saving data.<b></p>`
+              swal({
+                title: "Warning",
+                content: wrapper,
+                icon: "warning",
+                button: "OK",
+                className: "modal_class_success",
+              });
+            })
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setRequestLoading(false);
+        if (err.code === 4001) {
+          return swal({
+            title: "Failed",
+            text: "Minting Failed!",
+            icon: "warning",
+            button: "OK",
+            dangerMode: true,
+            className: "modal_class_success",
+          });
+        }
+        return swal({
+          title: "Attention",
+          text: "Something went wrong. Please try again later.",
+          icon: "warning",
+          button: "OK",
+          dangerMode: true,
+          className: "modal_class_success",
+        });
+      })
+  }
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
