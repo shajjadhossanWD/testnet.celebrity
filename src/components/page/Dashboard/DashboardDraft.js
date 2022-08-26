@@ -41,44 +41,6 @@ const DashboardDraft = ({ setSelectedTab }) => {
     // console.log(nfts);
 
     const saveIssue = (id) => {
-        axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
-            .then(res => {
-                setNftsPro(res.data.nft);
-                // console.log(res.data);
-            })
-        console.log(nftsPro);
-        const name = nftsPro.name;
-        const date = nftsPro.date;
-        const availableNfts = nftsPro.availableNfts;
-        const description = nftsPro.description;
-        const startDate = nftsPro.startDate;
-        const startTime = nftsPro.startTime;
-        const endTime = nftsPro.endTime;
-        const venue = nftsPro.venue;
-        const briefDetails = nftsPro.briefDetails;
-        const isDraft = true;
-        const avatar = nftsPro.avatar;
-        const price = nftsPro.price;
-        const type = nftsPro.type;
-        const purchaseDate = nftsPro.purchaseDate;
-
-        // const updated = { name, date, description, startDate, startTime, endTime, venue, briefDetails, isDraft, avatar, price, type };
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('price', price);
-        formData.append('availableNfts', availableNfts);
-        formData.append('description', description);
-        formData.append('startDate', startDate)
-        formData.append('startTime', startTime)
-        formData.append('endTime', endTime)
-        formData.append('venue', venue)
-        formData.append('purchaseDate', purchaseDate)
-        formData.append('briefDetails', briefDetails)
-        formData.append('type', type);
-        formData.append('date', date);
-        formData.append('isDraft', isDraft);
-        formData.append('image', avatar);
 
         Swal.fire({
             text: "Are you sure you want to save this NFT?",
@@ -88,7 +50,7 @@ const DashboardDraft = ({ setSelectedTab }) => {
             // denyButtonText: `Don't save`,
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${id}`, formData)
+                axios.put(`https://backend.celebrity.sg/api/nft/update-nft1/${id}`)
                     .then(res => {
                         if (res.status === 200) {
                             // alert(res.data.message);
@@ -99,8 +61,8 @@ const DashboardDraft = ({ setSelectedTab }) => {
                                 button: "OK!",
                                 className: "modal_class_success",
                             });
-
-                            // setRefetch(!refetch);
+                            console.log(res.data);
+                            setRefetch(!refetch);
                         }
                     })
                     .catch(err => {

@@ -38,9 +38,10 @@ const DashboardNfts = () => {
   }))
 
   // Date
-  const todayDate = new Date();
+  // const todayDate = new Date();
 
   useEffect(() => {
+    const todayDate = new Date();
     fetch('https://backend.celebrity.sg/api/nft/all', {
       method: "GET",
       headers: {
