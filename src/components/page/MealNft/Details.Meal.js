@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 import * as htmlToImage from 'html-to-image';
 import { CelebrityContext } from "../../../context/CelebrityContext";
@@ -23,7 +23,7 @@ function MealDetails() {
   const [dslToken, setDslToken] = useState();
   const [s39Token, setS39Token] = useState();
   const [nftData, setNftData] = useState();
-
+  const navigate = useNavigate();
   const { 
     user, 
     setRequestLoading, 
@@ -33,6 +33,7 @@ function MealDetails() {
     mintTicketNFTTestnetDSL,
     mintTitleNFTTestnetS39,
     mintTitleNFTTestnetQuest,
+    mintAddressTestnet,
 
   } = useContext(CelebrityContext);
 
@@ -159,24 +160,24 @@ function MealDetails() {
       // }
     })
       .then(async (res) => {
-        let mint_hash;
+        let Obj = {};
         if (res.status === 200) {
           if (token === "bnb") {
-            mint_hash = await mintTicketNFTTestnetBNB(res.data.uri, "0.1");
+            Obj = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
           }
           else if (token === "usdsc") {
-            mint_hash = await mintTicketNFTTestnetUSDSC(res.data.uri, usdsc);
+            Obj = await mintTicketNFTTestnetUSDSC(res.data.uri, usdsc);
           }
           else if (token === "dsl") {
-            mint_hash = await mintTicketNFTTestnetDSL(res.data.uri, dslTwoDec);
+            Obj = await mintTicketNFTTestnetDSL(res.data.uri, dslTwoDec);
           }
           else if (token === "s39") {
-            mint_hash = await mintTitleNFTTestnetS39(res.data.uri, s39TwoDec);
+            Obj = await mintTitleNFTTestnetS39(res.data.uri, s39TwoDec);
           }
           else if (token === "finquest") {
-            mint_hash = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
+            Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
           }
-          data.append("mint_hash", mint_hash);
+          data.append("mint_hash", Obj.mint_hash);
           await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data, {
             // headers: {
             //   Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -186,21 +187,36 @@ function MealDetails() {
               if (res.status === 200) {
                 setRequestLoading(false);
                 const wrapper = document.createElement("div");
-                wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted.<b></p>`
+                wrapper.innerHTML = `
+                <a href=${Obj.mint_hash} target="_any" className="link_hash">${Obj.mint_hash}</a>
+                <br/>
+                <p className="success"><b>You have successfully minted.<b></p>
+                <p>Use the following information import your NFT to your wallet</p>
+                <p className="address">Contract Address: ${mintAddressTestnet}</p>
+                <p>Token ID: ${Obj.ID}</p>
+                 `
                 swal({
                   title: "Minted",
                   content: wrapper,
                   icon: "success",
-                  button: "OK",
+                  buttons: true,
                   className: "modal_class_success",
-                });
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                      navigate(`/mintednft/${Obj.ID}/${mintAddressTestnet}`)
+                  } else {
+                      console.log("good job")
+                  }
+              });
+
               }
             })
             .catch(err => {
               console.log(err);
               setRequestLoading(false);
               const wrapper = document.createElement("div");
-              wrapper.innerHTML = `<a href=${mint_hash} target="_any" className="link_hash">${mint_hash}</a> <br/> <p className="success"><b>You have successfully minted but error in while saving data.<b></p>`
+              wrapper.innerHTML = `<a href=${Obj.mint_hash} target="_any" className="link_hash">${Obj.mint_hash}</a> <br/> <p className="success"><b>You have successfully minted but error in while saving data.<b></p>`
               swal({
                 title: "Warning",
                 content: wrapper,
@@ -373,7 +389,7 @@ function MealDetails() {
                       </div>
                     </div>
                     <div class="card-content">
-                      <div className="row">
+                      <div className="row" style={{minHeight: '324px'}}>
                         <Typography className="mt-2" variant="body2">
                           <span className="text-primary">Type of NFT :</span> {data?.type}
                         </Typography>
@@ -405,9 +421,9 @@ function MealDetails() {
                         </Typography>
                       </div>
                       <hr style={{ margin: "10px 0px 10px 0px" }} />
-                      <div className="d-flex card_bottom_btn_main">
+                      <div className="d-flex card_bottom_btn_main" style={{margin: '15px 0 8px 0'}}>
                         <div className="col-10 d-grid">
-                          <Link to={`/mealnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT</button> </Link>
+                          <Link to={`/mealnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
                         </div>
                       </div>
                     </div>

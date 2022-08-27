@@ -33,6 +33,7 @@ import Profile from './components/page/Profile/Profile';
 import ResetPassword from './components/page/Login/ResetPassword';
 import NftDetailsPage from './components/page/Dashboard/NftDetailsPage';
 import DashboardAddNft from './components/page/Dashboard/DashboardAddNft';
+import MintDetails from './components/page/MintDetails/MintDetails';
 function App() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 180);
@@ -56,6 +57,7 @@ function App() {
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/how_it_works" element={<HowItWorks />} />
             <Route path="/profile" element={<Profile></Profile>} />
+            <Route path="/mintednft/:id/:address" element={<MintDetails/>} />
           </Route>
 
           <Route path="/dashboard" element={
