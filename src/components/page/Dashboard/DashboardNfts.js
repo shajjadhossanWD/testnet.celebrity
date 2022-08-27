@@ -51,6 +51,7 @@ const DashboardNfts = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
+        // const filtering = data.nft.filter(items => items.isDraft === false);
         const filtering = data.nft.filter(items => items.isDraft === false && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
         setnfts(filtering);
       })
