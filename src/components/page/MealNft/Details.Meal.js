@@ -2,41 +2,54 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container, Form, InputGroup, Modal } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 import * as htmlToImage from 'html-to-image';
 import { CelebrityContext } from "../../../context/CelebrityContext";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import { verifyMessage } from "ethers/lib/utils";
 
 function MealDetails() {
   const { mealnId } = useParams();
   console.log(mealnId);
+  const [disableAfterActivation, setDisableAfterActivation] = useState(false);
   // const native = window.location.search;
   // const { title, language } = useParams();
   // const params = new URLSearchParams(native);
   // const nativeTitle = params.get('native');
-  const [isDetails, setDetails] = useState({})
-  const [isSouvenir, setSouvenir] = useState([])
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [email, setEmail] = useState("");
+  const [isDetails, setDetails] = useState({});
+  const [otp, setOtp] = useState("");
+  const [isSouvenir, setSouvenir] = useState([]);
   const [token, setToken] = useState("bnb");
   const [bnbToken, setBnbToken] = useState();
   const [dslToken, setDslToken] = useState();
   const [s39Token, setS39Token] = useState();
   const [nftData, setNftData] = useState();
+  const [otpVerify, setOtpVerify] = useState();
+  const [matchMint, setMatchMint] = useState("");
   const navigate = useNavigate();
-  const { 
-    user, 
-    setRequestLoading, 
-    openWalletModal, 
-    mintTicketNFTTestnetBNB, 
-    mintTicketNFTTestnetUSDSC, 
+  const [automint, setAutomint] = useState("");
+  const [onsubDisable, setOnsubDisable] = useState(false);
+  const {
+    user,
+    setRequestLoading,
+    openWalletModal,
+    mintTicketNFTTestnetBNB,
+    mintTicketNFTTestnetUSDSC,
     mintTicketNFTTestnetDSL,
     mintTitleNFTTestnetS39,
     mintTitleNFTTestnetQuest,
     mintAddressTestnet,
 
   } = useContext(CelebrityContext);
-
+  const handleEmail = e => {
+    setEmail(e.target.value);
+  }
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
       .then(res => {
@@ -100,6 +113,117 @@ function MealDetails() {
         console.log(err)
       });
   }, []);
+  const handleVerifyEmail = async (e) => {
+    // check if email is valid
+    setDisableAfterActivation(true);
+    if (email.length > 0 && email.includes("@" && ".")) {
+      // setLoading(true);
+      await axios.post('https://backend.celebrity.sg/api/v1/verifymint/mail', {
+        email: email
+      }).then(res => {
+        if (res.status === 200) {
+          // alert(res.data.message);
+          swal({
+            text: res.data.message,
+            icon: "success",
+            button: "OK!",
+            className: "modal_class_success",
+          });
+          setOtpVerify(res.data.otp);
+
+          setTimeout(() => {
+            console.log("Delayed for 1 minute");
+            setDisableAfterActivation(false);
+          }, 120000);
+        }
+      }).catch(err => {
+        // alert(err.response.data.message);
+        swal({
+          title: "Attention",
+          text: err.response.data.message,
+          icon: "warning",
+          button: "OK!",
+          className: "modal_class_success",
+        });
+      })
+        .finally(() => {
+          // setLoading(false);
+        });
+    }
+    else {
+      swal({
+        title: "Attention",
+        text: "Please enter a valid email address",
+        icon: "warning",
+        button: "OK!",
+        className: "modal_class_success",
+      });
+    }
+  }
+
+  const onsubAutoMint = async (e) => {
+    e.preventDefault();
+
+    const automintcode = e.target.automintcode.value;
+    const email = e.target.email.value;
+    // const otp = e.target.verificationCode;
+
+    if (otp == otpVerify) {
+      await axios.get(`https://backend.dsl.sg/api/v1/paymentverifyemail/dsldata/${email}`)
+        .then(res => {
+          if (res.status === 200) {
+            setMatchMint(res.data[0]);
+            const user = res.data.filter(userpro => userpro.email == email);
+            if (user) {
+              if (res.data[0]?.otp === automintcode) {
+                swal({
+                  title: "Success",
+                  text: "Auto mint successful",
+                  icon: "success",
+                  button: "OK!",
+                  className: "modal_class_success",
+                });
+                e.target.reset();
+                setEmail("");
+                setOtp("");
+                setAutomint("");
+                setOnsubDisable(true);
+              }
+              else {
+                swal({
+                  title: "Attention",
+                  text: "Auto mint unsuccessful",
+                  icon: "warning",
+                  button: "OK!",
+                  className: "modal_class_success",
+                });
+              }
+              // console.log(matchMint);
+            }
+            else {
+              swal({
+                title: "Attention",
+                text: "User not found",
+                icon: "warning",
+                button: "OK!",
+                className: "modal_class_success",
+              });
+            }
+          }
+        })
+    }
+    else {
+      swal({
+        title: "Attention",
+        text: "Auto mint unsuccessful",
+        icon: "warning",
+        button: "OK!",
+        className: "modal_class_success",
+      });
+    }
+
+  }
+
 
   // Calculation
   const totalSgd = isDetails?.price;
@@ -142,7 +266,7 @@ function MealDetails() {
 
 
   const mintCelebrityNft = async () => {
-   
+
     setRequestLoading(true);
     const data = new FormData();
     data.append('name', nftData.name);
@@ -202,13 +326,13 @@ function MealDetails() {
                   buttons: true,
                   className: "modal_class_success",
                 })
-                .then((willDelete) => {
-                  if (willDelete) {
+                  .then((willDelete) => {
+                    if (willDelete) {
                       navigate(`/mintednft/${Obj.ID}/${mintAddressTestnet}`)
-                  } else {
+                    } else {
                       console.log("good job")
-                  }
-              });
+                    }
+                  });
 
               }
             })
@@ -344,27 +468,30 @@ function MealDetails() {
               {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
             </div>
             <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
-             {
-              (!user.walletAddress || user.walletAddress === "undefined") ?
-              <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>
+              {
+                (!user.walletAddress || user.walletAddress === "undefined") ?
+                  <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>
 
-              :
-              <Link to="#" className=" justify_content_center mt-4 mb-1">
-              {token === "bnb" &&
-                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
-              {token === "usdsc" &&
-                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
-              {token === "dsl" &&
-                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
-              {token === "s39" &&
-                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
-              {token === "finquest" &&
-                <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {finquestTwoDec} FINQUEST</button>}
-            </Link>
-              
-            }
-            
-             
+                  :
+                  <Link to="#" className=" justify_content_center mt-4 mb-1">
+                    {token === "bnb" &&
+                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
+                    {token === "usdsc" &&
+                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
+                    {token === "dsl" &&
+                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
+                    {token === "s39" &&
+                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
+                    {token === "finquest" &&
+                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {finquestTwoDec} FINQUEST</button>}
+                  </Link>
+
+              }
+              <br />
+
+            </div>
+            <div className="mx-auto my-3 text-center">
+              <Button variant="danger" className="ps-5 pe-5 text-center" onClick={handleShow}>Auto Mint</Button>
             </div>
             {/* </Box> */}
           </div>
@@ -372,7 +499,7 @@ function MealDetails() {
         <Container>
           <h3 className="text-white text-start mb-0 mt-5 mb-3 d-grid justify_items_center" style={{ fontFamily: "system-ui" }}>Related NFTs</h3>
           <div className="small-border bg-color-2"></div>
-          {isSouvenir?.length < 2 ? <div style={{marginTop: '-20px', marginBottom: '32px'}} className="text-gradient text-center fs-4 pt-4">No related NFTs for now!</div> : <div className="row d-flex justify-content-center" >
+          {isSouvenir?.length < 2 ? <div style={{ marginTop: '-20px', marginBottom: '32px' }} className="text-gradient text-center fs-4 pt-4">No related NFTs for now!</div> : <div className="row d-flex justify-content-center" >
             {
               isSouvenir?.map((data, idx) => (
                 <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
@@ -389,7 +516,7 @@ function MealDetails() {
                       </div>
                     </div>
                     <div class="card-content">
-                      <div className="row" style={{minHeight: '324px'}}>
+                      <div className="row" style={{ minHeight: '324px' }}>
                         <Typography className="mt-2" variant="body2">
                           <span className="text-primary">Type of NFT :</span> {data?.type}
                         </Typography>
@@ -421,7 +548,7 @@ function MealDetails() {
                         </Typography>
                       </div>
                       <hr style={{ margin: "10px 0px 10px 0px" }} />
-                      <div className="d-flex card_bottom_btn_main" style={{margin: '15px 0 8px 0'}}>
+                      <div className="d-flex card_bottom_btn_main" style={{ margin: '15px 0 8px 0' }}>
                         <div className="col-10 d-grid">
                           <Link to={`/mealnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
                         </div>
@@ -444,6 +571,60 @@ function MealDetails() {
           </div>}
         </Container>
       </div>
+      <Modal show={show} onHide={handleClose} className="overflow-hidden text-light" style={{ overflowY: "hidden", overflowX: "hidden" }}>
+        <Modal.Header className="text-light" closeButton style={{ backgroundColor: "#242435", color: "white" }}>
+          <Modal.Title className="text-light">Auto Mint</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ backgroundColor: "#242435", color: "white" }}>
+          <form onSubmit={onsubAutoMint}>
+            <Form.Control
+              min="1"
+              type="number"
+              value={automint}
+              onChange={e => setAutomint(e.target.value)}
+              name="automintcode"
+              placeholder="Auto Mint Code"
+              required
+            />
+            <br />
+            <InputGroup >
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleEmail}
+                required />
+              <button
+                onClick={() => handleVerifyEmail()}
+                disabled={(email.length === 0 || disableAfterActivation) ? true : false}
+                type="button" className="btn btn-danger" id="button-addon2">
+                Verify Email
+              </button>
+            </InputGroup>
+            <label className="fs-6 pb-3">We will send your NFT to this email</label>
+            {/* <p>We will send your NFT to this email</p> */}
+            <br />
+            <Form.Control
+              min="1"
+              type="number"
+              name="verificationCode"
+              placeholder="Verification Code"
+              value={otp}
+              onChange={e => setOtp(e.target.value)}
+              required
+            />
+            <Modal.Footer style={{ backgroundColor: "#242435", color: "white" }}>
+              <Button variant="secondary" onClick={handleClose}>
+                CLOSE
+              </Button>
+              <Button variant="primary" type="submit" disabled={(email.length === 0 || otp.length === 0 || automint.length === 0 || onsubDisable || otp != otpVerify) ? true : false}>
+                SUBMIT
+              </Button>
+            </Modal.Footer>
+          </form>
+        </Modal.Body>
+
+      </Modal>
     </div>
   )
 }
