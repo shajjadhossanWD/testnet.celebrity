@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import MealSlider from '../MealNft/Meal.slider';
 import SouvenirSlider from '../Souvenir/Souvenir.slider';
 import './home.css';
@@ -60,12 +61,13 @@ function Home() {
                   </p>
                   <div className="mb-sm-30"></div>
 
-                  <a
-                    href="03_grey-explore.html"
-                    className="btn-main lead mt-3"
+                  <Link
+                    to="/mealnft"
+                    className="btn-main wow fadeInUp lead mt-3"
+                    data-wow-delay="1.25s"
                   >
                     Explore
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-md-6 offset-md-1 d-flex" style={{ justifyContent: 'center' }}>
                   <img
@@ -109,7 +111,7 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center boxesNft">
+              <div className="de-card has-border text-center boxesNft home-txt-pd">
                 <i className=" bg-color-2 i-boxed icon_cart_alt"></i>
                 <div className="text">
                   <h6 className="home-txt">Buy our NFTs and utilize the perks</h6>
@@ -117,7 +119,7 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center boxesNft">
+              <div className="de-card has-border text-center boxesNft home-txt-pd" >
                 <i className=" bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
                   <h6 className="home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
@@ -130,28 +132,7 @@ function Home() {
 
       <div className='backgroundSection'>
         <div className="container">
-          {/* <div className="row wow fadeIn">
-            <div className="col-lg-12">
-              <div className="text-center">
-                <h2>
-                  Celebrity Souvenir NFTs
-                </h2>
-                <div className="small-border bg-color-2"></div>
-              </div>
-            </div>
 
-            <SouvenirSlider />
-            <div className='d-flex' style={{ justifyContent: 'center' }}>
-              {souvenirs ?
-                <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
-                  Pay by DSL and get 30% discount.
-                </Typography>
-                :
-                <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
-                  Stay Tuned!
-                </Typography>}
-            </div>
-          </div> */}
 
           <div className="spacer-double"></div>
           <div className="row fadeIn">

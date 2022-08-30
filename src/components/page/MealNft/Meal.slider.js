@@ -143,7 +143,7 @@ const MealSlider = ({ pull_meal }) => {
 
   let settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -187,30 +187,12 @@ const MealSlider = ({ pull_meal }) => {
         {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
           <div class="card">
             <div onClick={() => likeCount(aNft?.id)} className="nft_item_like like_card">
-              <i className="fa fa-heart"></i>
-              <span>{aNft?.likesCount ? parseInt(aNft?.likesCount) + 1 : 0}</span>
+              <i className="fa fa-heart"></i> 
+              <span> {aNft?.likesCount ? parseInt(aNft?.likesCount) + 1 : 0}</span>
             </div>
             <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>
               <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
-                {/* <div className="d-flex card_hover_icon">
-                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
-                           <i className="fa-brands fa-linkedin-in icons" ></i> 
-                       </a>    
-                       <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
-                           <i className="fa-brands fa-twitter icons"></i> 
-                      </a>    
-                      </div>
-                      <div  className="d-flex card_hover_icon">
-                        <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
-                           <i className="fa-brands fa-facebook-f icons"></i> 
-                       </a>  
-                       <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
-                           <i className="fa-brands fa-instagram icons"></i>  
-                       </a>   
-                       <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
-                         <i className="fa fa-envelope fa-lg"  ></i>
-                        </a>
-                       </div> */}
+
                 <Link to={`/mealnft/${aNft?._id}`}><button className="card_hover_button mt-5" href="#!">BUY THIS NFT FOR SGD {aNft?.price}</button></Link>
               </div>
             </div>

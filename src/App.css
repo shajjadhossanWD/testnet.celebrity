@@ -24,6 +24,11 @@
 .home-txt {
   font-size: 0.9rem;
 }
+
+.NFtsection {
+  margin-bottom: 0px;
+}
+
 .wait {
   color: #ff343f;
   margin-top: 1rem;
@@ -40,6 +45,12 @@
   height: 80px;
   animation: spin 2s linear infinite;
   margin: auto;
+}
+
+
+.home-txt-pd {
+  /* padding-top: -30px !important; */
+  margin-top: -30px !important;
 }
 
 @keyframes spin {
@@ -87,6 +98,7 @@
   color: #FF343F;
   font-weight: bold;
 }
+
 /* swal */
 .modal_class_success {
   background-color: #2D313A;

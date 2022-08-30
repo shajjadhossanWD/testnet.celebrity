@@ -154,6 +154,9 @@ const DashboardAddNft = () => {
                                 <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
                             </Form.Select>
                         </InputGroup>
+                        <div className="imageDivNft">
+                          <img id="output" alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' />
+                        </div>
                         <label className='mb-1'>Image of NFT</label>
                         <input
                             onChange={loadFile}
@@ -164,7 +167,6 @@ const DashboardAddNft = () => {
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
                         />
-                        <img id="output" alt='nft name' className='w-25 pb-2 d-flex justify-content-center' />
                         <label className='mb-1'>Name of NFT</label>
                         <input
                             type="text"

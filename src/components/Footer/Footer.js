@@ -18,7 +18,7 @@ const Footer = () => {
             <div className='footerBody'>
                 <div className='mainPartFooter text-center'>
                     {/* <h4 className='pb-4'>Marketplace</h4> */}
-                    <div className='pt-5'>
+                    <div className=''>
                         <a href="https://dsl.sg/contact" target="_any" className='text-decoration-none'><span className='handleSpace text-decoration-none' style={{paddingTop: '50px'}}>Contact Us</span></a>
                         <p className='text-decoration-none made-love text-gradient'>Made with ❤ by <a href="https://dsl.sg/" target="_any" className='text-decoration-none made-love' style={{cursor: 'pointer'}}>DS Legends Pte Ltd.</a></p>
                         {/* <Link to="/souvenirnft" className='text-decoration-none'><p className='handleSpace text-decoration-none'>Celebrity Souvenir NFT</p></Link> */}

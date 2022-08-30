@@ -56,7 +56,7 @@ export default function () {
                   <div className="mb-sm-30"></div>
 
                   <Link
-                    to="/how_it_works"
+                    to="/mealnft"
                     className="btn-main wow fadeInUp lead mt-3"
                     data-wow-delay="1.25s"
                   >
@@ -98,15 +98,15 @@ export default function () {
             </div>
 
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center boxesNft">
+              <div className="de-card has-border text-center boxesNft home-txt-pd">
                 <i className="wow fadeInUp bg-color-2 i-boxed icon_wallet"></i>
                 <div className="text">
-                  <h6 className="wow fadeInUp home-txt">Login with your wallet</h6>
+                  <h6 className="wow fadeInUp home-txt ">Login with your wallet</h6>
                 </div>
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center boxesNft">
+              <div className="de-card has-border text-center boxesNft home-txt-pd">
                 <i className="wow fadeInUp bg-color-2 i-boxed icon_cart_alt"></i>
                 <div className="text">
                   <h6 className="wow fadeInUp home-txt">Buy our NFTs and utilize the perks</h6>
@@ -125,28 +125,9 @@ export default function () {
         </div>
       </section>
 
-      <section id="section-collections">
+      <section id="section" className="NFtsection">
         <div className="container">
-          {/* <div className="row wow fadeIn">
-            <div className="col-lg-12">
-              <div className="text-center">
-                <h2>
-                  Celebrity Souvenir NFTs
-                </h2>
-                <div className="small-border bg-color-2"></div>
-              </div>
-            </div>
-
-            <SouvenirSlider />
-            <div className='d-flex' style={{ justifyContent: 'center' }}>
-              <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px" }}>
-                Pay by DSL and get 30% discount.
-              </Typography>
-            </div>
-          </div> */}
-
           <div className="spacer-double"></div>
-
           <div className="row wow fadeIn">
             <div className="col-lg-12">
               <div className="text-center">
@@ -157,11 +138,7 @@ export default function () {
               </div>
             </div>
             <MealSlider />
-            {/* <div className='d-flex' style={{ justifyContent: 'center' }}>
-              <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px" }}>
-                Pay by DSL and get 30% discount.
-              </Typography>
-            </div> */}
+
           </div>
         </div>
       </section>

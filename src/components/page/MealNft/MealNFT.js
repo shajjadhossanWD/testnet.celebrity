@@ -6,14 +6,19 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const MealNFT = () => {
+  const [isMeal, setIsMeal] = useState([])
 
-  const [isMeal, setMeal] = useState([])
+  const allNft = isMeal;
+  const todayDate = new Date();
+
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
-        setMeal(res.data.nft.slice(0, 4))
+        const filtering = res.data.nft.filter(items => items.isDraft === false && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
+        setIsMeal(filtering);
+        // setFilterData(res.data.slice(0, 5))
       });
-  }, [])
+  }, [isMeal])
 
   return (
     <Fragment>
@@ -22,66 +27,65 @@ const MealNFT = () => {
           <h1 style={{ marginTop: '80px' }} className='text-gradient text-center pt-5'>Celebrity Meal NFT</h1>
         </div>
         <Container className="SouvenirNFT_card row pt-2 ">
-          {
-            isMeal?.map((data, idx) => (
-              <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 p-2 d-flex" style={{ justifyContent: 'center' }}>
-                <div class="card">
-                  <div className="nft__item_like like_card">
-                    <i className="fa fa-heart"></i>
-                    <span>{data?.__v}</span>
-                  </div>
-                  <div class="card-img" style={{ backgroundImage: `url(${data?.avatar})` }}>
-                    <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
-                      {/* <div className="d-flex card_hover_icon">
-                               <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer "> 
-                                   <i className="fa-brands fa-linkedin-in icons" ></i> 
-                               </a>    
-                               <a className="card_icon_bg" target="_blank"  rel="noopener noreferrer"> 
-                                   <i className="fa-brands fa-twitter icons"></i> 
-                              </a>    
-                              </div>
-                              <div  className="d-flex card_hover_icon">
-                                <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
-                                   <i className="fa-brands fa-facebook-f icons"></i> 
-                               </a>  
-                               <a className="card_icon_bg" target="_blank"   rel="noopener noreferrer"> 
-                                   <i className="fa-brands fa-instagram icons"></i>  
-                               </a>   
-                               <a className="card_icon_bg" href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
-                                 <i className="fa fa-envelope fa-lg"  ></i>
-                                </a>
-                               </div> */}
-                      <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY THIS NFT FOR SGD {data?.price}</button></Link>
+            {
+              allNft?.map((data, idx) => (
+                <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
+                  <div class="card">
+                    <div className="nft__item_like like_card">
+                      <i className="fa fa-heart"></i>
+                      <span>{data.fvt}</span>
                     </div>
-                  </div>
-                  <div class="card-content">
-                    <div className="row">
-                      <a href="#!">
-                        <Typography className="mt-1" variant="body2">
-                          Name Of NFT : {data?.name} <span></span>
+                    <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
+                      <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
+                        <div className="d-flex card_hover_icon">
+                          <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-content">
+                      <div className="row" style={{ minHeight: '324px' }}>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Type of NFT :</span> {data?.type}
                         </Typography>
-                      </a>
-                      <Typography className="mt-2" variant="body2">
-                        Type Of NFT : {data?.type} <span></span>
-                      </Typography>
-                      <Typography className="mt-2" variant="body2">
-                        Price Of NFT(SGD): {data?.price}<span> </span>
-                      </Typography>
-                      <Typography className="mt-2 mb-1" variant="body2">
-                        Details: <Link to={`/mealnft/${data?._id}`} classsName="clickHere"> For more details click here </Link>
-                      </Typography>
-                    </div>
-                    <hr style={{ margin: "10px 0px 10px 0px" }} />
-                    <div className="d-flex card_bottom_btn_main">
-                      <div className="col-10 d-grid">
-                        <Link to={`/mealnft/${data?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
+
+                        <Typography className="mt-2 slider_nft_text" variant="div">
+                          <span className="text-primary">Name of NFT :</span> {data?.name}
+                        </Typography>
+
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Price of NFT(SGD):</span> {data.price}
+                        </Typography>
+
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Available NFTs: <span className="text-light">50</span></span>
+                        </Typography>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Date:</span> {`${data?.startDate.slice(8, 10)}/${data?.startDate.slice(5, 7)}/${data?.startDate.slice(0, 4)}`}
+                        </Typography>
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">Start Time:</span> {data?.startTime} SGT
+                        </Typography>
+
+                        <Typography className="mt-2" variant="body2">
+                          <span className="text-primary">End Time:</span> {data?.endTime} SGT
+                        </Typography>
+
+                        <Typography className="mt-2 mb-1 slider_nft_text" variant="div">
+                          <span className="text-primary">Venue:</span> {data?.venue}
+                        </Typography>
+                      </div>
+                      <hr style={{ margin: "10px 0px 10px 0px" }} />
+                      <div className="d-flex card_bottom_btn_main" style={{ margin: '15px 0 8px 0' }}>
+                        <div className="col-10 d-grid">
+                          <Link to={`/mealnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
-          }
+              ))
+            }
+          
         </Container>
         <div className='d-flex' style={{ justifyContent: 'center' }}>
           {isMeal?.length > 0 ?
