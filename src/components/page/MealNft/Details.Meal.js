@@ -400,9 +400,7 @@ function MealDetails() {
 
             <Box className="pt-5 fontArial" style={{ color: "white" }}>
 
-              <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
-                ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
-              </Typography>
+             
 
               <Typography variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary">Name Of NFT :<br /></span> <span className="fw-normal">{isDetails?.name}</span>
@@ -459,8 +457,12 @@ function MealDetails() {
                   <option value="dsl">DSL</option>
                   <option value="s39">S39</option>
                   <option value="finquest">FINQUEST</option>
-                </select> <span className="text-dark handlePosition rounded-circle fs-5"><MdArrowDropDownCircle /></span>
+                </select> <span className="text-dark handlePosition rounded-circle fs-5"><i class="fas fa-angle-down"></i></span>
               </div>
+
+              <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
+                ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
+              </Typography>
 
             </Box>
 
@@ -544,11 +546,11 @@ function MealDetails() {
                           <span className="text-primary">Date:</span> {`${data?.startDate.slice(8, 10)}/${data?.startDate.slice(5, 7)}/${data?.startDate.slice(0, 4)}`}
                         </Typography>
                         <Typography className="mt-2" variant="body2">
-                          <span className="text-primary">Start Time:</span> {data?.startTime}
+                          <span className="text-primary">Start Time:</span> {data?.startTime} SGT
                         </Typography>
 
                         <Typography className="mt-2" variant="body2">
-                          <span className="text-primary">End Time:</span> {data?.endTime}
+                          <span className="text-primary">End Time:</span> {data?.endTime} SGT
                         </Typography>
 
                         <Typography className="mt-2 mb-1 slider_nft_text" variant="div">
