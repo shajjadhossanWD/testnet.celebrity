@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
-import { Button, Container, Form, InputGroup, Modal } from "react-bootstrap";
+import { Button, Container, Dropdown, Form, InputGroup, Modal } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 import * as htmlToImage from 'html-to-image';
@@ -451,7 +451,7 @@ function MealDetails() {
               <span className="text-primary">Choose how you want to pay:</span>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
               <div className="d-flex align-items-center">
-                <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%" }}>
+                <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%", backgroundColor: "white", color: "black" }}>
                   <option value="bnb">BNB</option>
                   <option value="usdsc">USDSC</option>
                   <option value="dsl">DSL</option>

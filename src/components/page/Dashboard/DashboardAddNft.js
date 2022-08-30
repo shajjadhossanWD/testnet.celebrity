@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -17,15 +17,16 @@ import { TimePicker } from 'antd';
 
 const DashboardAddNft = () => {
     const [saveAsDraft, setSaveAsDraft] = useState();
+    const [event, setEvent] = useState();
     const [startTimeInput, setStartTimeInput] = useState('');
     const [endTimeInput, setEndTimeInput] = useState('');
-    console.log(endTimeInput);
+    const [oneDayBefore, setOneDayBefore] = useState();
     const [firstValue, setfirstValue] = useState(() => EditorState.createEmpty());
     const stepOne = draftToHtml(convertToRaw(firstValue.getCurrentContent()));
 
     const [secondValue, setSecondValue] = useState(() => EditorState.createEmpty());
     const stepTwo = draftToHtml(convertToRaw(secondValue.getCurrentContent()));
-    console.log(saveAsDraft);
+    // console.log(saveAsDraft);
     const navigate = useNavigate();
     var newDate = new Date();
     let dd = String(newDate.getDate()).padStart(2, '0');
@@ -42,11 +43,18 @@ const DashboardAddNft = () => {
         newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
     }
 
+    // useEffect(() => {
+    //     console.log(event);
+    //     let dateu = parseInt(event);
+    //     setOneDayBefore(dateu - 1);
+    // }, [event])
+    // console.log(oneDayBefore);
     const handleTimeChange = (e) => {
         const startTimeChange = parseInt(e.target.value);
         const endTimeChange = startTimeChange + 3;
         setEndTimeInput(endTimeChange);
     }
+    console.log(endTimeInput);
 
     const uploadImadaite = () =>{
         
@@ -129,6 +137,8 @@ const DashboardAddNft = () => {
     const redirectToNftPage = () => {
         navigate("/dashboard/nfts");
     }
+
+    // console.log(event);
 
     return (
         <div>
@@ -271,6 +281,8 @@ const DashboardAddNft = () => {
                         <input
                             type="date"
                             name="purchaseDate"
+                            value={event}
+                            onChange={e => setEvent(e.target.value)}
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
