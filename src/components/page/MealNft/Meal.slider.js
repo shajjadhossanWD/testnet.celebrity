@@ -14,6 +14,7 @@ const MealSlider = ({ pull_meal }) => {
   const [usersWalletAdd, setUsersWalletAdd] = useState('');
   const [isLiked, setIsLiked] = useState({});
   const [updated, setUpdated] = useState(null);
+  const [postIdDetails, setPostIdDetails] = useState([]);
 
   const allNft = isMeal;
 
@@ -38,7 +39,6 @@ const MealSlider = ({ pull_meal }) => {
   // Like functionality
   const [postIdDetails, setPostIdDetails] = useState([]);
   const likeCount = (id) => {
-
     const likesFiltering = nftsPro.find(i => i?.walletAddress === user.walletAddress && i?.likedMealId === id);
 
     axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
@@ -52,10 +52,68 @@ const MealSlider = ({ pull_meal }) => {
       liked: true
     }
 
+    // 2nd step
+    axios.get("https://backend.celebrity.sg/api/like/getLikes")
+    .then(res => {
+      setPostIdDetails(res.data.likes);
+    })
+
+  // 3rd step
+  const howManyLikes = postIdDetails.filter(i => i?.likedMealId === id);
+  const totalLikes = howManyLikes?.length;
+  console.log(totalLikes);
+
+  // 4th step
+  const name = isLiked.name;
+  const date = isLiked.date;
+  const availableNfts = isLiked.availableNfts;
+  const description = isLiked.description;
+  const startDate = isLiked.startDate;
+  const startTime = isLiked.startTime;
+  const endTime = isLiked.endTime;
+  const venue = isLiked.venue;
+  const briefDetails = isLiked.briefDetails;
+  const isDraft = isLiked.isDraft;
+  const likesCount = JSON.stringify(totalLikes);
+  const avatar = isLiked.avatar;
+  const price = isLiked.price;
+  const type = isLiked.type;
+  const purchaseDate = isLiked.purchaseDate;
+
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('price', price);
+  formData.append('availableNfts', availableNfts);
+  formData.append('description', description);
+  formData.append('startDate', startDate)
+  formData.append('startTime', startTime)
+  formData.append('endTime', endTime)
+  formData.append('venue', venue)
+  formData.append('purchaseDate', purchaseDate)
+  formData.append('briefDetails', briefDetails)
+  formData.append('type', type);
+  formData.append('date', date);
+  formData.append('isDraft', isDraft);
+  formData.append('likesCount', likesCount);
+  formData.append('image', avatar);
+
+  // count likes
+  setUpdated(false);
+  axios.put(`https://backend.celebrity.sg/api/nft/update-nft2/${id}`, formData)
+    .then(res => {
+      if (res.status === 200) {
+        // const parsing = JSON.parse(isLiked?.likesCount);
+        setUpdated(true);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
     if (!user.walletAddress || user.walletAddress === "undefined") {
       openWalletModal();
     } else {
-      if (likesFiltering === undefined) {
+      if (likesFiltering == undefined) {
         // 1st step
         fetch("https://backend.celebrity.sg/api/like/addLike", {
           method: "POST",
@@ -67,73 +125,9 @@ const MealSlider = ({ pull_meal }) => {
           .then((res) => res.json())
           .then((result) => {
             if (result.insertedId) {
-
+              
             }
           });
-
-        // 2nd step
-        axios.get("https://backend.celebrity.sg/api/like/getLikes")
-          .then(res => {
-            setPostIdDetails(res.data.likes);
-          })
-
-        // 3rd step
-        const howManyLikes = postIdDetails.filter(i => i?.likedMealId === id);
-        const totalLikes = howManyLikes?.length;
-        console.log(totalLikes);
-
-        // 4th step
-        const name = isLiked.name;
-        const date = isLiked.date;
-        const availableNfts = isLiked.availableNfts;
-        const description = isLiked.description;
-        const startDate = isLiked.startDate;
-        const startTime = isLiked.startTime;
-        const endTime = isLiked.endTime;
-        const venue = isLiked.venue;
-        const briefDetails = isLiked.briefDetails;
-        const isDraft = isLiked.isDraft;
-        const likesCount = JSON.stringify(totalLikes);
-        const avatar = isLiked.avatar;
-        const price = isLiked.price;
-        const type = isLiked.type;
-        const purchaseDate = isLiked.purchaseDate;
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('price', price);
-        formData.append('availableNfts', availableNfts);
-        formData.append('description', description);
-        formData.append('startDate', startDate)
-        formData.append('startTime', startTime)
-        formData.append('endTime', endTime)
-        formData.append('venue', venue)
-        formData.append('purchaseDate', purchaseDate)
-        formData.append('briefDetails', briefDetails)
-        formData.append('type', type);
-        formData.append('date', date);
-        formData.append('isDraft', isDraft);
-        formData.append('likesCount', likesCount);
-        formData.append('image', avatar);
-
-        // count likes
-        setUpdated(false);
-        axios.put(`https://backend.celebrity.sg/api/nft/update-nft2/${id}`, formData)
-          .then(res => {
-            if (res.status === 200) {
-              // const parsing = JSON.parse(isLiked?.likesCount);
-              setUpdated(true);
-            }
-          })
-          .catch(err => {
-            swal({
-              title: "Attention",
-              text: `${err.response.data.message}`,
-              icon: "warning",
-              button: "OK!",
-              className: "modal_class_success",
-            });
-          })
 
       } else {
         console.log('Too many likes...')
