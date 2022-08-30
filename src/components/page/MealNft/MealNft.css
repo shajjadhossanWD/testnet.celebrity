@@ -1,0 +1,11 @@
+.fontArial {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-style: normal;
+}
+
+.handlePosition {
+    position: relative;
+    top: -7px;
+    left: -25px;
+    background-color: black;
+}
