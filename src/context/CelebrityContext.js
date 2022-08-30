@@ -115,12 +115,19 @@ export default function CelebrityProvider({ children }) {
   const [walletModal, setWalletModal] = useState(false);
   const [metamaskBalance, setMetamaskBalance] = useState({});
   const [metamaskBalanceLoading, setMetamaskBalanceLoading] = useState(false);
+  const [coinbaseModal, setCoinbaseModal] = useState(false);
 
   const openWalletModal = () => {
     (!user?.walletAddress || user?.walletAddress === "undefined") &&
       setWalletModal(true);
   };
   const closeWalletModal = () => setWalletModal(false);
+
+  const openCoinbaseModal = () => {
+    // (!user?.walletAddress || user?.walletAddress === "undefined") &&
+    setCoinbaseModal(true);
+  };
+  const closeCoinbaseModal = () => setCoinbaseModal(false);
 
   const openLoginModal = () => setLoginModal(true);
   const closeLoginModal = () => setLoginModal(false);
@@ -671,6 +678,7 @@ export default function CelebrityProvider({ children }) {
             getBalanceTestnet();
             setUser(res.data.user);
             setLoading(false);
+            closeCoinbaseModal();
             localStorage.setItem("tokenDsl", res.data.token);
             const wrapper = document.createElement("div");
             wrapper.innerHTML = `<p class='text-break text-white fs-6'>You have succesfully logged in with <br/>Coin Base.</p>`;
@@ -835,6 +843,9 @@ export default function CelebrityProvider({ children }) {
         mintTitleNFTTestnetQuest,
         connectToMetamask,
         connectToCoinbase,
+        coinbaseModal,
+        openCoinbaseModal,
+        closeCoinbaseModal,
         connectToMetamask,
         mintAddressTestnet,
       }}

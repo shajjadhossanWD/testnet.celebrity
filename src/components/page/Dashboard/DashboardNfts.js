@@ -172,7 +172,7 @@ const DashboardNfts = () => {
                           <th>Name</th>
                           <th>Price</th>
                           <th className="handleForDnoneinRespo">Type</th>
-                          <th className="handleForDnoneinRespo">Timestamp</th>
+                          <th className="handleForDnoneinRespo">NFT Created</th>
                           <th>Action</th>
                         </tr>
                       </thead>

@@ -394,16 +394,9 @@ function MealDetails() {
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
-            <h5 className="paymentOptionsChoose">Choose how you want to pay</h5>
+
 
             <Box className="pt-5" style={{ color: "white" }}>
-              <select className='form-control mb-3 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%" }}>
-                <option value="bnb">BNB</option>
-                <option value="usdsc">USDSC</option>
-                <option value="dsl">DSL</option>
-                <option value="s39">S39</option>
-                <option value="finquest">FINQUEST</option>
-              </select>
 
               <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
@@ -454,6 +447,17 @@ function MealDetails() {
                 <span className="text-primary">Brief Details of Celebrity:</span>
               </Typography>
               <div className="pb-1" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
+
+              <span className="text-primary">Choose how you want to pay:</span>
+              {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
+              <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%" }}>
+                <option value="bnb">BNB</option>
+                <option value="usdsc">USDSC</option>
+                <option value="dsl">DSL</option>
+                <option value="s39">S39</option>
+                <option value="finquest">FINQUEST</option>
+              </select>
+
             </Box>
 
 
@@ -490,9 +494,9 @@ function MealDetails() {
               <br />
 
             </div>
-            <div className="mx-auto my-3 text-center">
+            {/* <div className="mx-auto my-3 text-center">
               <Button variant="danger" className="ps-5 pe-5 text-center" onClick={handleShow}>Auto Mint</Button>
-            </div>
+            </div> */}
             {/* </Box> */}
           </div>
         </Container>

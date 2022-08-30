@@ -13,8 +13,8 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 const WalletModal = () => {
-  const { connectToMetamask, walletModal, closeWalletModal, } = useContext(CelebrityContext);
-  
+  const { connectToMetamask, walletModal, openCoinbaseModal, closeWalletModal, } = useContext(CelebrityContext);
+
   return (
     <div className='dialogDiv'>
       <Dialog
@@ -37,13 +37,14 @@ const WalletModal = () => {
                 <p className='contents text-center mb-0' style={{ fontSize: 14 }}>1. Login to Metamask before clicking the metamask icon below.</p>
                 <p className='contents text-center mb-0' style={{ fontSize: 14 }}>2. Click again if you are not connected.</p>
               </div>
-             
+
               <Row xs={1} md={1} className="g-2">
                 <Col>
                   <Card className='walletDiv walletModal_icon' onClick={connectToMetamask} >
                     <Card.Img variant="top" src="https://i.ibb.co/vVf533V/1.png" className="imgWallet" />
                     <Card.Body>
                       <Card.Title className='walletName'>Metamask</Card.Title>
+                      <p>Click here to login</p>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -57,6 +58,10 @@ const WalletModal = () => {
               <p className='text-center mt-4'>
                 <Button onClick={closeWalletModal} className="text-white fs-6 bg-danger">Cancel</Button>
               </p>
+              <p className='contents wallet-texts'><span
+                className='text-decoration-underline text-primary click-here'
+                onClick={() => { openCoinbaseModal(); closeWalletModal() }}
+              >Click here</span> for other wallet logins.</p>
             </DialogContentText>
           </DialogContent>
         </div>

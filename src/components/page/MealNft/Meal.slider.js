@@ -12,8 +12,9 @@ const MealSlider = ({ pull_meal }) => {
   const [isMeal, setIsMeal] = useState([])
   const [nftsPro, setNftsPro] = useState([]);
   const [usersWalletAdd, setUsersWalletAdd] = useState('');
-  const [isLiked, setIsLiked] = useState(false);
-  const [color, setColor] = useState('');
+  const [isLiked, setIsLiked] = useState({});
+  const [updated, setUpdated] = useState(null);
+  const [postIdDetails, setPostIdDetails] = useState([]);
 
   const allNft = isMeal;
 
@@ -28,52 +29,73 @@ const MealSlider = ({ pull_meal }) => {
       });
   }, [isMeal])
 
+
+  axios.get("https://backend.celebrity.sg/api/like/getLikes")
+      .then(res => {
+          setNftsPro(res.data.likes);
+      })
+
+
   // Like functionality
   const likeCount = (id) => {
-    axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+    const likesFiltering = nftsPro.find(i => i?.walletAddress === user.walletAddress && i?.likedMealId === id);
+
+    const likeDetails = {
+      likedMealId: id,
+      walletAddress: user.walletAddress,
+      liked: true
+    }
+
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      if (likesFiltering === undefined) {
+        // 1st step
+        fetch("https://backend.celebrity.sg/api/like/addLike", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(likeDetails),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.insertedId) {
+            
+          }
+        });
+
+        // 2nd step
+        axios.get("https://backend.celebrity.sg/api/like/getLikes")
             .then(res => {
-                setNftsPro(res.data.nft);
-                // console.log(res.data);
-                
+                setPostIdDetails(res.data.likes);
+        })
 
-                const parsing = JSON.parse(nftsPro?.likeDetails);
+        // 3rd step
+        const howManyLikes = postIdDetails.filter(i => i?.likedMealId === id);
+        const totalLikes = howManyLikes?.length;
 
-                            for (const e of parsing) {
-                              setUsersWalletAdd(e.walletAddress);
-                              setIsLiked(e.liked);
-                              
-                              if (user.walletAddress === e.walletAddress) {
-                                setColor('#EC7498')
-                              }
-                            };
-                        
-    })
+        // 4th step
+        axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+           .then(res => {
+               setIsLiked(res.data.nft);
+        })
 
-
-    const likeDetailsInfo = [
-      {
-        walletAddress: user.walletAddress,
-        liked: true
-      }
-    ];
-
-    const likeDataStr = JSON.stringify(likeDetailsInfo);
-    
-        const name = nftsPro.name;
-        const date = nftsPro.date;
-        const availableNfts = nftsPro.availableNfts;
-        const description = nftsPro.description;
-        const startDate = nftsPro.startDate;
-        const startTime = nftsPro.startTime;
-        const endTime = nftsPro.endTime;
-        const venue = nftsPro.venue;
-        const briefDetails = nftsPro.briefDetails;
-        const isDraft = nftsPro.isDraft;
-        const likeDetails = likeDataStr;
-        const avatar = nftsPro.avatar;
-        const price = nftsPro.price;
-        const type = nftsPro.type;
-        const purchaseDate = nftsPro.purchaseDate;
+        const name = isLiked.name;
+        const date = isLiked.date;
+        const availableNfts = isLiked.availableNfts;
+        const description = isLiked.description;
+        const startDate = isLiked.startDate;
+        const startTime = isLiked.startTime;
+        const endTime = isLiked.endTime;
+        const venue = isLiked.venue;
+        const briefDetails = isLiked.briefDetails;
+        const isDraft = isLiked.isDraft;
+        const likesCount = totalLikes;
+        const avatar = isLiked.avatar;
+        const price = isLiked.price;
+        const type = isLiked.type;
+        const purchaseDate = isLiked.purchaseDate;
 
         const formData = new FormData();
         formData.append('name', name);
@@ -89,27 +111,16 @@ const MealSlider = ({ pull_meal }) => {
         formData.append('type', type);
         formData.append('date', date);
         formData.append('isDraft', isDraft);
-        formData.append('likeDetails', likeDetails);
+        formData.append('likesCount', likesCount);
         formData.append('image', avatar);
-
-
-    if (!user.walletAddress || user.walletAddress === "undefined") {
-      openWalletModal();
-    } else {
-      console.log(user.walletAddress)
-      axios.put(`https://backend.celebrity.sg/api/nft/update-nft2/${id}`, formData)
+        
+        // count likes
+        setUpdated(false);
+        axios.put(`https://backend.celebrity.sg/api/nft/update-nft2/${id}`, formData)
                     .then(res => {
                         if (res.status === 200) {
-                            const parsing = JSON.parse(nftsPro?.likeDetails);
-
-                            for (const e of parsing) {
-                              setUsersWalletAdd(e.walletAddress);
-                              setIsLiked(e.liked);
-                              
-                              if (user.walletAddress === e.walletAddress) {
-                                setColor('#EC7498')
-                              }
-                            };
+                            // const parsing = JSON.parse(isLiked?.likesCount);
+                            setUpdated(true);
                         }
                     })
                     .catch(err => {
@@ -121,6 +132,11 @@ const MealSlider = ({ pull_meal }) => {
                             className: "modal_class_success",
                         });
                     })
+
+      } else {
+        console.log('Too many likes...')
+      }
+      
     }
   }
 
@@ -173,8 +189,8 @@ const MealSlider = ({ pull_meal }) => {
         {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
           <div class="card">
             <div onClick={() => likeCount(aNft?._id)} className="nft__item_like like_card">
-              <i style={{color: `${color}`}} className="fa fa-heart"></i>
-              <span>{aNft?.__v}</span>
+              <i className="fa fa-heart"></i>
+              <span>{aNft?.likesCount > 0 ? aNft?.likesCount : 0}</span>
             </div>
             <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>
               <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
@@ -243,18 +259,20 @@ const MealSlider = ({ pull_meal }) => {
         </div>))}
       </Slider>
 
-      <div className='d-flex' style={{ justifyContent: 'center' }}>
+      <div>
 
         {allNft?.length > 0 ?
-          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+          <>
+            <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
             Pay by DSL and get 30% discount.
-          </Typography>
+            </Typography>
+            <p className="text-gradient text-center fs-5 pt-4">No of NFTs available: 50</p>
+          </>
           :
-          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+          <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
             Stay Tuned!
           </Typography>}
       </div>
-      <p className="text-gradient text-center fs-4 pt-4">No of NFTs available: 50</p>
     </div>
   );
 };

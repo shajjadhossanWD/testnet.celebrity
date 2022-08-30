@@ -34,6 +34,8 @@ import ResetPassword from './components/page/Login/ResetPassword';
 import NftDetailsPage from './components/page/Dashboard/NftDetailsPage';
 import DashboardAddNft from './components/page/Dashboard/DashboardAddNft';
 import MintDetails from './components/page/MintDetails/MintDetails';
+import CoinbaseModal from './components/Shared/CoinbaseModal';
+import EditDraftNft from './components/page/Dashboard/EditDraftNft';
 function App() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 180);
@@ -42,6 +44,7 @@ function App() {
       <div id="wrapper">
         <ScrollToTop />
         <WalletModal />
+        <CoinbaseModal />
         <Routes>
           <Route path="/" element={<Publiclayout></Publiclayout>}>
             <Route path="/" element={<Landing />} />
@@ -57,7 +60,7 @@ function App() {
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/how_it_works" element={<HowItWorks />} />
             <Route path="/profile" element={<Profile></Profile>} />
-            <Route path="/mintednft/:id/:address" element={<MintDetails/>} />
+            <Route path="/mintednft/:id/:address" element={<MintDetails />} />
           </Route>
 
           <Route path="/dashboard" element={
@@ -73,6 +76,7 @@ function App() {
             <Route path="/dashboard/nfts" element={<DashboardNfts></DashboardNfts>} />
             <Route path="/dashboard/addnfts" element={<DashboardAddNft></DashboardAddNft>} />
             <Route path="/dashboard/nfts/editNft/:id" element={<EditNft></EditNft>} />
+            <Route path="/dashboard/nfts/editDraftNft/:id" element={<EditDraftNft></EditDraftNft>} />
           </Route>
 
           <Route path="/login" element={<Login></Login>} />

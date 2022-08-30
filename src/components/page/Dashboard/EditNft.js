@@ -12,6 +12,7 @@ import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 
 const EditNft = () => {
+  const [saveAsDraft, setSaveAsDraft] = useState();
   const [Nfts, setNfts] = React.useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -72,6 +73,7 @@ const EditNft = () => {
     const purchaseDate = e.target.purchaseDate.value;
     const briefDetails = stepTwo;
     const type = e.target.type.value;
+    const isDraft = saveAsDraft;
     const avatar = e.target.avatar.files[0];
 
 
@@ -88,6 +90,7 @@ const EditNft = () => {
     formData.append('briefDetails', briefDetails)
     formData.append('type', type);
     formData.append('date', newDate);
+    formData.append('isDraft', isDraft)
     formData.append('image', avatar);
 
     axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${Nfts._id}`, formData)
@@ -132,7 +135,7 @@ const EditNft = () => {
           color: "#ecf0f1",
         }}
       >
-        Update NFT
+        Edit NFT
       </h4>
       <div className="edit-nft-card">
         <div className="edit-nft-card-contents">
@@ -189,7 +192,7 @@ const EditNft = () => {
 
                 <label className="mb-1">Available NFTs</label>
                 <input
-                  type="text"
+                  type="number"
                   className="border w-100 rounded mb-3"
                   name="availableNfts"
                   defaultValue={Nfts.availableNfts}
@@ -341,8 +344,16 @@ const EditNft = () => {
                   <Button type="button" onClick={redirectToNftPage} className="btn btn-danger me-2 text-uppercase" style={{ backgroundColor: '#dc3545' }}>
                     CANCEL
                   </Button>
-                  <Button type="submit" className="edit-nft-update-button ms-2 text-uppercase">
-                    Update
+                  <Button
+                    onClick={() => setSaveAsDraft(true)}
+                    style={{ backgroundColor: 'blueviolet' }}
+                    type="submit" className="edit-nft-update-button me-2 text-uppercase">
+                    Draft
+                  </Button>
+                  <Button
+                    onClick={() => setSaveAsDraft(false)}
+                    type="submit" className="edit-nft-update-button me-2 text-uppercase bg-primary">
+                    Publish
                   </Button>
                 </div>
               </form>

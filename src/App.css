@@ -167,6 +167,25 @@
   width: 40px;
 }
 
+.wallet-texts {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+}
+
+.dialogDiv-coinbase {
+  background-color: #060c13;
+  color: white;
+}
+
+.coinbase-dialog {
+  padding-left: 100px !important;
+  padding-right: 100px !important;
+}
+
+.click-here {
+  cursor: pointer;
+}
+
 .contents {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;

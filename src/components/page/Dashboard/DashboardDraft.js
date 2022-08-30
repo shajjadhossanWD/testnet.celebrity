@@ -129,7 +129,7 @@ const DashboardDraft = ({ setSelectedTab }) => {
                             <th>Name</th>
                             <th>Price</th>
                             <th className="handleForDnoneinRespo">Type</th>
-                            <th className="handleForDnoneinRespo">Timestamp</th>
+                            {/* <th className="handleForDnoneinRespo">Timestamp</th> */}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -144,19 +144,19 @@ const DashboardDraft = ({ setSelectedTab }) => {
                                 <td className="handleForDnoneinRespo">
                                     {data.type}
                                 </td>
-                                <td className="handleForDnoneinRespo">
+                                {/* <td className="handleForDnoneinRespo">
                                     {data.date}
-                                </td>
+                                </td> */}
                                 <td className="pt-3">
-                                    <div className='d-flex justify-content-center align-items-center'>
+                                    <div className='d-flex justify-content-start align-items-center'>
                                         {/* <Button variant="primary" className='me-1' onClick={() => saveIssue(data._id)} title='Save NFT'><FaSave></FaSave></Button> */}
-                                        <CustomTooltip title="Save NFT">
+                                        {/* <CustomTooltip title="Save NFT">
                                             <div onClick={() => saveIssue(data._id)}>
                                                 <button className="saveBtn"><i className="fas fa-save"></i></button>
                                             </div>
-                                        </CustomTooltip>{" "}
+                                        </CustomTooltip>{" "} */}
                                         <CustomTooltip title="Edit NFT">
-                                            <Link to={`editNft/${data._id}`}>
+                                            <Link to={`editDraftNft/${data._id}`}>
                                                 <button className="editBtn"><i className="fas fa-edit"></i></button>
                                             </Link>
                                         </CustomTooltip>{" "}

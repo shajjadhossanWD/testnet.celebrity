@@ -170,8 +170,8 @@ const DashboardExpired = () => {
                             <th>Name</th>
                             <th>Price</th>
                             <th className="handleForDnoneinRespo">Type</th>
-                            <th className="handleForDnoneinRespo">Timestamp</th>
-                            <th>Action</th>
+                            <th className="handleForDnoneinRespo">NFT Created</th>
+                            {/* <th>Action</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -188,7 +188,7 @@ const DashboardExpired = () => {
                                 <td className="handleForDnoneinRespo">
                                     {data.date}
                                 </td>
-                                <td className="pt-3">
+                                {/* <td className="pt-3">
                                     <div className='d-flex justify-content-center align-items-center'>
                                         <CustomTooltip title="Edit NFT">
                                             <Link to={`editNft/${data._id}`}>
@@ -201,7 +201,7 @@ const DashboardExpired = () => {
                                             </span>
                                         </CustomTooltip>
                                     </div>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>

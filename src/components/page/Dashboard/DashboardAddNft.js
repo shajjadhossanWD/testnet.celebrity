@@ -17,6 +17,9 @@ import { TimePicker } from 'antd';
 
 const DashboardAddNft = () => {
     const [saveAsDraft, setSaveAsDraft] = useState();
+    const [startTimeInput, setStartTimeInput] = useState('');
+    const [endTimeInput, setEndTimeInput] = useState('');
+    console.log(endTimeInput);
     const [firstValue, setfirstValue] = useState(() => EditorState.createEmpty());
     const stepOne = draftToHtml(convertToRaw(firstValue.getCurrentContent()));
 
@@ -37,6 +40,12 @@ const DashboardAddNft = () => {
 
     } else {
         newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
+    }
+
+    const handleTimeChange = (e) => {
+        const startTimeChange = parseInt(e.target.value);
+        const endTimeChange = startTimeChange + 3;
+        setEndTimeInput(endTimeChange);
     }
 
     const onSubForm = async (e) => {
@@ -105,6 +114,18 @@ const DashboardAddNft = () => {
 
     };
 
+    const loadFile = (event) => {
+        let output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+
+    const redirectToNftPage = () => {
+        navigate("/dashboard/nfts");
+    }
+
     return (
         <div>
             <div style={{ backgroundColor: "#272d47", color: 'white' }} className='mx-auto forRespoMarginReduce'>
@@ -115,6 +136,7 @@ const DashboardAddNft = () => {
                         <InputGroup className="mb-3" style={{ backgroundColor: "#272d47", color: 'white' }}>
 
                             <Form.Select aria-label="Default select example"
+                                required
                                 name="type"
                                 className='' style={{ backgroundColor: "#272d47", color: 'white' }}>
                                 {/* <option>Type Of NFT</option> */}
@@ -124,6 +146,7 @@ const DashboardAddNft = () => {
                         </InputGroup>
                         <label className='mb-1'>Image of NFT</label>
                         <input
+                            onChange={loadFile}
                             type="file"
                             accept='image/*'
                             name="image"
@@ -131,7 +154,7 @@ const DashboardAddNft = () => {
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
                         />
-
+                        <img id="output" className='w-25 pb-2 d-flex justify-content-center' />
                         <label className='mb-1'>Name of NFT</label>
                         <input
                             type="text"
@@ -152,7 +175,7 @@ const DashboardAddNft = () => {
 
                         <label className='mb-1'>Available NFTs</label>
                         <input
-                            type="text"
+                            type="number"
                             name="availableNfts"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
@@ -207,6 +230,7 @@ const DashboardAddNft = () => {
 
                         <label className='mb-1'>Start Time</label>
                         <input
+                            onChange={handleTimeChange}
                             type="time"
                             name="startTime"
                             className='border w-100 rounded mb-3 p-2'
@@ -278,7 +302,7 @@ const DashboardAddNft = () => {
                             }}
                         />
                         <div className='mx-auto text-center mt-3'>
-                            <Button type='button' style={{ backgroundColor: '#dc3545', width: '120px', fontSize: "13px" }} className='border-0 text-uppercase modal-btn ms-3 me-3 extraCare'>CANCEL</Button>
+                            <Button onClick={redirectToNftPage} type='button' style={{ backgroundColor: '#dc3545', width: '120px', fontSize: "13px" }} className='border-0 text-uppercase modal-btn ms-3 me-3 extraCare'>CANCEL</Button>
                             <Button
                                 onClick={() => setSaveAsDraft(true)}
                                 type='submit' style={{ backgroundColor: 'blueviolet', width: '120px', fontSize: "13px" }} className='bg-primary border-0 text-uppercase modal-btn ms-3 me-3 extraCare'>Draft</Button>
