@@ -111,7 +111,7 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center boxesNft home-txt-pd">
+              <div className="de-card has-border text-center boxesNft">
                 <i className=" bg-color-2 i-boxed icon_cart_alt"></i>
                 <div className="text">
                   <h6 className="home-txt">Buy our NFTs and utilize the perks</h6>
@@ -119,7 +119,7 @@ function Home() {
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
-              <div className="de-card has-border text-center boxesNft home-txt-pd" >
+              <div className="de-card has-border text-center boxesNft">
                 <i className=" bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
                   <h6 className="home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
