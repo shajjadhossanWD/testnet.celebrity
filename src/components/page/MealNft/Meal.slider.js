@@ -190,7 +190,7 @@ const MealSlider = ({ pull_meal }) => {
       <Slider {...settings} className="gap-2">
         {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
           <div class="card">
-            <div onClick={() => likeCount(aNft?._id)} className="nft__item_like like_card">
+            <div onClick={() => likeCount(aNft?.id)} className="nft_item_like like_card">
               <i className="fa fa-heart"></i>
               <span>{aNft?.likesCount ? parseInt(aNft?.likesCount) + 1 : 0}</span>
             </div>
@@ -268,7 +268,7 @@ const MealSlider = ({ pull_meal }) => {
             <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
               Pay by DSL and get 30% discount.
             </Typography>
-            <p className="text-gradient text-center fs-5 pt-4">No of NFTs available:{allNft?.length}</p>
+            <p className="text-gradient text-center fs-5 pt-4">No of NFTs available: 50</p>
           </>
           :
           <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
