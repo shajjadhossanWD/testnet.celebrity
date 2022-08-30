@@ -9,6 +9,8 @@ import * as htmlToImage from 'html-to-image';
 import { CelebrityContext } from "../../../context/CelebrityContext";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { verifyMessage } from "ethers/lib/utils";
+import "./MealNft.css";
+import { MdArrowDropDownCircle } from 'react-icons/md';
 
 function MealDetails() {
   const { mealnId } = useParams();
@@ -396,24 +398,24 @@ function MealDetails() {
 
 
 
-            <Box className="pt-5" style={{ color: "white" }}>
+            <Box className="pt-5 fontArial" style={{ color: "white" }}>
 
               <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
               </Typography>
 
               <Typography variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">Name Of NFT :<br /></span> {isDetails?.name}
+                <span className="text-primary">Name Of NFT :<br /></span> <span className="fw-normal">{isDetails?.name}</span>
               </Typography>
 
               <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Price Of NFT(SGD):<br /> </span>{
+                <span className="text-primary">Price Of NFT(SGD):<br /> </span><span className="fw-normal">{
                   token === "bnb" || token === "usdsc" ? `${isDetails?.price}` : `${isDetails?.price}`
-                }
+                }</span>
               </Typography>
 
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">Available NFTs:<br /><span className="text-light">{isDetails?.availableNfts}</span></span>
+                <span className="text-primary">Available NFTs:<br /><span className="text-light fw-normal">{isDetails?.availableNfts}</span></span>
               </Typography>
 
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
@@ -423,25 +425,25 @@ function MealDetails() {
               <div className="pb-1" dangerouslySetInnerHTML={{ __html: isDetails?.description }}></div>
 
               <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Date:</span><br /> {`${isDetails?.startDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`}
+                <span className="text-primary">Date:</span><br /> <span className="fw-normal">{`${isDetails?.startDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`}</span>
               </Typography>
 
               <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Start Time:</span><br /> {isDetails?.startTime}
+                <span className="text-primary">Start Time:</span><br /> <span className="fw-normal">{isDetails?.startTime} SGT</span>
               </Typography>
 
               <Typography className="pt-1" variant="subtitle2" component="div">
                 <span className="text-primary">End Time:
                 </span><br />
-                {isDetails?.endTime}
+                <span className="fw-normal">{isDetails?.endTime} SGT</span>
               </Typography>
 
               <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Venue:</span><br /> {isDetails?.venue}
+                <span className="text-primary">Venue:</span><br /> <span className="fw-normal">{isDetails?.venue}</span>
               </Typography>
 
               <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Purchase Till:</span><br /> {`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.purchaseDate?.slice(5, 7)}/${isDetails?.purchaseDate?.slice(0, 4)}`}
+                <span className="text-primary">Purchase Till:</span><br /> <span className="fw-normal">{`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.purchaseDate?.slice(5, 7)}/${isDetails?.purchaseDate?.slice(0, 4)}`}</span>
               </Typography>
               <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary">Brief Details of Celebrity:</span>
@@ -450,13 +452,15 @@ function MealDetails() {
 
               <span className="text-primary">Choose how you want to pay:</span>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
-              <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%" }}>
-                <option value="bnb">BNB</option>
-                <option value="usdsc">USDSC</option>
-                <option value="dsl">DSL</option>
-                <option value="s39">S39</option>
-                <option value="finquest">FINQUEST</option>
-              </select>
+              <div className="d-flex align-items-center">
+                <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%" }}>
+                  <option value="bnb">BNB</option>
+                  <option value="usdsc">USDSC</option>
+                  <option value="dsl">DSL</option>
+                  <option value="s39">S39</option>
+                  <option value="finquest">FINQUEST</option>
+                </select> <span className="text-dark handlePosition rounded-circle fs-5"><MdArrowDropDownCircle /></span>
+              </div>
 
             </Box>
 
