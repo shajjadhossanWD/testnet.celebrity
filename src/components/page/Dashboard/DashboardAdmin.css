@@ -8,6 +8,10 @@
     height: auto;
 }
 
+.adminBodyRepo {
+    height: 100vh;
+}
+
 .adminCard {
     background-color: #272D47;
     border-radius: 10px;
@@ -156,6 +160,10 @@
     }
 
     .adminBody {
+        height: auto;
+    }
+
+    .adminBodyRepo {
         height: 100vh;
     }
 

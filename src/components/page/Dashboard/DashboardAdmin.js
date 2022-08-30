@@ -15,6 +15,7 @@ const DashboardAdmin = () => {
     const [allAdmin, setAllAdmin] = useState([]);
     const [isLoadingAdmin, setIsLoadingAdmin] = useState(false);
     const [refetch, setRefetch] = useState(false);
+    // const [imgAva, setImgAva] = useState([https://backend.celebrity.sg/]);
     // const {chains, user1, logOut} = useContext(GrighundContext);
 
     useEffect(() => {
@@ -144,7 +145,7 @@ const DashboardAdmin = () => {
     }
 
     return (
-        <div className='adminBody overflow-hidden'>
+        <div className='overflow-hidden' style={{ height: allAdmin.length <= 5 ? "100vh" : "auto" }}>
             {/* { user1.walletAddress ?
           <div className='text-danger text-start'> { (chains === "0x61") ? 
           <p>
@@ -197,7 +198,9 @@ const DashboardAdmin = () => {
                         <tbody>
                             {
                                 allAdmin?.map(admin => <tr admin={admin} key={admin._id} className='tableRow'>
-                                    <td align='center'> <img className='imgAdmin' src={`https://backend.celebrity.sg/${admin?.avatar}`} alt="profilePic" /></td>
+                                    <td align='center'>
+                                        {admin?.avatar ? <img className='imgAdmin' src={`https://backend.celebrity.sg/${admin.avatar}`} alt="profilePic" /> : <img className='imgAdmin' src="https://backend.celebrity.sg/assets/1660396587217.jpeg" alt="profilePic" />}
+                                    </td>
                                     <td style={{ textTransform: 'lowercase' }} className='text-start'>{admin?.username}</td>
                                     <td className='text-start adminHidden'>{admin?.email}</td>
                                     <td className='text-start adminHidden'>{admin?.phone}</td>

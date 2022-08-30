@@ -1,4 +1,4 @@
-.bannerBg{
+.bannerBg {
   /* background-image: url("https://i.ibb.co/z6W1CJf/20-dc5e2b870a07316225ec.jpg"); 
   background-position: center;  
   background-repeat: no-repeat;  
@@ -7,10 +7,10 @@
 }
 
 /* ----------------HowItWorks-------------- */
-.backgroundSection{
-  background-color: #1A1A25!important;
+.backgroundSection {
+  background-color: #1A1A25 !important;
   padding-top: 50px;
-  padding-bottom: 50px !important;
+  /* padding-bottom: 0px !important; */
 }
 
 .boxesNft {
