@@ -738,6 +738,8 @@ export default function CelebrityProvider({ children }) {
             .then((res) => {
               if (res.data.user) {
                 setUser(res.data.user);
+                getBalanceTestnet();
+
                 setLoading(false);
                 closeWalletModal();
                 localStorage.setItem("tokenDsl", res.data.token);

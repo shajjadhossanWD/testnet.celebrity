@@ -56,6 +56,10 @@ const DashboardAddNft = () => {
     }
     console.log(endTimeInput);
 
+    const uploadImadaite = () =>{
+        
+    }
+
     const onSubForm = async (e) => {
         e.preventDefault();
         // SetIsloading(true);
@@ -157,6 +161,7 @@ const DashboardAddNft = () => {
                         <label className='mb-1'>Image of NFT</label>
                         <input
                             onChange={loadFile}
+                            onBlur={uploadImadaite}
                             type="file"
                             accept='image/*'
                             name="image"

@@ -14,7 +14,6 @@ const MealSlider = ({ pull_meal }) => {
   const [usersWalletAdd, setUsersWalletAdd] = useState('');
   const [isLiked, setIsLiked] = useState({});
   const [updated, setUpdated] = useState(null);
-  const [postIdDetails, setPostIdDetails] = useState([]);
 
   const allNft = isMeal;
 
@@ -38,7 +37,14 @@ const MealSlider = ({ pull_meal }) => {
 
   // Like functionality
   const likeCount = (id) => {
+    const [postIdDetails, setPostIdDetails] = useState([]);
+    
     const likesFiltering = nftsPro.find(i => i?.walletAddress === user.walletAddress && i?.likedMealId === id);
+
+    axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+      .then(res => {
+        setIsLiked(res.data.nft);
+      })
 
     const likeDetails = {
       likedMealId: id,
@@ -74,13 +80,9 @@ const MealSlider = ({ pull_meal }) => {
         // 3rd step
         const howManyLikes = postIdDetails.filter(i => i?.likedMealId === id);
         const totalLikes = howManyLikes?.length;
+        console.log(totalLikes);
 
         // 4th step
-        axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
-          .then(res => {
-            setIsLiked(res.data.nft);
-          })
-
         const name = isLiked.name;
         const date = isLiked.date;
         const availableNfts = isLiked.availableNfts;
@@ -91,7 +93,7 @@ const MealSlider = ({ pull_meal }) => {
         const venue = isLiked.venue;
         const briefDetails = isLiked.briefDetails;
         const isDraft = isLiked.isDraft;
-        const likesCount = totalLikes;
+        const likesCount = JSON.stringify(totalLikes);
         const avatar = isLiked.avatar;
         const price = isLiked.price;
         const type = isLiked.type;
@@ -188,9 +190,9 @@ const MealSlider = ({ pull_meal }) => {
       <Slider {...settings} className="gap-2">
         {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
           <div class="card">
-            <div onClick={() => likeCount(aNft?._id)} className="nft__item_like like_card">
+            <div onClick={() => likeCount(aNft?.id)} className="nft_item_like like_card">
               <i className="fa fa-heart"></i>
-              <span>{aNft?.likesCount > 0 ? aNft?.likesCount : 0}</span>
+              <span>{aNft?.likesCount ? parseInt(aNft?.likesCount) + 1 : 0}</span>
             </div>
             <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>
               <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
@@ -239,10 +241,10 @@ const MealSlider = ({ pull_meal }) => {
                   <span className="text-primary">Date:</span> {`${aNft?.startDate.slice(8, 10)}/${aNft?.startDate.slice(5, 7)}/${aNft?.startDate.slice(0, 4)}`}
                 </Typography>
                 <Typography className="" variant="body2">
-                  <span className="text-primary">Start Time:</span> {aNft?.startTime}
+                  <span className="text-primary">Start Time:</span> {aNft?.startTime} SGT
                 </Typography>
                 <Typography className="" variant="body2">
-                  <span className="text-primary">End Time:</span> {aNft?.endTime}
+                  <span className="text-primary">End Time:</span> {aNft?.endTime} SGT
                 </Typography>
                 <Typography className=" mb-1 slider_nft_text" variant="div">
                   <span className="text-primary">Venue:</span> {aNft?.venue}
@@ -267,7 +269,6 @@ const MealSlider = ({ pull_meal }) => {
               Pay by DSL and get 30% discount.
             </Typography>
             <p className="text-gradient text-center fs-5 pt-4">No of NFTs available: 50</p>
-
           </>
           :
           <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
