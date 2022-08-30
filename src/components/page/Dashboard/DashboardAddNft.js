@@ -54,11 +54,7 @@ const DashboardAddNft = () => {
         const endTimeChange = startTimeChange + 3;
         setEndTimeInput(endTimeChange);
     }
-    console.log(endTimeInput);
 
-    const uploadImadaite = () =>{
-        
-    }
 
     const onSubForm = async (e) => {
         e.preventDefault();
@@ -161,7 +157,6 @@ const DashboardAddNft = () => {
                         <label className='mb-1'>Image of NFT</label>
                         <input
                             onChange={loadFile}
-                            onBlur={uploadImadaite}
                             type="file"
                             accept='image/*'
                             name="image"
@@ -169,7 +164,7 @@ const DashboardAddNft = () => {
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
                         />
-                        <img id="output" className='w-25 pb-2 d-flex justify-content-center' />
+                        <img id="output" alt='nft name' className='w-25 pb-2 d-flex justify-content-center' />
                         <label className='mb-1'>Name of NFT</label>
                         <input
                             type="text"

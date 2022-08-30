@@ -37,6 +37,7 @@ const MealSlider = ({ pull_meal }) => {
 
 
   // Like functionality
+  const [postIdDetails, setPostIdDetails] = useState([]);
   const likeCount = (id) => {
     const likesFiltering = nftsPro.find(i => i?.walletAddress === user.walletAddress && i?.likedMealId === id);
 
@@ -143,11 +144,14 @@ const MealSlider = ({ pull_meal }) => {
 
   let settings = {
     dots: false,
-    infinite: false,
-    speed: 1000,
+    infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,
@@ -261,7 +265,7 @@ const MealSlider = ({ pull_meal }) => {
             <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
               Pay by DSL and get 30% discount.
             </Typography>
-            <p className="text-gradient text-center fs-5 pt-4">No of NFTs available: 50</p>
+            <p className="text-gradient text-center fs-5 pt-4">Types of NFTs available: {allNft?.length}</p>
           </>
           :
           <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>

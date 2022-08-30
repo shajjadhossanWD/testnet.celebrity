@@ -68,7 +68,7 @@ function MealDetails() {
         const filtering = res.data.nft.filter(items => items.isDraft === false && items._id != mealnId && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
         setSouvenir(filtering?.slice(0, 4))
       });
-  }, [])
+  }, [mealnId])
 
 
   useEffect(() => {
@@ -391,7 +391,7 @@ function MealDetails() {
                 <span className="ps-1">{isDetails?.__v}</span>
               </Box>
             </Box>
-            <img alt="Souvenir_Image" src={isDetails?.avatar} className='deteilsPageImage' />
+            <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
 
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
@@ -400,55 +400,55 @@ function MealDetails() {
 
             <Box className="pt-5 fontArial" style={{ color: "white" }}>
 
-             
+
 
               <Typography variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">Name Of NFT :<br /></span> <span className="fw-normal">{isDetails?.name}</span>
+                <span className="text-primary fontArial  fontExtand">Name Of NFT :<br /></span> <span className="fw-normal fontArial  fontExtand">{isDetails?.name}</span>
               </Typography>
 
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Price Of NFT(SGD):<br /> </span><span className="fw-normal">{
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
+                <span className="text-primary fontArial  fontExtand">Price Of NFT(SGD):<br /> </span><span className="fw-normal fontArial  fontExtand">{
                   token === "bnb" || token === "usdsc" ? `${isDetails?.price}` : `${isDetails?.price}`
                 }</span>
               </Typography>
 
-              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">Available NFTs:<br /><span className="text-light fw-normal">{isDetails?.availableNfts}</span></span>
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
+                <span className="text-primary fontArial  fontExtand">Available NFTs:<br /><span className="text-light fw-normal fontArial  fontExtand">{isDetails?.availableNfts}</span></span>
               </Typography>
 
-              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">NFT Details:</span>
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
+                <span className="text-primary fontArial  fontExtand">NFT Details:</span>
               </Typography>
 
-              <div className="pb-1" dangerouslySetInnerHTML={{ __html: isDetails?.description }}></div>
+              <div className="spaceIssue fontArial" dangerouslySetInnerHTML={{ __html: isDetails?.description }}></div>
 
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Date:</span><br /> <span className="fw-normal">{`${isDetails?.startDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`}</span>
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
+                <span className="text-primary fontArial  fontExtand">Date:</span><br /> <span className="fw-normal fontArial  fontExtand">{`${isDetails?.startDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`}</span>
               </Typography>
 
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Start Time:</span><br /> <span className="fw-normal">{isDetails?.startTime} SGT</span>
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
+                <span className="text-primary fontArial  fontExtand">Start Time:</span><br /> <span className="fw-normal fontArial  fontExtand">{isDetails?.startTime} SGT</span>
               </Typography>
 
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">End Time:
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
+                <span className="text-primary fontArial  fontExtand">End Time:
                 </span><br />
-                <span className="fw-normal">{isDetails?.endTime} SGT</span>
+                <span className="fw-normal fontArial  fontExtand">{isDetails?.endTime} SGT</span>
               </Typography>
 
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Venue:</span><br /> <span className="fw-normal">{isDetails?.venue}</span>
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
+                <span className="text-primary fontArial  fontExtand">Venue:</span><br /> <span className="fw-normal fontArial  fontExtand">{isDetails?.venue}</span>
               </Typography>
 
-              <Typography className="pt-1" variant="subtitle2" component="div">
-                <span className="text-primary">Purchase Till:</span><br /> <span className="fw-normal">{`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.purchaseDate?.slice(5, 7)}/${isDetails?.purchaseDate?.slice(0, 4)}`}</span>
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
+                <span className="text-primary fontArial  fontExtand">Purchase Till:</span><br /> <span className="fw-normal fontArial  fontExtand">{`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.purchaseDate?.slice(5, 7)}/${isDetails?.purchaseDate?.slice(0, 4)}`}</span>
               </Typography>
-              <Typography className="pt-1" variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary">Brief Details of Celebrity:</span>
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
+                <span className="text-primary fontArial fontExtand">Brief Details of Celebrity:</span>
               </Typography>
-              <div className="pb-1" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
+              <div className="pb-1 fontArial" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
 
-              <span className="text-primary">Choose how you want to pay:</span>
+              <span className="text-primary fontArial  fontExtand">Choose how you want to pay:</span>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
               <div className="d-flex align-items-center">
                 <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%", backgroundColor: "white", color: "black" }}>

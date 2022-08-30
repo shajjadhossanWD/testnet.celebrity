@@ -1,6 +1,16 @@
 .fontArial {
     font-family: Arial, Helvetica, sans-serif !important;
     font-style: normal;
+    /* font-size: 1px; */
+}
+
+.fontExtand {
+    font-size: 1rem;
+}
+
+.spaceIssue p {
+    /* padding-bottom: -130px; */
+    margin-bottom: 0px;
 }
 
 .handlePosition {
