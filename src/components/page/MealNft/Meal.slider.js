@@ -31,9 +31,9 @@ const MealSlider = ({ pull_meal }) => {
 
 
   axios.get("https://backend.celebrity.sg/api/like/getLikes")
-      .then(res => {
-          setNftsPro(res.data.likes);
-      })
+    .then(res => {
+      setNftsPro(res.data.likes);
+    })
 
 
   // Like functionality
@@ -52,24 +52,24 @@ const MealSlider = ({ pull_meal }) => {
       if (likesFiltering === undefined) {
         // 1st step
         fetch("https://backend.celebrity.sg/api/like/addLike", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(likeDetails),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.insertedId) {
-            
-          }
-        });
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(likeDetails),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.insertedId) {
+
+            }
+          });
 
         // 2nd step
         axios.get("https://backend.celebrity.sg/api/like/getLikes")
-            .then(res => {
-                setPostIdDetails(res.data.likes);
-        })
+          .then(res => {
+            setPostIdDetails(res.data.likes);
+          })
 
         // 3rd step
         const howManyLikes = postIdDetails.filter(i => i?.likedMealId === id);
@@ -77,9 +77,9 @@ const MealSlider = ({ pull_meal }) => {
 
         // 4th step
         axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
-           .then(res => {
-               setIsLiked(res.data.nft);
-        })
+          .then(res => {
+            setIsLiked(res.data.nft);
+          })
 
         const name = isLiked.name;
         const date = isLiked.date;
@@ -113,30 +113,30 @@ const MealSlider = ({ pull_meal }) => {
         formData.append('isDraft', isDraft);
         formData.append('likesCount', likesCount);
         formData.append('image', avatar);
-        
+
         // count likes
         setUpdated(false);
         axios.put(`https://backend.celebrity.sg/api/nft/update-nft2/${id}`, formData)
-                    .then(res => {
-                        if (res.status === 200) {
-                            // const parsing = JSON.parse(isLiked?.likesCount);
-                            setUpdated(true);
-                        }
-                    })
-                    .catch(err => {
-                        swal({
-                            title: "Attention",
-                            text: `${err.response.data.message}`,
-                            icon: "warning",
-                            button: "OK!",
-                            className: "modal_class_success",
-                        });
-                    })
+          .then(res => {
+            if (res.status === 200) {
+              // const parsing = JSON.parse(isLiked?.likesCount);
+              setUpdated(true);
+            }
+          })
+          .catch(err => {
+            swal({
+              title: "Attention",
+              text: `${err.response.data.message}`,
+              icon: "warning",
+              button: "OK!",
+              className: "modal_class_success",
+            });
+          })
 
       } else {
         console.log('Too many likes...')
       }
-      
+
     }
   }
 
@@ -217,7 +217,7 @@ const MealSlider = ({ pull_meal }) => {
               </div>
             </div>
             <div class="card-content">
-              <div className="row" style={{minHeight: '324px'}}>
+              <div className="row" style={{ minHeight: '324px' }}>
                 <Typography className="mt-1" variant="body2">
                   <span className="text-primary">Type of NFT :</span> {aNft?.type}
                 </Typography>
@@ -249,7 +249,7 @@ const MealSlider = ({ pull_meal }) => {
                 </Typography>
               </div>
               <hr style={{ margin: "10px 0px 10px 0px" }} />
-              <div className="d-flex card_bottom_btn_main" style={{margin: '15px 0 8px 0'}}>
+              <div className="d-flex card_bottom_btn_main" style={{ margin: '15px 0 8px 0' }}>
                 <div className="col-10 d-grid">
                   <Link to={`/mealnft/${aNft?._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {aNft?.price}</button> </Link>
                 </div>
@@ -264,9 +264,10 @@ const MealSlider = ({ pull_meal }) => {
         {allNft?.length > 0 ?
           <>
             <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
-            Pay by DSL and get 30% discount.
+              Pay by DSL and get 30% discount.
             </Typography>
             <p className="text-gradient text-center fs-5 pt-4">No of NFTs available: 50</p>
+
           </>
           :
           <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
