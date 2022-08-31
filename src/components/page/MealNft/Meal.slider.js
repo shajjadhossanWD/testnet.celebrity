@@ -15,10 +15,18 @@ const MealSlider = ({ pull_meal }) => {
   const [isLiked, setIsLiked] = useState({});
   const [updated, setUpdated] = useState(null);
   const [postIdDetails, setPostIdDetails] = useState([]);
+  const [allAvailable, setAllAvailable] = useState([]);
 
   const allNft = isMeal;
 
   const todayDate = new Date();
+
+  useEffect(() => {
+    axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
+      .then(res => {
+        setAllAvailable(res.data);
+      });
+  }, [])
 
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/nft/allmeal")
@@ -182,6 +190,7 @@ const MealSlider = ({ pull_meal }) => {
       }
     ]
   };
+
   return (
     <div>
       <Slider {...settings} className="gap-2">
@@ -211,7 +220,7 @@ const MealSlider = ({ pull_meal }) => {
                   <span className="text-primary">Price of NFT(SGD):</span> {aNft?.price}
                 </Typography>
                 <Typography className="" variant="body2">
-                  <span className="text-primary">Available NFTs: <span className="text-light">{aNft?.availableNfts}</span></span>
+                  <span className="text-primary">Available NFTs: <span className="text-light">{aNft?.availableNfts - allAvailable.length}</span></span>
                 </Typography>
                 {/* <Typography className="mt-2" variant="body2">
                   Details: <Link to={`/mealnft/${aNft?._id}`} classsName="clickHere"> For more details click here </Link>

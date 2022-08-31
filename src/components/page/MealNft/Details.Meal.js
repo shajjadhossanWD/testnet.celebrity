@@ -12,10 +12,12 @@ import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import DateCountdown from "react-date-countdown-timer";
+import Barcode from '../../../Images/barcode.jpeg';
 
 function MealDetails() {
   const { mealnId } = useParams();
   const [disableAfterActivation, setDisableAfterActivation] = useState(false);
+  const [allAvailable, setAllAvailable] = useState([]);
   // const native = window.location.search;
   // const { title, language } = useParams();
   // const params = new URLSearchParams(native);
@@ -57,6 +59,14 @@ function MealDetails() {
   const handleEmail = e => {
     setEmail(e.target.value);
   }
+
+  useEffect(() => {
+    axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
+      .then(res => {
+        setAllAvailable(res.data);
+      });
+  }, [])
+  // console.log(allAvailable.length);
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
       .then(res => {
@@ -64,9 +74,9 @@ function MealDetails() {
       });
   }, [mealnId])
 
-  const todayDate = new Date();
 
   useEffect(() => {
+    const todayDate = new Date();
     axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
         setNftData(res.data.nft);
@@ -391,8 +401,8 @@ function MealDetails() {
   let minuteField = document.getElementById('minute');
   let secondField = document.getElementById('second');
 
-  let interval;
-  const eventDay = new Date(isDetails?.purchaseDate);
+
+
   // const eventDay = new Date(`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`);
 
   // console.log()
@@ -402,14 +412,18 @@ function MealDetails() {
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
-
+  let interval;
   const countDownFn = () => {
 
     let now = new Date();
 
+    let eventDay = new Date(isDetails?.purchaseDate);
+    let startDate = new Date(isDetails?.startDate);
+    // console.log("EventDay", eventDay);
+    // console.log("StartDay", startDate);
 
-    let timeSpan = eventDay - now;
-    if (timeSpan <= -now) {
+    let timeSpan = eventDay - startDate;
+    if (timeSpan <= -startDate) {
       console.log("Unfortunately we have past the event day");
       setExpired('Unfortunately we have past the last day of purchase')
       clearInterval(interval);
@@ -438,8 +452,10 @@ function MealDetails() {
     }
   };
   interval = setInterval(countDownFn, second);
-
-
+  console.log(interval);
+  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
+  // console.log(isDetails?.availableNfts)
+  // console.log(availableNft);
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
@@ -456,7 +472,7 @@ function MealDetails() {
               </Box>
             </Box>
             <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
-
+            <img src={Barcode} alt="barcode" className="img-fluid handleBarcode" />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
@@ -477,7 +493,7 @@ function MealDetails() {
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
-                <span className="text-primary fontArial  fontExtand">Available NFTs:<br /><span className="text-light fw-normal fontArial  fontExtand">{isDetails?.availableNfts}</span></span>
+                <span className="text-primary fontArial  fontExtand">Available NFTs:<br /><span className="text-light fw-normal fontArial  fontExtand">{availableNft}</span></span>
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
@@ -585,7 +601,7 @@ function MealDetails() {
           {isSouvenir?.length < 2 ? <div style={{ marginTop: '-20px', marginBottom: '32px' }} className="text-gradient text-center fs-4 pt-4">No related NFTs for now!</div> : <div className="row d-flex justify-content-center" >
             {
               isSouvenir?.map((data, idx) => (
-                <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
+                <div key={idx} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
                   <div class="card">
                     <div className="nft__item_like like_card">
                       <i className="fa fa-heart"></i>
@@ -613,7 +629,7 @@ function MealDetails() {
                         </Typography>
 
                         <Typography className="mt-2" variant="body2">
-                          <span className="text-primary">Available NFTs: <span className="text-light">50</span></span>
+                          <span className="text-primary">Available NFTs: <span className="text-light">{data?.availableNfts - allAvailable.length}</span></span>
                         </Typography>
                         <Typography className="mt-2" variant="body2">
                           <span className="text-primary">Date:</span> {`${data?.startDate.slice(8, 10)}/${data?.startDate.slice(5, 7)}/${data?.startDate.slice(0, 4)}`}
