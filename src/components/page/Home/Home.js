@@ -120,10 +120,12 @@ function Home() {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="de-card has-border text-center boxesNft">
+                <div className="NftDetailsDiv">
                 <i className=" bg-color-2 i-boxed icon_menu-square_alt2"></i>
                 <div className="text">
                   <h6 className="home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
                 </div>
+              </div>
               </div>
             </div>
           </div>

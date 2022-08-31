@@ -65,10 +65,10 @@ function HowItWorks() {
 
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              Celebrity.sg allows fans to meet their favourite celebrity in Singapore.
+              Celebrity Meal NFT allows fans to meet their favourite celebrity in Singapore over a meal.
             </Typography>
             <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
-              What do you get if you buy our Celebrity Meal NFT?
+              What do you get?
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
               1. Digital Art of the Celebrity
@@ -86,7 +86,7 @@ function HowItWorks() {
               5. Selfie Session with the Celebrity
             </Typography>
             <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
-              Benefits for the Purchaser:
+              What buy?
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
               1. Opportunity to meet your Celebrity
@@ -101,7 +101,7 @@ function HowItWorks() {
               4. Selfie with your Celebrity
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              5. Sell your Celebrity NFT in BSC marketplace (Digital Art and Memorabilia of the Celebrity)
+              5. Sell your Celebrity NFT in BSC marketplaces (Digital Art and Memorabilia of the Celebrity)
             </Typography>
           </div>
           <div className='d-flex pt-2 pb-3' style={{ justifyContent: 'center' }}>

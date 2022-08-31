@@ -12,7 +12,7 @@ import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import DateCountdown from "react-date-countdown-timer";
-import Barcode from '../../../Images/barcode.jpeg';
+import Barcode from '../../../Images/Barcode.jpeg';
 import Countdown from 'react-countdown';
 
 function MealDetails() {
@@ -291,14 +291,14 @@ function MealDetails() {
 
     setRequestLoading(true);
     const data = new FormData();
-    data.append('name', nftData.name);
-    data.append('image', nftData.avatar);
-    data.append('description', nftData.description);
-    data.append('type', nftData.type);
-    data.append('date', nftData.date);
-    data.append('price', nftData.price);
-    data.append('venue', nftData.venue);
-    data.append('token', nftData.token);
+    data.append('name', isDetails.name);
+    data.append('image', isDetails.avatar);
+    data.append('description', isDetails.description);
+    data.append('type', isDetails.type);
+    data.append('date', isDetails.date);
+    data.append('price', isDetails.price);
+    data.append('venue', isDetails.venue);
+    data.append('token', isDetails.token);
 
     await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
       // headers: {
@@ -324,6 +324,7 @@ function MealDetails() {
             Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
           }
           data.append("mint_hash", Obj.mint_hash);
+          console.log(data);
           await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data, {
             // headers: {
             //   Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -448,6 +449,7 @@ function MealDetails() {
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
             <Box className="pt-0 fontArial" style={{ color: "white" }}>
+
               <Typography variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary fontArial  fontExtand">Name Of NFT :<br /></span> <span className="fw-normal fontArial  fontExtand">{isDetails?.name}</span>
               </Typography>
@@ -504,7 +506,7 @@ function MealDetails() {
               </Typography>
               <div className="pb-1 fontArial" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
 
-              <p className="text-center"><span className="text-primary fontArial fontExtand">Choose how you want to pay:</span></p>
+              <span className="text-primary fontArial fontExtand">Choose how you want to pay:</span>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
               <div className="priceDropdown">
                 <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%", backgroundColor: "white", color: "black" }}>
@@ -516,7 +518,7 @@ function MealDetails() {
                 </select> <span className="text-dark handlePosition rounded-circle fs-5"><i class="fas fa-angle-down"></i></span>
               </div>
 
-              <Typography className="pt-1 pb-3 text-center" variant="subtitle2" gutterBottom component="div">
+              <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount ">30% discount if paid with DSL tokens</span>)
               </Typography>
 

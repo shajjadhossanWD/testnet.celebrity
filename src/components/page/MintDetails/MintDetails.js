@@ -59,8 +59,8 @@ const MintDetails = () => {
             </div>
           </div>
           <div className="d-flex justify-content-evenly align-items-center my-3">
-            <Button variant="danger" onClick={() => navigate(-1)}>cancel</Button>
-            <button type="button" onClick={() => copyToClipboard("Contract Address:" + " " + address + " " + " " + " Token ID:" + " " + id)} className="border button-18">COPY ALL<i className="fa-regular fa-copy text-light ps-1"></i></button>
+            <Button variant="danger" onClick={() => navigate("/profile")}>CANCEL</Button>
+            <button type="button" onClick={() => copyToClipboard("Contract Address:" + " " + address + " " + " " + " Token ID:" + " " + id)} className="button-18">COPY ALL<i className="fa-regular fa-copy text-light ps-1"></i></button>
           </div>
         </div>
       </div>
