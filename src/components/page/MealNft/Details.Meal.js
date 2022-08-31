@@ -276,14 +276,14 @@ function MealDetails() {
 
     setRequestLoading(true);
     const data = new FormData();
-    data.append('name', nftData.name);
-    data.append('image', nftData.avatar);
-    data.append('description', nftData.description);
-    data.append('type', nftData.type);
-    data.append('date', nftData.date);
-    data.append('price', nftData.price);
-    data.append('venue', nftData.venue);
-    data.append('token', nftData.token);
+    data.append('name', isDetails.name);
+    data.append('image', isDetails.avatar);
+    data.append('description', isDetails.description);
+    data.append('type', isDetails.type);
+    data.append('date', isDetails.date);
+    data.append('price', isDetails.price);
+    data.append('venue', isDetails.venue);
+    data.append('token', isDetails.token);
 
     await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
       // headers: {
@@ -309,6 +309,7 @@ function MealDetails() {
             Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
           }
           data.append("mint_hash", Obj.mint_hash);
+          console.log(data);
           await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data, {
             // headers: {
             //   Authorization: `Bearer ${localStorage.getItem("token")}`
