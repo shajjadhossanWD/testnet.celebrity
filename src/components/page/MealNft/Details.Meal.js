@@ -13,21 +13,24 @@ import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import DateCountdown from "react-date-countdown-timer";
 import Barcode from '../../../Images/Barcode.jpeg';
+import Countdown from 'react-countdown';
 
 function MealDetails() {
   const { mealnId } = useParams();
   const [disableAfterActivation, setDisableAfterActivation] = useState(false);
   const [allAvailable, setAllAvailable] = useState([]);
+  const [dateCount, setDateCount] = useState("");
+  const [targetCount, setTargetCount] = useState("");
   // const native = window.location.search;
   // const { title, language } = useParams();
   // const params = new URLSearchParams(native);
   // const nativeTitle = params.get('native');
   const [show, setShow] = useState(false);
   const [expired, setExpired] = useState('');
-  const [seconds, setSeconds] = useState();
-  const [minutes, setMinutes] = useState();
-  const [hours, setHours] = useState();
-  const [days, setDays] = useState();
+  // const [seconds, setSeconds] = useState();
+  // const [minutes, setMinutes] = useState();
+  // const [hours, setHours] = useState();
+  // const [days, setDays] = useState();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
@@ -71,6 +74,8 @@ function MealDetails() {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
       .then(res => {
         setDetails(res.data?.nft);
+        setDateCount(res.data?.nft?.startDate);
+        setTargetCount(res.data?.nft?.purchaseDate);
       });
   }, [mealnId])
 
@@ -94,7 +99,7 @@ function MealDetails() {
     })
       .then(res => {
         setBnbToken(res.data.message);
-        console.log(res.data.message)
+        // console.log(res.data.message)
       })
       .catch(err => {
         console.log(err)
@@ -109,7 +114,7 @@ function MealDetails() {
     })
       .then(res => {
         setDslToken(res.data.message);
-        console.log(res.data.message)
+        // console.log(res.data.message)
       })
       .catch(err => {
         console.log(err)
@@ -124,7 +129,7 @@ function MealDetails() {
     })
       .then(res => {
         setS39Token(res.data.message);
-        console.log(res.data.message)
+        // console.log(res.data.message)
       })
       .catch(err => {
         console.log(err)
@@ -392,70 +397,37 @@ function MealDetails() {
         });
       })
   }
-
-
-
-
-  let dayField = document.getElementById('day');
-  let hourField = document.getElementById('hour');
-  let minuteField = document.getElementById('minute');
-  let secondField = document.getElementById('second');
-
-
-
-  // const eventDay = new Date(`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`);
-
-  // console.log()
-
-  // Convert to milisecond
-  const second = 1000;
-  const minute = second * 60;
-  const hour = minute * 60;
-  const day = hour * 24;
-  let interval;
-  const countDownFn = () => {
-
-    let now = new Date();
-
-    let eventDay = new Date(isDetails?.purchaseDate);
-    let startDate = new Date(isDetails?.startDate);
-    // console.log("EventDay", eventDay);
-    // console.log("StartDay", startDate);
-
-    let timeSpan = eventDay - startDate;
-    if (timeSpan <= -startDate) {
-      console.log("Unfortunately we have past the event day");
-      setExpired('Unfortunately we have past the last day of purchase')
-      clearInterval(interval);
-      return;
-    } else if (timeSpan <= 0) {
-      console.log("Today is the event day");
-      setExpired('')
-      clearInterval(interval);
-      return;
-    } else {
-      const days = Math.floor(timeSpan / day);
-
-      const hours = Math.floor((timeSpan % day) / hour);
-      const minutes = Math.floor((timeSpan % hour) / minute);
-      const seconds = Math.floor((timeSpan % minute) / second);
-      setDays(days);
-      setHours(hours);
-      setMinutes(minutes);
-      setSeconds(seconds);
-
-      // Set results
-      // dayField.innerHTML = days;
-      // hourField.innerHTML = hours;
-      // minuteField.innerHTML = minutes;
-      // secondField.innerHTML = seconds;
-    }
-  };
-  interval = setInterval(countDownFn, second);
-  console.log(interval);
   let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
-  // console.log(isDetails?.availableNfts)
-  // console.log(availableNft);
+  // Set the date we're counting down to
+  // let countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+  const countDownDate = new Date("Nov 30, 2022 15:37:25").getTime();
+  // Update the count down every 1 second
+  let x = setInterval(function () {
+
+    // Get today's date and time
+    let now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    let distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+  }, 1000);
+
+
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
@@ -476,11 +448,7 @@ function MealDetails() {
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
-
-
             <Box className="pt-0 fontArial" style={{ color: "white" }}>
-
-
 
               <Typography variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary fontArial  fontExtand">Name Of NFT :<br /></span> <span className="fw-normal fontArial  fontExtand">{isDetails?.name}</span>
@@ -526,8 +494,9 @@ function MealDetails() {
               {/* 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
                 <span className="text-primary fontArial  fontExtand">Time left:</span><br /> <span className="fw-normal fontArial  fontExtand">
-                  {days}D: {hours}H: {minutes}M: {seconds}S
+                  <div id="demo">
 
+                  </div>
                 </span>
               </Typography> */}
               {/* <DateCountdown dateTo={isDetails?.startDate} /> */}
