@@ -4,6 +4,15 @@
     /* font-size: 1px; */
 }
 
+.handleBarcode {
+    position: relative;
+    left: -33px;
+    top: -126px;
+    justify-self: end;
+    width: 20% !important;
+    height: auto !important;
+}
+
 .fontExtand {
     font-size: 1rem;
 }
@@ -18,8 +27,113 @@
     top: -7px;
     left: -25px;
 }
-.priceDropdown{
+
+.priceDropdown {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media only screen and (max-width: 320px) {
+    .handleBarcode {
+        position: relative;
+        left: 0px;
+        top: -55px;
+        /* text-align: end; */
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:321px) and (max-width: 375px) {
+    .handleBarcode {
+        position: relative;
+        left: 0px;
+        top: -65px;
+        /* text-align: end; */
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:376px) and (max-width: 425px) {
+    .handleBarcode {
+        position: relative;
+        left: 0px;
+        top: -75px;
+        /* text-align: end; */
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:426px) and (max-width: 500px) {
+    .handleBarcode {
+        position: relative;
+        left: 0px;
+        top: -90px;
+        /* text-align: end; */
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:501px) and (max-width: 767px) {
+    .handleBarcode {
+        position: relative;
+        left: 0px;
+        top: -98px;
+        /* text-align: end; */
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width: 979px) {
+    .handleBarcode {
+        position: relative;
+        left: -17px;
+        top: -65px;
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:980px) and (max-width: 991px) {
+    .handleBarcode {
+        position: relative;
+        left: -21.5px;
+        top: -87px;
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:992px) and (max-width: 1184px) {
+    .handleBarcode {
+        position: relative;
+        left: -24px;
+        top: -91px;
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (min-width:1185px) and (max-width: 1399px) {
+    .handleBarcode {
+        position: relative;
+        left: -28px;
+        top: -108px;
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
 }
