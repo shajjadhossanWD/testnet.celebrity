@@ -1,10 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./MintDetails.css";
+import Button from 'react-bootstrap/Button';
+
 
 const MintDetails = () => {
   const { id, address } = useParams();
-  console.log(id, address);
+  // console.log(id, address);
+
+  const navigate = useNavigate();
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
@@ -38,14 +42,14 @@ const MintDetails = () => {
             <label htmlFor='referralID'>Contract Address</label>
             <div className='d-flex'>
               <input type="text" id='referralID' value={address} name="referralID" className='form-control bg-transparent text-white' disabled />
-              <button type="button" onClick={() => copyToClipboard("Contract Address:"+ " " + address)} className="border"><i className="fa-regular fa-copy"></i></button>
+              <button type="button" onClick={() => copyToClipboard("Contract Address:" + " " + address)} className="border"><i className="fa-regular fa-copy"></i></button>
             </div>
           </div>
           <div className="mb-2">
             <label htmlFor='referralID'>Token ID</label>
             <div className="d-flex">
               <input type="text" id='referralID' name="referralID" defaultValue={id} className='form-control bg-transparent text-white' disabled />
-              <button type="button" onClick={() => copyToClipboard("Token ID:"+ " " + id)} className="border"><i className="fa-regular fa-copy"></i></button>
+              <button type="button" onClick={() => copyToClipboard("Token ID:" + " " + id)} className="border"><i className="fa-regular fa-copy"></i></button>
             </div>
           </div>
           <div className="mb-2">
@@ -54,9 +58,9 @@ const MintDetails = () => {
               <input type="text" id='referralID' name="referralID" value={newDate} className='form-control bg-transparent text-white' disabled />
             </div>
           </div>
-          <div className="d-flex justify-content-center mt-3 mb-3">
-            {/* <button type="button" onClick={() => copyToClipboard(id)} className="border">Copy All</button> */}
-            <button type="button" onClick={() => copyToClipboard("Contract Address:"+ " " + address + " " + " " + " Token ID:"+ " " + id )}  className="border button-18">COPY ALL<i className="fa-regular fa-copy text-light ps-1"></i></button>
+          <div className="d-flex justify-content-evenly align-items-center my-3">
+            <Button variant="danger" onClick={() => navigate(-1)}>cancel</Button>
+            <button type="button" onClick={() => copyToClipboard("Contract Address:" + " " + address + " " + " " + " Token ID:" + " " + id)} className="border button-18">COPY ALL<i className="fa-regular fa-copy text-light ps-1"></i></button>
           </div>
         </div>
       </div>
