@@ -12,7 +12,7 @@ import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import DateCountdown from "react-date-countdown-timer";
-import Barcode from '../../../Images/barcode.jpeg';
+import Barcode from '../../../Images/Barcode.jpeg';
 
 function MealDetails() {
   const { mealnId } = useParams();
@@ -478,7 +478,7 @@ function MealDetails() {
 
 
 
-            <Box className="pt-5 fontArial" style={{ color: "white" }}>
+            <Box className="pt-0 fontArial" style={{ color: "white" }}>
 
 
 
@@ -523,13 +523,13 @@ function MealDetails() {
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
                 <span className="text-primary fontArial  fontExtand">Purchase Till:</span><br /> <span className="fw-normal fontArial  fontExtand">{`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.purchaseDate?.slice(5, 7)}/${isDetails?.purchaseDate?.slice(0, 4)}`}</span>
               </Typography>
-
+              {/* 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
                 <span className="text-primary fontArial  fontExtand">Time left:</span><br /> <span className="fw-normal fontArial  fontExtand">
                   {days}D: {hours}H: {minutes}M: {seconds}S
 
                 </span>
-              </Typography>
+              </Typography> */}
               {/* <DateCountdown dateTo={isDetails?.startDate} /> */}
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
@@ -537,7 +537,7 @@ function MealDetails() {
               </Typography>
               <div className="pb-1 fontArial" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
 
-              <p className="text-center"><span className="text-primary fontArial fontExtand">Choose how you want to pay:</span></p>
+              <span className="text-primary fontArial fontExtand">Choose how you want to pay:</span>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
               <div className="priceDropdown">
                 <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%", backgroundColor: "white", color: "black" }}>
@@ -549,7 +549,7 @@ function MealDetails() {
                 </select> <span className="text-dark handlePosition rounded-circle fs-5"><i class="fas fa-angle-down"></i></span>
               </div>
 
-              <Typography className="pt-1 pb-3 text-center" variant="subtitle2" gutterBottom component="div">
+              <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount ">30% discount if paid with DSL tokens</span>)
               </Typography>
 

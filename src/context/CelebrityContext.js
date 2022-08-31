@@ -648,7 +648,14 @@ export default function CelebrityProvider({ children }) {
 
     if (typeof window.ethereum === "undefined") {
       // ask the user to install the extension
-      return;
+      return swal({
+        title: "Attention",
+        text: "Please open this website with wallet browsers",
+        icon: "warning",
+        button: "OK",
+        dangerMode: true,
+        className: "modal_class",
+      });
     }
     let provider = window.ethereum;
     // edge case if MM and CBW are both installed
@@ -708,7 +715,17 @@ export default function CelebrityProvider({ children }) {
 
   const connectToMetamask = async () => {
     getBalanceTestnet();
-
+    if (typeof window.ethereum === "undefined") {
+      // ask the user to install the extension
+      return swal({
+        title: "Attention",
+        text: "Please open this website with wallet browsers",
+        icon: "warning",
+        button: "OK",
+        dangerMode: true,
+        className: "modal_class",
+      });
+    }
     let provider = null;
     if (typeof window.ethereum !== "undefined") {
       let provider = window.ethereum;
