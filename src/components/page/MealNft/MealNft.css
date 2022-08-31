@@ -18,3 +18,8 @@
     top: -7px;
     left: -25px;
 }
+.priceDropdown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

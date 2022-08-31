@@ -94,7 +94,7 @@ button.swal-button.swal-button--confirm {
     font-size: 14px;
     margin: 0;
     text-transform: uppercase;
-    text-align: center;
+    text-align: start;
     /* font-style: italic; */
     letter-spacing: 0.01em;
     color: #d6579f;

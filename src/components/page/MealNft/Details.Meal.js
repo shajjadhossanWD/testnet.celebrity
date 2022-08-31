@@ -11,16 +11,21 @@ import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
+import DateCountdown from "react-date-countdown-timer";
 
 function MealDetails() {
   const { mealnId } = useParams();
-  console.log(mealnId);
   const [disableAfterActivation, setDisableAfterActivation] = useState(false);
   // const native = window.location.search;
   // const { title, language } = useParams();
   // const params = new URLSearchParams(native);
   // const nativeTitle = params.get('native');
   const [show, setShow] = useState(false);
+  const [expired, setExpired] = useState('');
+  const [seconds, setSeconds] = useState();
+  const [minutes, setMinutes] = useState();
+  const [hours, setHours] = useState();
+  const [days, setDays] = useState();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState("");
@@ -316,9 +321,9 @@ function MealDetails() {
                 wrapper.innerHTML = `
                 <a href=${Obj.mint_hash} target="_any" className="link_hash">${Obj.mint_hash}</a>
                 <br/>
-                <p className="success"><b>You have successfully minted.<b></p>
-                <p>Use the following information import your NFT to your wallet</p>
-                <p className="address">Contract Address: ${mintAddressTestnet}</p>
+                <p className="success">You have successfully minted.</p>
+                <p>Use the following information to import the NFT to your wallet</p>
+                <p className="address">Contract Address: <br/> ${mintAddressTestnet}</p>
                 <p>Token ID: ${Obj.ID}</p>
                  `
                 swal({
@@ -342,7 +347,7 @@ function MealDetails() {
               console.log(err);
               setRequestLoading(false);
               const wrapper = document.createElement("div");
-              wrapper.innerHTML = `<a href=${Obj.mint_hash} target="_any" className="link_hash">${Obj.mint_hash}</a> <br/> <p className="success"><b>You have successfully minted but error in while saving data.<b></p>`
+              wrapper.innerHTML = `<a href=${Obj.mint_hash} target="_any" className="link_hash">${Obj.mint_hash}</a> <br/> <p className="success">You have successfully minted but error in while saving data.</p>`
               swal({
                 title: "Warning",
                 content: wrapper,
@@ -376,6 +381,64 @@ function MealDetails() {
         });
       })
   }
+
+
+
+
+  let dayField = document.getElementById('day');
+  let hourField = document.getElementById('hour');
+  let minuteField = document.getElementById('minute');
+  let secondField = document.getElementById('second');
+
+  let interval;
+  const eventDay = new Date(isDetails?.purchaseDate);
+  // const eventDay = new Date(`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.startDate?.slice(5, 7)}/${isDetails?.startDate?.slice(0, 4)}`);
+
+  // console.log()
+
+  // Convert to milisecond
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  const countDownFn = () => {
+
+    let now = new Date();
+
+
+    let timeSpan = eventDay - now;
+    if (timeSpan <= -now) {
+      console.log("Unfortunately we have past the event day");
+      setExpired('Unfortunately we have past the last day of purchase')
+      clearInterval(interval);
+      return;
+    } else if (timeSpan <= 0) {
+      console.log("Today is the event day");
+      setExpired('')
+      clearInterval(interval);
+      return;
+    } else {
+      const days = Math.floor(timeSpan / day);
+
+      const hours = Math.floor((timeSpan % day) / hour);
+      const minutes = Math.floor((timeSpan % hour) / minute);
+      const seconds = Math.floor((timeSpan % minute) / second);
+      setDays(days);
+      setHours(hours);
+      setMinutes(minutes);
+      setSeconds(seconds);
+
+      // Set results
+      // dayField.innerHTML = days;
+      // hourField.innerHTML = hours;
+      // minuteField.innerHTML = minutes;
+      // secondField.innerHTML = seconds;
+    }
+  };
+  interval = setInterval(countDownFn, second);
+
+
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
@@ -443,14 +506,23 @@ function MealDetails() {
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
                 <span className="text-primary fontArial  fontExtand">Purchase Till:</span><br /> <span className="fw-normal fontArial  fontExtand">{`${isDetails?.purchaseDate?.slice(8, 10)}/${isDetails?.purchaseDate?.slice(5, 7)}/${isDetails?.purchaseDate?.slice(0, 4)}`}</span>
               </Typography>
+
+              <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
+                <span className="text-primary fontArial  fontExtand">Time left:</span><br /> <span className="fw-normal fontArial  fontExtand">
+                  {days}D: {hours}H: {minutes}M: {seconds}S
+
+                </span>
+              </Typography>
+              {/* <DateCountdown dateTo={isDetails?.startDate} /> */}
+
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
                 <span className="text-primary fontArial fontExtand">Brief Details of Celebrity:</span>
               </Typography>
               <div className="pb-1 fontArial" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
 
-              <span className="text-primary fontArial  fontExtand">Choose how you want to pay:</span>
+              <p className="text-center"><span className="text-primary fontArial fontExtand">Choose how you want to pay:</span></p>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
-              <div className="d-flex align-items-center">
+              <div className="priceDropdown">
                 <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%", backgroundColor: "white", color: "black" }}>
                   <option value="bnb">BNB</option>
                   <option value="usdsc">USDSC</option>
@@ -460,14 +532,14 @@ function MealDetails() {
                 </select> <span className="text-dark handlePosition rounded-circle fs-5"><i class="fas fa-angle-down"></i></span>
               </div>
 
-              <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
-                ( <span className="spanDiscount">30% discount if paid with DSL tokens</span>)
+              <Typography className="pt-1 pb-3 text-center" variant="subtitle2" gutterBottom component="div">
+                ( <span className="spanDiscount ">30% discount if paid with DSL tokens</span>)
               </Typography>
 
             </Box>
 
 
-            <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'center' }}>
+            <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'start' }}>
               {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
               {token === "usdsc" && <p style={{ margin: '0' }}>You need to pay {usdsc} USDSC</p>}
               {token === "dsl" && <p>You need to pay {dslTwoDec} DSL</p>}
@@ -477,7 +549,7 @@ function MealDetails() {
             <div className="dslDiscountForPayment">
               {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
             </div>
-            <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
+            <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'start' }}>
               {
                 (!user.walletAddress || user.walletAddress === "undefined") ?
                   <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>

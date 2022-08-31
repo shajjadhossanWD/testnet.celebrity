@@ -141,6 +141,7 @@
     /* width: 224px; */
     justify-content: flex-end;
     align-items: center;
+    gap: 5px;
     margin-right: -189px;
     padding: 10px 5px 10px 5px;
     cursor: pointer;

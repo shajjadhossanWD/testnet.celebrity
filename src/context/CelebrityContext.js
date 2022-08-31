@@ -662,7 +662,7 @@ export default function CelebrityProvider({ children }) {
     });
     console.log("This is Chain ID: ", chainid);
     setChain(chainid);
-    if (chainid === "0x38" || chainid === "0x61") {
+    if (chainid === "0x61") {
       const accounts = await provider.request({
         method: "eth_requestAccounts",
       });
@@ -697,7 +697,7 @@ export default function CelebrityProvider({ children }) {
       console.log("Please Switch to Binance Chain");
       swal({
         title: "Attention",
-        text: "Please change to Binance Chain before connecting.",
+        text: "Please change to Binance Chain (Testnet) before connecting.",
         icon: "warning",
         button: "OK",
         dangerMode: true,
@@ -724,7 +724,7 @@ export default function CelebrityProvider({ children }) {
         });
         console.log("This is Chain ID: ", chainid);
         setChain(chainid);
-        if (chainid === "0x38" || chainid === "0x61") {
+        if (chainid === "0x61") {
           const accounts = await provider.request({
             method: "eth_requestAccounts",
           });
@@ -760,7 +760,7 @@ export default function CelebrityProvider({ children }) {
           console.log("Please Switch to Binance Chain");
           swal({
             title: "Attention",
-            text: "Please change to Binance Chain before connecting.",
+            text: "Please change to Binance Chain (Testnet) before connecting.",
             icon: "warning",
             button: "OK",
             dangerMode: true,

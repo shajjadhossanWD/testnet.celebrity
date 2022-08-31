@@ -27,23 +27,25 @@ const MintDetails = () => {
   }
 
 
+
+
   return (
     <div className='mintDetails'>
       <div className="container pb-3 pt-2 text-white">
-        <h3 className='mb-3 ms-2 ms-md-0'>Minted</h3>
+        <h3 className='mb-3 ms-2 ms-md-0'>Information of Minted NFT</h3>
         <div className=' px-4'>
           <div className="mb-2">
             <label htmlFor='referralID'>Contract Address</label>
             <div className='d-flex'>
               <input type="text" id='referralID' value={address} name="referralID" className='form-control bg-transparent text-white' disabled />
-              <button type="button" onClick={() => copyToClipboard("etc")} className="border"><i className="fa-regular fa-copy"></i></button>
+              <button type="button" onClick={() => copyToClipboard("Contract Address:"+ " " + address)} className="border"><i className="fa-regular fa-copy"></i></button>
             </div>
           </div>
           <div className="mb-2">
             <label htmlFor='referralID'>Token ID</label>
             <div className="d-flex">
               <input type="text" id='referralID' name="referralID" defaultValue={id} className='form-control bg-transparent text-white' disabled />
-              <button type="button" onClick={() => copyToClipboard(id)} className="border"><i className="fa-regular fa-copy"></i></button>
+              <button type="button" onClick={() => copyToClipboard("Token ID:"+ " " + id)} className="border"><i className="fa-regular fa-copy"></i></button>
             </div>
           </div>
           <div className="mb-2">
@@ -54,7 +56,7 @@ const MintDetails = () => {
           </div>
           <div className="d-flex justify-content-center mt-3 mb-3">
             {/* <button type="button" onClick={() => copyToClipboard(id)} className="border">Copy All</button> */}
-            <button type="button" onClick={() => copyAllToClipboard("Token_ID:"+ " " +id, + " "  + " Contract_Address:"+ " " + address, + " " + " Timestamp:" + " " + newDate )} className="border button-18">COPY ALL<i className="fa-regular fa-copy text-light ps-1"></i></button>
+            <button type="button" onClick={() => copyToClipboard("Contract Address:"+ " " + address + " " + " " + " Token ID:"+ " " + id )}  className="border button-18">COPY ALL<i className="fa-regular fa-copy text-light ps-1"></i></button>
           </div>
         </div>
       </div>
