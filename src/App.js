@@ -81,9 +81,9 @@ function App() {
 
           <Route path="/login" element={<Login></Login>} />
           <Route path="/forgetpassword" element={<Forgetpassword></Forgetpassword>} />
-          <Route path="/otp/:token" element={<Otp expiryTimestamp={time}></Otp>} />
+          <Route path="/otp" element={<Otp expiryTimestamp={time}></Otp>} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
-
+          {/* /:token */}
           <Route path="*" element={<NotFound></NotFound>} />
         </Routes>
       </div>

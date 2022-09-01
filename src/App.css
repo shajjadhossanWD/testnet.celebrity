@@ -206,7 +206,8 @@
   margin-bottom: 0rem;
 
 }
-.NftDetailsDiv{
+
+.NftDetailsDiv {
   margin-top: 35px;
 }
 
@@ -495,101 +496,103 @@ p.text-light.mb-0 {
 }
 
 
-@media only screen and (max-width: 900px) and (min-width: 700px) {
-  .line-one {
-    width: 413px;
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @media only screen and (max-width: 900px) and (min-width: 700px) {
+    .line-one {
+      width: 413px;
+    }
+
+    .forRespoMarginReduce {
+      margin-left: 30px !important;
+      margin-right: 50px !important;
+    }
   }
 
-  .forRespoMarginReduce {
-    margin-left: 30px !important;
-    margin-right: 50px !important;
-  }
-}
+  @media only screen and (max-width: 767px) {
+    .meal_details_type_title {
+      margin-left: 0px !important;
+      margin-bottom: -28px !important;
+      font-size: 30px !important;
+    }
 
-@media only screen and (max-width: 767px) {
-  .meal_details_type_title {
-    margin-left: 0px !important;
-    margin-bottom: -28px !important;
-    font-size: 30px !important;
-  }
+    .forRespoMarginReduce {
+      margin-left: 30px !important;
+      margin-right: 50px !important;
+    }
 
-  .forRespoMarginReduce {
-    margin-left: 30px !important;
-    margin-right: 50px !important;
-  }
+    .paymentOptionsChoose {
+      margin-top: 36px !important;
+      margin-bottom: -25px !important;
+      font-size: 18px;
+    }
 
-  .paymentOptionsChoose {
-    margin-top: 36px !important;
-    margin-bottom: -25px !important;
-    font-size: 18px;
-  }
-
-  .forRespoMarginReduce {
-    margin-left: 30px !important;
-    margin-right: 50px !important;
-  }
-}
-
-@media only screen and (max-width: 650px) {
-  .extraCare {
-    margin-top: 15px;
+    .forRespoMarginReduce {
+      margin-left: 30px !important;
+      margin-right: 50px !important;
+    }
   }
 
-  .forRespoMarginReduce {
-    margin-left: 0px !important;
-    margin-right: 30px !important;
-  }
-}
+  @media only screen and (max-width: 650px) {
+    .extraCare {
+      margin-top: 15px;
+    }
 
-@media only screen and (max-width: 540px) {
-  .meal_details_type_title {
-    margin-left: 0px !important;
-    margin-bottom: -28px !important;
-    font-size: 21px !important;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .walletModal_icon {
-    margin-left: 12.5% !important;
+    .forRespoMarginReduce {
+      margin-left: 0px !important;
+      margin-right: 30px !important;
+    }
   }
 
-  .modal-btn {
-    width: 88px !important;
-    font-size: 9px !important;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .line-one {
-    width: auto;
-    letter-spacing: 5px !important;
+  @media only screen and (max-width: 540px) {
+    .meal_details_type_title {
+      margin-left: 0px !important;
+      margin-bottom: -28px !important;
+      font-size: 21px !important;
+    }
   }
 
-  .handleImgforRespons {
-    margin-left: 50px !important;
-    margin-top: 20px !important;
-    width: 70% !important;
+  @media only screen and (max-width: 480px) {
+    .walletModal_icon {
+      margin-left: 12.5% !important;
+    }
+
+    .modal-btn {
+      width: 88px !important;
+      font-size: 9px !important;
+    }
   }
 
-  .img-fluids {
-    width: 20% !important;
+  @media only screen and (max-width: 425px) {
+    .line-one {
+      width: auto;
+      letter-spacing: 5px !important;
+    }
+
+    .handleImgforRespons {
+      margin-left: 50px !important;
+      margin-top: 20px !important;
+      width: 70% !important;
+    }
+
+    .img-fluids {
+      width: 20% !important;
+    }
+
+    .font-resize {
+      line-height: 50px !important;
+    }
+
+
+    .font-resize {
+      font-size: 40px;
+    }
   }
 
-  .font-resize {
-    line-height: 50px !important;
-  }
-
-
-  .font-resize {
-    font-size: 40px;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .meal_details_type_title {
-    margin-left: 0px !important;
-    margin-bottom: -28px !important;
-    font-size: 16px !important;
+  @media only screen and (max-width: 400px) {
+    .meal_details_type_title {
+      margin-left: 0px !important;
+      margin-bottom: -28px !important;
+      font-size: 16px !important;
+    }
   }
 }

@@ -507,7 +507,7 @@ function MealDetails() {
               <span className="text-primary fontArial fontExtand">Choose how you want to pay:</span>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
               <div className="priceDropdown">
-                <select className='form-control mb-3 mt-1 w-50' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%", backgroundColor: "white", color: "black" }}>
+                <select className='form-control mb-3 mt-1 w-75' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "100%", backgroundColor: "white", color: "black" }}>
                   <option value="bnb">BNB</option>
                   <option value="usdsc">USDSC</option>
                   <option value="dsl">DSL</option>
@@ -518,6 +518,9 @@ function MealDetails() {
 
               <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount ">30% discount if paid with DSL tokens</span>)
+              </Typography>
+              <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
+                <span className="spanDiscount ">Enjoy 10% if you have affiliate code.</span>
               </Typography>
 
             </Box>

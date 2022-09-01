@@ -195,7 +195,7 @@ export default function CelebrityProvider({ children }) {
           console.log(MintNFTContract);
           const provider = new ethers.providers.Web3Provider(ethereum);
           const parsedAmount = ethers.utils.parseEther(mintPrice);
-          const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
+          const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
           const payment = await MintNFTContract.charge(admin, {
             value: parsedAmount._hex,
           });
@@ -250,7 +250,7 @@ export default function CelebrityProvider({ children }) {
         console.log(USDSCTokenContract);
         const provider = new ethers.providers.Web3Provider(ethereum);
         const parsedAmount = ethers.utils.parseEther(mintPrice);
-        const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
+        const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
         const gasLimit = await USDSCTokenContract.estimateGas.transfer(
           admin,
           parsedAmount._hex
@@ -331,7 +331,7 @@ export default function CelebrityProvider({ children }) {
         const USDSCTokenContract = getDSLtokenContractTestnet();
         const provider = new ethers.providers.Web3Provider(ethereum);
         const parsedAmount = ethers.utils.parseEther(mintPrice);
-        const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
+        const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
         const gasLimit = await USDSCTokenContract.estimateGas.transfer(
           admin,
           parsedAmount._hex
@@ -415,7 +415,7 @@ export default function CelebrityProvider({ children }) {
           const price = (price1.data.data.price * mintprice).toString();
           console.log(price);
           const parsedAmount = ethers.utils.parseEther(price);
-          const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
+          const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
           const gasLimit = await S39TokenContract.estimateGas.transfer(
             admin,
             parsedAmount._hex
@@ -482,7 +482,7 @@ export default function CelebrityProvider({ children }) {
           const price = (price1.data.data.price * mintprice).toString();
           console.log(price);
           const parsedAmount = ethers.utils.parseEther(price);
-          const admin = "0xd7b3De408C49DC693aA44193fB44240F1bFe1772";
+          const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
           const gasLimit = await QuestTokenContract.estimateGas.transfer(
             admin,
             parsedAmount._hex

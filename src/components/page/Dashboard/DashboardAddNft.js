@@ -14,10 +14,11 @@ import swal from 'sweetalert';
 import { MdClose } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { TimePicker } from 'antd';
+import { Leaderboard } from '@mui/icons-material';
 
 const DashboardAddNft = () => {
     const [saveAsDraft, setSaveAsDraft] = useState(false);
-    const [img, setImg] = useState(false);
+    const [img, setImg] = useState(null);
     const [event, setEvent] = useState();
     const [startTimeInput, setStartTimeInput] = useState('');
     const [endTimeInput, setEndTimeInput] = useState('');
@@ -134,15 +135,27 @@ const DashboardAddNft = () => {
 
     };
 
+    const imageChange = (e) => {
+        const selected = e.target.files[0];
+
+        if (selected) {
+            let reader = new FileReader();
+            reader.onload = () => {
+
+                setImg(reader?.result)
+
+            }
+            reader.readAsDataURL(selected);
+        }
+    }
+
+
     const loadFile = (event) => {
-
+        setImg(event.target.files[0]);
         let output = document.getElementById('output');
-        output.src = "https://media.istockphoto.com/photos/organic-food-waste-picture-id1147291275?k=20&m=1147291275&s=612x612&w=0&h=SLVvm3m2dHXDbxDFGJokAtWKkc0KwFmXrbhjx4_rKIs="
         output.src = URL.createObjectURL(event.target.files[0]);
-
         output.onload = function () {
-
-            URL.revokeObjectURL(output.src)
+            URL.revokeObjectURL(output.src) // free memory
         }
     };
 
@@ -155,7 +168,7 @@ const DashboardAddNft = () => {
     return (
         <div>
             <div style={{ backgroundColor: "#272d47", color: 'white' }} className='mx-auto forRespoMarginReduce'>
-                <h4 className='py-3 ps-3 container'>Add NFT</h4>
+                <h4 className='py-3 ps-3 container'>Add NFTs</h4>
                 <div className='container pb-5 pt-0'>
                     <form onSubmit={onSubForm}>
 
@@ -170,10 +183,17 @@ const DashboardAddNft = () => {
                                 <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
                             </Form.Select>
                         </InputGroup>
-                        <div className="imageDivNft">
-                            {/* <img id="output" alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' /> */}
-                            <img src='https://media.istockphoto.com/photos/organic-food-waste-picture-id1147291275?k=20&m=1147291275&s=612x612&w=0&h=SLVvm3m2dHXDbxDFGJokAtWKkc0KwFmXrbhjx4_rKIs=' alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' />
-                        </div>
+                        {!img &&
+                            <div className="imageDivNft">
+
+                                <img src='https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg' width={200} height={200} className='d-flex justify-content-center' alt="" />
+                            </div>}
+                        {
+                            img &&
+                            <div className="imageDivNft">
+                                <img id="output" width={200} height={200} className='d-flex justify-content-center' alt="" />
+                            </div>
+                        }
                         <label className='mb-1'>Image of NFT</label>
                         <input
                             onChange={loadFile}
@@ -196,6 +216,10 @@ const DashboardAddNft = () => {
                         <label className='mb-1'>Price of NFT(SGD)</label>
                         <input
                             type="number"
+                            min="0"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+
                             name="price"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
@@ -208,7 +232,7 @@ const DashboardAddNft = () => {
                             min="0"
                             inputmode="numeric"
                             pattern="[0-9]*"
-                            title="Non-negative integral number"
+
                             name="availableNfts"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}

@@ -5,11 +5,13 @@
     /* font-size: large; */
     /* background-color: rgba(0, 0, 0, 0.87); */
 }
-.imageDivNft{
+
+.imageDivNft {
     width: 200px;
     height: 200px;
     border: 1px solid white;
 }
+
 .navIssue {
     background-color: #272D47;
     margin-bottom: 50px;
@@ -48,6 +50,10 @@
 .nav_start {
     display: flex !important;
     align-items: flex-start !important;
+}
+
+.logoAdmins {
+    margin-left: -135px;
 }
 
 .handleNavbarSecond {

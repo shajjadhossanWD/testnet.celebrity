@@ -89,13 +89,13 @@ const Profile = () => {
 
                 </div>
               </div>
+
+
               <div className="mb-2 social-div">
                 <div>
                   <label className=''>Share Affiliate Link</label>
                   <div className='d-flex gap-2 mt-1'>
-                    {/* <FacebookShareButton url={window.location.origin + "/dapps/" + user?.myReferralCode} quote={`Get USDSC now! You can swap to BUSD anytime. When the stability increases, you can get 1.05 times in terms of BUSD. Use my referral code to get 50% discount in service charges. My Referral Code is ${user?.myReferralCode}`}>
-                                        <FacebookIcon size={40} round={true} />
-                                    </FacebookShareButton> */}
+
                     <TwitterShareButton url={window.location.origin + "/" + user?.myReferralCode} title={``}>
                       <TwitterIcon size={40} round={true} />
                     </TwitterShareButton>
@@ -107,8 +107,11 @@ const Profile = () => {
                     </WhatsappShareButton>
 
                   </div>
+
                 </div>
               </div>
+              <p className='text-center'>Share your affiliate code to earn 10% of our sales which comes from you. Your friend enjoy another 10% too.</p>
+
 
             </div>
             <div className='col-6 text-center'>

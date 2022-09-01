@@ -108,20 +108,20 @@ const DashboardNfts = () => {
       <div className="handleHeightNFTS">
         {/* <p className="ms-2 mb-3 d-inline">NdFTS</p> */}
         {/* /dashboard/addnfts */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', marginRight: '40px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', marginLeft: '-36px' }}>
           <Link to={"/dashboard/addnfts"}><Button
             variant="primary"
-            className="border-0 text-uppercase"
+            className="border-0 text-uppercase button_width w-100"
             style={{ backgroundColor: "blueviolet" }}
           >
             New NFT
           </Button></Link>
         </div>
 
-        <div className='mb-3 ps-1'>
+        <div className='mb-3 nftButtonDiv'>
           <Button
             variant="primary"
-            className={`ms-2 border-0 text-uppercase ${(selectedTab === "nft") ? "bg-danger" : "bg-success"}`}
+            className={` border-0 text-uppercase ${(selectedTab === "nft") ? "bg-danger" : "bg-success"} button_width`}
             style={{ backgroundColor: "blueviolet" }}
             onClick={() => setSelectedTab("nft")}
           >
@@ -130,7 +130,7 @@ const DashboardNfts = () => {
 
           <Button
             variant="primary"
-            className={`ms-2 border-0 text-uppercase ${(selectedTab === "expired") ? "bg-danger" : "bg-success"}`}
+            className={`ms-2 border-0 text-uppercase ${(selectedTab === "expired") ? "bg-danger" : "bg-success"} button_width`}
             style={{ backgroundColor: "blueviolet" }}
             onClick={() => setSelectedTab("expired")}
           >
@@ -138,7 +138,7 @@ const DashboardNfts = () => {
           </Button>
           <Button
             variant="primary"
-            className={`ms-2 border-0 text-uppercase ${(selectedTab === "draft") ? "bg-danger" : "bg-success"}`}
+            className={`ms-2 border-0 text-uppercase ${(selectedTab === "draft") ? "bg-danger" : "bg-success"} button_width`}
             style={{ backgroundColor: "blueviolet" }}
             onClick={() => setSelectedTab("draft")}
           >
@@ -168,9 +168,9 @@ const DashboardNfts = () => {
                     <Table bordered responsive className="border-0 text-light">
                       <thead>
                         <tr>
-                          <th>NFT</th>
-                          <th>Name</th>
-                          <th>Price</th>
+                          <th>NFT Image</th>
+                          <th>NFT Name</th>
+                          <th>Price(SGD)</th>
                           <th className="handleForDnoneinRespo">Type</th>
                           <th className="handleForDnoneinRespo">NFT Created</th>
                           <th>Action</th>
@@ -208,6 +208,7 @@ const DashboardNfts = () => {
                         ))}
                       </tbody>
                     </Table>
+                    <h6 className='text-center text-danger'>No of NFTs: {nfts.length ? nfts.length : "0"}</h6>
                   </div>
                 </>
               }
