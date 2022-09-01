@@ -111,7 +111,7 @@ const DashboardNfts = () => {
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', marginLeft: '-36px' }}>
           <Link to={"/dashboard/addnfts"}><Button
             variant="primary"
-            className="border-0 text-uppercase button_width"
+            className="border-0 text-uppercase button_width w-100"
             style={{ backgroundColor: "blueviolet" }}
           >
             New NFT
@@ -208,7 +208,7 @@ const DashboardNfts = () => {
                         ))}
                       </tbody>
                     </Table>
-                    <h6 className='text-center text-danger'>No of NFTs: {nfts.length? nfts.length : "0"}</h6>
+                    <h6 className='text-center text-danger'>No of NFTs: {nfts.length ? nfts.length : "0"}</h6>
                   </div>
                 </>
               }

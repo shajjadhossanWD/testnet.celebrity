@@ -3485,10 +3485,10 @@
   "resolved" "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz"
   "version" "5.2.0"
 
-"antd@^4.22.7":
-  "integrity" "sha512-CMf5tYHtlhP1blYjwNTRsB7G/bocwKmIFHgYYk4pZNgo1kk/XnPPI2/MKRCXWc54wuCQQlnmL/2AKtE7HWaE8g=="
-  "resolved" "https://registry.npmjs.org/antd/-/antd-4.22.7.tgz"
-  "version" "4.22.7"
+"antd@^4.22.8":
+  "integrity" "sha512-mqHuCg9itZX+z6wk+mvRBcfz/U9iiIXS4LoNkyo8X/UBgdN8CoetFmrdvA1UQy1BuWa0/n62LiS1LatdvoTuHw=="
+  "resolved" "https://registry.npmjs.org/antd/-/antd-4.22.8.tgz"
+  "version" "4.22.8"
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons" "^4.7.0"
@@ -6320,10 +6320,10 @@
   "resolved" "https://registry.npmjs.org/html-to-draftjs/-/html-to-draftjs-1.5.0.tgz"
   "version" "1.5.0"
 
-"html-to-image@^1.10.4":
-  "integrity" "sha512-nJ9uiWCkD/egDN0F6wzbCfpjc/1ZChutABD3SgnRRwNlZpUhhCFK/dRuVAmyEFgrQFacYW5hyURRLlSdZw8cgQ=="
-  "resolved" "https://registry.npmjs.org/html-to-image/-/html-to-image-1.10.4.tgz"
-  "version" "1.10.4"
+"html-to-image@^1.10.8":
+  "integrity" "sha512-t+JyFJwKDCp4ZwBp4iC/wqw0meQDDc77Qs8OFl5P7RGlIP3LQMvwpD7VXxqQfC7/TfC+GKYlFP6WDYfXTmXHfw=="
+  "resolved" "https://registry.npmjs.org/html-to-image/-/html-to-image-1.10.8.tgz"
+  "version" "1.10.8"
 
 "html-webpack-plugin@^5.5.0":
   "integrity" "sha512-sy88PC2cRTVxvETRgUHFrL4No3UxvcH8G1NepGhqaTT+GXN2kTamqasot0inS5hXeg1cMbFDt27zzo9p35lZVw=="
@@ -7652,10 +7652,10 @@
     "proc-log" "^2.0.0"
     "semver" "^7.3.7"
 
-"libphonenumber-js@^1.10.12":
-  "integrity" "sha512-xTFBs3ipFQNmjCUkDj6ZzRJvs97IyazFHBKWtrQrLiYs0Zk0GANob1hkMRlQUQXbJrpQGwnI+/yU4oyD4ohvpw=="
-  "resolved" "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.10.12.tgz"
-  "version" "1.10.12"
+"libphonenumber-js@^1.10.13":
+  "integrity" "sha512-b74iyWmwb4GprAUPjPkJ11GTC7KX4Pd3onpJfKxYyY8y9Rbb4ERY47LvCMEDM09WD3thiLDMXtkfDK/AX+zT7Q=="
+  "resolved" "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.10.13.tgz"
+  "version" "1.10.13"
 
 "lilconfig@^2.0.3", "lilconfig@^2.0.5", "lilconfig@^2.0.6":
   "integrity" "sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg=="
@@ -9934,15 +9934,15 @@
     "react" "16.14.0"
     "react-dom" "16.14.0"
 
-"react-phone-number-input@^3.2.5":
-  "integrity" "sha512-1pX/gd6Dtlngy9OhY91ZpcYgr3OCVe9TCr7M520tg7R9x7JMS58MuOVleCbB9J/hsBPCRT4NKkxtQzpagqngQQ=="
-  "resolved" "https://registry.npmjs.org/react-phone-number-input/-/react-phone-number-input-3.2.7.tgz"
-  "version" "3.2.7"
+"react-phone-number-input@^3.2.11":
+  "integrity" "sha512-fcY6KHCqG9qDzlUhuCj0QdP1/THW6lUu9UwuOEfFQU/eRhPasv52DzBINRRrhVPJ/N2qsbSShKBt3WX0Igu3Lw=="
+  "resolved" "https://registry.npmjs.org/react-phone-number-input/-/react-phone-number-input-3.2.11.tgz"
+  "version" "3.2.11"
   dependencies:
     "classnames" "^2.3.1"
     "country-flag-icons" "^1.5.4"
     "input-format" "^0.3.8"
-    "libphonenumber-js" "^1.10.12"
+    "libphonenumber-js" "^1.10.13"
     "prop-types" "^15.8.1"
 
 "react-refresh@^0.11.0":

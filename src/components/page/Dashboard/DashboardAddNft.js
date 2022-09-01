@@ -14,9 +14,11 @@ import swal from 'sweetalert';
 import { MdClose } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { TimePicker } from 'antd';
+import { Leaderboard } from '@mui/icons-material';
 
 const DashboardAddNft = () => {
-    const [saveAsDraft, setSaveAsDraft] = useState();
+    const [saveAsDraft, setSaveAsDraft] = useState(false);
+    const [img, setImg] = useState(null);
     const [event, setEvent] = useState();
     const [startTimeInput, setStartTimeInput] = useState('');
     const [endTimeInput, setEndTimeInput] = useState('');
@@ -99,13 +101,24 @@ const DashboardAddNft = () => {
             .then(res => {
                 if (res.status === 200) {
                     // alert(res.data.message);
-                    swal({
-                        title: "Success",
-                        text: `${res.data.message}`,
-                        icon: "success",
-                        button: "OK!",
-                        className: "modal_class_success",
-                    });
+                    if (saveAsDraft) {
+                        swal({
+                            title: "Success",
+                            text: `NFT successfully saved in draft.`,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
+
+                    } else {
+                        swal({
+                            title: "Success",
+                            text: `${res.data.message}`,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
+                    }
                 }
                 navigate(-1);
             })
@@ -122,7 +135,23 @@ const DashboardAddNft = () => {
 
     };
 
+    const imageChange = (e) => {
+        const selected = e.target.files[0];
+
+        if (selected) {
+            let reader = new FileReader();
+            reader.onload = () => {
+
+                setImg(reader?.result)
+
+            }
+            reader.readAsDataURL(selected);
+        }
+    }
+
+
     const loadFile = (event) => {
+        setImg(event.target.files[0]);
         let output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
         output.onload = function () {
@@ -139,7 +168,7 @@ const DashboardAddNft = () => {
     return (
         <div>
             <div style={{ backgroundColor: "#272d47", color: 'white' }} className='mx-auto forRespoMarginReduce'>
-                <h4 className='py-3 ps-3 container'>Add NFT</h4>
+                <h4 className='py-3 ps-3 container'>Add NFTs</h4>
                 <div className='container pb-5 pt-0'>
                     <form onSubmit={onSubForm}>
 
@@ -154,9 +183,17 @@ const DashboardAddNft = () => {
                                 <option value="Celebrity Souvenir NFTs">Celebrity Souvenir NFTs</option>
                             </Form.Select>
                         </InputGroup>
-                        <div className="imageDivNft">
-                            <img id="output" alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' />
-                        </div>
+                        {!img &&
+                            <div className="imageDivNft">
+
+                                <img src='https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg' width={200} height={200} className='d-flex justify-content-center' alt="" />
+                            </div>}
+                        {
+                            img &&
+                            <div className="imageDivNft">
+                                <img id="output" width={200} height={200} className='d-flex justify-content-center' alt="" />
+                            </div>
+                        }
                         <label className='mb-1'>Image of NFT</label>
                         <input
                             onChange={loadFile}
@@ -179,6 +216,10 @@ const DashboardAddNft = () => {
                         <label className='mb-1'>Price of NFT(SGD)</label>
                         <input
                             type="number"
+                            min="0"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+
                             name="price"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
@@ -188,11 +229,17 @@ const DashboardAddNft = () => {
                         <label className='mb-1'>Available NFTs</label>
                         <input
                             type="number"
+                            min="0"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+
                             name="availableNfts"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
                         />
+
+
 
                         <label className='mb-2'>NFT Details</label>
                         {/* <textarea
