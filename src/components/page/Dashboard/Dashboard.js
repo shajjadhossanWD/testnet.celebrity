@@ -143,6 +143,7 @@ const Dashboard = () => {
                           <img
                             src="https://alpha.physicalnft.org/assets/frontend/images/png.png"
                             style={{ width: "50px", marginLeft: "-135px" }}
+                            className="logoAdmins"
                             alt="logo"
                           />
                         </Nav.Link>
