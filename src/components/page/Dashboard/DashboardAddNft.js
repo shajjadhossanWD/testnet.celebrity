@@ -16,7 +16,8 @@ import { useNavigate } from 'react-router-dom';
 import { TimePicker } from 'antd';
 
 const DashboardAddNft = () => {
-    const [saveAsDraft, setSaveAsDraft] = useState();
+    const [saveAsDraft, setSaveAsDraft] = useState(false);
+    const [img, setImg] = useState(false);
     const [event, setEvent] = useState();
     const [startTimeInput, setStartTimeInput] = useState('');
     const [endTimeInput, setEndTimeInput] = useState('');
@@ -99,13 +100,24 @@ const DashboardAddNft = () => {
             .then(res => {
                 if (res.status === 200) {
                     // alert(res.data.message);
-                    swal({
-                        title: "Success",
-                        text: `${res.data.message}`,
-                        icon: "success",
-                        button: "OK!",
-                        className: "modal_class_success",
-                    });
+                    if (saveAsDraft) {
+                        swal({
+                            title: "Success",
+                            text: `NFT successfully saved in draft.`,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
+
+                    } else {
+                        swal({
+                            title: "Success",
+                            text: `${res.data.message}`,
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
+                    }
                 }
                 navigate(-1);
             })
@@ -124,7 +136,9 @@ const DashboardAddNft = () => {
 
     const loadFile = (event) => {
         let output = document.getElementById('output');
+
         output.src = URL.createObjectURL(event.target.files[0]);
+
         output.onload = function () {
             URL.revokeObjectURL(output.src) // free memory
         }
@@ -155,7 +169,7 @@ const DashboardAddNft = () => {
                             </Form.Select>
                         </InputGroup>
                         <div className="imageDivNft">
-                          <img id="output" alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' />
+                            <img id="output" alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' />
                         </div>
                         <label className='mb-1'>Image of NFT</label>
                         <input
