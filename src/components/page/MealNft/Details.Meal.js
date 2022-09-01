@@ -11,9 +11,7 @@ import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
-import DateCountdown from "react-date-countdown-timer";
 import Barcode from '../../../Images/Barcode.jpeg';
-import Countdown from 'react-countdown';
 
 function MealDetails() {
   const { mealnId } = useParams();

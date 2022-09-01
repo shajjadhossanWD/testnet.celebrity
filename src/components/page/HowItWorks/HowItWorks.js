@@ -28,36 +28,6 @@ function HowItWorks() {
               It comes with a digital art of the celebrity, meal with the celebrity, a memorabilia of the celebrity and a selfie session with the celebrity.
             </Typography>
 
-            {/* <Typography className="titelColor" variant="h5" gutterBottom component="div">
-              Celebrity Souvenir NFT
-            </Typography>
-            <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
-              What is it?
-            </Typography>
-            <Typography className="pt-1" variant="subtitle2" component="div">
-              1. NFT in BSC network
-            </Typography>
-            <Typography className="pt-1" variant="subtitle2" component="div">
-              2. Digital Artwork of the Celebrity
-            </Typography>
-            <Typography className="pt-1" variant="subtitle2" component="div">
-              3. A Real Product used by the Celebrity
-            </Typography>
-            <Typography className="pt-1" variant="subtitle2" component="div">
-              4. A digital certificate of the Souvenir
-            </Typography>
-            <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
-              Benefits for Buyer:
-            </Typography>
-            <Typography className="pt-1" variant="subtitle2" component="div">
-              1. A shoutout in social media
-            </Typography>
-            <Typography className="pt-1" variant="subtitle2" component="div">
-              2. Display in their showcase
-            </Typography>
-            <Typography className="pt-1" variant="subtitle2" component="div">
-              3. Use it and Feel like the Celebrity
-            </Typography> */}
           </div>
           <div className="text-white mt-3 p-2">
             <Typography className="titelColor" variant="h5" gutterBottom component="div">
@@ -86,7 +56,7 @@ function HowItWorks() {
               5. Selfie Session with the Celebrity
             </Typography>
             <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
-              What buy?
+              Why buy?
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
               1. Opportunity to meet your Celebrity
@@ -101,7 +71,10 @@ function HowItWorks() {
               4. Selfie with your Celebrity
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              5. Sell your Celebrity NFT in BSC marketplaces (Digital Art and Memorabilia of the Celebrity)
+              5. Keep the Celebrity Memorabilia
+            </Typography>
+            <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
+              6. Sell your Celebrity NFT for profit in BSC marketplaces (Digital Art)
             </Typography>
           </div>
           <div className='d-flex pt-2 pb-3' style={{ justifyContent: 'center' }}>

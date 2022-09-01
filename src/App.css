@@ -130,8 +130,8 @@
 .swal-content {
   padding: 0 20px;
   margin-top: 9px;
-  font-size: 14px;
-  overflow-wrap: break-word;
+  font-size: 13px;
+  overflow-wrap: break-word !important;
   color: white;
 }
 

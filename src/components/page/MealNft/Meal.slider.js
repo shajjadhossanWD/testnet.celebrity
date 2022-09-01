@@ -77,13 +77,13 @@ const MealSlider = ({ pull_meal }) => {
           });
       } else {
         // 2nd step
-        axios.get("https://backend.celebrity.sg/api/like/getLikes")
-          .then(res => {
-            setPostIdDetails(res.data.likes);
-          })
+        // axios.get("https://backend.celebrity.sg/api/like/getLikes")
+        //   .then(res => {
+        //     setPostIdDetails(res.data.likes);
+        //   })
 
         // 3rd step
-        const howManyLikes = postIdDetails.filter(i => i?.likedMealId === id);
+        const howManyLikes = nftsPro.filter(i => i?.likedMealId === id);
         const totalLikes = howManyLikes?.length;
         console.log(totalLikes);
         const likesLenStr = JSON.stringify(totalLikes);
@@ -262,6 +262,7 @@ const MealSlider = ({ pull_meal }) => {
           <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
             Stay Tuned!
           </Typography>}
+          <p className="text-center"><Link className="viewall" to="/mealnft">View All</Link></p>
       </div>
     </div>
   );
