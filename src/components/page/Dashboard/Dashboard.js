@@ -69,7 +69,7 @@ const Dashboard = () => {
                     className="text-light mb-3 text-start"
                     as={CustomLink}
                     to="/dashboard"
-                    style={{width: '190px'}}
+                    style={{ width: '190px' }}
                   >
                     <span className="pe-3 ps-3 fs-4">
                       <TiGroup></TiGroup>
@@ -81,7 +81,7 @@ const Dashboard = () => {
                     className="text-light mb-3 text-start"
                     as={CustomLink}
                     to="/dashboard/admin"
-                    style={{width: '190px'}}
+                    style={{ width: '190px' }}
                   >
                     <span className="pe-3 ps-3 fs-4">
                       <TiGroup></TiGroup>
@@ -93,14 +93,14 @@ const Dashboard = () => {
                     className="pe-4 text-light ps-4 text-start"
                     as={CustomLink}
                     to="/dashboard/nfts"
-                    style={{width: '190px'}}
+                    style={{ width: '190px' }}
                   >
                     <span className="pe-3 fs-4">
                       <HiCheckCircle></HiCheckCircle>
                     </span>{" "}
                     <span>NFTS</span>
                   </Nav.Link>
-                  <div style={{width: '120px', marginLeft: '-1rem'}}>
+                  <div style={{ width: '120px', marginLeft: '-1rem' }}>
                     <Button variant="danger" className='text-uppercase w-100 pt-2 pb-2 mt-4' size="sm" onClick={() => handleLogout()}>Log Out</Button>
                   </div>
                 </Nav>
@@ -142,7 +142,7 @@ const Dashboard = () => {
                         >
                           <img
                             src="https://alpha.physicalnft.org/assets/frontend/images/png.png"
-                            style={{ width: "50px", marginLeft: "-135px" }}
+                            style={{ width: "50px", marginLeft: "-145px" }}
                             alt="logo"
                           />
                         </Nav.Link>
@@ -186,7 +186,7 @@ const Dashboard = () => {
                         to="/dashboard/nfts"
                         href="#nfts"
                         onClick={handleClose}
-                        style={{width: '168px'}}
+                        style={{ width: '168px' }}
                       >
                         <span className="me-2 fs-4">
                           <HiCheckCircle></HiCheckCircle>

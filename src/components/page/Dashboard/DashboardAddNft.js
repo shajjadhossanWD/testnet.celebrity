@@ -136,9 +136,7 @@ const DashboardAddNft = () => {
 
     const loadFile = (event) => {
         let output = document.getElementById('output');
-
         output.src = URL.createObjectURL(event.target.files[0]);
-
         output.onload = function () {
             URL.revokeObjectURL(output.src) // free memory
         }
@@ -169,7 +167,8 @@ const DashboardAddNft = () => {
                             </Form.Select>
                         </InputGroup>
                         <div className="imageDivNft">
-                            <img id="output" alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' />
+                            {/* <img id="output" alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' /> */}
+                            <img src='https://media.istockphoto.com/photos/organic-food-waste-picture-id1147291275?k=20&m=1147291275&s=612x612&w=0&h=SLVvm3m2dHXDbxDFGJokAtWKkc0KwFmXrbhjx4_rKIs=' alt='Celebrity Meal NFT' width={200} height={200} className='d-flex justify-content-center' />
                         </div>
                         <label className='mb-1'>Image of NFT</label>
                         <input
@@ -202,11 +201,17 @@ const DashboardAddNft = () => {
                         <label className='mb-1'>Available NFTs</label>
                         <input
                             type="number"
+                            min="0"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+                            title="Non-negative integral number"
                             name="availableNfts"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
                         />
+
+
 
                         <label className='mb-2'>NFT Details</label>
                         {/* <textarea
