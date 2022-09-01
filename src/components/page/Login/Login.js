@@ -11,14 +11,19 @@ import './Login.css';
 const Login = () => {
     const [visiblePassword, setVisiblePassword] = useState(false);
     const admincontext = useContext(AdminContext);
-    const { admin } = admincontext;
+    const { admin, token, isAuthenticating, login  } = admincontext;
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (admin?._id) {
-            navigate("/dashboard");
+        if (isAuthenticating) {
+            navigate(`/otp`, { replace: true });
         }
-    }, [admin]);
+        if (admin?._id) {
+            navigate('/dashboard', { replace: true });
+        }
+    }, [admin, navigate, isAuthenticating])
+
+
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -26,24 +31,26 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        axios.post("https://backend.celebrity.sg/api/v1/admin/login", {
-            email, password
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    navigate(`/otp/${res.data.token}`)
-                }
-            })
-            .catch(err => {
-                // alert(err.response?.data?.message);
-                swal({
-                    title: "Attention",
-                    text: `${err.response?.data?.message}`,
-                    icon: "warning",
-                    button: "OK!",
-                    className: "modal_class_success",
-                });
-            })
+        login(email, password);
+
+        // axios.post("https://backend.celebrity.sg/api/v1/admin/login", {
+        //     email, password
+        // })
+        //     .then(res => {
+        //         if (res.status === 200) {
+        //             navigate(`/otp/${res.data.token}`)
+        //         }
+        //     })
+        //     .catch(err => {
+        //         // alert(err.response?.data?.message);
+        //         swal({
+        //             title: "Attention",
+        //             text: `${err.response?.data?.message}`,
+        //             icon: "warning",
+        //             button: "OK!",
+        //             className: "modal_class_success",
+        //         });
+        //     })
     }
 
     return (

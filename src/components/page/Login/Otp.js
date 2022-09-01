@@ -24,18 +24,24 @@ const Otp = ({ expiryTimestamp }) => {
         resume,
         restart,
     } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
-    const { token } = useParams();
-    const { admin, setAdmin } = useContext(AdminContext);
+    // const { token } = useParams();
+    const { admin, token, verifyOtp, isAuthenticating} = useContext(AdminContext);
     const [forEnable, setForEnable] = useState(false);
     const [againEnable, setAgainEnable] = useState(true);
     const [pasteText, setPasteText] = useState(null);
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     if (admin?._id) {
+    //         navigate("/dashboard");
+    //     }
+    // }, [admin, navigate]);
+
     useEffect(() => {
-        if (admin?._id) {
-            navigate("/dashboard");
+        if (admin && !isAuthenticating) {
+            navigate('/dashboard', { replace: true });
         }
-    }, [admin, navigate]);
+    }, [admin, navigate, isAuthenticating])
 
     useEffect(() => {
         if (token) {
@@ -104,29 +110,32 @@ const Otp = ({ expiryTimestamp }) => {
     const handleOTP = (e) => {
         e.preventDefault();
         const otp = e.target.otp.value;
-        axios.post(`https://backend.celebrity.sg/api/v1/admin/verify-otp/`, {
-            otp
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    localStorage.setItem("adminCelebrity", res.data.token);
-                    setAdmin(res.data.admin);
-                }
-            })
-            .catch(err => {
-                // alert(err.response.data.message);
-                swal({
-                    title: "Attention",
-                    text: `${err.response?.data?.message}`,
-                    icon: "warning",
-                    button: "OK!",
-                    className: "modal_class_success",
-                });
-            })
+        verifyOtp(otp);
+
+
+        // axios.post(`https://backend.celebrity.sg/api/v1/admin/verify-otp/`, {
+        //     otp
+        // }, {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => {
+        //         if (res.status === 200) {
+        //             localStorage.setItem("adminCelebrity", res.data.token);
+        //             setAdmin(res.data.admin);
+        //         }
+        //     })
+        //     .catch(err => {
+        //         // alert(err.response.data.message);
+        //         swal({
+        //             title: "Attention",
+        //             text: `${err.response?.data?.message}`,
+        //             icon: "warning",
+        //             button: "OK!",
+        //             className: "modal_class_success",
+        //         });
+        //     })
     }
 
     const CustomTooltip = styled(({ className, ...props }) => (
