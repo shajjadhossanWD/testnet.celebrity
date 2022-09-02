@@ -353,6 +353,11 @@ const DashboardAddNft = () => {
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
+<<<<<<< HEAD
+
+                        />
+                        <input type="time" name="appt" id="input-pickuptime" required></input>
+=======
                         /> */}
                         <InputGroup className="mb-3">
 
@@ -364,6 +369,7 @@ const DashboardAddNft = () => {
 
                         </InputGroup>
 
+>>>>>>> 3cb539e520c5c8e98fa4e4ffa974260f6a7e0bd6
 
                         <label className='mb-1'>End Time</label>
                         {/* <input

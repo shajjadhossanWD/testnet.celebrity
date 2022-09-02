@@ -47,6 +47,9 @@ function MealDetails() {
   const [automint, setAutomint] = useState("");
   const [onsubDisable, setOnsubDisable] = useState(false);
   const [gotRefCode, setGotRefCode] = useState(false);
+  const [src, setSrc] = useState('');
+  const [random, setRandom] = useState();
+
   const {
     user,
     setRequestLoading,
@@ -63,6 +66,18 @@ function MealDetails() {
     setEmail(e.target.value);
   }
 
+  // QR code functionality
+  useEffect(() => {
+    const val = Math.floor(10000 + Math.random() * 9000000000000000);
+    setRandom(val);
+  }, [])
+
+  useEffect(() => {
+    QRCode.toDataURL(random?.toString())
+      .then(setSrc);
+  }, [random])
+
+
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
       .then(res => {
@@ -76,6 +91,7 @@ function MealDetails() {
         setDetails(res.data?.nft);
         setDateCount(res.data?.nft?.startDate);
         setTargetCount(res.data?.nft?.purchaseDate);
+
       });
   }, [mealnId])
 
@@ -289,7 +305,63 @@ function MealDetails() {
   const discountReferal = 10 / 100 * isDetails?.price;
   const disRefTwoDec = discountReferal.toFixed(2);
 
-  //minit
+
+  let newDate = new Date();
+  let dd = String(newDate.getDate()).padStart(2, '0');
+  let mm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = newDate.getFullYear();
+  let hh = newDate.getHours();
+  let min = newDate.getMinutes();
+  let ss = newDate.getSeconds();
+  newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
+  const nftId = random?.toString();
+
+
+  const postDataAfterMint = async (e) => {
+    const perkStatus = false;
+
+    const data = {
+      NFTID: nftId,
+      NFTWebsite: "https://celebrity.sg",
+      NFTType: isDetails.type,
+      NFTDetails: isDetails.description,
+      NFTPerks: isDetails.perkNft,
+      NFTPerksStatus: perkStatus,
+      NFTCreated: newDate
+    }
+    console.log(data);
+
+
+    await axios.post('https://backend.dsl.sg/api/v1/nftdetails', data, {
+      // headers: {
+      //   Authorization: `Bearer ${localStorage.getItem("token")}`
+      // }
+    })
+      .then(res => {
+        if (res.status === 200) {
+          // swal({
+          //   text: res.data.message,
+          //   icon: "success",
+          //   button: "OK!",
+          //   className: "modal_class_success",
+          // });
+          console.log("Successfully data passed")
+        }
+      }).catch(err => {
+        // alert(err.response.data.message);
+        swal({
+          title: "Attention",
+          text: err.response.data.message,
+          icon: "warning",
+          button: "OK!",
+          className: "modal_class_success",
+        });
+      })
+      .finally(() => {
+        // setLoading(false);
+      });
+
+  }
 
 
   const mintCelebrityNft = async () => {
@@ -361,7 +433,7 @@ function MealDetails() {
                       console.log("good job")
                     }
                   });
-
+                postDataAfterMint();
               }
             })
             .catch(err => {
@@ -426,6 +498,13 @@ function MealDetails() {
   }
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 876ee5aff936f27c29a9f53b3e6e3d427081b3ae
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
       <div className="d-grid justify_items_center">
@@ -571,6 +650,7 @@ function MealDetails() {
             {/* <div className="mx-auto my-3 text-center">
               <Button variant="danger" className="ps-5 pe-5 text-center" onClick={handleShow}>Auto Mint</Button>
             </div> */}
+
             {/* </Box> */}
           </div>
         </Container>
