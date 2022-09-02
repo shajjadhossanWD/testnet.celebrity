@@ -12,8 +12,6 @@ import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import Barcode from '../../../Images/Barcode.jpeg';
-import QRCode from 'qrcode';
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
 function MealDetails() {
   const { mealnId } = useParams();
@@ -249,20 +247,8 @@ function MealDetails() {
   }
 
 
-  // Referal Code Discount
-  const discountReferal = 10 / 100 * isDetails?.price;
-  const disRefTwoDec = discountReferal.toFixed(2);
-
-
   // Calculation
-  let totalSgd;
-
-  if (!gotRefCode) {
-    totalSgd = isDetails?.price;
-  } else {
-    totalSgd = isDetails?.price - disRefTwoDec;
-  }
-
+  const totalSgd = isDetails?.price;
   const usdPerSgd = 0.72;
   const rsPerSgd = 57.45;
   const usd = totalSgd * usdPerSgd;
@@ -299,7 +285,9 @@ function MealDetails() {
   const discountUsd = 30 / 100 * usd;
   const disUsdTwoDec = discountUsd.toFixed(2);
 
-
+  // Referal Code Discount
+  const discountReferal = 10 / 100 * isDetails?.price;
+  const disRefTwoDec = discountReferal.toFixed(2);
 
   //minit
 
@@ -432,34 +420,10 @@ function MealDetails() {
     const refCode = othersRefCodes.find(i => i?.myReferralCode === e.target.value);
     if (refCode?.myReferralCode === e.target.value) {
       setGotRefCode(true);
-    } else if (e.target.value === "TEST") {
-      setGotRefCode(true);
-    }
-    else {
+    } else {
       setGotRefCode(false);
     }
   }
-
-
-  const [src, setSrc] = useState('');
-  const [random, setRandom] = useState();
-  let testText = 'testing'
-
-  useEffect(() => {
-    QRCode.toDataURL(testText)
-      .then(setSrc);
-  }, [])
-
-  const handleRandomNumber = () => {
-    const val = Math.floor(10000 + Math.random() * 9000000000000000);
-    setRandom(val);
-  }
-
-  window.onload = () => {
-    handleRandomNumber();
-    alert('your random number is', random)
-  };
-
 
 
   return (
@@ -477,7 +441,7 @@ function MealDetails() {
               </Box>
             </Box>
             <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
-            <img src={src} alt="barcode" className="img-fluid handleBarcode" />
+            <img src={Barcode} alt="barcode" className="img-fluid handleBarcode" />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
@@ -488,7 +452,9 @@ function MealDetails() {
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
-                <span className="text-primary fontArial  fontExtand">Price Of NFT(SGD):<br /> </span><span className="fw-normal fontArial  fontExtand">{totalSgd}</span>
+                <span className="text-primary fontArial  fontExtand">Price Of NFT(SGD):<br /> </span><span className="fw-normal fontArial  fontExtand">{
+                  !gotRefCode ? `${isDetails?.price}` : `${isDetails?.price - disRefTwoDec}`
+                }</span>
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
@@ -566,10 +532,7 @@ function MealDetails() {
 
             <span className="text-primary fontArial fontExtand mb-1">Affiliate Code:</span>
             <div class="input-group mb-3 w-75">
-              <input type="text" name="affiliateCode" onChange={handleAffiliateCode} class="form-control" placeholder="Enter Affiliate Code" aria-label="Enter Affiliate Code" aria-describedby="button-addon2" />
-              <button className={!gotRefCode ? "btn btn-danger" : "btn btn-success"} type="button" id="button-addon2">{
-                !gotRefCode ? <AiOutlineClose /> : <AiOutlineCheck />
-              }</button>
+              <input type="text" name="affiliateCode" onChange={handleAffiliateCode} class="form-control" placeholder="Use affiliate code" aria-label="Use affiliate code" aria-describedby="button-addon2" />
             </div>
 
             <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'start' }}>
