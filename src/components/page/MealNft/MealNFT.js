@@ -51,10 +51,10 @@ const MealNFT = () => {
                     </div>
                   </div>
                   <div class="card-content">
-                    <div className="row" style={{ minHeight: '324px' }}>
-                      <Typography className="mt-2" variant="body2">
+                    <div className="row" style={{ minHeight: '250px' }}>
+                      {/* <Typography className="mt-2" variant="body2">
                         <span className="text-primary">Type of NFT :</span> {data?.type}
-                      </Typography>
+                      </Typography> */}
 
                       <Typography className="mt-2 slider_nft_text" variant="div">
                         <span className="text-primary">Name of NFT :</span> {data?.name}
@@ -64,9 +64,9 @@ const MealNFT = () => {
                         <span className="text-primary">Price of NFT(SGD):</span> {data.price}
                       </Typography>
 
-                      <Typography className="mt-2" variant="body2">
+                      {/* <Typography className="mt-2" variant="body2">
                         <span className="text-primary">Available NFTs: <span className="text-light">{data?.availableNfts - allAvailable.length}</span></span>
-                      </Typography>
+                      </Typography> */}
                       <Typography className="mt-2" variant="body2">
                         <span className="text-primary">Date:</span> {`${data?.startDate.slice(8, 10)}/${data?.startDate.slice(5, 7)}/${data?.startDate.slice(0, 4)}`}
                       </Typography>

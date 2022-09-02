@@ -12,7 +12,7 @@
 .iconBoxBtn {
     background-color: #232741;
     /* padding: 6px 20px; */
-    width: 2rem;
+    /* width: 2rem; */
 }
 
 .iconCreator {
@@ -103,6 +103,11 @@
 
     .ImageInput {
         margin-top: 1rem;
+    }
+
+    .pass-input {
+        width: 85% !important;
+
     }
 }
 
