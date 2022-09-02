@@ -301,7 +301,9 @@ const DashboardAddNft = () => {
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
+
                         />
+                        <input type="time" name="appt" id="input-pickuptime" required></input>
 
                         <label className='mb-1'>End Time</label>
                         <input
