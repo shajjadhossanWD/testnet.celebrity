@@ -207,21 +207,21 @@ const MealSlider = ({ pull_meal }) => {
               </div>
             </div>
             <div class="card-content">
-              <div className="row" style={{ minHeight: '324px' }}>
-                <Typography className="mt-1" variant="body2">
+              <div className="row" style={{ minHeight: '250px' }}>
+                {/* <Typography className="mt-1" variant="body2">
                   <span className="text-primary">Type of NFT :</span> {aNft?.type}
-                </Typography>
+                </Typography> */}
                 <a href="#!">
-                  <Typography className=" slider_nft_text" variant="div">
+                  <Typography className="slider_nft_text" variant="div">
                     <span className="text-primary">Name of NFT :</span> {aNft?.name}
                   </Typography>
                 </a>
                 <Typography className="" variant="body2">
                   <span className="text-primary">Price of NFT(SGD):</span> {aNft?.price}
                 </Typography>
-                <Typography className="" variant="body2">
+                {/* <Typography className="" variant="body2">
                   <span className="text-primary">Available NFTs: <span className="text-light">{aNft?.availableNfts - allAvailable.length}</span></span>
-                </Typography>
+                </Typography> */}
                 {/* <Typography className="mt-2" variant="body2">
                   Details: <Link to={`/mealnft/${aNft?._id}`} classsName="clickHere"> For more details click here </Link>
                 </Typography> */}
@@ -256,7 +256,7 @@ const MealSlider = ({ pull_meal }) => {
             <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
               Pay by DSL and get 30% discount.
             </Typography>
-            <p className="text-gradient text-center fs-5 pt-4">Types of NFTs available: {allNft?.length}</p>
+            <p className="text-gradient text-center fs-6 pt-4">Types of NFTs available: {allNft?.length}</p>
           </>
           :
           <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>

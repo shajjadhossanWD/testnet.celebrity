@@ -96,13 +96,13 @@ const Profile = () => {
                   <label className=''>Share Affiliate Link</label>
                   <div className='d-flex gap-2 mt-1'>
 
-                    <TwitterShareButton url={window.location.origin + "/" + user?.myReferralCode} title={``}>
+                    <TwitterShareButton url={window.location.origin + "/" + user?.myReferralCode} title={`Get 10% discount at celebrity.sg when you use my code.`}>
                       <TwitterIcon size={40} round={true} />
                     </TwitterShareButton>
-                    <LinkedinShareButton url={window.location.origin + "/" + user?.myReferralCode} summary={``}>
+                    <LinkedinShareButton url={window.location.origin + "/" + user?.myReferralCode} summary={``} title={`Get 10% discount at celebrity.sg when you use my code.`}>
                       <LinkedinIcon size={40} round={true} />
                     </LinkedinShareButton>
-                    <WhatsappShareButton url={window.location.origin + "/" + user?.myReferralCode} title={``}>
+                    <WhatsappShareButton url={window.location.origin + "/" + user?.myReferralCode} title={`Get 10% discount at celebrity.sg when you use my code.`}>
                       <WhatsappIcon size={40} round={true} />
                     </WhatsappShareButton>
 

@@ -48,6 +48,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Publiclayout></Publiclayout>}>
             <Route path="/" element={<Landing />} />
+            <Route path="/:affiliate" element={<Landing />} />
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/india" element={<India></India>} />

@@ -28,6 +28,10 @@ const DashboardAddNft = () => {
 
     const [secondValue, setSecondValue] = useState(() => EditorState.createEmpty());
     const stepTwo = draftToHtml(convertToRaw(secondValue.getCurrentContent()));
+
+    const [perkNfts, setPerkNfts] = useState(() => EditorState.createEmpty());
+    const stepPerkNft = draftToHtml(convertToRaw(perkNfts.getCurrentContent()));
+
     // console.log(saveAsDraft);
     const navigate = useNavigate();
     var newDate = new Date();
@@ -65,6 +69,7 @@ const DashboardAddNft = () => {
         const name = e.target.name.value;
         const price = e.target.price.value;
         const availableNfts = e.target.availableNfts.value;
+        const perkNft = stepPerkNft;
         const description = stepOne;
         const startDate = e.target.startDate.value;
         const startTime = e.target.startTime.value;
@@ -80,6 +85,7 @@ const DashboardAddNft = () => {
         formData.append('name', name)
         formData.append('price', price)
         formData.append('availableNfts', availableNfts)
+        formData.append('perkNft', perkNft)
         formData.append('date', newDate)
         formData.append('description', description)
         formData.append('startDate', startDate)
@@ -168,7 +174,7 @@ const DashboardAddNft = () => {
     return (
         <div>
             <div style={{ backgroundColor: "#272d47", color: 'white' }} className='mx-auto forRespoMarginReduce'>
-                <h4 className='py-3 ps-3 container'>Add NFTs</h4>
+                <h4 className='py-3 ps-3 container'>Add NFT</h4>
                 <div className='container pb-5 pt-0'>
                     <form onSubmit={onSubForm}>
 
@@ -239,6 +245,42 @@ const DashboardAddNft = () => {
                             required
                         />
 
+                        <label className='mb-1'>Perks of NFT</label>
+                        <Editor
+                            editorState={perkNfts}
+                            onEditorStateChange={setPerkNfts}
+                            wrapperClassName="wrapper-class"
+                            editorClassName="editor-class border mt-2 p-2 bg-white text-black"
+                            toolbarClassName="toolbar-class text-black"
+                            toolbar={{
+                                image: {
+                                    urlEnabled: true,
+                                    uploadEnabled: true,
+                                    alignmentEnabled: true,
+                                    uploadCallback: undefined,
+                                    previewImage: true,
+                                    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                                    alt: { present: false, mandatory: false },
+                                    defaultSize: {
+                                        height: 'auto',
+                                        width: 'auto',
+                                    },
+                                    fontSize: {
+                                        options: [8, 9, 10, 11, 12, 14, 16, 18, 24, 30, 36, 48, 60, 72, 96],
+                                        className: undefined,
+                                        component: undefined,
+                                        dropdownClassName: undefined,
+                                    },
+                                    fontFamily: {
+                                        options: ['Arial', 'sans-serif', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],
+                                        className: undefined,
+                                        component: undefined,
+                                        dropdownClassName: undefined,
+                                    },
+                                },
+                            }}
+                        />
+
 
 
                         <label className='mb-2'>NFT Details</label>
@@ -285,32 +327,63 @@ const DashboardAddNft = () => {
                         />
 
                         <label className='mb-2 mt-3'>Date</label>
-                        <input
+                        {/* <input
                             type="date"
                             name="startDate"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
-                        />
+                        /> */}
+                        <InputGroup className="mb-3">
+
+                            <Form.Control
+                                style={{ backgroundColor: "#272d47", color: 'white' }}
+                                type='date'
+                                name="startDate"
+                                aria-label="Amount (to the nearest dollar)" />
+
+                        </InputGroup>
 
                         <label className='mb-1'>Start Time</label>
-                        <input
+                        {/* <input
                             onChange={handleTimeChange}
                             type="time"
                             name="startTime"
+                            min="00:00" max="23:59"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
-                        />
+                        /> */}
+                        <InputGroup className="mb-3">
+
+                            <Form.Control
+                                style={{ backgroundColor: "#272d47", color: 'white' }}
+                                type='time'
+                                name="startTime"
+                                aria-label="Amount (to the nearest dollar)" />
+
+                        </InputGroup>
+
 
                         <label className='mb-1'>End Time</label>
-                        <input
+                        {/* <input
                             type="time"
                             name="endTime"
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
-                        />
+                        /> */}
+
+
+                        <InputGroup className="mb-3">
+
+                            <Form.Control
+                                style={{ backgroundColor: "#272d47", color: 'white' }}
+                                type='time'
+                                name="endTime"
+                                aria-label="Amount (to the nearest dollar)" />
+
+                        </InputGroup>
 
                         <label className='mb-1'>Venue</label>
                         <input
@@ -322,7 +395,7 @@ const DashboardAddNft = () => {
                         />
 
                         <label className='mb-1'>Purchase Till</label>
-                        <input
+                        {/* <input
                             type="date"
                             name="purchaseDate"
                             value={event}
@@ -330,7 +403,19 @@ const DashboardAddNft = () => {
                             className='border w-100 rounded mb-3 p-2'
                             style={{ backgroundColor: "#272d47", color: 'white' }}
                             required
-                        />
+                        /> */}
+
+                        <InputGroup className="mb-3">
+
+                            <Form.Control
+                                style={{ backgroundColor: "#272d47", color: 'white' }}
+                                type='date'
+                                name="purchaseDate"
+                                value={event}
+                                onChange={e => setEvent(e.target.value)}
+                                aria-label="Amount (to the nearest dollar)" />
+
+                        </InputGroup>
 
                         <label className='mb-2'>Brief Details of Celebrity</label>
                         {/* <textarea

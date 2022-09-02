@@ -21,6 +21,8 @@ const EditDraftNft = () => {
     const [secondValue, setSecondValue] = useState(() => EditorState.createEmpty());
     const stepTwo = draftToHtml(convertToRaw(secondValue.getCurrentContent()));
 
+    const [perkNfts, setPerkNfts] = useState(() => EditorState.createEmpty());
+    const stepPerkNft = draftToHtml(convertToRaw(perkNfts.getCurrentContent()));
 
     var newDate = new Date();
     let dd = String(newDate.getDate()).padStart(2, '0');
@@ -43,15 +45,21 @@ const EditDraftNft = () => {
                 setNfts(res.data.nft);
                 const description = res.data.nft.description;
                 const briefDetails = res.data.nft.briefDetails;
+                const perkNft = res.data.nft.perkNft;
+                const blocksFromHtmlPerk = htmlToDraft(perkNft);
                 const blocksFromHtml = htmlToDraft(description);
                 const blocksFromHtmlTwo = htmlToDraft(briefDetails);
                 const { contentBlocks, entityMap } = blocksFromHtml;
                 const content = blocksFromHtmlTwo.contentBlocks;
                 const entri = blocksFromHtmlTwo.entityMap;
+                const content2 = blocksFromHtmlPerk.contentBlocks;
+                const entri2 = blocksFromHtmlPerk.entityMap;
                 const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
                 const contentStateTwo = ContentState.createFromBlockArray(content, entri);
+                const contentStatePerk = ContentState.createFromBlockArray(content2, entri2);
                 setFirstValue(EditorState.createWithContent(contentState));
                 setSecondValue(EditorState.createWithContent(contentStateTwo));
+                setPerkNfts(EditorState.createWithContent(contentStatePerk));
 
                 console.log(res.data);
             })
@@ -64,6 +72,7 @@ const EditDraftNft = () => {
         const name = e.target.name.value;
         const price = e.target.price.value;
         const availableNfts = e.target.availableNfts.value;
+        const perkNft = stepPerkNft;
         const description = stepOne;
         const startDate = e.target.startDate.value;
         const startTime = e.target.startTime.value;
@@ -79,6 +88,7 @@ const EditDraftNft = () => {
         formData.append('name', name);
         formData.append('price', price);
         formData.append('availableNfts', availableNfts);
+        formData.append('perkNft', perkNft);
         formData.append('description', description);
         formData.append('startDate', startDate)
         formData.append('startTime', startTime)
@@ -197,14 +207,38 @@ const EditDraftNft = () => {
 
                                 />
 
+                                <label className="mb-1">Perks of NFT</label>
+                                <Editor
+                                editorState={perkNfts}
+                                onEditorStateChange={setPerkNfts}
+                                wrapperClassName="wrapper-class"
+                                editorClassName="editor-class border mt-2 p-2 bg-white text-black"
+                                toolbarClassName="toolbar-class text-black"
+                                toolbar={{
+                                    image: {
+                                    urlEnabled: true,
+                                    uploadEnabled: true,
+                                    alignmentEnabled: true,
+                                    uploadCallback: undefined,
+                                    previewImage: true,
+                                    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                                    alt: { present: false, mandatory: false },
+                                    defaultSize: {
+                                        height: 'auto',
+                                        width: 'auto',
+                                    },
+                                    fontFamily: {
+                                        options: ['sans-serif', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],
+                                        className: undefined,
+                                        component: undefined,
+                                        dropdownClassName: undefined,
+                                    },
+                                    },
+                                }}
+                                />
+
                                 <label className="mb-2">NFT Details</label>
-                                {/* <textarea
-                  type="text"
-                  name="description"
-                  defaultValue={Nfts.description}
-                  className="border w-100 rounded mb-3"
-                  style={{ backgroundColor: "#272d47", color: "white" }}
-                /> */}
+                    
                                 <Editor
                                     editorState={firstValue}
                                     onEditorStateChange={setFirstValue}
@@ -235,33 +269,36 @@ const EditDraftNft = () => {
                                 />
 
                                 <label className='mb-1'>Date</label>
-                                <input
-                                    type="date"
-                                    name="startDate"
-                                    defaultValue={Nfts.startDate}
-                                    className='border w-100 rounded mb-3'
-                                    style={{ backgroundColor: "#272d47", color: "white" }}
-                                    required
-                                />
+                                <InputGroup className="mb-3">
+
+                                    <Form.Control
+                                        style={{ backgroundColor: "#272d47", color: 'white' }}
+                                        type='date'
+                                        name="startDate"
+                                        aria-label="Amount (to the nearest dollar)" />
+
+                                </InputGroup>
 
                                 <label className='mb-1'>Start Time</label>
-                                <input
-                                    type="time"
-                                    name="startTime"
-                                    defaultValue={Nfts.startTime}
-                                    className="border w-100 rounded mb-3"
-                                    style={{ backgroundColor: "#272d47", color: 'white' }}
-                                    required
-                                />
+                                <InputGroup className="mb-3">
+
+                                    <Form.Control
+                                        style={{ backgroundColor: "#272d47", color: 'white' }}
+                                        type='time'
+                                        name="startTime"
+                                        aria-label="Amount (to the nearest dollar)" />
+
+                                </InputGroup>
                                 <label className='mb-1'>End Time</label>
-                                <input
-                                    type="time"
-                                    name="endTime"
-                                    defaultValue={Nfts.endTime}
-                                    className="border w-100 rounded mb-3"
-                                    style={{ backgroundColor: "#272d47", color: 'white' }}
-                                    required
-                                />
+                                <InputGroup className="mb-3">
+
+                                    <Form.Control
+                                        style={{ backgroundColor: "#272d47", color: 'white' }}
+                                        type='time'
+                                        name="endTime"
+                                        aria-label="Amount (to the nearest dollar)" />
+
+                                </InputGroup>
 
                                 <label className='mb-1'>Venue</label>
                                 <input
@@ -274,15 +311,26 @@ const EditDraftNft = () => {
                                 />
 
                                 <label className='mb-1'>Purchase Till</label>
-                                <input
+                                {/* <input
                                     type="date"
                                     name="purchaseDate"
                                     defaultValue={Nfts.purchaseDate}
                                     className="border w-100 rounded mb-3"
                                     style={{ backgroundColor: "#272d47", color: 'white' }}
                                     required
-                                />
+                                /> */}
 
+                                <InputGroup className="mb-3">
+
+                                    <Form.Control
+                                        style={{ backgroundColor: "#272d47", color: 'white' }}
+                                        type='date'
+                                        name="purchaseDate"
+                                        defaultValue={Nfts.purchaseDate}
+                                        // onChange={e => setEvent(e.target.value)}
+                                        aria-label="Amount (to the nearest dollar)" />
+
+                                </InputGroup>
                                 <label className='mb-2 mt-3'>Brief Details of Celebrity</label>
                                 <Editor
                                     editorState={secondValue}

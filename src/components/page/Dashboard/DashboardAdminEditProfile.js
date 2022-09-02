@@ -166,7 +166,7 @@ const DashboardAdminEditProfile = () => {
                             <p className="d-flex inputProfile">
                                 <span className='iconCreator'><BiLockOpen /></span>
                                 <input
-                                    className="creatorsInput1 form-control"
+                                    className="creatorsInput1 form-control w-75 pass-input"
                                     type={visibleEnPassword ? "text" : "password"}
                                     name="password"
                                     placeholder='Enter New Password' />
@@ -176,7 +176,7 @@ const DashboardAdminEditProfile = () => {
                             <p className="d-flex inputProfile">
                                 <span className='iconCreator'><BiLockOpen /></span>
                                 <input
-                                    className="creatorsInput1 form-control"
+                                    className="creatorsInput1 form-control w-75 pass-input"
                                     type={visibleCnPassword ? "text" : "password"}
                                     name="cPassword"
                                     placeholder='Confirm New Password' />

@@ -114,9 +114,13 @@ button.swal-button.swal-button--confirm {
     }
 
     .button_dtl {
-        width: 285px !important;
+        width: 270px !important;
         font-size: 11px !important;
         font-weight: 500;
+    }
+
+    .select-drop {
+        width: 270px !important;
     }
 
     .card_top_icon {
