@@ -12,8 +12,6 @@ import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import Barcode from '../../../Images/Barcode.jpeg';
-import QRCode from 'qrcode';
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
 function MealDetails() {
   const { mealnId } = useParams();
@@ -49,9 +47,6 @@ function MealDetails() {
   const [automint, setAutomint] = useState("");
   const [onsubDisable, setOnsubDisable] = useState(false);
   const [gotRefCode, setGotRefCode] = useState(false);
-  const [src, setSrc] = useState('');
-  const [random, setRandom] = useState();
-
   const {
     user,
     setRequestLoading,
@@ -68,18 +63,6 @@ function MealDetails() {
     setEmail(e.target.value);
   }
 
-  // QR code functionality
-  useEffect(() => {
-    const val = Math.floor(10000 + Math.random() * 9000000000000000);
-    setRandom(val);
-  }, [])
-
-  useEffect(() => {
-    QRCode.toDataURL(random?.toString())
-      .then(setSrc);
-  }, [random])
-
-
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
       .then(res => {
@@ -93,7 +76,6 @@ function MealDetails() {
         setDetails(res.data?.nft);
         setDateCount(res.data?.nft?.startDate);
         setTargetCount(res.data?.nft?.purchaseDate);
-
       });
   }, [mealnId])
 
@@ -265,20 +247,8 @@ function MealDetails() {
   }
 
 
-  // Referal Code Discount
-  const discountReferal = 10 / 100 * isDetails?.price;
-  const disRefTwoDec = discountReferal.toFixed(2);
-
-
   // Calculation
-  let totalSgd;
-
-  if (!gotRefCode) {
-    totalSgd = isDetails?.price;
-  } else {
-    totalSgd = isDetails?.price - disRefTwoDec;
-  }
-
+  const totalSgd = isDetails?.price;
   const usdPerSgd = 0.72;
   const rsPerSgd = 57.45;
   const usd = totalSgd * usdPerSgd;
@@ -315,58 +285,11 @@ function MealDetails() {
   const discountUsd = 30 / 100 * usd;
   const disUsdTwoDec = discountUsd.toFixed(2);
 
+  // Referal Code Discount
+  const discountReferal = 10 / 100 * isDetails?.price;
+  const disRefTwoDec = discountReferal.toFixed(2);
 
-
-
-  let newDate = new Date();
-  let dd = String(newDate.getDate()).padStart(2, '0');
-  let mm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-  let yyyy = newDate.getFullYear();
-  let hh = newDate.getHours();
-  let min = newDate.getMinutes();
-  let ss = newDate.getSeconds();
-  newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
-  const nftId = random?.toString();
-
-
-  const postDataAfterMint = async (e) => {
-    const perkStatus = false;
-
-    const data = {
-      NFTID: nftId,
-      NFTWebsite: "https://celebrity.sg",
-      NFTType: isDetails.type,
-      NFTDetails: isDetails.description,
-      NFTPerks: isDetails.perkNft,
-      NFTPerksStatus: perkStatus,
-      NFTCreated: newDate
-    }
-    console.log(data);
-
-
-    await axios.post('https://backend.dsl.sg/api/v1/nftdetails', data, {
-      
-    })
-      .then(res => {
-        if (res.status === 200) {
-          
-          console.log("Successfully data passed")
-        }
-      }).catch(err => {
-        // alert(err.response.data.message);
-        swal({
-          title: "Attention",
-          text: err.response.data.message,
-          icon: "warning",
-          button: "OK!",
-          className: "modal_class_success",
-        });
-      })
-      .finally(() => {
-        // setLoading(false);
-      });
-
-  }
+  //minit
 
 
   const mintCelebrityNft = async () => {
@@ -426,7 +349,7 @@ function MealDetails() {
                  `
                 swal({
                   title: "Minted",
-                  content: wrapper,
+                   content: wrapper,
                   icon: "success",
                   buttons: true,
                   className: "modal_class_success",
@@ -438,7 +361,7 @@ function MealDetails() {
                       console.log("good job")
                     }
                   });
-                postDataAfterMint();
+
               }
             })
             .catch(err => {
@@ -497,17 +420,10 @@ function MealDetails() {
     const refCode = othersRefCodes.find(i => i?.myReferralCode === e.target.value);
     if (refCode?.myReferralCode === e.target.value) {
       setGotRefCode(true);
-    } else if (e.target.value === "TEST") {
-      setGotRefCode(true);
-    }
-    else {
+    } else {
       setGotRefCode(false);
     }
   }
-
-
-
-
 
 
   return (
@@ -525,7 +441,7 @@ function MealDetails() {
               </Box>
             </Box>
             <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
-            <img src={src} alt="barcode" className="img-fluid handleBarcode" />
+            <img src={Barcode} alt="barcode" className="img-fluid handleBarcode" />
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
@@ -536,7 +452,9 @@ function MealDetails() {
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
-                <span className="text-primary fontArial  fontExtand">Price Of NFT(SGD):<br /> </span><span className="fw-normal fontArial  fontExtand">{totalSgd}</span>
+                <span className="text-primary fontArial  fontExtand">Price Of NFT(SGD):<br /> </span><span className="fw-normal fontArial  fontExtand">{
+                  !gotRefCode ? `${isDetails?.price}` : `${isDetails?.price - disRefTwoDec}`
+                }</span>
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
@@ -580,6 +498,7 @@ function MealDetails() {
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
                 <span className="text-primary fontArial  fontExtand">Time left:</span><br /> <span className="fw-normal fontArial  fontExtand">
                   <div id="demo">
+
                   </div>
                 </span>
               </Typography> */}
@@ -613,10 +532,7 @@ function MealDetails() {
 
             <span className="text-primary fontArial fontExtand mb-1">Affiliate Code:</span>
             <div class="input-group mb-3 w-75">
-              <input type="text" name="affiliateCode" onChange={handleAffiliateCode} class="form-control" placeholder="Enter Affiliate Code" aria-label="Enter Affiliate Code" aria-describedby="button-addon2" />
-              <button className={!gotRefCode ? "btn btn-danger" : "btn btn-success"} type="button" id="button-addon2">{
-                !gotRefCode ? <AiOutlineClose /> : <AiOutlineCheck />
-              }</button>
+              <input type="text" name="affiliateCode" onChange={handleAffiliateCode} class="form-control" placeholder="Use affiliate code" aria-label="Use affiliate code" aria-describedby="button-addon2" />
             </div>
 
             <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'start' }}>
@@ -655,7 +571,6 @@ function MealDetails() {
             {/* <div className="mx-auto my-3 text-center">
               <Button variant="danger" className="ps-5 pe-5 text-center" onClick={handleShow}>Auto Mint</Button>
             </div> */}
-
             {/* </Box> */}
           </div>
         </Container>
