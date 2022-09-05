@@ -24,6 +24,17 @@
     visibility: hidden;
 }
 
+.nft-watermark3 {
+    position: relative;
+    opacity: 0.9;
+    right: 3.3rem;
+    top: 15rem;
+    justify-self: end;
+    width: 10% !important;
+    height: auto !important;
+
+}
+
 .nft-watermark2 {
     position: relative;
     opacity: 0.9;

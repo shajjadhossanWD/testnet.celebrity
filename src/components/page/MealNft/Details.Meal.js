@@ -447,8 +447,6 @@ function MealDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    
       const NFTID= nftId
       const type = isDetails.type
       const name= isDetails.name
@@ -456,10 +454,11 @@ function MealDetails() {
       const venue= isDetails.price
       const image= images
       const date= newDate
+      const email = email
     
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, type , date, name, image, price, venue
+      NFTID, type , date, name, image, price, venue, email
     }, {
         headers: { "authorization": `Bearer ${localStorage.getItem("tokenMint")}` }
     })
@@ -476,6 +475,7 @@ function MealDetails() {
             }
         })
         .catch(error => {
+          console.log(error)
             swal({
                 title: "Attention",
                 text: error.response.data.message,
