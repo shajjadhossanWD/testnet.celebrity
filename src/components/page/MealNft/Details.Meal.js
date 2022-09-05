@@ -14,12 +14,17 @@ import { MdArrowDropDownCircle } from 'react-icons/md';
 import Barcode from '../../../Images/Barcode.jpeg';
 import QRCode from 'qrcode';
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import EmailVerifyModal from "./EmailVerifyModal";
+
 
 function MealDetails() {
+
   const { mealnId } = useParams();
   const [disableAfterActivation, setDisableAfterActivation] = useState(false);
   const [allAvailable, setAllAvailable] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [isClickedMint, setIsClickedMint] = useState(false);
+
   const [dateCount, setDateCount] = useState("");
   const [targetCount, setTargetCount] = useState("");
   // const native = window.location.search;
@@ -34,7 +39,15 @@ function MealDetails() {
   // const [days, setDays] = useState();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [email, setEmail] = useState("");
+
+  const [openEmail, setOpenEmail] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailVerify, setEmailVerify] = useState(false);
+  const [sendEmailOTP, setSendEmailOTP] = useState(false);
+  const [emailOtpCode, setEmailVerificationCode] = useState('')
+  const [isError, setError] = useState(false);
+
+
   const [isDetails, setDetails] = useState({});
   const [otp, setOtp] = useState("");
   const [isSouvenir, setSouvenir] = useState([]);
@@ -160,11 +173,14 @@ function MealDetails() {
         console.log(err)
       });
   }, []);
+
+
   const handleVerifyEmail = async (e) => {
     // check if email is valid
     setDisableAfterActivation(true);
     if (email.length > 0 && email.includes("@" && ".")) {
       // setLoading(true);
+      setEmailVerify(true);
       await axios.post('https://backend.celebrity.sg/api/v1/verifymint/mail', {
         email: email
       }).then(res => {
@@ -183,8 +199,10 @@ function MealDetails() {
             setDisableAfterActivation(false);
           }, 120000);
         }
+        setOpenEmail(true)
       }).catch(err => {
         // alert(err.response.data.message);
+        setEmailVerify(false);
         swal({
           title: "Attention",
           text: err.response.data.message,
@@ -470,8 +488,11 @@ function MealDetails() {
 
 
 
+
   const mintCelebrityNft = async () => {
     // userefFunction();
+    setIsClickedMint(true)
+
     setRequestLoading(true);
     const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
 
@@ -637,7 +658,7 @@ function MealDetails() {
             <div className="certificateCelebrity" ref={celebrityTemplate}>
               {/* <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' /> */}
               <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/celebriteee.jpg" className='deteilsPageImage' />
-              <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className="img-fluid nft-watermark" />
+              <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" />
             </div>
 
@@ -753,6 +774,34 @@ function MealDetails() {
                 <span className="spanDiscount ">You saved {savedFINQ4Digit} FINQUEST</span>
               </Typography>}
             </div>}
+            <div className='w-75'>
+              <InputGroup >
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
+                  value={email}
+                  required />
+                <button
+                  // onClick={() => handleVerifyEmail()}
+                  // onClick={sendEmailVerificationCode}
+                  onClick={handleVerifyEmail}
+                  disabled={(email.length === 0 || disableAfterActivation) ? true : false}
+                  type="button" className="btn btn-danger" id="button-addon2">
+                  Verify Email
+                </button>
+              </InputGroup>
+            </div>
+            {/* <div className='mb-1'>
+                            <label className='text14' for="comment">Email*</label>
+                            <div className='d-flex'>
+                                <Tippy content="Please Enter Your Email">
+                                    <input type="text" className='form-control' name="email" placeholder="Email" value={email} onChange={e => { setEmail(e.target.value); setEmailVerify(false) }} style={{ borderRadius: "3px 0px 0px 3px", textTransform: "lowercase"}} required />
+                                </Tippy>
+                                <button type="button" className={`btn ${email ? emailVerify ? "btn-secondary" : "btn-danger" : "btn-secondary"}`} style={{ borderRadius: "0px 3px 3px 0px" }} onClick={sendEmailVerificationCode} disabled={email ? emailVerify ? true : false : true}>Verify</button>
+                            </div>
+                        </div> */}
 
             <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'start' }}>
               {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
@@ -923,6 +972,13 @@ function MealDetails() {
         </Modal.Body>
 
       </Modal>
+      <EmailVerifyModal
+
+        handleVerifyEmail={handleVerifyEmail}
+        open={openEmail} setOpenEmail={setOpenEmail}
+
+        otpVerify={otpVerify}
+        setError={setError} />
     </div>
   )
 }

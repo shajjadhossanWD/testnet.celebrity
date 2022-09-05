@@ -11,6 +11,42 @@
   color: white;
 }
 
+.iconClose {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  background: none !important;
+  border: none !important;
+  font-size: 25px !important;
+
+}
+
+.banner-button2 {
+  background-color: blue !important;
+  margin: 10px;
+  padding: 5px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+}
+
+.banner-button:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.font14 {
+  font-size: 14px;
+}
+
 .otp-btn {
   padding-left: 10px !important;
   padding-right: 10px !important;

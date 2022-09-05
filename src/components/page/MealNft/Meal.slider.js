@@ -201,6 +201,7 @@ const MealSlider = ({ pull_meal }) => {
               <span style={{ marginBottom: '2.2px' }}> {aNft?.likesCount ? parseInt(aNft?.likesCount) : 0}</span>
             </div>
             <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>
+              <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className="img-fluid nft-watermark2" />
               <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
 
                 <Link to={`/mealnft/${aNft?._id}`}><button className="card_hover_button mt-5" href="#!">BUY THIS NFT FOR SGD {aNft?.price}</button></Link>
@@ -262,7 +263,7 @@ const MealSlider = ({ pull_meal }) => {
           <Typography variant="h6" style={{ color: '#d0d7c2', textAlign: 'center', fontSize: "16px", marginTop: "1rem" }}>
             Stay Tuned!
           </Typography>}
-          <p className="text-center"><Link className="viewall" to="/mealnft">View All</Link></p>
+        <p className="text-center"><Link className="viewall" to="/mealnft">View All</Link></p>
       </div>
     </div>
   );
