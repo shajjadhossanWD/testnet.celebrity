@@ -36,6 +36,7 @@ import DashboardAddNft from './components/page/Dashboard/DashboardAddNft';
 import MintDetails from './components/page/MintDetails/MintDetails';
 import CoinbaseModal from './components/Shared/CoinbaseModal';
 import EditDraftNft from './components/page/Dashboard/EditDraftNft';
+import News from './components/page/News/News';
 function App() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 180);
@@ -60,6 +61,7 @@ function App() {
             <Route path="/mealnft/:mealnId" element={<MealDetails />} />
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/how_it_works" element={<HowItWorks />} />
+            <Route path="/news" element={<News />} />
             <Route path="/profile" element={<Profile></Profile>} />
             <Route path="/mintednft/:id/:address" element={<MintDetails />} />
           </Route>
