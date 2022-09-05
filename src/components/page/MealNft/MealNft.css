@@ -6,7 +6,7 @@
 
 .handleBarcode {
     position: relative;
-    left: 26.5rem;
+    left: 24.5rem;
     top: -126px;
     justify-self: end;
     width: 20% !important;
@@ -16,10 +16,20 @@
 .nft-watermark {
     position: relative;
     opacity: 0.9;
-    right: 5.5rem;
+    right: 3.3rem;
     top: 15px;
     justify-self: end;
     width: 10% !important;
+    height: auto !important;
+}
+
+.nft-watermark2 {
+    position: relative;
+    opacity: 0.9;
+    left: 12.2rem;
+    top: 6rem;
+    justify-self: end;
+    width: 14% !important;
     height: auto !important;
 }
 
@@ -74,6 +84,16 @@
         width: 10% !important;
         height: auto !important;
     }
+
+    .nft-watermark2 {
+        position: relative;
+        opacity: 0.9;
+        left: 17.5rem;
+        top: 6.5rem;
+        justify-self: end;
+        width: 11% !important;
+        height: auto !important;
+    }
 }
 
 /* @media only screen and (min-width:321px) and (max-width: 335px) {
@@ -116,6 +136,15 @@
         height: auto !important;
     }
 
+    .nft-watermark2 {
+        position: relative;
+        opacity: 0.9;
+        left: 17.5rem;
+        top: 6.5rem;
+        justify-self: end;
+        width: 11% !important;
+        height: auto !important;
+    }
 }
 
 /* @media only screen and (min-width:376px) and (max-width: 425px) {
@@ -158,6 +187,16 @@
         width: 10% !important;
         height: auto !important;
     }
+
+    .nft-watermark2 {
+        position: relative;
+        opacity: 0.9;
+        left: 17.5rem;
+        top: 6.5rem;
+        justify-self: end;
+        width: 11% !important;
+        height: auto !important;
+    }
 }
 
 @media only screen and (min-width:501px) and (max-width: 699px) {
@@ -177,6 +216,16 @@
         width: 10% !important;
         height: auto !important;
     }
+
+    .nft-watermark2 {
+        position: relative;
+        opacity: 0.9;
+        left: 17.5rem;
+        top: 6.5rem;
+        justify-self: end;
+        width: 11% !important;
+        height: auto !important;
+    }
 }
 
 @media only screen and (min-width:700px) and (max-width: 767px) {
@@ -194,6 +243,16 @@
         top: -18rem;
         justify-self: end;
         width: 10% !important;
+        height: auto !important;
+    }
+
+    .nft-watermark2 {
+        position: relative;
+        opacity: 0.9;
+        left: 17.5rem;
+        top: 6.5rem;
+        justify-self: end;
+        width: 11% !important;
         height: auto !important;
     }
 }
@@ -234,6 +293,16 @@
         width: 10% !important;
         height: auto !important;
     }
+
+    .nft-watermark2 {
+        position: relative;
+        opacity: 0.9;
+        left: 17.5rem;
+        top: 6.5rem;
+        justify-self: end;
+        width: 11% !important;
+        height: auto !important;
+    }
 }
 
 @media only screen and (min-width:992px) and (max-width: 1184px) {
@@ -251,6 +320,16 @@
         top: 10px;
         justify-self: end;
         width: 10% !important;
+        height: auto !important;
+    }
+
+    .nft-watermark2 {
+        position: relative;
+        opacity: 0.9;
+        left: 17.5rem;
+        top: 6.5rem;
+        justify-self: end;
+        width: 11% !important;
         height: auto !important;
     }
 }
