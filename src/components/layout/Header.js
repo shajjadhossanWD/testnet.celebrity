@@ -19,11 +19,11 @@ function Header() {
           <Nav className="ms-auto">
             {/* <Nav.Link as={Link} to="/home" href="#home" className='menuText'>Home</Nav.Link> */}
             <Nav.Link as={Link} to="/about_us" href="#home" className='menuText'>ABOUT US</Nav.Link>
-            
+
             <Nav.Link href="https://dsl.sg/testnettokens" target="_blank" className='menuText'>GET TEST TOKENS</Nav.Link>
 
-            <Nav.Link as={Link} to="/how_it_works" href="#home" className='menuText'>NEWS</Nav.Link>
-           
+            <Nav.Link as={Link} to="/news" href="#home" className='menuText'>NEWS</Nav.Link>
+
             <Nav.Link as={Link} to="/how_it_works" href="#home" className='menuText'>HOW IT WORKS</Nav.Link>
 
             {/* <div class="dropdown-menus">

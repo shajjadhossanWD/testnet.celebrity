@@ -471,13 +471,11 @@ function MealDetails() {
       const name= isDetails.name
       const price= isDetails.price
       const venue= isDetails.venue
-      const image= isDetails.avatar
-      const image2= ImgCelebrity
+      const image= ImgCelebrity
       const date= newDate
       const email = email1
     
      console.log(image);
-     console.log(image2);
      console.log(email);
      console.log(email1);
      console.log(sendMail);
@@ -512,8 +510,8 @@ function MealDetails() {
                 className: "modal_class_success",
             });
         });
-}
-
+    }
+    
 
 
 
