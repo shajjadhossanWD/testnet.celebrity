@@ -446,8 +446,6 @@ function MealDetails() {
   /// send full details to user
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
 
     const NFTID = nftId
     const type = isDetails.type
@@ -457,31 +455,32 @@ function MealDetails() {
     const image = images
     const date = newDate
 
-
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, type, date, name, image, price, venue
+      NFTID, type , date, name, image, price, venue, email
     }, {
-      headers: { "authorization": `Bearer ${localStorage.getItem("tokenMint")}` }
-    })
-      .then(res => {
-        if (res.status === 200) {
-          swal({
-            title: "Success",
-            text: res.data.message,
-            icon: "success",
-            button: "OK!",
-            className: "modal_class_success",
-          });
 
-        }
-      })
-      .catch(error => {
-        swal({
-          title: "Attention",
-          text: error.response.data.message,
-          icon: "warning",
-          button: "OK!",
-          className: "modal_class_success",
+     })
+        .then(res => {
+            if (res.status === 200) {
+                swal({
+                    title: "Success",
+                    text: res.data.message,
+                    icon: "success",
+                    button: "OK!",
+                    className: "modal_class_success",
+                });
+              
+            }
+        })
+        .catch(error => {
+          console.log(error)
+            swal({
+                title: "Attention",
+                text: error.response.data.message,
+                icon: "warning",
+                button: "OK!",
+                className: "modal_class_success",
+            });
         });
       });
   }
