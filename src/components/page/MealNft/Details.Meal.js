@@ -456,33 +456,33 @@ function MealDetails() {
     const date = newDate
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, type , date, name, image, price, venue, email
+      NFTID, type, date, name, image, price, venue, email
     }, {
 
-     })
-        .then(res => {
-            if (res.status === 200) {
-                swal({
-                    title: "Success",
-                    text: res.data.message,
-                    icon: "success",
-                    button: "OK!",
-                    className: "modal_class_success",
-                });
-              
-            }
-        })
-        .catch(error => {
-          console.log(error)
-            swal({
-                title: "Attention",
-                text: error.response.data.message,
-                icon: "warning",
-                button: "OK!",
-                className: "modal_class_success",
-            });
+    })
+      .then(res => {
+        if (res.status === 200) {
+          swal({
+            title: "Success",
+            text: res.data.message,
+            icon: "success",
+            button: "OK!",
+            className: "modal_class_success",
+          });
+
+        }
+      })
+      .catch(error => {
+        console.log(error)
+        swal({
+          title: "Attention",
+          text: error.response.data.message,
+          icon: "warning",
+          button: "OK!",
+          className: "modal_class_success",
         });
       });
+    // });
   }
 
 
