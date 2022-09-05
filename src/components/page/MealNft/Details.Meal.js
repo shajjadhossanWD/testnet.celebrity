@@ -5,7 +5,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Button, Container, Dropdown, Form, InputGroup, Modal } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
-import * as htmlToImage from 'html-to-image';
+import * as htmlToImage from "html-to-image";
 import { CelebrityContext } from "../../../context/CelebrityContext";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { verifyMessage } from "ethers/lib/utils";
@@ -329,38 +329,38 @@ function MealDetails() {
   const usdPerSgd01 = 0.72;
   const usd01 = allSgdCost * usdPerSgd01;
 
-    // BNB Price
-    const bnb01 = usd01 / bnbToken;
-    const bnbTwoDec01 = bnb01.toFixed(2);
-  
-    // DSL Price
-    const dsl01 = usd01 / dslToken;
-    const dslTwoDec01 = dsl01.toFixed(2);
-  
-    // USDSC Price
-    const usdsc01 = usd01.toFixed(2);
-  
-    // S39 Price
-    const s3901 = usd01 / s39Token;
-    const s39TwoDec01 = s3901.toFixed(2);
-  
-    // FINQUEST Price
-    const finquest01 = usd01 / 0.0005;
-    const finquestTwoDec01 = finquest01.toFixed(2);
+  // BNB Price
+  const bnb01 = usd01 / bnbToken;
+  const bnbTwoDec01 = bnb01.toFixed(2);
+
+  // DSL Price
+  const dsl01 = usd01 / dslToken;
+  const dslTwoDec01 = dsl01.toFixed(2);
+
+  // USDSC Price
+  const usdsc01 = usd01.toFixed(2);
+
+  // S39 Price
+  const s3901 = usd01 / s39Token;
+  const s39TwoDec01 = s3901.toFixed(2);
+
+  // FINQUEST Price
+  const finquest01 = usd01 / 0.0005;
+  const finquestTwoDec01 = finquest01.toFixed(2);
 
 
-    // Saved prices calculation
-    const savedBNB = bnbTwoDec01 - bnbTwoDec;
-    const savedDSL = dslTwoDec01 - dslTwoDec;
-    const savedUSDSC = usdsc01 - usdsc;
-    const savedS39 = s39TwoDec01 - s39TwoDec;
-    const savedFINQ = finquestTwoDec01 - finquestTwoDec;
+  // Saved prices calculation
+  const savedBNB = bnbTwoDec01 - bnbTwoDec;
+  const savedDSL = dslTwoDec01 - dslTwoDec;
+  const savedUSDSC = usdsc01 - usdsc;
+  const savedS39 = s39TwoDec01 - s39TwoDec;
+  const savedFINQ = finquestTwoDec01 - finquestTwoDec;
 
-    const savedBNB4Digit = savedBNB.toFixed(4);
-    const savedDSL4Digit = savedDSL.toFixed(4);
-    const savedUSDSC4Digit = savedUSDSC.toFixed(4);
-    const savedS394Digit = savedS39.toFixed(4);
-    const savedFINQ4Digit = savedFINQ.toFixed(4);
+  const savedBNB4Digit = savedBNB.toFixed(4);
+  const savedDSL4Digit = savedDSL.toFixed(4);
+  const savedUSDSC4Digit = savedUSDSC.toFixed(4);
+  const savedS394Digit = savedS39.toFixed(4);
+  const savedFINQ4Digit = savedFINQ.toFixed(4);
 
 
 
@@ -423,7 +423,8 @@ function MealDetails() {
 
     const data = new FormData();
     data.append('name', isDetails.name);
-    data.append('image', dataUrl);
+    data.append('file', dataUrl);
+    data.append('image', isDetails.avatar);
     data.append('description', isDetails.description);
     data.append('type', isDetails.type);
     data.append('date', isDetails.date);
@@ -441,7 +442,7 @@ function MealDetails() {
 
         if (res.status === 200) {
 
-        data.append('certificate', res.data.image);
+          // data.append('certificate', res.data.image);
 
           if (token === "bnb") {
             Obj = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
@@ -559,10 +560,6 @@ function MealDetails() {
   }
 
 
-
-
-
-
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
       <div className="d-grid justify_items_center">
@@ -577,10 +574,11 @@ function MealDetails() {
                 <span className="ps-1">{isDetails?.__v}</span>
               </Box>
             </Box>
-           <div ref={celebrityTemplate}>
-             <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
-             <img src={src} alt="barcode" className="img-fluid handleBarcode" />
-           </div>
+            <div className="certificateCelebrity" ref={celebrityTemplate}>
+              <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
+              <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className="img-fluid nft-watermark" />
+              <img src={src} alt="barcode" className="img-fluid handleBarcode" />
+            </div>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 

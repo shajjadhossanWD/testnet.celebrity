@@ -28,6 +28,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 4px;
+    margin-right: 1.6rem;
 }
 
 .justify_content_center {
@@ -137,7 +138,17 @@ button.swal-button.swal-button--confirm {
         margin-top: 0px;
         margin-right: 20%;
     }
-
+    .icon_love_Dtl_box {
+        width: 48px;
+        height: 42px;
+        display: flex;
+        background: #2d384f;
+        padding: 4px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        margin-right: 0px;
+    }
     /* .details-box {
         margin-right: 33%;
     }

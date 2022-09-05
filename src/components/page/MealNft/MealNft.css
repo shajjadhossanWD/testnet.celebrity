@@ -6,10 +6,20 @@
 
 .handleBarcode {
     position: relative;
-    left: -33px;
+    left: 26.5rem;
     top: -126px;
     justify-self: end;
     width: 20% !important;
+    height: auto !important;
+}
+
+.nft-watermark {
+    position: relative;
+    opacity: 0.9;
+    right: 5.5rem;
+    top: 15px;
+    justify-self: end;
+    width: 10% !important;
     height: auto !important;
 }
 
@@ -32,91 +42,196 @@
     display: flex;
     align-items: center;
 }
-.viewall{
+
+.viewall {
     text-align: center;
     text-decoration: none;
     padding-top: 100px;
     color: #0d6efd;
     font-weight: normal;
 }
-@media only screen and (max-width: 320px) {
+
+.certificateCelebrity {
+    margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 376px) {
     .handleBarcode {
         position: relative;
-        left: 0px;
-        top: -55px;
-        /* text-align: end; */
+        left: 4rem;
+        top: 117px;
         justify-self: end;
         width: 20% !important;
+        height: auto !important;
+    }
+
+    .nft-watermark {
+        position: relative;
+
+        right: -3.1rem;
+        top: 10px;
+        justify-self: end;
+        width: 10% !important;
         height: auto !important;
     }
 }
 
-@media only screen and (min-width:321px) and (max-width: 375px) {
+/* @media only screen and (min-width:321px) and (max-width: 335px) {
     .handleBarcode {
         position: relative;
-        left: 0px;
-        top: -65px;
-        /* text-align: end; */
+        left: 4.6rem;
+        top: 107px;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
+
+    .nft-watermark {
+        position: relative;
+        right: -3.2rem;
+        top: 10px;
+        justify-self: end;
+        width: 10% !important;
+        height: auto !important;
+    }
+
+} */
+
+@media only screen and (min-width:377px) and (max-width: 425px) {
+    .handleBarcode {
+        position: relative;
+        left: 2.9rem;
+        top: 138px;
+        justify-self: end;
+        width: 20% !important;
+        height: auto !important;
+    }
+
+    .nft-watermark {
+        position: relative;
+        right: -2.9rem;
+        top: 10px;
+        justify-self: end;
+        width: 10% !important;
+        height: auto !important;
+    }
+
 }
 
-@media only screen and (min-width:376px) and (max-width: 425px) {
+/* @media only screen and (min-width:376px) and (max-width: 425px) {
     .handleBarcode {
         position: relative;
-        left: 0px;
-        top: -75px;
-        /* text-align: end; */
+        left: 2.5rem;
+        top: 132px;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
-}
+
+    .nft-watermark {
+        position: relative;
+
+        right: -1rem;
+        top: 10px;
+        justify-self: end;
+        width: 10% !important;
+        height: auto !important;
+    }
+} */
 
 @media only screen and (min-width:426px) and (max-width: 500px) {
     .handleBarcode {
         position: relative;
-        left: 0px;
-        top: -90px;
-        /* text-align: end; */
+        left: 1rem;
+        top: 140px;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
-}
 
-@media only screen and (min-width:501px) and (max-width: 767px) {
-    .handleBarcode {
+    .nft-watermark {
         position: relative;
-        left: 0px;
-        top: -98px;
-        /* text-align: end; */
+
+        right: -2.5rem;
+        top: 10px;
         justify-self: end;
-        width: 20% !important;
+        width: 10% !important;
         height: auto !important;
     }
 }
 
-@media only screen and (min-width:768px) and (max-width: 979px) {
+@media only screen and (min-width:501px) and (max-width: 699px) {
     .handleBarcode {
         position: relative;
-        left: -17px;
-        top: -65px;
+        left: -.5rem;
+        top: 12rem;
+
+    }
+
+    .nft-watermark {
+        position: relative;
+
+        right: -1.5rem;
+        top: 10px;
         justify-self: end;
-        width: 20% !important;
+        width: 10% !important;
         height: auto !important;
     }
 }
 
-@media only screen and (min-width:980px) and (max-width: 991px) {
+@media only screen and (min-width:700px) and (max-width: 767px) {
     .handleBarcode {
         position: relative;
-        left: -21.5px;
-        top: -87px;
+        left: 18rem;
+        top: -8rem;
+
+    }
+
+    .nft-watermark {
+        position: relative;
+
+        left: 26.5rem;
+        top: -18rem;
         justify-self: end;
-        width: 20% !important;
+        width: 10% !important;
+        height: auto !important;
+    }
+}
+
+/* @media only screen and (min-width:768px) and (max-width: 979px) {
+    .handleBarcode {
+        position: relative;
+        left: 1rem;
+        top: 10.5rem;
+
+    }
+
+    .nft-watermark {
+        position: relative;
+
+        right: -1rem;
+        top: 10px;
+        justify-self: end;
+        width: 10% !important;
+        height: auto !important;
+    }
+} */
+
+@media only screen and (min-width:768px) and (max-width: 991px) {
+    .handleBarcode {
+        position: relative;
+        left: 13rem;
+        top: -4.5rem;
+
+    }
+
+    .nft-watermark {
+        position: relative;
+
+        right: 2.1rem;
+        top: 10px;
+        justify-self: end;
+        width: 10% !important;
         height: auto !important;
     }
 }
@@ -124,10 +239,18 @@
 @media only screen and (min-width:992px) and (max-width: 1184px) {
     .handleBarcode {
         position: relative;
-        left: -24px;
-        top: -91px;
+        left: 13rem;
+        top: -6.5rem;
+
+    }
+
+    .nft-watermark {
+        position: relative;
+
+        right: 2rem;
+        top: 10px;
         justify-self: end;
-        width: 20% !important;
+        width: 10% !important;
         height: auto !important;
     }
 }
@@ -135,7 +258,7 @@
 @media only screen and (min-width:1185px) and (max-width: 1399px) {
     .handleBarcode {
         position: relative;
-        left: -28px;
+        left: 22.6rem;
         top: -108px;
         justify-self: end;
         width: 20% !important;
