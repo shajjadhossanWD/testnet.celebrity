@@ -21,6 +21,7 @@
     justify-self: end;
     width: 10% !important;
     height: auto !important;
+    visibility: hidden;
 }
 
 .fontExtand {
@@ -67,6 +68,7 @@
 
     .nft-watermark {
         position: relative;
+        visibility: hidden;
 
         right: -3.1rem;
         top: 10px;
@@ -114,6 +116,8 @@
         justify-self: end;
         width: 10% !important;
         height: auto !important;
+        visibility: hidden;
+
     }
 
 }
@@ -151,6 +155,7 @@
 
     .nft-watermark {
         position: relative;
+        visibility: hidden;
 
         right: -2.5rem;
         top: 10px;
@@ -170,6 +175,7 @@
 
     .nft-watermark {
         position: relative;
+        visibility: hidden;
 
         right: -1.5rem;
         top: 10px;
@@ -189,6 +195,7 @@
 
     .nft-watermark {
         position: relative;
+        visibility: hidden;
 
         left: 26.5rem;
         top: -18rem;
@@ -227,6 +234,7 @@
 
     .nft-watermark {
         position: relative;
+        visibility: hidden;
 
         right: 2.1rem;
         top: 10px;
@@ -246,6 +254,7 @@
 
     .nft-watermark {
         position: relative;
+        visibility: hidden;
 
         right: 2rem;
         top: 10px;

@@ -51,6 +51,7 @@ function MealDetails() {
   const [gotRefCode, setGotRefCode] = useState(false);
   const [src, setSrc] = useState('');
   const [random, setRandom] = useState();
+  const [images, setImages] = useState();
 
   const {
     user,
@@ -70,7 +71,6 @@ function MealDetails() {
 
 
 
-  const celebrityTemplate = useRef();
 
 
 
@@ -415,9 +415,63 @@ function MealDetails() {
 
   }
 
+  // const [celebrityTemplate, setCelebrityTemplate] = useState();
+
+  // const userefFunction = () =>{
+  //   setCelebrityTemplate(celebrityTemplate)
+  // }
+  const celebrityTemplate = useRef();
+
+
+
+  
+  /// send full details to user
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    
+      const NFTID= nftId
+      const type = isDetails.type
+      const name= isDetails.name
+      const price= isDetails.price
+      const venue= isDetails.price
+      const image= images
+      const date= newDate
+    
+
+    axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
+      NFTID, type , date, name, image, price, venue
+    }, {
+        headers: { "authorization": `Bearer ${localStorage.getItem("tokenMint")}` }
+    })
+        .then(res => {
+            if (res.status === 200) {
+                swal({
+                    title: "Success",
+                    text: res.data.message,
+                    icon: "success",
+                    button: "OK!",
+                    className: "modal_class_success",
+                });
+              
+            }
+        })
+        .catch(error => {
+            swal({
+                title: "Attention",
+                text: error.response.data.message,
+                icon: "warning",
+                button: "OK!",
+                className: "modal_class_success",
+            });
+        });
+}
+
+
 
   const mintCelebrityNft = async () => {
-
+    // userefFunction();
     setRequestLoading(true);
     const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
 
@@ -441,7 +495,7 @@ function MealDetails() {
         let Obj = {};
 
         if (res.status === 200) {
-
+           setImages(res.data.image)
           // data.append('certificate', res.data.image);
 
           if (token === "bnb") {
@@ -493,6 +547,8 @@ function MealDetails() {
                     }
                   });
                 postDataAfterMint();
+                handleSubmit();
+
               }
             })
             .catch(err => {
@@ -533,7 +589,7 @@ function MealDetails() {
         });
       })
   }
-  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
+  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 50;
 
 
   // Referal code discount
@@ -560,6 +616,9 @@ function MealDetails() {
   }
 
 
+
+
+
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
       <div className="d-grid justify_items_center">
@@ -574,11 +633,15 @@ function MealDetails() {
                 <span className="ps-1">{isDetails?.__v}</span>
               </Box>
             </Box>
+
             <div className="certificateCelebrity" ref={celebrityTemplate}>
-              <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
+              {/* <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' /> */}
+              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/celebriteee.jpg" className='deteilsPageImage' />
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className="img-fluid nft-watermark" />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" />
             </div>
+
+
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
