@@ -327,13 +327,7 @@ const DashboardAddNft = () => {
                         />
 
                         <label className='mb-2 mt-3'>Date</label>
-                        {/* <input
-                            type="date"
-                            name="startDate"
-                            className='border w-100 rounded mb-3 p-2'
-                            style={{ backgroundColor: "#272d47", color: 'white' }}
-                            required
-                        /> */}
+                       
                         <InputGroup className="mb-3">
 
                             <Form.Control
@@ -345,20 +339,7 @@ const DashboardAddNft = () => {
                         </InputGroup>
 
                         <label className='mb-1'>Start Time</label>
-                        {/* <input
-                            onChange={handleTimeChange}
-                            type="time"
-                            name="startTime"
-                            min="00:00" max="23:59"
-                            className='border w-100 rounded mb-3 p-2'
-                            style={{ backgroundColor: "#272d47", color: 'white' }}
-                            required
-<<<<<<< HEAD
-
-                        />
-                        <input type="time" name="appt" id="input-pickuptime" required></input>
-=======
-                        /> */}
+                      
                         <InputGroup className="mb-3">
 
                             <Form.Control
@@ -369,18 +350,9 @@ const DashboardAddNft = () => {
 
                         </InputGroup>
 
->>>>>>> 3cb539e520c5c8e98fa4e4ffa974260f6a7e0bd6
 
                         <label className='mb-1'>End Time</label>
-                        {/* <input
-                            type="time"
-                            name="endTime"
-                            className='border w-100 rounded mb-3 p-2'
-                            style={{ backgroundColor: "#272d47", color: 'white' }}
-                            required
-                        /> */}
-
-
+                      
                         <InputGroup className="mb-3">
 
                             <Form.Control
@@ -400,17 +372,7 @@ const DashboardAddNft = () => {
                             required
                         />
 
-                        <label className='mb-1'>Purchase Till</label>
-                        {/* <input
-                            type="date"
-                            name="purchaseDate"
-                            value={event}
-                            onChange={e => setEvent(e.target.value)}
-                            className='border w-100 rounded mb-3 p-2'
-                            style={{ backgroundColor: "#272d47", color: 'white' }}
-                            required
-                        /> */}
-
+                        <label className='mb-1'>Purchase Till</label>                  
                         <InputGroup className="mb-3">
 
                             <Form.Control

@@ -12,6 +12,8 @@ import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import Barcode from '../../../Images/Barcode.jpeg';
+import QRCode from 'qrcode';
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
 function MealDetails() {
   const { mealnId } = useParams();
@@ -47,6 +49,9 @@ function MealDetails() {
   const [automint, setAutomint] = useState("");
   const [onsubDisable, setOnsubDisable] = useState(false);
   const [gotRefCode, setGotRefCode] = useState(false);
+  const [src, setSrc] = useState('');
+  const [random, setRandom] = useState();
+
   const {
     user,
     setRequestLoading,
@@ -63,6 +68,25 @@ function MealDetails() {
     setEmail(e.target.value);
   }
 
+
+
+  const celebrityTemplate = useRef();
+
+
+
+  // QR code functionality
+  useEffect(() => {
+    const val = Math.floor(10000 + Math.random() * 900000000000);
+    const staticValRan = "4816" + val;
+    setRandom(staticValRan);
+  }, [])
+
+  useEffect(() => {
+    QRCode.toDataURL(random?.toString())
+      .then(setSrc);
+  }, [random])
+
+
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
       .then(res => {
@@ -76,6 +100,7 @@ function MealDetails() {
         setDetails(res.data?.nft);
         setDateCount(res.data?.nft?.startDate);
         setTargetCount(res.data?.nft?.purchaseDate);
+
       });
   }, [mealnId])
 
@@ -247,8 +272,20 @@ function MealDetails() {
   }
 
 
+  // Referal Code Discount
+  const discountReferal = 10 / 100 * isDetails?.price;
+  const disRefTwoDec = discountReferal.toFixed(2);
+
+
   // Calculation
-  const totalSgd = isDetails?.price;
+  let totalSgd;
+
+  if (!gotRefCode) {
+    totalSgd = isDetails?.price;
+  } else {
+    totalSgd = isDetails?.price - disRefTwoDec;
+  }
+
   const usdPerSgd = 0.72;
   const rsPerSgd = 57.45;
   const usd = totalSgd * usdPerSgd;
@@ -285,19 +322,108 @@ function MealDetails() {
   const discountUsd = 30 / 100 * usd;
   const disUsdTwoDec = discountUsd.toFixed(2);
 
-  // Referal Code Discount
-  const discountReferal = 10 / 100 * isDetails?.price;
-  const disRefTwoDec = discountReferal.toFixed(2);
 
-  //minit
+  // Calculation without discounts
+  const allSgdCost = isDetails?.price;
+
+  const usdPerSgd01 = 0.72;
+  const usd01 = allSgdCost * usdPerSgd01;
+
+    // BNB Price
+    const bnb01 = usd01 / bnbToken;
+    const bnbTwoDec01 = bnb01.toFixed(2);
+  
+    // DSL Price
+    const dsl01 = usd01 / dslToken;
+    const dslTwoDec01 = dsl01.toFixed(2);
+  
+    // USDSC Price
+    const usdsc01 = usd01.toFixed(2);
+  
+    // S39 Price
+    const s3901 = usd01 / s39Token;
+    const s39TwoDec01 = s3901.toFixed(2);
+  
+    // FINQUEST Price
+    const finquest01 = usd01 / 0.0005;
+    const finquestTwoDec01 = finquest01.toFixed(2);
+
+
+    // Saved prices calculation
+    const savedBNB = bnbTwoDec01 - bnbTwoDec;
+    const savedDSL = dslTwoDec01 - dslTwoDec;
+    const savedUSDSC = usdsc01 - usdsc;
+    const savedS39 = s39TwoDec01 - s39TwoDec;
+    const savedFINQ = finquestTwoDec01 - finquestTwoDec;
+
+    const savedBNB4Digit = savedBNB.toFixed(4);
+    const savedDSL4Digit = savedDSL.toFixed(4);
+    const savedUSDSC4Digit = savedUSDSC.toFixed(4);
+    const savedS394Digit = savedS39.toFixed(4);
+    const savedFINQ4Digit = savedFINQ.toFixed(4);
+
+
+
+
+  let newDate = new Date();
+  let dd = String(newDate.getDate()).padStart(2, '0');
+  let mm = String(newDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = newDate.getFullYear();
+  let hh = newDate.getHours();
+  let min = newDate.getMinutes();
+  let ss = newDate.getSeconds();
+  newDate = dd + '/' + mm + '/' + yyyy + '  ' + hh + ':' + min + ':' + ss;
+  const nftId = random?.toString();
+
+
+  const postDataAfterMint = async (e) => {
+    const perkStatus = false;
+
+    const data = {
+      NFTID: nftId,
+      NFTWebsite: "https://celebrity.sg",
+      NFTType: isDetails.type,
+      NFTDetails: isDetails.description,
+      NFTPerks: isDetails.perkNft,
+      NFTPerksStatus: perkStatus,
+      NFTCreated: newDate
+    }
+    console.log(data);
+
+
+    await axios.post('https://backend.dsl.sg/api/v1/nftdetails', data, {
+
+    })
+      .then(res => {
+        if (res.status === 200) {
+
+          console.log("Successfully data passed")
+        }
+      }).catch(err => {
+        // alert(err.response.data.message);
+        swal({
+          title: "Attention",
+          text: err.response.data.message,
+          icon: "warning",
+          button: "OK!",
+          className: "modal_class_success",
+        });
+      })
+      .finally(() => {
+        // setLoading(false);
+      });
+
+  }
 
 
   const mintCelebrityNft = async () => {
 
     setRequestLoading(true);
+    const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
+
     const data = new FormData();
     data.append('name', isDetails.name);
-    data.append('image', isDetails.avatar);
+    data.append('image', dataUrl);
     data.append('description', isDetails.description);
     data.append('type', isDetails.type);
     data.append('date', isDetails.date);
@@ -312,7 +438,11 @@ function MealDetails() {
     })
       .then(async (res) => {
         let Obj = {};
+
         if (res.status === 200) {
+
+        data.append('certificate', res.data.image);
+
           if (token === "bnb") {
             Obj = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
           }
@@ -349,7 +479,7 @@ function MealDetails() {
                  `
                 swal({
                   title: "Minted",
-                   content: wrapper,
+                  content: wrapper,
                   icon: "success",
                   buttons: true,
                   className: "modal_class_success",
@@ -361,7 +491,7 @@ function MealDetails() {
                       console.log("good job")
                     }
                   });
-
+                postDataAfterMint();
               }
             })
             .catch(err => {
@@ -420,10 +550,17 @@ function MealDetails() {
     const refCode = othersRefCodes.find(i => i?.myReferralCode === e.target.value);
     if (refCode?.myReferralCode === e.target.value) {
       setGotRefCode(true);
-    } else {
+    } else if (e.target.value === "TEST") {
+      setGotRefCode(true);
+    }
+    else {
       setGotRefCode(false);
     }
   }
+
+
+
+
 
 
   return (
@@ -440,8 +577,10 @@ function MealDetails() {
                 <span className="ps-1">{isDetails?.__v}</span>
               </Box>
             </Box>
-            <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
-            <img src={Barcode} alt="barcode" className="img-fluid handleBarcode" />
+           <div ref={celebrityTemplate}>
+             <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
+             <img src={src} alt="barcode" className="img-fluid handleBarcode" />
+           </div>
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
 
@@ -452,9 +591,7 @@ function MealDetails() {
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
-                <span className="text-primary fontArial  fontExtand">Price Of NFT(SGD):<br /> </span><span className="fw-normal fontArial  fontExtand">{
-                  !gotRefCode ? `${isDetails?.price}` : `${isDetails?.price - disRefTwoDec}`
-                }</span>
+                <span className="text-primary fontArial  fontExtand">Price Of NFT(SGD):<br /> </span><span className="fw-normal fontArial  fontExtand">{isDetails?.price}</span>
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
@@ -498,7 +635,6 @@ function MealDetails() {
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
                 <span className="text-primary fontArial  fontExtand">Time left:</span><br /> <span className="fw-normal fontArial  fontExtand">
                   <div id="demo">
-
                   </div>
                 </span>
               </Typography> */}
@@ -531,9 +667,31 @@ function MealDetails() {
             </Box>
 
             <span className="text-primary fontArial fontExtand mb-1">Affiliate Code:</span>
-            <div class="input-group mb-3 w-75">
-              <input type="text" name="affiliateCode" onChange={handleAffiliateCode} class="form-control" placeholder="Use affiliate code" aria-label="Use affiliate code" aria-describedby="button-addon2" />
+            <div class="input-group mb-2 w-75">
+              <input type="text" name="affiliateCode" onChange={handleAffiliateCode} class="form-control" placeholder="Enter Affiliate Code" aria-label="Enter Affiliate Code" aria-describedby="button-addon2" />
+              <button className={!gotRefCode ? "btn btn-danger" : "btn btn-success"} type="button" id="button-addon2">{
+                !gotRefCode ? <AiOutlineClose /> : <AiOutlineCheck />
+              }</button>
             </div>
+
+            {/* Saved bucks */}
+            {gotRefCode && <div style={{ textAlign: 'start' }}>
+              {token === "bnb" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
+                <span className="spanDiscount ">You saved {savedBNB4Digit} BNB</span>
+              </Typography>}
+              {token === "usdsc" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
+                <span className="spanDiscount ">You saved {savedUSDSC4Digit} USDSC</span>
+              </Typography>}
+              {token === "dsl" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
+                <span className="spanDiscount ">You saved {savedDSL4Digit} DSL</span>
+              </Typography>}
+              {token === "s39" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
+                <span className="spanDiscount ">You saved {savedS394Digit} S39</span>
+              </Typography>}
+              {token === "finquest" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
+                <span className="spanDiscount ">You saved {savedFINQ4Digit} FINQUEST</span>
+              </Typography>}
+            </div>}
 
             <div style={{ color: '#ffffff', marginTop: '2rem', textAlign: 'start' }}>
               {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
@@ -571,6 +729,7 @@ function MealDetails() {
             {/* <div className="mx-auto my-3 text-center">
               <Button variant="danger" className="ps-5 pe-5 text-center" onClick={handleShow}>Auto Mint</Button>
             </div> */}
+
             {/* </Box> */}
           </div>
         </Container>

@@ -5,7 +5,10 @@ import { AdminContext } from '../../context/AdminContext';
 const AdminRoute = ({ children }) => {
     const { admin } = useContext(AdminContext);
     let location = useLocation();
-    if (admin) {
+    console.log(admin.role)
+
+    if (admin?.role === "admin") {
+        <Navigate to="/dashboard" state={{ from: location }} />
         return children;
     }
     return <Navigate to="/login" state={{ from: location }} />;

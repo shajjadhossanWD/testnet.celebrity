@@ -38,7 +38,7 @@ export default function AdminProvider({ children }) {
                 if (res.status === 200) {
                     setToken(res.data.token);
                     setIsAuthenticating(true);
-                    localStorage.setItem('verify-token', res.data.token);
+                    localStorage.setItem('verify-tokens', res.data.token);
                     setToken(res.data.token);
                 }
             })
@@ -60,7 +60,7 @@ export default function AdminProvider({ children }) {
             otp
         }, {
             headers: {
-                     Authorization: `Bearer ${token}`
+                "authorization": `Bearer ${localStorage.getItem('verify-tokens')}`
          }
         })
             .then(res => {
@@ -68,7 +68,7 @@ export default function AdminProvider({ children }) {
                     setIsAuthenticating(false);
                     setAdmin(res.data.admin);
                     localStorage.setItem('adminCelebrity', res.data.token);
-                    localStorage.removeItem('verify-token');
+                    localStorage.removeItem('verify-tokens');
                 }
             })
             .catch(error => {

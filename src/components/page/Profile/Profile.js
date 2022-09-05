@@ -52,19 +52,24 @@ const Profile = () => {
               </div>
               <div className="mb-2">
                 <label htmlFor='usdsc'>USDSC in wallet</label>
-                <input type="text" id='usdsc' name="usdsc" value={metamaskBalance?.usdsc && parseFloat(metamaskBalance?.usdsc).toFixed(4)} className='form-control bg-transparent text-white' disabled />
+                <input type="text" id='usdsc' name="usdsc" value={metamaskBalance?.usdsc ? parseFloat(metamaskBalance?.usdsc).toFixed(4) : "0.0000"} className='form-control bg-transparent text-white' disabled />
               </div>
               <div className="mb-2">
                 <label htmlFor='bnb'>BNB in wallet</label>
-                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.bnb && parseFloat(metamaskBalance?.bnb).toFixed(4)} className='form-control bg-transparent text-white' disabled />
+                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.bnb ? parseFloat(metamaskBalance?.bnb).toFixed(4) : "0.0000"} className='form-control bg-transparent text-white' disabled />
               </div>
               <div className="mb-2">
                 <label htmlFor='bnb'>DSL in wallet</label>
-                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.dsl && parseFloat(metamaskBalance?.dsl).toFixed(4)} className='form-control bg-transparent text-white' disabled />
+                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.dsl ? parseFloat(metamaskBalance?.dsl).toFixed(4) : "0.0000"} className='form-control bg-transparent text-white' disabled />
               </div>
               <div className="mb-2">
                 <label htmlFor='bnb'>S39 in wallet</label>
-                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.s39 && parseFloat(metamaskBalance?.s39).toFixed(4)} className='form-control bg-transparent text-white' disabled />
+                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.s39 ? parseFloat(metamaskBalance?.s39).toFixed(4) : "0.0000"} className='form-control bg-transparent text-white' disabled />
+              </div>
+
+              <div className="mb-2">
+                <label htmlFor='bnb'>FINQUEST in wallet</label>
+                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.s39 ? parseFloat(metamaskBalance?.s39).toFixed(4) : "0.0000"} className='form-control bg-transparent text-white' disabled />
               </div>
 
             </div>

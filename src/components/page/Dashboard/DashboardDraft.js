@@ -171,6 +171,8 @@ const DashboardDraft = ({ setSelectedTab }) => {
                         ))}
                     </tbody>
                 </Table>
+                <h6 className='text-center text-danger'>No of NFTs: {nfts.length ? nfts.length : "0"}</h6>
+
             </div>
         </>
     );

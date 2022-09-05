@@ -159,7 +159,7 @@
 
 .slider_nft_text {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.8rem;
+  font-size: 0.93rem;
   font-weight: 400;
 }
 
@@ -299,6 +299,7 @@
   margin-left: 23.5px !important;
   margin-bottom: -28px !important;
   font-size: 22px !important;
+
 }
 
 .paymentOptionsChoose {
@@ -513,6 +514,8 @@ p.text-light.mb-0 {
       margin-left: 0px !important;
       margin-bottom: -28px !important;
       font-size: 30px !important;
+      text-align: center;
+
     }
 
     .forRespoMarginReduce {
@@ -548,6 +551,7 @@ p.text-light.mb-0 {
       margin-left: 0px !important;
       margin-bottom: -28px !important;
       font-size: 21px !important;
+      text-align: center;
     }
   }
 
