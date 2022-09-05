@@ -446,7 +446,7 @@ function MealDetails() {
   /// send full details to user
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    
       const NFTID= nftId
       const type = isDetails.type
       const name= isDetails.name
