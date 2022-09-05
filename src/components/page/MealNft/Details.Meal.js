@@ -442,49 +442,49 @@ function MealDetails() {
 
 
 
-  
+
   /// send full details to user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
-      const NFTID= nftId
-      const type = isDetails.type
-      const name= isDetails.name
-      const price= isDetails.price
-      const venue= isDetails.price
-      const image= images
-      const date= newDate
-    
+
+    const NFTID = nftId
+    const type = isDetails.type
+    const name = isDetails.name
+    const price = isDetails.price
+    const venue = isDetails.price
+    const image = images
+    const date = newDate
+
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, type , date, name, image, price, venue
+      NFTID, type, date, name, image, price, venue
     }, {
-        headers: { "authorization": `Bearer ${localStorage.getItem("tokenMint")}` }
+      headers: { "authorization": `Bearer ${localStorage.getItem("tokenMint")}` }
     })
-        .then(res => {
-            if (res.status === 200) {
-                swal({
-                    title: "Success",
-                    text: res.data.message,
-                    icon: "success",
-                    button: "OK!",
-                    className: "modal_class_success",
-                });
-              
-            }
-        })
-        .catch(error => {
-            swal({
-                title: "Attention",
-                text: error.response.data.message,
-                icon: "warning",
-                button: "OK!",
-                className: "modal_class_success",
-            });
+      .then(res => {
+        if (res.status === 200) {
+          swal({
+            title: "Success",
+            text: res.data.message,
+            icon: "success",
+            button: "OK!",
+            className: "modal_class_success",
+          });
+
+        }
+      })
+      .catch(error => {
+        swal({
+          title: "Attention",
+          text: error.response.data.message,
+          icon: "warning",
+          button: "OK!",
+          className: "modal_class_success",
         });
-}
+      });
+  }
 
 
 
@@ -516,7 +516,7 @@ function MealDetails() {
         let Obj = {};
 
         if (res.status === 200) {
-           setImages(res.data.image)
+          setImages(res.data.image)
           // data.append('certificate', res.data.image);
 
           if (token === "bnb") {
@@ -661,7 +661,7 @@ function MealDetails() {
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" />
             </div>
-
+            <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark3 ${isClickedMint ? "d-none" : ""}`} />
 
           </div>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
