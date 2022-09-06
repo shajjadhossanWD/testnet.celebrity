@@ -837,7 +837,11 @@ function MealDetails() {
                 <Form.Control
                   style={{ textTransform: 'lowercase' }}
                   type="email"
+<<<<<<< HEAD
                   // style={{ textTransform: "lowercase" }}
+=======
+                  style={{ textTransform: "lowercase" }}
+>>>>>>> main
                   name="email"
                   placeholder="Email"
                   onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
