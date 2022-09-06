@@ -835,8 +835,13 @@ function MealDetails() {
             <div className='w-75'>
               <InputGroup >
                 <Form.Control
+                  style={{ textTransform: 'lowercase' }}
                   type="email"
-                  style={{ textTransform: "lowercase" }}
+
+
+
+
+
                   name="email"
                   placeholder="Email"
                   onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
