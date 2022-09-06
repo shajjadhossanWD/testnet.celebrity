@@ -246,7 +246,7 @@ const MealSlider = ({ pull_meal }) => {
                   <Link to={`/mealnft/${aNft?._id}`} className="d-grid"> <button className="card_button2 bg-success" href="#!">PAY BY CRYPTO</button> </Link>
                 </div>
                 <div className="col-6 d-grid">
-                  <Link to={`/mealnft/${aNft?._id}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
+                  <Link to={`/paynow/${aNft?._id}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
                 </div>
               </div>
             </div>

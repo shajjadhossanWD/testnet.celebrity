@@ -230,7 +230,7 @@
 }
 
 .card_button2:hover {
-  background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%) !important;
+  /* background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%) !important; */
   color: #dee2e6 !important;
   border: none !important;
   border: 1px solid #242435 !important;
@@ -290,5 +290,9 @@
 @media only screen and (max-width: 600px) {
   .card {
     margin: 20px;
+  }
+
+  .card_button2 {
+    font-size: 9.6px;
   }
 }
