@@ -89,6 +89,7 @@ function MealDetails() {
 
 
 
+
   // QR code functionality
   useEffect(() => {
     const val = Math.floor(10000 + Math.random() * 900000000000);
@@ -457,8 +458,8 @@ function MealDetails() {
   // const userefFunction = () =>{
   //   setCelebrityTemplate(celebrityTemplate)
   // }
-  const celebrityTemplate = useRef();
 
+  const celebrityTemplate = useRef();
 
 
   
@@ -482,7 +483,7 @@ function MealDetails() {
 
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, type , date, name, image, price, venue, email, image2
+      NFTID, type , date, name, image, price, venue, email
     }, {
       // headers: {
       //   'content-type': 'application/json'
@@ -490,13 +491,14 @@ function MealDetails() {
     })
         .then(res => {
             if (res.status === 200) {
-                swal({
-                    title: "Success",
-                    text: res.data.message,
-                    icon: "success",
-                    button: "OK!",
-                    className: "modal_class_success",
-                });
+                // swal({
+                //     title: "Success",
+                //     text: res.data.message,
+                //     icon: "success",
+                //     button: "OK!",
+                //     className: "modal_class_success",
+                // });
+                console.log(res.data.message)
               
             }
         })
@@ -598,8 +600,22 @@ function MealDetails() {
                   .then((willDelete) => {
                     if (willDelete) {
                       navigate(`/mintednft/${Obj.ID}/${mintAddressTestnet}`)
+                      swal({
+                            title: "Success",
+                            text: "Please Check your mail for Minted NFT details",
+                            icon: "success",
+                            button: "OK!",
+                            className: "modal_class_success",
+                        });
                     } else {
                       console.log("good job")
+                      swal({
+                        title: "Success",
+                        text: "Please Check your mail for Minted NFT details",
+                        icon: "success",
+                        button: "OK!",
+                        className: "modal_class_success",
+                    });
                     }
                   });
                 postDataAfterMint();
@@ -693,16 +709,19 @@ function MealDetails() {
               </Box>
             </Box>
 
-            <div className="certificateCelebrity" ref={celebrityTemplate}>
+            {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
               {/* <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' /> */}
-              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/celebriteee.jpg" className='deteilsPageImage' />
+              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/ee.jpg" className='deteilsPageImage' />
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" />
             </div>
+            }
+
+            <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark3 ${isClickedMint ? "d-none" : ""}`} />
 
 
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
+          <div className="col-sm-12 col-md-6 col-lg-6 d-grid marginPhone">
 
             <Box className="pt-0 fontArial" style={{ color: "white" }}>
 
@@ -812,6 +831,7 @@ function MealDetails() {
                 <span className="spanDiscount ">You saved {savedFINQ4Digit} FINQUEST</span>
               </Typography>}
             </div>}
+            <span className="text-primary fontArial fontExtand mb-1">Email Address:</span>
             <div className='w-75'>
               <InputGroup >
                 <Form.Control

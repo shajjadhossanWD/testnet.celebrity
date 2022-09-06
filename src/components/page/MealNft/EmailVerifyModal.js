@@ -71,7 +71,7 @@ export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setErr
 
                     {isOtpError ? <p style={{ color: 'red' }}>You have entered wrong OTP</p> : ''}
                     <div className='d-flex' style={{ justifyContent: 'center' }}>
-                        <button disabled type='submit' onClick={handleVerifyEmail} className='submit banner-button2 font14 text-decoration-none pb-2' id="font14">Resend OTP</button>
+                        <button disabled={true} type='submit' onClick={handleVerifyEmail} className='submit banner-button2 font14 text-decoration-none pb-2' id="font14">Resend OTP</button>
                     </div>
                 </Box>
             </Modal>
