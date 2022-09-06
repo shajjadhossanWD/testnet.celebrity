@@ -6,7 +6,7 @@
 
 .handleBarcode {
     position: relative;
-    left: 24.5rem;
+    left: 27.1rem;
     top: -126px;
     justify-self: end;
     width: 20% !important;
@@ -27,7 +27,7 @@
 .nft-watermark3 {
     position: relative;
     opacity: 0.9;
-    right: 3.3rem;
+    left: 0.1rem;
     bottom: 23.5rem;
     justify-self: end;
     width: 10% !important;
@@ -75,12 +75,13 @@
 
 .certificateCelebrity {
     margin-bottom: 0rem;
+    height: 83.5%;
 }
 
 @media only screen and (max-width: 376px) {
     .handleBarcode {
         position: relative;
-        left: 4rem;
+        left: 3rem;
         top: 117px;
         justify-self: end;
         width: 20% !important;
@@ -117,7 +118,8 @@
         width: 10% !important;
         height: auto !important;
     }
-    .marginPhone{
+
+    .marginPhone {
         margin-top: 1rem;
     }
 }
@@ -147,12 +149,13 @@
     .handleBarcode {
         position: relative;
         left: 2.9rem;
-        top: 138px;
+        top: 8rem;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
-    .marginPhone{
+
+    .marginPhone {
         margin-top: 1rem;
     }
 
@@ -229,9 +232,11 @@
         width: 10% !important;
         height: auto !important;
     }
-    .marginPhone{
+
+    .marginPhone {
         margin-top: 1rem;
     }
+
     .nft-watermark2 {
         position: relative;
         opacity: 0.9;
@@ -260,9 +265,11 @@
         top: 12rem;
 
     }
-    .marginPhone{
+
+    .marginPhone {
         margin-top: 1rem;
     }
+
     .nft-watermark {
         position: relative;
         visibility: hidden;
@@ -357,7 +364,7 @@
 @media only screen and (min-width:768px) and (max-width: 991px) {
     .handleBarcode {
         position: relative;
-        left: 13rem;
+        left: 12rem;
         top: -4.5rem;
 
     }
@@ -437,7 +444,7 @@
 @media only screen and (min-width:1185px) and (max-width: 1399px) {
     .handleBarcode {
         position: relative;
-        left: 22.6rem;
+        left: 23.2rem;
         top: -108px;
         justify-self: end;
         width: 20% !important;

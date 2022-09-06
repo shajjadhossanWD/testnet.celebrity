@@ -17,8 +17,29 @@ const MealSlider = ({ pull_meal }) => {
   const [postIdDetails, setPostIdDetails] = useState([]);
   const [allAvailable, setAllAvailable] = useState([]);
 
+  const [likes, setLikes] = useState(0);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      if (isClicked) {
+        // setLikes(likes - 1);
+        localStorage.setItem("like", likes - 1);
+      } else {
+        // setLikes(likes + 1);
+        localStorage.setItem("like", likes + 1);
+      }
+      setIsClicked(!isClicked);
+      // setLikes(likess);
+      // console.log(likess);
+    }
+  };
+
+  const likess = localStorage.getItem("like");
+
   const allNft = isMeal;
-  // console.log(allNft);
 
   const todayDate = new Date();
 
@@ -197,9 +218,16 @@ const MealSlider = ({ pull_meal }) => {
       <Slider {...settings} className="gap-2">
         {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
           <div class="card">
-            <div onClick={() => likeCount(aNft?._id)} className="nft_item_like like_card">
+            <div
+              // onClick={() => likeCount(aNft?._id)} 
+              onClick={handleClick}
+
+              className="nft_item_like like_card">
               <i className="fa fa-heart"></i>
-              <span style={{ marginBottom: '2.2px' }}> {aNft?.likesCount ? parseInt(aNft?.likesCount) : 0}</span>
+              <span style={{ marginBottom: '2.2px' }}>
+                {/* {aNft?.likesCount ? parseInt(aNft?.likesCount) : 0} */}
+                {likess == 1 ? likess : 0}
+              </span>
             </div>
             <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className="img-fluid nft-watermark2" />
