@@ -66,8 +66,8 @@ function MealDetails() {
   const [random, setRandom] = useState();
   const [sendMail, setSendMail] = useState('');
   const [latestNft, setLatestNft] = useState('');
-  
-  
+
+
   const {
     user,
     setRequestLoading,
@@ -114,7 +114,7 @@ function MealDetails() {
 
 
 
-//get minted nft data
+  //get minted nft data
   useEffect(() => {
     axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
       .then(res => {
@@ -462,58 +462,58 @@ function MealDetails() {
   const celebrityTemplate = useRef();
 
 
-  
+
   /// send full details to user
 
   const handleSubmit = (ImgCelebrity) => {
-    
-      const NFTID= nftId
-      const type = isDetails.type
-      const name= isDetails.name
-      const price= isDetails.price
-      const venue= isDetails.venue
-      const image= ImgCelebrity
-      const date= newDate
-      const email = email1
-    
-     console.log(image);
-     console.log(email);
-     console.log(email1);
-     console.log(sendMail);
+
+    const NFTID = nftId
+    const type = isDetails.type
+    const name = isDetails.name
+    const price = isDetails.price
+    const venue = isDetails.venue
+    const image = ImgCelebrity
+    const date = newDate
+    const email = email1
+
+    console.log(image);
+    console.log(email);
+    console.log(email1);
+    console.log(sendMail);
 
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, type , date, name, image, price, venue, email
+      NFTID, type, date, name, image, price, venue, email
     }, {
       // headers: {
       //   'content-type': 'application/json'
       // },
     })
-        .then(res => {
-            if (res.status === 200) {
-                // swal({
-                //     title: "Success",
-                //     text: res.data.message,
-                //     icon: "success",
-                //     button: "OK!",
-                //     className: "modal_class_success",
-                // });
-                console.log(res.data.message)
-              
-            }
-        })
-        .catch(error => {
-          console.log(error)
-            swal({
-                title: "Attention",
-                text: error.response.data.message,
-                icon: "warning",
-                button: "OK!",
-                className: "modal_class_success",
-            });
+      .then(res => {
+        if (res.status === 200) {
+          // swal({
+          //     title: "Success",
+          //     text: res.data.message,
+          //     icon: "success",
+          //     button: "OK!",
+          //     className: "modal_class_success",
+          // });
+          console.log(res.data.message)
+
+        }
+      })
+      .catch(error => {
+        console.log(error)
+        swal({
+          title: "Attention",
+          text: error.response.data.message,
+          icon: "warning",
+          button: "OK!",
+          className: "modal_class_success",
         });
-    }
-    
+      });
+  }
+
 
 
 
@@ -544,12 +544,12 @@ function MealDetails() {
         let Obj = {};
 
         if (res.status === 200) {
-           setImages(res.data.Img)
-           console.log(images)
-           console.log(res.data.Img)
+          setImages(res.data.Img)
+          console.log(images)
+          console.log(res.data.Img)
 
           data.append('certificate', res.data.Img);
-          const data2 ={
+          const data2 = {
             name: isDetails.name,
             type: isDetails.type,
             price: isDetails.price,
@@ -601,12 +601,12 @@ function MealDetails() {
                     if (willDelete) {
                       navigate(`/mintednft/${Obj.ID}/${mintAddressTestnet}`)
                       swal({
-                            title: "Success",
-                            text: "Please Check your mail for Minted NFT details",
-                            icon: "success",
-                            button: "OK!",
-                            className: "modal_class_success",
-                        });
+                        title: "Success",
+                        text: "Please Check your mail for Minted NFT details",
+                        icon: "success",
+                        button: "OK!",
+                        className: "modal_class_success",
+                      });
                     } else {
                       console.log("good job")
                       swal({
@@ -615,11 +615,11 @@ function MealDetails() {
                         icon: "success",
                         button: "OK!",
                         className: "modal_class_success",
-                    });
+                      });
                     }
                   });
                 postDataAfterMint();
-                console.log("img"+ res.data.ImgCelebrity)
+                console.log("img" + res.data.ImgCelebrity)
                 handleSubmit(res.data.ImgCelebrity);
 
               }
@@ -637,7 +637,7 @@ function MealDetails() {
                 className: "modal_class_success",
               });
             })
-            console.log(res.data.Img)
+          console.log(res.data.Img)
 
         }
       })
@@ -836,7 +836,7 @@ function MealDetails() {
               <InputGroup >
                 <Form.Control
                   type="email"
-                  style={{textTransform: "lowercase"}}
+                  style={{ textTransform: "lowercase" }}
                   name="email"
                   placeholder="Email"
                   onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
