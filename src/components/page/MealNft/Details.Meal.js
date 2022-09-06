@@ -438,7 +438,7 @@ function MealDetails() {
   // const userefFunction = () =>{
   //   setCelebrityTemplate(celebrityTemplate)
   // }
-  const celebrityTemplate = useRef();
+  let celebrityTemplate = useRef();
 
 
 
@@ -776,6 +776,7 @@ function MealDetails() {
             <div className='w-75'>
               <InputGroup >
                 <Form.Control
+                  style={{ textTransform: 'lowercase' }}
                   type="email"
                   name="email"
                   placeholder="Email"
