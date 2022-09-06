@@ -24,7 +24,7 @@
 }
 
 .banner-button2 {
-  background-color: blue !important;
+  background-color: rgb(123, 123, 148) !important;
   margin: 10px;
   padding: 5px 20px;
   text-align: center;
@@ -33,9 +33,10 @@
   background-size: 200% auto;
   color: white;
   border-radius: 10px;
-  font-weight: bold;
+  font-weight: 500;
   border: none;
 }
+
 
 .banner-button:hover {
   background-position: right center;

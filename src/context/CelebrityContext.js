@@ -228,7 +228,7 @@ export default function CelebrityProvider({ children }) {
 
           return {
             mint_hash: mint_hash,
-            ID: "10000" + ID.toString(),
+            ID: "1000" + ID.toString(),
           };
           
           } else {
@@ -293,7 +293,7 @@ export default function CelebrityProvider({ children }) {
 
         return {
           mint_hash: mint_hash,
-          ID: "10000" + ID.toString(),
+          ID: "1000" + ID.toString(),
         };
 
      }
@@ -366,7 +366,7 @@ export default function CelebrityProvider({ children }) {
         console.log("Mint link: " + mint_hash);
         return {
           mint_hash: mint_hash,
-          ID: "10000" + ID.toString(),
+          ID: "1000" + ID.toString(),
         };
       }
     } catch (error) {
@@ -451,7 +451,7 @@ export default function CelebrityProvider({ children }) {
 
           return {
             mint_hash: mint_hash,
-            ID: "10000" + ID.toString(),
+            ID: "1000" + ID.toString(),
           };
         } else {
           console.log("No ethereum object");
@@ -518,7 +518,7 @@ export default function CelebrityProvider({ children }) {
 
           return {
             mint_hash: mint_hash,
-            ID: "10000" + ID.toString(),
+            ID: "1000" + ID.toString(),
           };
         } else {
           console.log("No ethereum object");

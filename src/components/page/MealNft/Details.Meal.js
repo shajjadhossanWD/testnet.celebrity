@@ -7,11 +7,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 import * as htmlToImage from "html-to-image";
 import { CelebrityContext } from "../../../context/CelebrityContext";
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
-import { verifyMessage } from "ethers/lib/utils";
+// import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+// import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
-import { MdArrowDropDownCircle } from 'react-icons/md';
-import Barcode from '../../../Images/Barcode.jpeg';
+// import { MdArrowDropDownCircle } from 'react-icons/md';
+// import Barcode from '../../../Images/Barcode.jpeg';
 import QRCode from 'qrcode';
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import EmailVerifyModal from "./EmailVerifyModal";
@@ -32,19 +32,19 @@ function MealDetails() {
   // const params = new URLSearchParams(native);
   // const nativeTitle = params.get('native');
   const [show, setShow] = useState(false);
-  const [expired, setExpired] = useState('');
+  // const [expired, setExpired] = useState('');
   // const [seconds, setSeconds] = useState();
   // const [minutes, setMinutes] = useState();
   // const [hours, setHours] = useState();
   // const [days, setDays] = useState();
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
   const [openEmail, setOpenEmail] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email1, setEmail] = useState('');
   const [emailVerify, setEmailVerify] = useState(false);
-  const [sendEmailOTP, setSendEmailOTP] = useState(false);
-  const [emailOtpCode, setEmailVerificationCode] = useState('')
+  // const [sendEmailOTP, setSendEmailOTP] = useState(false);
+  const [images, setImages] = useState('')
   const [isError, setError] = useState(false);
 
 
@@ -64,7 +64,9 @@ function MealDetails() {
   const [gotRefCode, setGotRefCode] = useState(false);
   const [src, setSrc] = useState('');
   const [random, setRandom] = useState();
-  const [images, setImages] = useState();
+  const [sendMail, setSendMail] = useState('');
+  const [latestNft, setLatestNft] = useState('');
+
 
   const {
     user,
@@ -78,9 +80,10 @@ function MealDetails() {
     mintAddressTestnet,
 
   } = useContext(CelebrityContext);
-  const handleEmail = e => {
-    setEmail(e.target.value);
-  }
+  // const handleEmail = e => {
+  //   setEmail(e.target.value);
+  // }
+
 
 
 
@@ -106,6 +109,21 @@ function MealDetails() {
         setAllAvailable(res.data);
       });
   }, [])
+
+
+
+
+
+  //get minted nft data
+  useEffect(() => {
+    axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
+      .then(res => {
+        setLatestNft(res.data[0].certificate);
+        console.log(res.data[0].certificate);
+        console.log(latestNft)
+      });
+  }, [])
+
   // console.log(allAvailable.length);
   useEffect(() => {
     axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
@@ -175,17 +193,20 @@ function MealDetails() {
   }, []);
 
 
+
   const handleVerifyEmail = async (e) => {
     // check if email is valid
     setDisableAfterActivation(true);
-    if (email.length > 0 && email.includes("@" && ".")) {
+    if (email1.length > 0 && email1.includes("@" && ".")) {
       // setLoading(true);
       setEmailVerify(true);
       await axios.post('https://backend.celebrity.sg/api/v1/verifymint/mail', {
-        email: email
+        email: email1
       }).then(res => {
         if (res.status === 200) {
           // alert(res.data.message);
+          console.log(res.data.email)
+          setSendMail(res.data.email)
           swal({
             text: res.data.message,
             icon: "success",
@@ -249,7 +270,6 @@ function MealDetails() {
                   className: "modal_class_success",
                 });
                 e.target.reset();
-                setEmail("");
                 setOtp("");
                 setAutomint("");
                 setOnsubDisable(true);
@@ -438,37 +458,47 @@ function MealDetails() {
   // const userefFunction = () =>{
   //   setCelebrityTemplate(celebrityTemplate)
   // }
-  let celebrityTemplate = useRef();
 
+  const celebrityTemplate = useRef();
 
 
 
   /// send full details to user
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (ImgCelebrity) => {
 
     const NFTID = nftId
     const type = isDetails.type
     const name = isDetails.name
     const price = isDetails.price
-    const venue = isDetails.price
-    const image = images
+    const venue = isDetails.venue
+    const image = ImgCelebrity
     const date = newDate
+    const email = email1
+
+    console.log(image);
+    console.log(email);
+    console.log(email1);
+    console.log(sendMail);
+
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
       NFTID, type, date, name, image, price, venue, email
     }, {
-
+      // headers: {
+      //   'content-type': 'application/json'
+      // },
     })
       .then(res => {
         if (res.status === 200) {
-          swal({
-            title: "Success",
-            text: res.data.message,
-            icon: "success",
-            button: "OK!",
-            className: "modal_class_success",
-          });
+          // swal({
+          //     title: "Success",
+          //     text: res.data.message,
+          //     icon: "success",
+          //     button: "OK!",
+          //     className: "modal_class_success",
+          // });
+          console.log(res.data.message)
 
         }
       })
@@ -482,7 +512,6 @@ function MealDetails() {
           className: "modal_class_success",
         });
       });
-    // });
   }
 
 
@@ -515,8 +544,17 @@ function MealDetails() {
         let Obj = {};
 
         if (res.status === 200) {
-          setImages(res.data.image)
-          // data.append('certificate', res.data.image);
+          setImages(res.data.Img)
+          console.log(images)
+          console.log(res.data.Img)
+
+          data.append('certificate', res.data.Img);
+          const data2 = {
+            name: isDetails.name,
+            type: isDetails.type,
+            price: isDetails.price,
+            certificate: res.data.Img,
+          }
 
           if (token === "bnb") {
             Obj = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
@@ -535,7 +573,7 @@ function MealDetails() {
           }
           data.append("mint_hash", Obj.mint_hash);
           console.log(data);
-          await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data, {
+          await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data2, {
             // headers: {
             //   Authorization: `Bearer ${localStorage.getItem("token")}`
             // }
@@ -562,12 +600,27 @@ function MealDetails() {
                   .then((willDelete) => {
                     if (willDelete) {
                       navigate(`/mintednft/${Obj.ID}/${mintAddressTestnet}`)
+                      swal({
+                        title: "Success",
+                        text: "Please Check your mail for Minted NFT details",
+                        icon: "success",
+                        button: "OK!",
+                        className: "modal_class_success",
+                      });
                     } else {
                       console.log("good job")
+                      swal({
+                        title: "Success",
+                        text: "Please Check your mail for Minted NFT details",
+                        icon: "success",
+                        button: "OK!",
+                        className: "modal_class_success",
+                      });
                     }
                   });
                 postDataAfterMint();
-                handleSubmit();
+                console.log("img" + res.data.ImgCelebrity)
+                handleSubmit(res.data.ImgCelebrity);
 
               }
             })
@@ -584,6 +637,8 @@ function MealDetails() {
                 className: "modal_class_success",
               });
             })
+          console.log(res.data.Img)
+
         }
       })
       .catch(err => {
@@ -654,16 +709,19 @@ function MealDetails() {
               </Box>
             </Box>
 
-            <div className="certificateCelebrity" ref={celebrityTemplate}>
+            {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
               {/* <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' /> */}
-              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/celebriteee.jpg" className='deteilsPageImage' />
+              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/ee.jpg" className='deteilsPageImage' />
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" />
             </div>
+            }
+
             <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark3 ${isClickedMint ? "d-none" : ""}`} />
 
+
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-6 d-grid">
+          <div className="col-sm-12 col-md-6 col-lg-6 d-grid marginPhone">
 
             <Box className="pt-0 fontArial" style={{ color: "white" }}>
 
@@ -773,21 +831,23 @@ function MealDetails() {
                 <span className="spanDiscount ">You saved {savedFINQ4Digit} FINQUEST</span>
               </Typography>}
             </div>}
+            <span className="text-primary fontArial fontExtand mb-1">Email Address:</span>
             <div className='w-75'>
               <InputGroup >
                 <Form.Control
                   style={{ textTransform: 'lowercase' }}
                   type="email"
+                  // style={{ textTransform: "lowercase" }}
                   name="email"
                   placeholder="Email"
                   onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
-                  value={email}
+                  value={email1}
                   required />
                 <button
                   // onClick={() => handleVerifyEmail()}
                   // onClick={sendEmailVerificationCode}
                   onClick={handleVerifyEmail}
-                  disabled={(email.length === 0 || disableAfterActivation) ? true : false}
+                  disabled={(email1.length === 0 || disableAfterActivation) ? true : false}
                   type="button" className="btn btn-danger" id="button-addon2">
                   Verify Email
                 </button>
@@ -939,11 +999,11 @@ function MealDetails() {
                 type="email"
                 name="email"
                 placeholder="Email"
-                onChange={handleEmail}
+                // onChange={handleEmail}
                 required />
               <button
                 onClick={() => handleVerifyEmail()}
-                disabled={(email.length === 0 || disableAfterActivation) ? true : false}
+                disabled={(email1.length === 0 || disableAfterActivation) ? true : false}
                 type="button" className="btn btn-danger" id="button-addon2">
                 Verify Email
               </button>
@@ -964,7 +1024,7 @@ function MealDetails() {
               <Button variant="secondary" onClick={handleClose}>
                 CLOSE
               </Button>
-              <Button variant="primary" type="submit" disabled={(email.length === 0 || otp.length === 0 || automint.length === 0 || onsubDisable || otp != otpVerify) ? true : false}>
+              <Button variant="primary" type="submit" disabled={(email1.length === 0 || otp.length === 0 || automint.length === 0 || onsubDisable || otp != otpVerify) ? true : false}>
                 SUBMIT
               </Button>
             </Modal.Footer>
@@ -979,6 +1039,7 @@ function MealDetails() {
 
         otpVerify={otpVerify}
         setError={setError} />
+
     </div>
   )
 }
