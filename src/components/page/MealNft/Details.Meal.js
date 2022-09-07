@@ -459,8 +459,14 @@ function MealDetails() {
   //   setCelebrityTemplate(celebrityTemplate)
   // }
 
-  const celebrityTemplate = useRef();
+  let celebrityTemplate = useRef();
 
+  useEffect(()=>{
+
+    const dataUrl = htmlToImage.toPng(celebrityTemplate.current);
+    console.log(dataUrl)
+
+  },[celebrityTemplate])
 
 
   /// send full details to user
@@ -522,7 +528,11 @@ function MealDetails() {
     setIsClickedMint(true)
 
     setRequestLoading(true);
+
     const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
+
+    console.log(dataUrl);
+
 
     const data = new FormData();
     data.append('name', isDetails.name);
@@ -691,7 +701,7 @@ function MealDetails() {
   }
 
 
-
+  const likess = localStorage.getItem("like");
 
 
   return (
@@ -704,8 +714,11 @@ function MealDetails() {
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid justify_items_center pt-2">
             <Box className=" col-12 card_top_icon mb-2">
               <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1">
-                <i className="fa fa-heart"></i>
-                <span className="ps-1">{isDetails?.__v}</span>
+                <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
+                <span className="ps-1">
+                  {/* {isDetails?.__v} */}
+                  {likess == 1 ? likess : 0}
+                </span>
               </Box>
             </Box>
 

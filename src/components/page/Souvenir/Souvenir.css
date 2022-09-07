@@ -20,6 +20,8 @@
 }
 
 .icon_love_Dtl_box {
+    position: relative;
+    left: 3.5rem;
     width: 48px;
     height: 42px;
     display: flex;
@@ -77,9 +79,10 @@ button.swal-button.swal-button--confirm {
 /* ------------------------------------ */
 
 .card_top_icon {
+
     width: 90%;
     display: flex !important;
-    justify-content: flex-end !important;
+    justify-content: end !important;
     align-items: flex-start !important;
     margin-top: 40px;
 }
@@ -99,6 +102,10 @@ button.swal-button.swal-button--confirm {
     /* font-style: italic; */
     letter-spacing: 0.01em;
     color: #d6579f;
+}
+
+.heart-icon {
+    color: #aa185f;
 }
 
 /* ----------------------------------- */
@@ -140,6 +147,8 @@ button.swal-button.swal-button--confirm {
     }
 
     .icon_love_Dtl_box {
+        position: relative;
+        left: .1rem;
         width: 48px;
         height: 42px;
         display: flex;

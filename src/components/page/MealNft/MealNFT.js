@@ -28,6 +28,8 @@ const MealNFT = () => {
       });
   }, [isMeal])
 
+  const likess = localStorage.getItem("like");
+
   return (
     <Fragment>
       <Box className="souvenirNFT_Box" id="Meal">
@@ -39,9 +41,12 @@ const MealNFT = () => {
             allNft?.map((data, idx) => (
               <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
                 <div class="card">
-                  <div className="nft__item_like like_card">
-                    <i className="fa fa-heart"></i>
-                    <span>{data.fvt}</span>
+                  <div className=" like_card">
+                    <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
+                    <span className="">
+                      {/* {isDetails?.__v} */}
+                      {likess == 1 ? likess : 0}
+                    </span>
                   </div>
                   <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
                     <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
@@ -84,8 +89,11 @@ const MealNFT = () => {
                     </div>
                     <hr style={{ margin: "10px 0px 10px 0px" }} />
                     <div className="d-flex card_bottom_btn_main" style={{ margin: '15px 0 8px 0' }}>
-                      <div className="col-10 d-grid">
-                        <Link to={`/mealnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
+                      <div className="col-6 d-grid me-2">
+                        <Link to={`/mealnft/${data?._id}`} className="d-grid"> <button className="card_button2 bg-success" href="#!">PAY BY CRYPTO</button> </Link>
+                      </div>
+                      <div className="col-6 d-grid">
+                        <Link to={`/paynow/${data?._id}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
                       </div>
                     </div>
                   </div>

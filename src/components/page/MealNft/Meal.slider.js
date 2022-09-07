@@ -223,7 +223,7 @@ const MealSlider = ({ pull_meal }) => {
               onClick={handleClick}
 
               className="nft_item_like like_card">
-              <i className="fa fa-heart"></i>
+              <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
               <span style={{ marginBottom: '2.2px' }}>
                 {/* {aNft?.likesCount ? parseInt(aNft?.likesCount) : 0} */}
                 {likess == 1 ? likess : 0}

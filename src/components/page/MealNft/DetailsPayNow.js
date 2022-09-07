@@ -690,7 +690,7 @@ function DetailsPayNow() {
         }
     }
 
-
+    const likess = localStorage.getItem("like");
 
 
 
@@ -704,8 +704,11 @@ function DetailsPayNow() {
                     <div className="col-sm-12 col-md-6 col-lg-6 d-grid justify_items_center pt-2">
                         <Box className=" col-12 card_top_icon mb-2">
                             <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1">
-                                <i className="fa fa-heart"></i>
-                                <span className="ps-1">{isDetails?.__v}</span>
+                                <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
+                                <span className="ps-1">
+                                    {/* {isDetails?.__v} */}
+                                    {likess == 1 ? likess : 0}
+                                </span>
                             </Box>
                         </Box>
 
@@ -807,7 +810,7 @@ function DetailsPayNow() {
                                 </InputGroup>
                             </div>
 
-                            <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
+                            <Typography className="pt-3 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
                                 <span className="text-primary fontArial fontExtand">Buy now to attend the meal session</span>
                             </Typography>
                             <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" className="w-50" alt="" />
