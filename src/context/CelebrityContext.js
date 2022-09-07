@@ -468,69 +468,74 @@ export default function CelebrityProvider({ children }) {
     }
   };
 
-  const mintTitleNFTTestnetQuest = async (uriNft, mintprice) => {
+  const mintTitleNFTTestnetQuest = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
-        const chainid = await window.ethereum.request({
-          method: "eth_chainId",
-        });
-        console.log("This is Chain ID: ", chainid);
-        if (chainid === "0x38" || chainid === "0x61") {
-          const MintNFTContract = getMintContractTestnet();
-          console.log(MintNFTContract);
-          const QuestTokenContract = getQuesttokenContractTestnet();
-          console.log(QuestTokenContract);
-          const provider = new ethers.providers.Web3Provider(ethereum);
-          const price1 = await axios.get(
-            "https://api.pancakeswap.info/api/v2/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
-          );
-          const price = (price1.data.data.price * mintprice).toString();
-          console.log(price);
-          const parsedAmount = ethers.utils.parseEther(price);
-          const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
-          const gasLimit = await QuestTokenContract.estimateGas.transfer(
-            admin,
-            parsedAmount._hex
-          );
-          const gasPrice = await await provider.getGasPrice();
-          const payment = await QuestTokenContract.transfer(
-            admin,
-            parsedAmount._hex,
-            { gasLimit: gasLimit, gasPrice: gasPrice }
-          );
-          let payment_test = await provider.getTransaction(payment.hash);
-          while (payment_test.blockNumber === null) {
-            console.log("Payment In Progress...");
-            payment_test = await provider.getTransaction(payment.hash);
-          }
-          console.log(payment_test.blockNumber);
-          let payment_hash = "https://testnet.bscscan.com/tx/" + payment.hash;
-          console.log("Payment link: " + payment_hash);
-          const recipient = currentAccount;
-          const Val = await MintNFTContract.mint(uriNft, recipient);
-          let txn_test = await provider.getTransaction(Val.hash);
+        const MintNFTContract = getMintContractTestnet();
+        const USDSCTokenContract = getQuesttokenContractTestnet();
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const parsedAmount = ethers.utils.parseEther(mintPrice);
+        const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
+        const gasLimit = await USDSCTokenContract.estimateGas.transfer(
+          admin,
+          parsedAmount._hex
+        );
+        const gasPrice = await await provider.getGasPrice();
+        const payment = await USDSCTokenContract.transfer(
+          admin,
+          parsedAmount._hex,
+          { gasLimit: gasLimit, gasPrice: gasPrice }
+        );
+        let payment_test = await provider.getTransaction(payment.hash);
+        while (payment_test.blockNumber === null) {
+          console.log("Payment In Progress...");
+          payment_test = await provider.getTransaction(payment.hash);
+        }
+        console.log(payment_test.blockNumber);
+        let payment_hash = "https://testnet.bscscan.com/tx/" + payment.hash;
+        console.log("Payment link: " + payment_hash);
+        const recipient = currentAccount;
+        const Val = await MintNFTContract.mint(uriNft, recipient);
+        let txn_test = await provider.getTransaction(Val.hash);
+        if (txn_test) {
           while (txn_test.blockNumber === null) {
             console.log("Minting...");
             txn_test = await provider.getTransaction(Val.hash);
           }
           console.log("txn_test.blockNumber: " + txn_test.blockNumber);
-          const ID = await MintNFTContract.totalSupply();
-          console.log("Token ID: ", ID.toString());
-          let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
-          console.log("Mint link: " + mint_hash);
-          console.log("this is Token ID: 10000" + ID.toString());
-          console.log("this is Contract Address: : " + mintAddressTestnet);
-
-          return {
-            mint_hash: mint_hash,
-            ID: "1000" + ID.toString(),
-          };
-        } else {
-          console.log("No ethereum object");
         }
+        const ID = await MintNFTContract.totalSupply();
+        console.log(ID.toString());
+        let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
+        console.log("Mint link: " + mint_hash);
+        return {
+          mint_hash: mint_hash,
+          ID: "1000" + ID.toString(),
+        };
       }
     } catch (error) {
       console.log(error);
+      console.log("No ethereum object");
+      //setRequestLoading(false);
+      if (error.code === -32603) {
+        swal({
+          title: "Attention",
+          text: "Insufficient funds for minting!",
+          icon: "warning",
+          button: "OK",
+          // dangerMode: true,
+          className: "modal_class_success",
+        });
+      } else {
+        swal({
+          title: "Attention",
+          text: "Minting Failed",
+          icon: "warning",
+          button: "OK",
+          // dangerMode: true,
+          className: "modal_class_success",
+        });
+      }
       throw new Error("No ethereum object");
     }
   };
@@ -861,7 +866,7 @@ export default function CelebrityProvider({ children }) {
         mintTicketNFTTestnetDSL,
         metamaskBalance,
         metamaskBalanceLoading,
-        getBalanceTestnet,
+        setMetamaskBalanceLoading,
         getBalanceMainnet,
         mintTitleNFTTestnetS39,
         mintTitleNFTTestnetQuest,

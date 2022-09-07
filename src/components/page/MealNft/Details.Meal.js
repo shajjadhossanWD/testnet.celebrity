@@ -513,13 +513,13 @@ function MealDetails() {
       })
       .catch(error => {
         console.log(error)
-        swal({
-          title: "Attention",
-          text: error.response.data.message,
-          icon: "warning",
-          button: "OK!",
-          className: "modal_class_success",
-        });
+        // swal({
+        //   title: "Attention",
+        //   text: error.response.data.message,
+        //   icon: "warning",
+        //   button: "OK!",
+        //   className: "modal_class_success",
+        // });
       });
   }
 
