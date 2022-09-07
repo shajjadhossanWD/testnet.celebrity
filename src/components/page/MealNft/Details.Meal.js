@@ -66,6 +66,7 @@ function MealDetails() {
   const [random, setRandom] = useState();
   const [sendMail, setSendMail] = useState('');
   const [latestNft, setLatestNft] = useState('');
+  const [dataUrl, setDataUrl] = useState('');
 
 
   const {
@@ -463,10 +464,12 @@ function MealDetails() {
 
   useEffect(()=>{
 
-    const dataUrl = htmlToImage.toPng(celebrityTemplate.current);
-    console.log(dataUrl)
+    const dataUrlNft = celebrityTemplate.current;
+    console.log(dataUrlNft)
 
-  },[celebrityTemplate])
+    setDataUrl(dataUrlNft)
+
+  },[isDetails])
 
 
   /// send full details to user
@@ -529,14 +532,16 @@ function MealDetails() {
 
     setRequestLoading(true);
 
-    const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
+    
+     let dataUrlCelebrity = await htmlToImage.toPng(dataUrl)
+    // const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
 
-    console.log(dataUrl);
+    console.log(dataUrlCelebrity);
 
 
     const data = new FormData();
     data.append('name', isDetails.name);
-    data.append('file', dataUrl);
+    data.append('file', dataUrlCelebrity);
     data.append('image', isDetails.avatar);
     data.append('description', isDetails.description);
     data.append('type', isDetails.type);
@@ -674,7 +679,7 @@ function MealDetails() {
         });
       })
   }
-  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 50;
+  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 70;
 
 
   // Referal code discount
@@ -723,9 +728,9 @@ function MealDetails() {
             </Box>
 
             {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
-              {/* <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' /> */}
+              {/* <img alt="This is celebrity meal NFT" src={isDetails.avatar} className='deteilsPageImage' /> */}
               <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/ee.jpg" className='deteilsPageImage' />
-              <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
+              <img src="" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" />
             </div>
             }

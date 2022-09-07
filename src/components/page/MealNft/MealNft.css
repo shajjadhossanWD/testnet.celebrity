@@ -81,13 +81,16 @@
 @media only screen and (max-width: 376px) {
     .handleBarcode {
         position: relative;
-        left: 3rem;
-        top: 117px;
+        left: 5rem;
+        top: 110px;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
-
+    .certificateCelebrity {
+        height: 100%;
+        margin-bottom: 0;
+    }
     .nft-watermark {
         position: relative;
         visibility: hidden;
@@ -148,13 +151,16 @@
 @media only screen and (min-width:377px) and (max-width: 425px) {
     .handleBarcode {
         position: relative;
-        left: 2.9rem;
+        left: 4.5rem;
         top: 8rem;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
-
+    .certificateCelebrity {
+        height: 100%;
+        margin-bottom: 0;
+    }
     .marginPhone {
         margin-top: 1rem;
     }
@@ -215,13 +221,16 @@
 @media only screen and (min-width:426px) and (max-width: 500px) {
     .handleBarcode {
         position: relative;
-        left: 1rem;
+        left: 5rem;
         top: 140px;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
-
+    .certificateCelebrity {
+        height: 100%;
+        margin-bottom: 0;
+    }
     .nft-watermark {
         position: relative;
         visibility: hidden;
@@ -264,6 +273,11 @@
         left: -.5rem;
         top: 12rem;
 
+    }
+
+    .certificateCelebrity {
+        height: 100%;
+        margin-bottom: 0;
     }
 
     .marginPhone {
