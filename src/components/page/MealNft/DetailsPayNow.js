@@ -18,7 +18,7 @@ import EmailVerifyModal from "./EmailVerifyModal";
 import { useTimer } from 'react-timer-hook';
 
 
-function DetailsPayNow({expiryTimestamp}) {
+function DetailsPayNow({ expiryTimestamp }) {
 
     const { mealnId, addressImg } = useParams();
     const [disableAfterActivation, setDisableAfterActivation] = useState(false);
@@ -207,9 +207,9 @@ function DetailsPayNow({expiryTimestamp}) {
     } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
 
     const restarting = (sec) => {
-            const time = new Date();
-            time.setSeconds(time.getSeconds() + sec);
-            restart(time)
+        const time = new Date();
+        time.setSeconds(time.getSeconds() + sec);
+        restart(time)
     }
 
 
@@ -849,7 +849,7 @@ function DetailsPayNow({expiryTimestamp}) {
                             </div>
 
                             <Typography className="pt-3 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
-                                <span className="text-primary fontArial fontExtand">Buy now to attend the meal session</span>
+                                <span className="text-primary fontArial fontExtand">To attend this Celebrity Meal Nft Session, please pay SGD {isDetails?.price}</span>
                             </Typography>
                             <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} className="w-50" style={otpVerify ? { cursor: 'pointer' } : { cursor: 'auto' }} alt="" />
 
