@@ -233,7 +233,7 @@ const MealSlider = ({ pull_meal }) => {
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className="img-fluid nft-watermark2" />
               <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
 
-                <Link to={`/mealnft/${aNft?._id}`}><button className="card_hover_button mt-5" href="#!">BUY THIS NFT FOR SGD {aNft?.price}</button></Link>
+                <Link to={`/mealnft/${aNft?._id}/${aNft?.imageName}`}><button className="card_hover_button mt-5" href="#!">BUY THIS NFT FOR SGD {aNft?.price}</button></Link>
               </div>
             </div>
             <div class="card-content">
@@ -271,10 +271,10 @@ const MealSlider = ({ pull_meal }) => {
               <hr style={{ margin: "10px 0px 10px 0px" }} />
               <div className="d-flex card_bottom_btn_main " style={{ margin: '15px 0 8px 0' }}>
                 <div className="col-6 d-grid me-2">
-                  <Link to={`/mealnft/${aNft?._id}`} className="d-grid"> <button className="card_button2 bg-success" href="#!">PAY BY CRYPTO</button> </Link>
+                  <Link to={`/mealnft/${aNft?._id}/${aNft?.imageName}`} className="d-grid"> <button className="card_button2 bg-success" href="#!">PAY BY CRYPTO</button> </Link>
                 </div>
                 <div className="col-6 d-grid">
-                  <Link to={`/paynow/${aNft?._id}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
+                  <Link to={`/paynow/${aNft?._id}/${aNft?.imageName}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
                 </div>
               </div>
             </div>

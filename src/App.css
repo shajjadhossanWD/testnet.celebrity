@@ -84,6 +84,13 @@
   margin: auto;
 }
 
+.css-tj5bde-Svg {
+  color: #000 !important;
+}
+
+.css-8mmkcg {
+  color: #000 !important;
+}
 
 /* .home-txt-pd {
   padding-top: -50px !important;
@@ -347,6 +354,31 @@
 .howItWorksFs {
   font-size: 1rem !important;
   font-weight: 400 !important;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  text-transform: none;
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  text-transform: none;
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  text-transform: none;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  text-transform: none;
+}
+
+::placeholder {
+  /* Recent browsers */
+  text-transform: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {

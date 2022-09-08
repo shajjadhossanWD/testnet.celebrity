@@ -35,7 +35,7 @@ function HowItWorks() {
 
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              Celebrity Meal NFT allows fans to meet their favourite celebrity in Singapore over a meal.
+            Celebrity Meal NFT allows fans to meet their favourite celebrity over a meal.
             </Typography>
             <Typography className="pt-2 pb-2 text-primary" variant="h6" component="div">
               What do you get?
@@ -44,7 +44,7 @@ function HowItWorks() {
               1. Digital Art of the Celebrity
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              2. Memorabilia of the Celebrity
+              2. Canvas print of the Celebrity
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
               3. 5 mins Live Performance by the Celebrity
@@ -59,10 +59,10 @@ function HowItWorks() {
               Why buy?
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              1. Opportunity to meet your Celebrity
+              1. Participate in the NFT project of your Celebrity
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              2. Participate in the NFT project of your Celebrity
+              2. Opportunity to meet your Celebrity
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
               3. Enjoy a meal with your Celebrity
@@ -71,10 +71,10 @@ function HowItWorks() {
               4. Selfie with your Celebrity
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              5. Keep the Celebrity Memorabilia
+              5. Keep the Celebrity Canvas print
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              6. Sell your Celebrity NFT for profit in BSC marketplaces (Digital Art)
+              6. Sell your Celebrity NFT in BSC marketplaces (Digital Art)
             </Typography>
           </div>
           <div className='d-flex pt-2 pb-3' style={{ justifyContent: 'center' }}>

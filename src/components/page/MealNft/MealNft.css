@@ -13,6 +13,48 @@
     height: auto !important;
 }
 
+.img_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 2rem 0;
+}
+
+.payTexts{
+    margin-bottom: 0;
+}
+.paynowPaidButton{
+    background-color: #0d6efd;
+    color: white;
+    width: 300px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: none;
+}
+.paynowLaterPaidButton{
+    background-color: transparent;
+    border: 2px solid #0d6efd;
+    color: #0d6efd;
+    width: 300px;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+.companyDetails{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.buttonDiv{
+    margin-bottom: -0.1rem;
+    padding-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
 .nft-watermark {
     position: relative;
     opacity: 0.9;
@@ -81,16 +123,18 @@
 @media only screen and (max-width: 376px) {
     .handleBarcode {
         position: relative;
-        left: 5rem;
-        top: 110px;
+        left: 3.7rem;
+        top: 8rem;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
+
     .certificateCelebrity {
         height: 100%;
         margin-bottom: 0;
     }
+
     .nft-watermark {
         position: relative;
         visibility: hidden;
@@ -151,16 +195,18 @@
 @media only screen and (min-width:377px) and (max-width: 425px) {
     .handleBarcode {
         position: relative;
-        left: 4.5rem;
-        top: 8rem;
+        left: 3rem;
+        top: 8.7rem;
         justify-self: end;
         width: 20% !important;
         height: auto !important;
     }
+
     .certificateCelebrity {
         height: 100%;
         margin-bottom: 0;
     }
+
     .marginPhone {
         margin-top: 1rem;
     }
@@ -227,10 +273,12 @@
         width: 20% !important;
         height: auto !important;
     }
+
     .certificateCelebrity {
         height: 100%;
         margin-bottom: 0;
     }
+
     .nft-watermark {
         position: relative;
         visibility: hidden;

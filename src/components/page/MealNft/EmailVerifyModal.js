@@ -5,6 +5,7 @@ import { useState } from 'react';
 import swal from 'sweetalert';
 import Button from 'react-bootstrap/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTimer } from 'react-timer-hook';
 
 const style = {
     position: 'absolute',
@@ -20,18 +21,23 @@ const style = {
     p: 4
 };
 
-export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setError, handleVerifyEmail }) {
+export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setError, handleVerifyEmail, expiryTimestamp, notActivate }) {
 
     const [otpCode, setOtpCode] = useState()
     const [isOtpError, setOtpError] = useState(false)
 
     const handleClose = () => setOpenEmail(false);
 
+    // Re-send OTP states
+    const [forEnable, setForEnable] = useState(false);
+    const [againEnable, setAgainEnable] = useState(true);
+    
+
     const hendelSubmit = (e) => {
 
         if (otpVerify == otpCode) {
             swal({
-                title: "OTP Code Successfully Matched",
+                text: "Email Verified.",
                 icon: "success",
                 button: "OK!",
                 className: "modal_class_success",
@@ -45,6 +51,45 @@ export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setErr
         setOtpError(true)
 
     }
+
+    // Re-send OTP functionality
+    const {
+        seconds,
+        minutes,
+        hours,
+        days,
+        isRunning,
+        start,
+        pause,
+        resume,
+        restart,
+    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+
+    const restarting = (sec) => {
+
+        if (againEnable) {
+            setAgainEnable(false);
+            const time = new Date();
+            time.setSeconds(time.getSeconds() + sec);
+            restart(time)
+        }
+        setTimeout(reenabling, 180000);
+    }
+
+    if (notActivate) {
+        restarting(180);
+    }
+
+    const reenabling = () => {
+        setAgainEnable(true);
+    }
+
+    // // for maintaining re-send otp button's disable enable
+    // const enableing = () => {
+    //     setForEnable(true);
+    // }
+
+    // setTimeout(enableing, 180000);
 
     return (
         <div>
@@ -72,6 +117,9 @@ export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setErr
                     {isOtpError ? <p style={{ color: 'red' }}>You have entered wrong OTP</p> : ''}
                     <div className='d-flex' style={{ justifyContent: 'center' }}>
                         <button disabled={true} type='submit' onClick={handleVerifyEmail} className='submit banner-button2 font14 text-decoration-none pb-2' id="font14">Resend OTP</button>
+                    </div>
+                    <div className='text-center text-white mt-3'>
+                        <span>{minutes}</span>:<span>{seconds < 10 ? `0${seconds}` : seconds}</span>
                     </div>
                 </Box>
             </Modal>

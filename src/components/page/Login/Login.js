@@ -11,7 +11,7 @@ import './Login.css';
 const Login = () => {
     const [visiblePassword, setVisiblePassword] = useState(false);
     const admincontext = useContext(AdminContext);
-    const { admin, token, isAuthenticating, login  } = admincontext;
+    const { admin, token, isAuthenticating, login } = admincontext;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -82,7 +82,9 @@ const Login = () => {
                             </Form.Text> */}
                             <InputGroup className="mb-3 mt-3">
                                 <InputGroup.Text className='bg-dark border-0 text-white'><i class="fas fa-lock"></i></InputGroup.Text>
-                                <Form.Control aria-label="Amount (to the nearest dollar)" className='inputBackground' placeholder='password' type={visiblePassword ? "text" : "password"} required name="password" />
+                                <Form.Control
+                                    style={{ textTransform: "lowercase" }}
+                                    aria-label="Amount (to the nearest dollar)" className='inputBackground' placeholder='password' type={visiblePassword ? "text" : "password"} required name="password" />
                                 <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={() => setVisiblePassword(!visiblePassword)}>{
                                     visiblePassword ? <i class="fas fa-eye"></i> : <i class="fas fa-eye-slash"></i>
                                 }</InputGroup.Text>

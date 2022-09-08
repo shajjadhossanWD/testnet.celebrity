@@ -90,10 +90,10 @@ const MealNFT = () => {
                     <hr style={{ margin: "10px 0px 10px 0px" }} />
                     <div className="d-flex card_bottom_btn_main" style={{ margin: '15px 0 8px 0' }}>
                       <div className="col-6 d-grid me-2">
-                        <Link to={`/mealnft/${data?._id}`} className="d-grid"> <button className="card_button2 bg-success" href="#!">PAY BY CRYPTO</button> </Link>
+                        <Link to={`/mealnft/${data?._id}/${data?.imageName}`} className="d-grid"> <button className="card_button2 bg-success" href="#!">PAY BY CRYPTO</button> </Link>
                       </div>
                       <div className="col-6 d-grid">
-                        <Link to={`/paynow/${data?._id}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
+                        <Link to={`/paynow/${data?._id}/${data?.imageName}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
                       </div>
                     </div>
                   </div>

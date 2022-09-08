@@ -10,7 +10,7 @@ import { CelebrityContext } from "../../../context/CelebrityContext";
 // import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 // import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
-// import { MdArrowDropDownCircle } from 'react-icons/md';
+import { MdArrowDropDownCircle, MdArrowBack } from 'react-icons/md';
 // import Barcode from '../../../Images/Barcode.jpeg';
 import QRCode from 'qrcode';
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
@@ -19,7 +19,7 @@ import EmailVerifyModal from "./EmailVerifyModal";
 
 function DetailsPayNow() {
 
-    const { mealnId } = useParams();
+    const { mealnId, addressImg } = useParams();
     const [disableAfterActivation, setDisableAfterActivation] = useState(false);
     const [allAvailable, setAllAvailable] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
@@ -664,7 +664,7 @@ function DetailsPayNow() {
                 });
             })
     }
-    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 50;
+    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 100;
 
 
     // Referal code discount
@@ -693,6 +693,27 @@ function DetailsPayNow() {
     const likess = localStorage.getItem("like");
 
 
+    // Verified OTP
+    const otpVerifiedNow = () => {
+        if (otpVerify) {
+            navigate(`/payNowPayment/${email1}/${isDetails?.price}`);
+        } else {
+            return swal({
+                title: "Attention",
+                text: "Please enter your email before proceeding.",
+                icon: "warning",
+                button: "OK",
+                dangerMode: true,
+                className: "modal_class_success",
+            });
+        }
+    }
+
+    // Time
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 180);
+
+
 
     return (
         <div style={{ backgroundColor: '#1A1A25' }}>
@@ -714,7 +735,7 @@ function DetailsPayNow() {
 
                         {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
                             {/* <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' /> */}
-                            <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/ee.jpg" className='deteilsPageImage' />
+                            <img alt="This is celebrity meal NFT" src={`https://backend.celebrity.sg/assets/${addressImg}`} className='deteilsPageImage' />
                             <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
                             <img src={src} alt="barcode" className="img-fluid handleBarcode" />
                         </div>
@@ -795,7 +816,7 @@ function DetailsPayNow() {
                                         type="email"
                                         style={{ textTransform: "lowercase" }}
                                         name="email"
-                                        placeholder="Email"
+                                        placeholder="Email Address"
                                         onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
                                         value={email1}
                                         required />
@@ -813,7 +834,16 @@ function DetailsPayNow() {
                             <Typography className="pt-3 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
                                 <span className="text-primary fontArial fontExtand">Buy now to attend the meal session</span>
                             </Typography>
-                            <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" className="w-50" alt="" />
+                            <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} className="w-50" style={otpVerify ? {cursor: 'pointer'} : {cursor: 'auto'}} alt="" />
+
+                            <div className="my-3">
+                                <Button variant="danger" className="px-3"
+                                    onClick={() => navigate(-1)}
+                                >
+                                    {/* <MdArrowBack className="" /> */}
+                                    <span className="">Back</span>
+                                </Button>
+                            </div>
 
                             {/* <span className="text-primary fontArial fontExtand">Choose how you want to pay:</span>
                             
@@ -1051,10 +1081,10 @@ function DetailsPayNow() {
 
             </Modal>
             <EmailVerifyModal
-
+                notActivate={(email1.length === 0 || disableAfterActivation)}
                 handleVerifyEmail={handleVerifyEmail}
                 open={openEmail} setOpenEmail={setOpenEmail}
-
+                expiryTimestamp={time}
                 otpVerify={otpVerify}
                 setError={setError} />
 

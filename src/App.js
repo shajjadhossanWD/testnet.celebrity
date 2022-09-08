@@ -38,6 +38,7 @@ import CoinbaseModal from './components/Shared/CoinbaseModal';
 import EditDraftNft from './components/page/Dashboard/EditDraftNft';
 import News from './components/page/News/News';
 import DetailsPayNow from './components/page/MealNft/DetailsPayNow';
+import PayNowPayment from './components/page/MealNft/PayNowPayment';
 function App() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 180);
@@ -59,8 +60,9 @@ function App() {
             <Route path="/souvenirnft" element={<SouvenirNFT></SouvenirNFT>} />
             <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails />} />
             <Route path="/mealnft" element={<MealNFT></MealNFT>} />
-            <Route path="/mealnft/:mealnId" element={<MealDetails />} />
-            <Route path="/paynow/:mealnId" element={<DetailsPayNow />} />
+            <Route path="/mealnft/:mealnId/:addressImg" element={<MealDetails />} />
+            <Route path="/paynow/:mealnId/:addressImg" element={<DetailsPayNow />} />
+            <Route path="/payNowPayment/:email/:price" element={<PayNowPayment />} />
             <Route path="/about_us" element={<AboutUs />} />
             <Route path="/how_it_works" element={<HowItWorks />} />
             <Route path="/news" element={<News />} />

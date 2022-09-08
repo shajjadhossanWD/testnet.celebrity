@@ -10,16 +10,53 @@ import { CelebrityContext } from "../../../context/CelebrityContext";
 // import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 // import { verifyMessage } from "ethers/lib/utils";
 import "./MealNft.css";
-// import { MdArrowDropDownCircle } from 'react-icons/md';
+import { MdArrowDropDownCircle, MdArrowBack } from 'react-icons/md';
 // import Barcode from '../../../Images/Barcode.jpeg';
 import QRCode from 'qrcode';
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import EmailVerifyModal from "./EmailVerifyModal";
+import Select from "react-select";
+
+const selectOptions = [
+  {
+    value: "bnb",
+    label: "BNB",
+    image: "/bnb.png",
+  },
+  {
+    value: "usdsc",
+    label: "USDSC",
+    // image: "/usdsc.jpeg",
+    image: "https://i.ibb.co/p1Vfjp0/usdsc.png",
+
+  },
+  {
+    value: "dsl",
+    label: "DSL",
+    image: "/dsl.jpg",
+  },
+  {
+    value: "s39",
+    label: "S39",
+    image: "/s39.jpeg",
+  },
+  {
+    value: "finquest",
+    label: "FINQUEST",
+    image: "/finQue.jpeg",
+  },
+];
 
 
 function MealDetails() {
 
-  const { mealnId } = useParams();
+  const [selectedOption, setSelectedOption] = useState({
+    value: "bnb",
+    label: "BNB",
+    image: "/bnb.png",
+  });
+
+  const { mealnId, addressImg } = useParams();
   const [disableAfterActivation, setDisableAfterActivation] = useState(false);
   const [allAvailable, setAllAvailable] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
@@ -67,6 +104,7 @@ function MealDetails() {
   const [sendMail, setSendMail] = useState('');
   const [latestNft, setLatestNft] = useState('');
   const [dataUrl, setDataUrl] = useState('');
+  const [tokenId, setTokenId] = useState('');
 
 
   const {
@@ -462,37 +500,39 @@ function MealDetails() {
 
   let celebrityTemplate = useRef();
 
-  useEffect(()=>{
+  useEffect(() => {
 
     const dataUrlNft = celebrityTemplate.current;
     console.log(dataUrlNft)
 
     setDataUrl(dataUrlNft)
 
-  },[isDetails])
+  }, [isDetails])
 
 
   /// send full details to user
 
   const handleSubmit = (ImgCelebrity) => {
 
-    const NFTID = nftId
+    const NFTID = tokenId
+    const address = mintAddressTestnet
     const type = isDetails.type
     const name = isDetails.name
+    const details = isDetails.name
     const price = isDetails.price
+    const available = availableNft
+    const startTime = isDetails.startTime
+    const perkNft = isDetails.perkNft
+    const briefDetails = isDetails.briefDetails
+    const endTime = isDetails.endTime
     const venue = isDetails.venue
     const image = ImgCelebrity
-    const date = newDate
+    const date = isDetails.startDate
+    const endDate = isDetails.purchaseDate
     const email = email1
 
-    console.log(image);
-    console.log(email);
-    console.log(email1);
-    console.log(sendMail);
-
-
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, type, date, name, image, price, venue, email
+      NFTID, perkNft, address, briefDetails,  details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
     }, {
       // headers: {
       //   'content-type': 'application/json'
@@ -524,16 +564,20 @@ function MealDetails() {
   }
 
 
-
-
   const mintCelebrityNft = async () => {
-    // userefFunction();
+    if (!otpVerify) {
+      return swal({
+        title: "Warning",
+        text: "Before minting please enter your email and verify it. We will send the details to you.",
+        icon: "warning",
+        button: "OK",
+        dangerMode: true,
+        className: "modal_class_success",
+      });
+    }
     setIsClickedMint(true)
-
     setRequestLoading(true);
-
-    
-     let dataUrlCelebrity = await htmlToImage.toPng(dataUrl)
+    let dataUrlCelebrity = await htmlToImage.toPng(dataUrl)
     // const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
 
     console.log(dataUrlCelebrity);
@@ -587,6 +631,7 @@ function MealDetails() {
             Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
           }
           data.append("mint_hash", Obj.mint_hash);
+          setTokenId(Obj.ID);
           console.log(data);
           await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data2, {
             // headers: {
@@ -679,7 +724,7 @@ function MealDetails() {
         });
       })
   }
-  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 70;
+  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 100;
 
 
   // Referal code discount
@@ -708,6 +753,25 @@ function MealDetails() {
 
   const likess = localStorage.getItem("like");
 
+  // Select options functionality
+  const handleChoosePayment = e => {
+    setSelectedOption(e);
+    setToken(e.value);
+  }
+
+  const customStyles = {
+    menu: (provided, state) => ({
+      ...provided,
+      color: "#000",
+      backgroundColor: "#fff",
+    }),
+
+    singleValue: (provided, state) => {
+
+      return { ...provided, };
+    },
+  };
+
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
@@ -728,9 +792,10 @@ function MealDetails() {
             </Box>
 
             {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
-              {/* <img alt="This is celebrity meal NFT" src={isDetails.avatar} className='deteilsPageImage' /> */}
-              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/GsSR3yv/ee.jpg" className='deteilsPageImage' />
-              <img src="" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
+
+              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/st4H9R5/c1.jpg" className='deteilsPageImage' />
+              {/* <img alt="This is celebrity meal NFT" src={`https://backend.celebrity.sg/assets/${addressImg}`} className='deteilsPageImage' /> */}
+              <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" />
             </div>
             }
@@ -802,9 +867,9 @@ function MealDetails() {
               </Typography>
               <div className="pb-1 fontArial" dangerouslySetInnerHTML={{ __html: isDetails?.briefDetails }}></div>
 
-              <span className="text-primary fontArial fontExtand">Choose how you want to pay:</span>
+              <span className="text-primary mb-2 fontArial fontExtand">Choose how you want to pay:</span>
               {/* <h5 className="paymentOptionsChoose">Choose how you want to pay</h5> */}
-              <div className="priceDropdown">
+              {/* <div className="priceDropdown">
                 <select className='form-control mb-3 mt-1 select-drop' name="token" id="token" value={token} onChange={e => setToken(e.target.value)} style={{ maxWidth: 450, width: "400px", backgroundColor: "white", color: "black" }}>
                   <option value="bnb">BNB</option>
                   <option value="usdsc">USDSC</option>
@@ -812,9 +877,38 @@ function MealDetails() {
                   <option value="s39">S39</option>
                   <option value="finquest">FINQUEST</option>
                 </select> <span className="text-dark handlePosition rounded-circle fs-5"><i class="fas fa-angle-down"></i></span>
+              </div> */}
+
+              <div className="w-75 mt-1">
+                <Select
+                  value={selectedOption}
+                  onChange={handleChoosePayment}
+                  options={selectOptions}
+                  styles={customStyles}
+                  formatOptionLabel={(option) => (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px",
+                      }}
+                    >
+                      <img
+                        src={option.image}
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                          borderRadius: "100px",
+                        }}
+                        alt=""
+                      />
+                      <span>{option.label}</span>
+                    </div>
+                  )}
+                />
               </div>
 
-              <Typography className="pt-1 pb-3" variant="subtitle2" gutterBottom component="div">
+              <Typography className="pt-2 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount ">30% discount if paid with DSL tokens</span>)
               </Typography>
               <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
@@ -826,7 +920,7 @@ function MealDetails() {
             <span className="text-primary fontArial fontExtand mb-1">Affiliate Code:</span>
             <div class="input-group mb-2 w-75">
               <input type="text" name="affiliateCode" onChange={handleAffiliateCode} class="form-control" placeholder="Enter Affiliate Code" aria-label="Enter Affiliate Code" aria-describedby="button-addon2" />
-              <button className={!gotRefCode ? "btn btn-danger" : "btn btn-success"} type="button" id="button-addon2">{
+              <button className={!gotRefCode ? "btn btn-danger" : "btn btn-success"} type="button" id="button-addon2" style={{ zIndex: '0' }}>{
                 !gotRefCode ? <AiOutlineClose /> : <AiOutlineCheck />
               }</button>
             </div>
@@ -861,7 +955,7 @@ function MealDetails() {
 
 
                   name="email"
-                  placeholder="Email"
+                  placeholder="Email Address"
                   onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
                   value={email1}
                   required />
@@ -870,7 +964,7 @@ function MealDetails() {
                   // onClick={sendEmailVerificationCode}
                   onClick={handleVerifyEmail}
                   disabled={(email1.length === 0 || disableAfterActivation) ? true : false}
-                  type="button" className="btn btn-danger" id="button-addon2">
+                  type="button" className="btn btn-danger" id="button-addon2" style={{ zIndex: '0' }}>
                   Verify Email
                 </button>
               </InputGroup>
@@ -918,6 +1012,14 @@ function MealDetails() {
               <br />
 
             </div>
+            <div className="my-3">
+              <Button variant="danger" className="px-3"
+                onClick={() => navigate(-1)}
+              >
+                {/* <MdArrowBack className="" /> */}
+                <span className="">Back</span>
+              </Button>
+            </div>
             {/* <div className="mx-auto my-3 text-center">
               <Button variant="danger" className="ps-5 pe-5 text-center" onClick={handleShow}>Auto Mint</Button>
             </div> */}
@@ -940,7 +1042,7 @@ function MealDetails() {
                     <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
                       <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
                         <div className="d-flex card_hover_icon">
-                          <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                          <Link to={`/mealnft/${data?._id}/${data?.imageName}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                         </div>
                       </div>
                     </div>
@@ -979,7 +1081,7 @@ function MealDetails() {
                       <hr style={{ margin: "10px 0px 10px 0px" }} />
                       <div className="d-flex card_bottom_btn_main" style={{ margin: '15px 0 8px 0' }}>
                         <div className="col-10 d-grid">
-                          <Link to={`/mealnft/${data._id}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
+                          <Link to={`/mealnft/${data._id}/${data?.imageName}`} className="d-grid"> <button className="card_button" href="#!">BUY THIS NFT at SGD {data?.price}</button> </Link>
                         </div>
                       </div>
                     </div>

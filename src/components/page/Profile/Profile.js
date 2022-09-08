@@ -20,6 +20,10 @@ const Profile = () => {
   const { user, logOut, metamaskBalance } = useContext(CelebrityContext);
   const navigate = useNavigate();
 
+  if (!user.WalletAddress && !user.myReferralCode) {
+    navigate("/");
+  }
+
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     alert("Copied!")
@@ -48,7 +52,12 @@ const Profile = () => {
             <div className='col-md-6 px-4'>
               <div className="mb-2">
                 <label htmlFor='walletAddress'>Wallet Address</label>
-                <input type="text" id='walletAddress' name="walletAddress" value={user?.walletAddress} className='form-control bg-transparent text-white' disabled />
+                <div className='d-flex'>
+                  <input type="text" id='walletAddress' name="walletAddress" value={user?.walletAddress} className='form-control bg-transparent text-white' disabled />
+                  <button type="button" onClick={() => copyToClipboard(user?.walletAddress)} className="border bg-success">
+                    <FontAwesomeIcon icon={faCopy} />
+                    </button>
+                </div>
               </div>
               <div className="mb-2">
                 <label htmlFor='usdsc'>USDSC in wallet</label>
@@ -69,7 +78,7 @@ const Profile = () => {
 
               <div className="mb-2">
                 <label htmlFor='bnb'>FINQUEST in wallet</label>
-                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.finquest ? parseFloat(metamaskBalance?.s39).toFixed(4) : "0.0000"} className='form-control bg-transparent text-white' disabled />
+                <input type="text" id='bnb' name="bnb" value={metamaskBalance?.Quest ? parseFloat(metamaskBalance?.Quest).toFixed(4) : "0.0000"} className='form-control bg-transparent text-white' disabled />
               </div>
 
             </div>
