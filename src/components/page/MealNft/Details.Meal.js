@@ -16,6 +16,7 @@ import QRCode from 'qrcode';
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import EmailVerifyModal from "./EmailVerifyModal";
 import Select from "react-select";
+import { useTimer } from 'react-timer-hook';
 
 const selectOptions = [
   {
@@ -48,7 +49,7 @@ const selectOptions = [
 ];
 
 
-function MealDetails() {
+function MealDetails({ expiryTimestamp }) {
 
   const [selectedOption, setSelectedOption] = useState({
     value: "bnb",
@@ -105,7 +106,8 @@ function MealDetails() {
   const [latestNft, setLatestNft] = useState('');
   const [dataUrl, setDataUrl] = useState('');
   const [tokenId, setTokenId] = useState('');
-
+  const [likes, setLikes] = useState(0);
+  const [isClicked, setIsClicked] = useState(false);
 
   const {
     user,
@@ -232,6 +234,27 @@ function MealDetails() {
   }, []);
 
 
+  // Re-send OTP functionality
+  const {
+    seconds,
+    minutes,
+    hours,
+    days,
+    isRunning,
+    start,
+    pause,
+    resume,
+    restart,
+  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+
+  const restarting = (sec) => {
+
+
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + sec);
+    restart(time)
+
+  }
 
   const handleVerifyEmail = async (e) => {
     // check if email is valid
@@ -246,6 +269,7 @@ function MealDetails() {
           // alert(res.data.message);
           console.log(res.data.email)
           setSendMail(res.data.email)
+          restarting(180);
           swal({
             text: res.data.message,
             icon: "success",
@@ -512,9 +536,9 @@ function MealDetails() {
 
   /// send full details to user
 
-  const handleSubmit = (ImgCelebrity) => {
+  const handleSubmit = (ImgCelebrity, TokeNID) => {
 
-    const NFTID = tokenId
+    const NFTID = TokeNID
     const address = mintAddressTestnet
     const type = isDetails.type
     const name = isDetails.name
@@ -532,7 +556,7 @@ function MealDetails() {
     const email = email1
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, perkNft, address, briefDetails,  details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
+      NFTID, perkNft, address, briefDetails, details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
     }, {
       // headers: {
       //   'content-type': 'application/json'
@@ -680,7 +704,7 @@ function MealDetails() {
                   });
                 postDataAfterMint();
                 console.log("img" + res.data.ImgCelebrity)
-                handleSubmit(res.data.ImgCelebrity);
+                handleSubmit(res.data.ImgCelebrity, Obj.ID);
 
               }
             })
@@ -724,7 +748,7 @@ function MealDetails() {
         });
       })
   }
-  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 100;
+  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
 
 
   // Referal code discount
@@ -751,7 +775,6 @@ function MealDetails() {
   }
 
 
-  const likess = localStorage.getItem("like");
 
   // Select options functionality
   const handleChoosePayment = e => {
@@ -772,17 +795,35 @@ function MealDetails() {
     },
   };
 
+  const handleClick = () => {
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      if (isClicked) {
+        // setLikes(likes - 1);
+        localStorage.setItem("like", likes - 1);
+      } else {
+        // setLikes(likes + 1);
+        localStorage.setItem("like", likes + 1);
+      }
+      setIsClicked(!isClicked);
+      // setLikes(likess);
+      // console.log(likess);
+    }
+  };
+
+  const likess = localStorage.getItem("like");
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
       <div className="d-grid justify_items_center">
         <Container className="row" style={{ marginTop: "100px", alignItems: 'flex-start' }}>
           <Typography className="meal_details_type_title text-gradient" variant="subtitle2" gutterBottom component="div">
-            <span>Type Of NFT :</span> {isDetails?.type}
+            <span>Type Of NFTs :</span> {isDetails?.type}
           </Typography>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid justify_items_center pt-2">
             <Box className=" col-12 card_top_icon mb-2">
-              <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1">
+              <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1" onClick={handleClick}>
                 <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
                 <span className="ps-1">
                   {/* {isDetails?.__v} */}
@@ -949,11 +990,6 @@ function MealDetails() {
                 <Form.Control
                   style={{ textTransform: 'lowercase' }}
                   type="email"
-
-
-
-
-
                   name="email"
                   placeholder="Email Address"
                   onChange={e => { setEmail(e.target.value); setEmailVerify(false) }}
@@ -1120,6 +1156,7 @@ function MealDetails() {
             <br />
             <InputGroup >
               <Form.Control
+                style={{ textTransform: "lowercase" }}
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -1159,6 +1196,8 @@ function MealDetails() {
       <EmailVerifyModal
 
         handleVerifyEmail={handleVerifyEmail}
+        minutes={minutes}
+        seconds={seconds}
         open={openEmail} setOpenEmail={setOpenEmail}
 
         otpVerify={otpVerify}

@@ -97,7 +97,7 @@ const DashboardModalNewAdmin = (props) => {
                 <Modal.Title id="contained-modal-title-vcenter" className='fs-5 text-light'>
                     <RiAdminFill className='fs-4'></RiAdminFill>  Add Admin
                 </Modal.Title>
-                <MdClose onClick={props.onHide} color='#fff' size={30} style={{cursor: 'pointer'}} />
+                <MdClose onClick={props.onHide} color='#fff' size={30} style={{ cursor: 'pointer' }} />
             </Modal.Header>
             <Modal.Body style={{ backgroundColor: "#272d47", color: 'white' }}>
                 <div>
@@ -133,6 +133,7 @@ const DashboardModalNewAdmin = (props) => {
                                     />
                                     <p className='mb-1'>Email</p>
                                     <input
+                                        style={{ textTransform: "lowercase" }}
                                         className='form-control'
                                         placeholder='Enter email'
                                         type="email"
@@ -158,25 +159,25 @@ const DashboardModalNewAdmin = (props) => {
                                     />
                                     <p className='mb-1'>Password</p>
                                     <div className="d-flex inputProfile">
-                                    <input
-                                        className='form-control'
-                                        placeholder='Enter Password'
-                                        type={visibleEnPassword ? "text" : "password"}
-                                        name="password"
-                                        required
-                                    />
-                                    <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleEnPassword (!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                        <input
+                                            className='form-control'
+                                            placeholder='Enter Password'
+                                            type={visibleEnPassword ? "text" : "password"}
+                                            name="password"
+                                            required
+                                        />
+                                        <button style={{ borderTop: '2px solid #767676', borderLeft: '2px solid #767676' }} type='button' onClick={() => setVisibleEnPassword(!visibleEnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
                                     </div>
                                     <p className='mb-1'>Re Enter Password</p>
                                     <div className="d-flex inputProfile">
-                                    <input
-                                        className='form-control'
-                                        placeholder='Confirm password'
-                                        type={visibleCnPassword ? "text" : "password"}
-                                        name="confirmPassword"
-                                        required
-                                    />
-                                    <button style={{borderTop: '2px solid #767676', borderLeft: '2px solid #767676'}} type='button' onClick={() => setVisibleCnPassword(!visibleCnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
+                                        <input
+                                            className='form-control'
+                                            placeholder='Confirm password'
+                                            type={visibleCnPassword ? "text" : "password"}
+                                            name="confirmPassword"
+                                            required
+                                        />
+                                        <button style={{ borderTop: '2px solid #767676', borderLeft: '2px solid #767676' }} type='button' onClick={() => setVisibleCnPassword(!visibleCnPassword)} className='iconBoxBtn text-white'><i className="fas fa-eye"></i></button>
                                     </div>
                                 </div>
                                 <Modal.Footer className='mt-5'>

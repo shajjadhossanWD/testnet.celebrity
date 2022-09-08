@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Form, InputGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -14,6 +15,18 @@ function Header() {
     <Navbar bg="light" expand="lg" id='navbars' className='navbarsContainer' collapseOnSelect>
       <Container className='navbarsContainer'>
         <Navbar.Brand as={HashLink} to="/" href="#homeone" style={{ width: '10%' }}><img alt="logo" src="/assets/images/logo-6.jpg" className='handleImage' /></Navbar.Brand>
+
+        <InputGroup className="search-bar">
+
+          <Form.Control
+            style={{ textTransform: "lowercase" }}
+            aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" />
+          <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button"
+
+          ><i class="fas fa-search"></i>
+          </InputGroup.Text>
+        </InputGroup>
+        {/* <input type="text" /> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="NavbarToggle" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

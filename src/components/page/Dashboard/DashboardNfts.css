@@ -6,22 +6,34 @@
 
 .handleHeightNFTS {
     height: auto;
+    padding-bottom: 150px !important;
 }
-.nftButtonDiv{
+
+.nftButtonDiv {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: -36px;
 }
-.button_width{
+
+.button_width {
     width: 90px;
 }
+
 /* .handleForDnoneinRespo {
     display: block !important;
 } */
 
 .nft-edit-button {
     cursor: pointer;
+}
+
+.th-font-size {
+    font-size: 14px !important;
+}
+
+.td-font-size {
+    font-size: 12.7px !important;
 }
 
 .nft-delete-button {
@@ -44,5 +56,17 @@
         border: 1px solid rgba(255, 255, 255, 0.02);
         height: auto;
         margin-right: 30px;
+    }
+
+    .handleHeightNFTS {
+        /* height: 100vh; */
+        /* padding-bottom: 550px !important; */
+    }
+}
+
+@media only screen and (max-width: 841px) and (min-width: 1900px) {
+    .handleHeightNFTS {
+        /* height: 100vh; */
+        /* padding-bottom: 800px !important; */
     }
 }

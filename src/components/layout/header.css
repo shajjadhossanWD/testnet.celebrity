@@ -2,13 +2,13 @@
   font-weight: 600;
   border-bottom: 1px solid #000;
 }
- 
+
 #navbars {
   z-index: 200 !important;
   height: 80px !important;
   width: 100% !important;
   position: fixed !important;
-  background: #121219!important;
+  background: #121219 !important;
 }
 
 .navbarsContainer {
@@ -18,7 +18,7 @@
 .handleImage {
   width: 55%;
 }
- 
+
 .NavbarToggle {
   background: rgb(194, 194, 194);
 }
@@ -26,6 +26,10 @@
 .listItem {
   font-size: 18px;
   margin-right: 20px;
+}
+
+.search-bar {
+  width: 20% !important;
 }
 
 
@@ -64,7 +68,7 @@
 }
 
 .button-18:hover,
-.button-18:focus { 
+.button-18:focus {
   background-color: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%);
   color: #ffffff;
 }
@@ -74,14 +78,14 @@
   color: rgb(255, 255, 255, .7);
 }
 
-.button-18:disabled { 
+.button-18:disabled {
   cursor: not-allowed;
   background: linear-gradient(to right, var(--secondary-color) 0%, var(--secondary-color-2) 100%);
   color: rgba(0, 0, 0, .3);
 }
 
- 
- /* ----------------------------------------- */
+
+/* ----------------------------------------- */
 
 
 .menuText {
@@ -118,7 +122,7 @@ button.mt-2.navbar-toggler.collapsed {
   background: #bebebe;
   border-color: rgb(255 255 255 / 10%);
 }
-  
+
 
 
 .dropdown-menus {
@@ -145,7 +149,7 @@ button.mt-2.navbar-toggler.collapsed {
 
 .menu-btns {
   background: none;
-  color: white; 
+  color: white;
   font-size: 16px;
   border: none;
 }
@@ -169,15 +173,26 @@ button.mt-2.navbar-toggler.collapsed {
   .line-one {
     width: 413px;
   }
+
+  .search-bar {
+    width: 60% !important;
+  }
+}
+
+@media only screen and (max-width: 901px) and (min-width: 991px) {
+  .search-bar {
+    width: 60% !important;
+  }
 }
 
 @media only screen and (max-width: 769px) {
-  
+
 
   .img-fluid {
-    margin-left: 16px !important; 
+    margin-left: 16px !important;
     width: 100%;
   }
+
   .background-nav {
     background: #000000;
     padding-bottom: 20px;
@@ -187,14 +202,15 @@ button.mt-2.navbar-toggler.collapsed {
     background: #000000 !important
   }
 
-  .menuText { 
+  .menuText {
     margin-left: 0 !important;
   }
+
   .menu-contents {
     border-radius: 5px 5px 5px 5px;
   }
 
-  .dropdown-text{
+  .dropdown-text {
     display: flex;
     justify-content: center;
   }
@@ -202,7 +218,7 @@ button.mt-2.navbar-toggler.collapsed {
 
 @media only screen and (max-width: 700px) {
   .img-fluid {
-    margin-left: -80px !important; 
+    margin-left: -80px !important;
     width: 40%;
   }
 }
@@ -223,24 +239,27 @@ button.mt-2.navbar-toggler.collapsed {
   .slick-prev {
     left: -10px;
   }
- .slick-next {
-  right: -10px;
- }
+
+  .slick-next {
+    right: -10px;
+  }
 }
+
 @media screen and (min-width: 360px) and (max-width: 480px) {
   .d-item1 {
     display: flex !important;
     justify-content: center;
-   }
-   .card {
+  }
+
+  .card {
     width: 75% !important;
-   }
-   .slick-prev {
+  }
+
+  .slick-prev {
     left: 1px;
   }
- .slick-next {
-  right: -1px;
- }
- }
 
- 
+  .slick-next {
+    right: -1px;
+  }
+}

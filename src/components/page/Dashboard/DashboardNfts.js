@@ -105,7 +105,7 @@ const DashboardNfts = () => {
 
   return (
     <>
-      <div className="handleHeightNFTS">
+      <div className="handleHeightNFTS" style={{ height: nfts?.length <= 5 ? "120vh" : "auto" }}>
         {/* <p className="ms-2 mb-3 d-inline">NdFTS</p> */}
         {/* /dashboard/addnfts */}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', marginLeft: '-36px' }}>
@@ -168,12 +168,12 @@ const DashboardNfts = () => {
                     <Table bordered responsive className="border-0 text-light">
                       <thead>
                         <tr>
-                          <th>NFT Images</th>
-                          <th>NFT Name</th>
-                          <th>Price(SGD)</th>
-                          <th className="handleForDnoneinRespo">Type</th>
-                          <th className="handleForDnoneinRespo">NFT Created</th>
-                          <th>Action</th>
+                          <th className='th-font-size'>NFT Image</th>
+                          <th className='th-font-size'>NFT Name</th>
+                          <th className='th-font-size'>Price(SGD)</th>
+                          <th className="handleForDnoneinRespo th-font-size">Type</th>
+                          <th className="handleForDnoneinRespo th-font-size">NFT Created</th>
+                          <th className='th-font-size'>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -182,12 +182,12 @@ const DashboardNfts = () => {
                             <td>
                               <img src={data.avatar} alt="" style={{ width: "65px", hight: "65px" }} />
                             </td>
-                            <td>{data.name}</td>
-                            <td>{data.price}</td>
-                            <td className="handleForDnoneinRespo">
+                            <td className='td-font-size'>{data.name}</td>
+                            <td className='td-font-size'>{data.price}</td>
+                            <td className="handleForDnoneinRespo td-font-size">
                               {data.type}
                             </td>
-                            <td className="handleForDnoneinRespo">
+                            <td className="handleForDnoneinRespo td-font-size">
                               {data.date}
                             </td>
                             <td className="pt-3">

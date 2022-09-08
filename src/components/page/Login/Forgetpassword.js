@@ -61,7 +61,9 @@ const Forgetpassword = () => {
 
                                 <InputGroup className="mb-3 mt-3">
                                     <InputGroup.Text className='bg-dark border-0 text-white'><i class="fas fa-envelope"></i></InputGroup.Text>
-                                    <Form.Control aria-label="Amount (to the nearest dollar)" className='inputBackground' placeholder='Enter email' type="email" name="email" required />
+                                    <Form.Control
+                                        style={{ textTransform: "lowercase" }}
+                                        aria-label="Amount (to the nearest dollar)" className='inputBackground' placeholder='Enter email' type="email" name="email" required />
                                 </InputGroup>
 
                                 <div className='mx-auto text-center' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>

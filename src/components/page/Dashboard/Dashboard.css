@@ -83,6 +83,10 @@
         margin-left: 80rem;
     }
 
+    .handleHeightNFTS {
+        /* height: auto; */
+        padding-bottom: 550px !important;
+    }
 }
 
 @media only screen and (max-width: 1900px) {

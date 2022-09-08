@@ -15,9 +15,10 @@ import { MdArrowDropDownCircle, MdArrowBack } from 'react-icons/md';
 import QRCode from 'qrcode';
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import EmailVerifyModal from "./EmailVerifyModal";
+import { useTimer } from 'react-timer-hook';
 
 
-function DetailsPayNow() {
+function DetailsPayNow({expiryTimestamp}) {
 
     const { mealnId, addressImg } = useParams();
     const [disableAfterActivation, setDisableAfterActivation] = useState(false);
@@ -192,6 +193,26 @@ function DetailsPayNow() {
             });
     }, []);
 
+    // Re-send OTP functionality
+    const {
+        seconds,
+        minutes,
+        hours,
+        days,
+        isRunning,
+        start,
+        pause,
+        resume,
+        restart,
+    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
+
+    const restarting = (sec) => {
+            const time = new Date();
+            time.setSeconds(time.getSeconds() + sec);
+            restart(time)
+    }
+
+
 
 
     const handleVerifyEmail = async (e) => {
@@ -207,6 +228,7 @@ function DetailsPayNow() {
                     // alert(res.data.message);
                     console.log(res.data.email)
                     setSendMail(res.data.email)
+                    restarting(180);
                     swal({
                         text: res.data.message,
                         icon: "success",
@@ -664,7 +686,7 @@ function DetailsPayNow() {
                 });
             })
     }
-    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 100;
+    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
 
 
     // Referal code discount
@@ -708,11 +730,6 @@ function DetailsPayNow() {
             });
         }
     }
-
-    // Time
-    const time = new Date();
-    time.setSeconds(time.getSeconds() + 180);
-
 
 
     return (
@@ -834,7 +851,7 @@ function DetailsPayNow() {
                             <Typography className="pt-3 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
                                 <span className="text-primary fontArial fontExtand">Buy now to attend the meal session</span>
                             </Typography>
-                            <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} className="w-50" style={otpVerify ? {cursor: 'pointer'} : {cursor: 'auto'}} alt="" />
+                            <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} className="w-50" style={otpVerify ? { cursor: 'pointer' } : { cursor: 'auto' }} alt="" />
 
                             <div className="my-3">
                                 <Button variant="danger" className="px-3"
@@ -1044,6 +1061,7 @@ function DetailsPayNow() {
                         <br />
                         <InputGroup >
                             <Form.Control
+                                style={{ textTransform: "lowercase" }}
                                 type="email"
                                 name="email"
                                 placeholder="Email"
@@ -1081,10 +1099,10 @@ function DetailsPayNow() {
 
             </Modal>
             <EmailVerifyModal
-                notActivate={(email1.length === 0 || disableAfterActivation)}
                 handleVerifyEmail={handleVerifyEmail}
+                minutes={minutes}
+                seconds={seconds}
                 open={openEmail} setOpenEmail={setOpenEmail}
-                expiryTimestamp={time}
                 otpVerify={otpVerify}
                 setError={setError} />
 

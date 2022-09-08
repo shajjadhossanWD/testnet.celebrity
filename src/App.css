@@ -24,7 +24,7 @@
 }
 
 .banner-button2 {
-  background-color: rgb(123, 123, 148) !important;
+  /* background-color: rgb(123, 123, 148) !important; */
   margin: 10px;
   padding: 5px 20px;
   text-align: center;
@@ -538,6 +538,10 @@ p.text-light.mb-0 {
     margin-bottom: -28px !important;
     font-size: 18px !important;
   }
+
+  /* .search-bar {
+    width: 50% !important;
+  } */
 }
 
 @media only screen and (max-width: 769px) {
@@ -552,6 +556,10 @@ p.text-light.mb-0 {
   .headerButtonW {
     padding-left: 0px;
   }
+
+  /* .search-bar {
+    width: 40% !important;
+  } */
 }
 
 /* --------------------------------- */
@@ -613,6 +621,10 @@ p.text-light.mb-0 {
       margin-left: 0px !important;
       margin-right: 30px !important;
     }
+
+    /* .search-bar {
+      width: 80% !important;
+    } */
   }
 
   @media only screen and (max-width: 540px) {
@@ -622,6 +634,10 @@ p.text-light.mb-0 {
       font-size: 21px !important;
       text-align: center;
     }
+
+    /* .search-bar {
+      width: 80% !important;
+    } */
   }
 
   @media only screen and (max-width: 480px) {
@@ -633,6 +649,10 @@ p.text-light.mb-0 {
       width: 88px !important;
       font-size: 9px !important;
     }
+
+    /* .search-bar {
+      width: 100% !important;
+    } */
   }
 
   @media only screen and (max-width: 425px) {
@@ -659,6 +679,10 @@ p.text-light.mb-0 {
     .font-resize {
       font-size: 40px;
     }
+
+    /* .search-bar {
+      width: 400% !important;
+    } */
   }
 
   @media only screen and (max-width: 400px) {

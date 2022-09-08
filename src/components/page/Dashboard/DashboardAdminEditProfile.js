@@ -139,6 +139,7 @@ const DashboardAdminEditProfile = () => {
                             <p className="d-flex inputProfile">
                                 <span className='iconCreator'><GrMail /></span>
                                 <input
+                                    style={{ textTransform: "lowercase" }}
                                     className="creatorsInput form-control"
                                     type="email" name="email" placeholder='email' defaultValue={singleAdmin?.email} />
                             </p>
