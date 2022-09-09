@@ -128,7 +128,7 @@ const MealSlider = ({ pull_meal }) => {
         const venue = isLiked.venue;
         const briefDetails = isLiked.briefDetails;
         const isDraft = isLiked.isDraft;
-        const likesCount = likesLenStr;
+        const likesCount = 2;
         const avatar = isLiked.avatar;
         const price = isLiked.price;
         const type = isLiked.type;

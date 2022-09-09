@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { useContext, useState } from 'react';
-=======
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
->>>>>>> main
 import { Form, InputGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -34,8 +30,8 @@ function Header() {
   }, [isMeal])
 
   const searchChange = e => {
-      const val = e.target.value;
-      setSearchInput(val);
+    const val = e.target.value;
+    setSearchInput(val);
   }
 
   const searchNftTitle = () => {
@@ -44,18 +40,18 @@ function Header() {
       element.name.toLowerCase().includes(searchInput.toLowerCase())
     );
     console.log(matchedNfts.length);
-    if(matchedNfts.length > 0 && !searchInput == " ") {
+    if (matchedNfts.length > 0 && !searchInput == " ") {
       navigate("/mealnft");
     } else {
-      navigate("/");
+      navigate("/mealnft");
 
       return swal({
         title: "Attention",
-        text: "No result found!",
+        text: "Sorry no Nft found according to your search result! See the available Nft instead",
         icon: "warning",
         button: "OK!",
         className: "modal_class_success",
-    });
+      });
     };
   }
 
@@ -70,17 +66,10 @@ function Header() {
         <InputGroup className="search-bar">
 
           <Form.Control
-            style={{ textTransform: "lowercase" }}
-<<<<<<< HEAD
-            aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" />
-          <InputGroup.Text
-            className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="submit"
-          ><i class="fas fa-search"></i>
-=======
-            aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" onChange={searchChange} />
+            // style={{ textTransform: "lowercase" }}
+            aria-label="" className='inputBackground' placeholder='Search Nft' type="text" required name="search" onChange={searchChange} />
           <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={searchNftTitle}>
             <i class="fas fa-search"></i>
->>>>>>> main
           </InputGroup.Text>
         </InputGroup>
         {/* <input type="text" /> */}

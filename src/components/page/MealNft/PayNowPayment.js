@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 
 const PayNowPayment = () => {
   const { email, price } = useParams();
   const navigate = useNavigate()
+
+
+  // let celebrityText = `<span>`
+  const celebrityText = "celebrity.sg";
+  const emailText = "support@celebrity.sg";
+
+  let content = document.createElement("p");
+  content.innerHTML = '<span style="color: #0d6efd;">' + celebrityText + '</span> Team will contact you.If you do not receive an email within 24 hours please email to <span style="color: #0d6efd;">' + emailText + '</span>'
+
+
   const handlePaymentDone = (e) => {
     e.preventDefault();
     return swal({
-      text: "Celebrity.sg Team will contact you. If you do not receive an email within 24 hours please email to support@celebrity.sg",
+      // text: `Celebrity.sg Team will contact you.If you do not receive an email within 24 hours please email to support@celebrity.sg`,
+      content: content,
       icon: "warning",
       button: "OK",
       dangerMode: true,
@@ -21,10 +32,14 @@ const PayNowPayment = () => {
     navigate("/");
   }
 
+
+  let content2 = document.createElement("p");
+  content2.innerHTML = 'Please send the payment printscreen to <span style="color: #0d6efd;">' + emailText + '</span> once payment is made.'
+
   const handlePaymentLater = (e) => {
     e.preventDefault();
     return swal({
-      text: "Please send the payment printscreen to support@celebrity.sg once payment is made.",
+      content: content2,
       icon: "warning",
       button: "OK",
       dangerMode: true,
