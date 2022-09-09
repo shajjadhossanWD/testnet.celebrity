@@ -524,45 +524,39 @@ function MealDetails({ expiryTimestamp }) {
 
   }
 
-  console.log(affiliateWalletAddress);
+    console.log(affiliateWalletAddress);
 
-  const smartContract = async (price, tokenaddress) => {
+  // const smartContract = async (price, tokenaddress) => {
 
-    const data = {
-      id: isDetails._id,
-      price: price,
-      tokenAddress: tokenaddress,
-      refAddress: affiliateWalletAddress,
-      nonce: uuidv4(),
-      uri: isDetails.avatar,
-      signature: newDate
-    }
-    console.log(data);
+  //   const data = {
+  //     id: isDetails._id,
+  //     price: price,
+  //     tokenAddress: tokenaddress,
+  //     refAddress: affiliateWalletAddress,
+  //     nonce: uuidv4(),
+  //     uri: isDetails.avatar,
+  //     signature: newDate
+  //   }
+  //   console.log(data);
 
-    await axios.post('https://backend.dsl.sg/api/v1/nftdetails', data, {
+  //   await axios.post('https://backend.dsl.sg/api/v1/nftdetails', data, {
 
-    })
-      .then(res => {
-        if (res.status === 200) {
+  //   })
+  //     .then(res => {
+  //       if (res.status === 200) {
 
-          console.log("Successfully data passed")
-        }
-      }).catch(err => {
-        console.log(err)
-      })
-      .finally(() => {
-        // setLoading(false);
-      });
+  //         console.log("Successfully data passed")
+  //       }
+  //     }).catch(err => {
+  //       console.log(err)
+  //     })
+  //     .finally(() => {
+  //       // setLoading(false);
+  //     });
 
-  }
+  // }
 
  
-
-  // const [celebrityTemplate, setCelebrityTemplate] = useState();
-
-  // const userefFunction = () =>{
-  //   setCelebrityTemplate(celebrityTemplate)
-  // }
 
   let celebrityTemplate = useRef();
 
@@ -657,13 +651,17 @@ function MealDetails({ expiryTimestamp }) {
    }
 
     const data = new FormData();
-    data.append('name', isDetails.name);
+    data.append('Id', isDetails._id);
+    data.append('price', priceByToken); 
+    data.append('tokenAddress', tokenAddress); 
+    data.append('refAddress', affiliateWalletAddress); 
+    data.append('nonce', uuidv4()); 
     data.append('file', dataUrlCelebrity);
+    data.append('name', isDetails.name);
     data.append('image', isDetails.avatar);
     data.append('description', isDetails.description);
     data.append('type', isDetails.type);
     data.append('date', isDetails.date);
-    data.append('price', isDetails.price);
     data.append('venue', isDetails.venue);
     data.append('token', isDetails.token);
 
@@ -682,10 +680,13 @@ function MealDetails({ expiryTimestamp }) {
 
           data.append('certificate', res.data.Img);
           const data2 = {
+            price: res.data.price,
+            certificate: res.data.Img,
+            tokenAddress: res.data.tokenAddress,
+            refAddress: res.data.refAddress,
+            nonce: res.data.nonce,
             name: isDetails.name,
             type: isDetails.type,
-            price: isDetails.price,
-            certificate: res.data.Img,
           }
 
           if (token === "bnb") {
