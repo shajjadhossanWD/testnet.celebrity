@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { CelebrityContext } from "../../../context/CelebrityContext";
@@ -19,6 +19,8 @@ const MealSlider = ({ pull_meal }) => {
 
   const [likes, setLikes] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
+
+
 
   const handleClick = () => {
     if (!user.walletAddress || user.walletAddress === "undefined") {
@@ -126,7 +128,7 @@ const MealSlider = ({ pull_meal }) => {
         const venue = isLiked.venue;
         const briefDetails = isLiked.briefDetails;
         const isDraft = isLiked.isDraft;
-        const likesCount = likesLenStr;
+        const likesCount = 2;
         const avatar = isLiked.avatar;
         const price = isLiked.price;
         const type = isLiked.type;
@@ -212,6 +214,7 @@ const MealSlider = ({ pull_meal }) => {
       }
     ]
   };
+
 
   return (
     <div>

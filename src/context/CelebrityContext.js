@@ -117,6 +117,9 @@ export default function CelebrityProvider({ children }) {
   const [metamaskBalanceLoading, setMetamaskBalanceLoading] = useState(false);
   const [coinbaseModal, setCoinbaseModal] = useState(false);
 
+
+
+
   const openWalletModal = () => {
     (!user?.walletAddress || user?.walletAddress === "undefined") &&
       setWalletModal(true);
@@ -237,8 +240,8 @@ export default function CelebrityProvider({ children }) {
             mintPrice: mintPrice,
             address: "0x0000000000000000000000000000000000000000",
           };
-          
-          } else {
+
+        } else {
           console.log("No ethereum object");
         }
       }
@@ -305,7 +308,7 @@ export default function CelebrityProvider({ children }) {
           address: USDSCtokenAddressTestnet,
         };
 
-     }
+      }
     } catch (error) {
       console.log(error);
       console.log("No ethereum object");
@@ -885,7 +888,7 @@ export default function CelebrityProvider({ children }) {
         coinbaseModal,
         openCoinbaseModal,
         closeCoinbaseModal,
-        connectToMetamask,
+
         mintAddressTestnet,
         DSLtokenAddressTestnet,
         USDSCtokenAddressTestnet,

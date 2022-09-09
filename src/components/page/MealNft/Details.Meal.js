@@ -111,6 +111,8 @@ function MealDetails({ expiryTimestamp }) {
   const [likes, setLikes] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
   const [affiliateWalletAddress, setAffiliateWalletAddress] = useState("");
+  const [priceByToken, setPriceByToken] = useState();
+  const [tokenAddress, setTokenAddress] = useState("");
 
   const {
     user,
@@ -122,7 +124,10 @@ function MealDetails({ expiryTimestamp }) {
     mintTitleNFTTestnetS39,
     mintTitleNFTTestnetQuest,
     mintAddressTestnet,
-
+    DSLtokenAddressTestnet,
+    USDSCtokenAddressTestnet,
+    S39tokenAddressTestnet,
+    QuesttokenAddressTestnet
   } = useContext(CelebrityContext);
   // const handleEmail = e => {
   //   setEmail(e.target.value);
@@ -595,37 +600,24 @@ function MealDetails({ expiryTimestamp }) {
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
       NFTID, perkNft, address, briefDetails, details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
     }, {
-      // headers: {
-      //   'content-type': 'application/json'
-      // },
     })
       .then(res => {
         if (res.status === 200) {
-          // swal({
-          //     title: "Success",
-          //     text: res.data.message,
-          //     icon: "success",
-          //     button: "OK!",
-          //     className: "modal_class_success",
-          // });
           console.log(res.data.message)
 
         }
       })
       .catch(error => {
         console.log(error)
-        // swal({
-        //   title: "Attention",
-        //   text: error.response.data.message,
-        //   icon: "warning",
-        //   button: "OK!",
-        //   className: "modal_class_success",
-        // });
       });
   }
 
 
+
+  //===============//// MINTED NFT FUNCTION////===================//
+
   const mintCelebrityNft = async () => {
+
     if (!otpVerify) {
       return swal({
         title: "Warning",
@@ -642,21 +634,27 @@ function MealDetails({ expiryTimestamp }) {
     // const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
 
     console.log(dataUrlCelebrity);
-    if (token === "bnb") {
-       tokensprice =  bnbTwoDec;
-    }
-    else if (token === "usdsc") {
-      tokensprice = usdsc;
-    }
-    else if (token === "dsl") {
-      Obj = await mintTicketNFTTestnetDSL(res.data.uri, dslTwoDec);
-    }
-    else if (token === "s39") {
-      Obj = await mintTitleNFTTestnetS39(res.data.uri, s39TwoDec);
-    }
-    else if (token === "finquest") {
-      Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
-    }
+
+   if (token === "bnb") {
+      setPriceByToken(bnbTwoDec);
+      setTokenAddress("0x0000000000000000000000000000000000000000");
+   }
+   else if (token === "usdsc") {
+    setPriceByToken(usdsc);
+    setTokenAddress(USDSCtokenAddressTestnet);
+   }
+   else if (token === "dsl") {
+    setPriceByToken(dslTwoDec);
+    setTokenAddress(DSLtokenAddressTestnet);
+   }
+   else if (token === "s39") {
+    setPriceByToken(s39TwoDec);
+    setTokenAddress(S39tokenAddressTestnet);
+   }
+   else if (token === "finquest") {
+    setPriceByToken(finquestTwoDec);
+    setTokenAddress(QuesttokenAddressTestnet);
+   }
 
     const data = new FormData();
     data.append('name', isDetails.name);
@@ -756,7 +754,7 @@ function MealDetails({ expiryTimestamp }) {
                 postDataAfterMint();
                 console.log("img" + res.data.ImgCelebrity)
                 handleSubmit(res.data.ImgCelebrity, Obj.ID);
-                smartContract(Obj.mintPrice, Obj.address);
+                // smartContract(Obj.mintPrice, Obj.address);
               }
             })
             .catch(err => {
