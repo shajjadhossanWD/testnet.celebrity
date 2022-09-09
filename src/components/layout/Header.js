@@ -1,15 +1,59 @@
-import { useContext } from 'react';
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { CelebrityContext } from '../../context/CelebrityContext';
+import swal from 'sweetalert';
 import './header.css';
 
 function Header() {
   const { openWalletModal, user } = useContext(CelebrityContext);
+  const [searchInput, setSearchInput] = useState('');
+  const [isMeal, setIsMeal] = useState([]);
+
+  const navigate = useNavigate();
+
+  const allNft = isMeal;
+  const todayDate = new Date();
+
+  useEffect(() => {
+    axios.get("https://backend.celebrity.sg/api/nft/allmeal")
+      .then(res => {
+        const filtering = res.data.nft.filter(items => items.isDraft === false && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
+        setIsMeal(filtering);
+        // setFilterData(res.data.slice(0, 5))
+      });
+  }, [isMeal])
+
+  const searchChange = e => {
+      const val = e.target.value;
+      setSearchInput(val);
+  }
+
+  const searchNftTitle = () => {
+    console.log(searchInput);
+    const matchedNfts = allNft.filter((element) =>
+      element.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    console.log(matchedNfts.length);
+    if(matchedNfts.length > 0 && !searchInput == " ") {
+      navigate("/mealnft");
+    } else {
+      navigate("/");
+
+      return swal({
+        title: "Attention",
+        text: "No result found!",
+        icon: "warning",
+        button: "OK!",
+        className: "modal_class_success",
+    });
+    };
+  }
 
   return (
     <Navbar bg="light" expand="lg" id='navbars' className='navbarsContainer' collapseOnSelect>
@@ -20,10 +64,9 @@ function Header() {
 
           <Form.Control
             style={{ textTransform: "lowercase" }}
-            aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" />
-          <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button"
-
-          ><i class="fas fa-search"></i>
+            aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" onChange={searchChange} />
+          <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={searchNftTitle}>
+            <i class="fas fa-search"></i>
           </InputGroup.Text>
         </InputGroup>
         {/* <input type="text" /> */}

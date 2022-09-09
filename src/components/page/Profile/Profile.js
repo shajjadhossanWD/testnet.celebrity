@@ -20,10 +20,6 @@ const Profile = () => {
   const { user, logOut, metamaskBalance } = useContext(CelebrityContext);
   const navigate = useNavigate();
 
-  if (!user.WalletAddress && !user.myReferralCode) {
-    navigate("/");
-  }
-
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     alert("Copied!")
