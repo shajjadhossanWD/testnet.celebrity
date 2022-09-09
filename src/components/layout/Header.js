@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -11,6 +11,9 @@ import './header.css';
 function Header() {
   const { openWalletModal, user } = useContext(CelebrityContext);
 
+
+
+
   return (
     <Navbar bg="light" expand="lg" id='navbars' className='navbarsContainer' collapseOnSelect>
       <Container className='navbarsContainer'>
@@ -21,8 +24,8 @@ function Header() {
           <Form.Control
             style={{ textTransform: "lowercase" }}
             aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" />
-          <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button"
-
+          <InputGroup.Text
+            className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="submit"
           ><i class="fas fa-search"></i>
           </InputGroup.Text>
         </InputGroup>

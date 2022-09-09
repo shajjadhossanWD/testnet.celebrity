@@ -117,6 +117,9 @@ export default function CelebrityProvider({ children }) {
   const [metamaskBalanceLoading, setMetamaskBalanceLoading] = useState(false);
   const [coinbaseModal, setCoinbaseModal] = useState(false);
 
+
+
+
   const openWalletModal = () => {
     (!user?.walletAddress || user?.walletAddress === "undefined") &&
       setWalletModal(true);
@@ -235,8 +238,8 @@ export default function CelebrityProvider({ children }) {
             mint_hash: mint_hash,
             ID: "1000" + ID.toString(),
           };
-          
-          } else {
+
+        } else {
           console.log("No ethereum object");
         }
       }
@@ -301,7 +304,7 @@ export default function CelebrityProvider({ children }) {
           ID: "1000" + ID.toString(),
         };
 
-     }
+      }
     } catch (error) {
       console.log(error);
       console.log("No ethereum object");
@@ -875,7 +878,7 @@ export default function CelebrityProvider({ children }) {
         coinbaseModal,
         openCoinbaseModal,
         closeCoinbaseModal,
-        connectToMetamask,
+
         mintAddressTestnet,
       }}
     >
