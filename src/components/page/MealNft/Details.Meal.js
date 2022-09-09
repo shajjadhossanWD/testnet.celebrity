@@ -17,6 +17,8 @@ import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import EmailVerifyModal from "./EmailVerifyModal";
 import Select from "react-select";
 import { useTimer } from 'react-timer-hook';
+import { BigNumber } from "ethers";
+import { v4 as uuidv4 } from "uuid";
 
 const selectOptions = [
   {
@@ -108,6 +110,7 @@ function MealDetails({ expiryTimestamp }) {
   const [tokenId, setTokenId] = useState('');
   const [likes, setLikes] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
+  const [affiliateWalletAddress, setAffiliateWalletAddress] = useState("");
 
   const {
     user,
@@ -516,6 +519,40 @@ function MealDetails({ expiryTimestamp }) {
 
   }
 
+  console.log(affiliateWalletAddress);
+
+  const smartContract = async (price, tokenaddress) => {
+
+    const data = {
+      id: isDetails._id,
+      price: price,
+      tokenAddress: tokenaddress,
+      refAddress: affiliateWalletAddress,
+      nonce: uuidv4(),
+      uri: isDetails.avatar,
+      signature: newDate
+    }
+    console.log(data);
+
+    await axios.post('https://backend.dsl.sg/api/v1/nftdetails', data, {
+
+    })
+      .then(res => {
+        if (res.status === 200) {
+
+          console.log("Successfully data passed")
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+      .finally(() => {
+        // setLoading(false);
+      });
+
+  }
+
+ 
+
   // const [celebrityTemplate, setCelebrityTemplate] = useState();
 
   // const userefFunction = () =>{
@@ -605,7 +642,21 @@ function MealDetails({ expiryTimestamp }) {
     // const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
 
     console.log(dataUrlCelebrity);
-
+    if (token === "bnb") {
+       tokensprice =  bnbTwoDec;
+    }
+    else if (token === "usdsc") {
+      tokensprice = usdsc;
+    }
+    else if (token === "dsl") {
+      Obj = await mintTicketNFTTestnetDSL(res.data.uri, dslTwoDec);
+    }
+    else if (token === "s39") {
+      Obj = await mintTitleNFTTestnetS39(res.data.uri, s39TwoDec);
+    }
+    else if (token === "finquest") {
+      Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
+    }
 
     const data = new FormData();
     data.append('name', isDetails.name);
@@ -705,7 +756,7 @@ function MealDetails({ expiryTimestamp }) {
                 postDataAfterMint();
                 console.log("img" + res.data.ImgCelebrity)
                 handleSubmit(res.data.ImgCelebrity, Obj.ID);
-
+                smartContract(Obj.mintPrice, Obj.address);
               }
             })
             .catch(err => {
@@ -764,6 +815,7 @@ function MealDetails({ expiryTimestamp }) {
   const handleAffiliateCode = (e) => {
     console.log(e.target.value);
     const refCode = othersRefCodes.find(i => i?.myReferralCode === e.target.value);
+    setAffiliateWalletAddress(refCode?.walletAddress);
     if (refCode?.myReferralCode === e.target.value) {
       setGotRefCode(true);
     } else if (e.target.value === "TEST") {
@@ -810,7 +862,10 @@ function MealDetails({ expiryTimestamp }) {
       // setLikes(likess);
       // console.log(likess);
     }
+
   };
+
+  
 
   const likess = localStorage.getItem("like");
 

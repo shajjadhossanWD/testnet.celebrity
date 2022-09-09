@@ -234,6 +234,8 @@ export default function CelebrityProvider({ children }) {
           return {
             mint_hash: mint_hash,
             ID: "1000" + ID.toString(),
+            mintPrice: mintPrice,
+            address: "0x0000000000000000000000000000000000000000",
           };
           
           } else {
@@ -299,6 +301,8 @@ export default function CelebrityProvider({ children }) {
         return {
           mint_hash: mint_hash,
           ID: "1000" + ID.toString(),
+          mintPrice: mintPrice,
+          address: USDSCtokenAddressTestnet,
         };
 
      }
@@ -372,6 +376,8 @@ export default function CelebrityProvider({ children }) {
         return {
           mint_hash: mint_hash,
           ID: "1000" + ID.toString(),
+          mintPrice: mintPrice,
+          address: DSLtokenAddressTestnet,
         };
       }
     } catch (error) {
@@ -401,7 +407,7 @@ export default function CelebrityProvider({ children }) {
     }
   };
 
-  const mintTitleNFTTestnetS39 = async (uriNft, mintprice) => {
+  const mintTitleNFTTestnetS39 = async (uriNft, mintPrice) => {
     try {
       if (ethereum) {
         const chainid = await window.ethereum.request({
@@ -417,7 +423,7 @@ export default function CelebrityProvider({ children }) {
           const price1 = await axios.get(
             "https://api.pancakeswap.info/api/v2/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
           );
-          const price = (price1.data.data.price * mintprice).toString();
+          const price = (price1.data.data.price * mintPrice).toString();
           console.log(price);
           const parsedAmount = ethers.utils.parseEther(price);
           const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
@@ -457,6 +463,8 @@ export default function CelebrityProvider({ children }) {
           return {
             mint_hash: mint_hash,
             ID: "1000" + ID.toString(),
+            mintPrice: mintPrice,
+            address: S39tokenAddressTestnet,
           };
         } else {
           console.log("No ethereum object");
@@ -511,6 +519,8 @@ export default function CelebrityProvider({ children }) {
         return {
           mint_hash: mint_hash,
           ID: "1000" + ID.toString(),
+          mintPrice: mintPrice,
+          address: QuesttokenAddressTestnet,
         };
       }
     } catch (error) {
@@ -877,6 +887,10 @@ export default function CelebrityProvider({ children }) {
         closeCoinbaseModal,
         connectToMetamask,
         mintAddressTestnet,
+        DSLtokenAddressTestnet,
+        USDSCtokenAddressTestnet,
+        S39tokenAddressTestnet,
+        QuesttokenAddressTestnet
       }}
     >
       {children}
