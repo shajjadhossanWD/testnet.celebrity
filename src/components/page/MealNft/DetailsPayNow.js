@@ -849,7 +849,11 @@ function DetailsPayNow({ expiryTimestamp }) {
                             </div>
 
                             <Typography className="pt-3 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
+<<<<<<< HEAD
                                 <span className="text-primary fontArial fontExtand">To attend this Celebrity Meal NFT Session, please pay {isDetails?.price} SGD</span>
+=======
+                                <span className="text-primary fontArial fontExtand">To attend this Celebrity Meal Nft Session, please pay SGD {isDetails?.price}</span>
+>>>>>>> main
                             </Typography>
                             <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} className="w-50" style={otpVerify ? { cursor: 'pointer' } : { cursor: 'auto' }} alt="" />
 
