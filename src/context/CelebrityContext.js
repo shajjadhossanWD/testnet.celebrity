@@ -1,5 +1,8 @@
-import { ethers } from "ethers";
+import { ethers, Contract, BigNumber } from "ethers";
 import { createContext, useEffect, useState } from "react";
+// import 'dotenv/config';
+import { v4 as uuidv4 } from "uuid";
+import abi from "../utils/nftAbi.json"
 
 import axios from "axios";
 import swal from "sweetalert";
@@ -104,6 +107,76 @@ const getQuesttokenContractTestnet = () => {
   );
   return tokenContract;
 };
+
+const getAllItemBlockchain = async () => {
+  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC);
+  return {
+    provider,
+    deployer: new ethers.Wallet(`${process.env.PRIVATE_KEY}`, provider),
+    NFTContract: new Contract(process.env.CONTRACT_ADDRESS, abi, provider)
+  };
+};
+
+const genSignature = async (types, voucher, auth) => {
+  const domain = {
+    name: "NFT-Voucher",
+    version: "1",
+    verifyingContract: auth.contract,
+    chainId: process.env.CHAIN_ID
+  };
+  const BuyNFTVoucher = {
+    id: voucher.id,
+    price: voucher.price,
+    tokenAddress: voucher.tokenAddress,
+    nonce: voucher.nonce
+  };
+
+  const signature = await auth.signer._signTypedData(domain, types, BuyNFTVoucher);
+
+  return {
+    ...voucher,
+    signature,
+  };
+};
+
+const signBuyFunction = async (id, price, tokenAddress, refAddress, uri) => {
+
+  console.log(id)
+  console.log(price)
+  console.log(tokenAddress)
+  console.log(refAddress)
+  console.log(uri)
+  const contracts = await getAllItemBlockchain();
+  const auth = {
+    signer: contracts.deployer,
+    contract: contracts.NFTContract.address,
+  };
+
+  const types = {
+    BuyNFTStruct: [
+      { name: "id", type: "string" },
+      { name: "price", type: "uint256" },
+      { name: "tokenAddress", type: "address" },
+      { name: "nonce", type: "string" },
+    ],
+  };
+
+  // Generate nonce as transaction id
+  const nonce = uuidv4();
+  const voucher = {
+    id: id,
+    price: BigNumber.from(price),
+    tokenAddress: tokenAddress,
+    refAddress: refAddress,
+    nonce: nonce,
+    uri: uri,
+  };
+  return {
+    ...(await genSignature(types, voucher, auth)),
+    price: price.toString(),
+  };
+}
+
 
 export default function CelebrityProvider({ children }) {
   const [loginModal, setLoginModal] = useState(false);
@@ -893,7 +966,8 @@ export default function CelebrityProvider({ children }) {
         DSLtokenAddressTestnet,
         USDSCtokenAddressTestnet,
         S39tokenAddressTestnet,
-        QuesttokenAddressTestnet
+        QuesttokenAddressTestnet,
+        signBuyFunction,
       }}
     >
       {children}

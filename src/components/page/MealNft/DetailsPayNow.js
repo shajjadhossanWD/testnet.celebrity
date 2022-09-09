@@ -686,7 +686,8 @@ function DetailsPayNow({ expiryTimestamp }) {
                 });
             })
     }
-    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
+    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 20;
+    // let availableNft = 0;
 
 
     // Referal code discount
@@ -717,6 +718,16 @@ function DetailsPayNow({ expiryTimestamp }) {
 
     // Verified OTP
     const otpVerifiedNow = () => {
+        if (availableNft < 1) {
+            return swal({
+                title: "Attention",
+                text: "No Nft available",
+                icon: "warning",
+                button: "OK",
+                dangerMode: true,
+                className: "modal_class_success",
+            });
+        }
         if (otpVerify) {
             navigate(`/payNowPayment/${email1}/${isDetails?.price}`);
         } else {

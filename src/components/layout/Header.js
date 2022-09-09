@@ -67,7 +67,7 @@ function Header() {
 
           <Form.Control
             // style={{ textTransform: "lowercase" }}
-            aria-label="" className='inputBackground' placeholder='Search Nft' type="text" required name="search" onChange={searchChange} />
+            aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" onChange={searchChange} />
           <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={searchNftTitle}>
             <i class="fas fa-search"></i>
           </InputGroup.Text>

@@ -128,12 +128,15 @@
 @media only screen and (max-width: 376px) {
     .handleBarcode {
         position: relative;
-        left: 3.7rem;
+        /* left: 3rem;
+        top: 8.7rem; */
+        left: 2rem;
         top: 8rem;
         justify-self: end;
-        width: 20% !important;
-        height: auto !important;
+        width: 15% !important;
+
     }
+
 
     .certificateCelebrity {
         height: 100%;
@@ -200,10 +203,12 @@
 @media only screen and (min-width:377px) and (max-width: 425px) {
     .handleBarcode {
         position: relative;
-        left: 3rem;
-        top: 8.7rem;
+        /* left: 3rem;
+        top: 8.7rem; */
+        left: 1.5rem;
+        top: 9rem;
         justify-self: end;
-        width: 20% !important;
+        width: 15% !important;
         height: auto !important;
     }
 
@@ -272,10 +277,12 @@
 @media only screen and (min-width:426px) and (max-width: 500px) {
     .handleBarcode {
         position: relative;
-        left: .2rem;
-        top: 9rem;
+        /* left: 3rem;
+        top: 8.7rem; */
+        left: -0.1rem;
+        top: 10.5rem;
         justify-self: end;
-        width: 20% !important;
+        width: 15% !important;
         height: auto !important;
     }
 
@@ -323,9 +330,13 @@
 @media only screen and (min-width:501px) and (max-width: 699px) {
     .handleBarcode {
         position: relative;
-        left: -.5rem;
-        top: 12rem;
-
+        /* left: 3rem;
+        top: 8.7rem; */
+        left: -1rem;
+        top: 11.2rem;
+        justify-self: end;
+        width: 15% !important;
+        height: auto !important;
     }
 
     .certificateCelebrity {
@@ -372,9 +383,9 @@
 @media only screen and (min-width:700px) and (max-width: 767px) {
     .handleBarcode {
         position: relative;
-        left: 18rem;
-        top: -8rem;
-
+        left: 16rem;
+        top: -6rem;
+        width: 16.6% !important;
     }
 
     .nft-watermark {

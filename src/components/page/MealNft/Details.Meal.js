@@ -127,7 +127,8 @@ function MealDetails({ expiryTimestamp }) {
     DSLtokenAddressTestnet,
     USDSCtokenAddressTestnet,
     S39tokenAddressTestnet,
-    QuesttokenAddressTestnet
+    QuesttokenAddressTestnet,
+    signBuyFunction
   } = useContext(CelebrityContext);
   // const handleEmail = e => {
   //   setEmail(e.target.value);
@@ -524,7 +525,7 @@ function MealDetails({ expiryTimestamp }) {
 
   }
 
-    console.log(affiliateWalletAddress);
+  console.log(affiliateWalletAddress);
 
   // const smartContract = async (price, tokenaddress) => {
 
@@ -556,7 +557,7 @@ function MealDetails({ expiryTimestamp }) {
 
   // }
 
- 
+
 
   let celebrityTemplate = useRef();
 
@@ -568,6 +569,10 @@ function MealDetails({ expiryTimestamp }) {
     setDataUrl(dataUrlNft)
 
   }, [isDetails])
+
+
+  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 20;
+  // let availableNft = 0;
 
 
   /// send full details to user
@@ -628,34 +633,43 @@ function MealDetails({ expiryTimestamp }) {
     // const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
 
     console.log(dataUrlCelebrity);
+    console.log(priceByToken)
+    console.log(USDSCtokenAddressTestnet)
 
-   if (token === "bnb") {
+    if (token === "bnb") {
       setPriceByToken(bnbTwoDec);
       setTokenAddress("0x0000000000000000000000000000000000000000");
-   }
-   else if (token === "usdsc") {
-    setPriceByToken(usdsc);
-    setTokenAddress(USDSCtokenAddressTestnet);
-   }
-   else if (token === "dsl") {
-    setPriceByToken(dslTwoDec);
-    setTokenAddress(DSLtokenAddressTestnet);
-   }
-   else if (token === "s39") {
-    setPriceByToken(s39TwoDec);
-    setTokenAddress(S39tokenAddressTestnet);
-   }
-   else if (token === "finquest") {
-    setPriceByToken(finquestTwoDec);
-    setTokenAddress(QuesttokenAddressTestnet);
-   }
+      console.log(priceByToken)
+    }
+    else if (token === "usdsc") {
+      setPriceByToken(usdsc);
+      setTokenAddress(USDSCtokenAddressTestnet);
+      console.log(priceByToken)
 
+    }
+    else if (token === "dsl") {
+      setPriceByToken(dslTwoDec);
+      setTokenAddress(DSLtokenAddressTestnet);
+      console.log(priceByToken)
+
+    }
+    else if (token === "s39") {
+      setPriceByToken(s39TwoDec);
+      setTokenAddress(S39tokenAddressTestnet);
+      console.log(priceByToken)
+
+    }
+    else if (token === "finquest") {
+      setPriceByToken(finquestTwoDec);
+      setTokenAddress(QuesttokenAddressTestnet);
+    }
+    console.log(affiliateWalletAddress)
     const data = new FormData();
     data.append('Id', isDetails._id);
-    data.append('price', priceByToken); 
-    data.append('tokenAddress', tokenAddress); 
-    data.append('refAddress', affiliateWalletAddress); 
-    data.append('nonce', uuidv4()); 
+    data.append('price', priceByToken);
+    data.append('tokenAddress', tokenAddress);
+    data.append('refAddress', affiliateWalletAddress);
+    data.append('nonce', uuidv4());
     data.append('file', dataUrlCelebrity);
     data.append('name', isDetails.name);
     data.append('image', isDetails.avatar);
@@ -664,6 +678,8 @@ function MealDetails({ expiryTimestamp }) {
     data.append('date', isDetails.date);
     data.append('venue', isDetails.venue);
     data.append('token', isDetails.token);
+
+    signBuyFunction(isDetails._id, priceByToken, tokenAddress, affiliateWalletAddress, isDetails.avatar)
 
     await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
       // headers: {
@@ -679,15 +695,7 @@ function MealDetails({ expiryTimestamp }) {
           console.log(res.data.Img)
 
           data.append('certificate', res.data.Img);
-          const data2 = {
-            price: res.data.price,
-            certificate: res.data.Img,
-            tokenAddress: res.data.tokenAddress,
-            refAddress: res.data.refAddress,
-            nonce: res.data.nonce,
-            name: isDetails.name,
-            type: isDetails.type,
-          }
+
 
           if (token === "bnb") {
             Obj = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
@@ -703,6 +711,12 @@ function MealDetails({ expiryTimestamp }) {
           }
           else if (token === "finquest") {
             Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
+          }
+
+          const data2 = {
+            name: isDetails.name,
+            price: isDetails.price,
+            certificate: res.data.Img,
           }
           data.append("mint_hash", Obj.mint_hash);
           setTokenId(Obj.ID);
@@ -798,7 +812,7 @@ function MealDetails({ expiryTimestamp }) {
         });
       })
   }
-  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
+
 
 
   // Referal code discount
@@ -864,7 +878,7 @@ function MealDetails({ expiryTimestamp }) {
 
   };
 
-  
+
 
   const likess = localStorage.getItem("like");
 
@@ -1087,15 +1101,15 @@ function MealDetails({ expiryTimestamp }) {
                   :
                   <Link to="#" className=" justify_content_center mt-4 mb-1">
                     {token === "bnb" &&
-                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {bnbTwoDec} BNB</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${bnbTwoDec} BNB`}</button>}
                     {token === "usdsc" &&
-                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {usdsc} USDSC</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
                     {token === "dsl" &&
-                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {dslTwoDec} DSL</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
                     {token === "s39" &&
-                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {s39TwoDec} S39</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${s39TwoDec} S39`}</button>}
                     {token === "finquest" &&
-                      <button className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">BUY THIS NFT FOR {finquestTwoDec} FINQUEST</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={mintCelebrityNft} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${finquestTwoDec} FINQUEST`}</button>}
                   </Link>
 
               }
