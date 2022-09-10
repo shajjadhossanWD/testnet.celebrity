@@ -320,7 +320,7 @@ const EditDraftNft = () => {
                                     required
                                 /> */}
 
-                                <InputGroup className="mb-3">
+                                <InputGroup className="mb-3" style={{textAlign: 'left'}}>
 
                                     <Form.Control
                                         style={{ backgroundColor: "#272d47", color: 'white' }}

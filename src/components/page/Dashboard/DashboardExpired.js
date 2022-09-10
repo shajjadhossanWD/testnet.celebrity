@@ -166,11 +166,11 @@ const DashboardExpired = () => {
                 <Table bordered responsive className="border-0 text-light">
                     <thead>
                         <tr>
-                            <th>NFT</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th className="handleForDnoneinRespo">Type</th>
-                            <th className="handleForDnoneinRespo">NFT Created</th>
+                            <th>NFT<br />Image</th>
+                            <th>NFT<br />Name</th>
+                            <th>Price<br />(SGD)</th>
+                            <th className="handleForDnoneinRespo">NFT<br />Type</th>
+                            <th className="handleForDnoneinRespo">NFT<br />Created</th>
                             {/* <th>Action</th> */}
                         </tr>
                     </thead>

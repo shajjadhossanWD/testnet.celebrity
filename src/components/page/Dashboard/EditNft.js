@@ -291,6 +291,7 @@ const EditNft = () => {
                   <Form.Control
                     style={{ backgroundColor: "#272d47", color: 'white' }}
                     type='date'
+                    defaultValue={Nfts.startDate}
                     name="startDate"
                     aria-label="Amount (to the nearest dollar)" />
 
@@ -310,7 +311,7 @@ const EditNft = () => {
 
                   <Form.Control
                     style={{ backgroundColor: "#272d47", color: 'white' }}
-                    type='text'
+                    type='time'
                     defaultValue={Nfts.startTime}
                     name="startTime"
                     aria-label="Amount (to the nearest dollar)" />
@@ -329,7 +330,7 @@ const EditNft = () => {
 
                   <Form.Control
                     style={{ backgroundColor: "#272d47", color: 'white' }}
-                    type='text'
+                    type='time'
                     defaultValue={Nfts.endTime}
                     name="endTime"
                     aria-label="Amount (to the nearest dollar)" />
@@ -355,7 +356,7 @@ const EditNft = () => {
                   style={{ backgroundColor: "#272d47", color: 'white' }}
                   required
                 /> */}
-                <InputGroup className="mb-3">
+                <InputGroup className="mb-3" style={{textAlign: 'left'}}>
 
                   <Form.Control
                     style={{ backgroundColor: "#272d47", color: 'white' }}

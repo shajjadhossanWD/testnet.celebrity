@@ -686,7 +686,7 @@ function DetailsPayNow({ expiryTimestamp }) {
                 });
             })
     }
-    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 20;
+    let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
     // let availableNft = 0;
 
 
@@ -740,6 +740,19 @@ function DetailsPayNow({ expiryTimestamp }) {
                 className: "modal_class_success",
             });
         }
+    }
+
+    let content = document.createElement('div');
+    content.innerHTML = isDetails?.perkNft;
+
+    const seePerks = () => {
+        return swal({
+            title: "Perks of NFT",
+            content: content,
+            button: "OK",
+            dangerMode: true,
+            className: "modal_class_success",
+        });
     }
 
 
@@ -863,9 +876,9 @@ function DetailsPayNow({ expiryTimestamp }) {
                                 <span className="text-primary fontArial fontExtand">To attend this Celebrity Meal NFT Session, please pay SGD {isDetails?.price}</span>
                             </Typography>
                             <Typography className="pt-2 pb-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
-                                <span className="text-primary fontArial fontExtand">Click here for your perks.</span>
+                                <span className="text-primary fontArial fontExtand"><span onClick={seePerks} style={{cursor: 'pointer', textDecoration: 'underline', color: '#d13574'}}>Click here</span> for your perks.</span>
                             </Typography>
-                            <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} className="w-50" style={otpVerify ? { cursor: 'pointer' } : { cursor: 'auto' }} alt="" />
+                            <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} style={otpVerify ? { cursor: 'pointer', width: '40%', height: '78px', borderRadius: '16px' } : { cursor: 'auto', width: '40%', height: '78px', borderRadius: '16px' }} alt="" />
 
                             <div className="my-3">
                                 <Button variant="danger" className="px-3"

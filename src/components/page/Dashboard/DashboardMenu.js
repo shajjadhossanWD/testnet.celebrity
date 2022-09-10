@@ -54,7 +54,7 @@ const DashboardMenu = () => {
                         <Card className='cardDash mx-auto'>
                             <Card.Body className="card-body w-100 d-flex align-items-center justify-content-between">
                                 <Card.Text className='dashboardTxt'>
-                                    <p>Admins</p>
+                                    <p>ADMINS</p>
                                     <h2 className='text-start'>{allAdmin}</h2>
                                 </Card.Text>
                                 <div className="iconDas">

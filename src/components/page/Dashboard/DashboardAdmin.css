@@ -31,7 +31,7 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     display: flex;
-    margin-left: 0.6rem;
+    /* margin-left: 0.6rem; */
     margin-top: 2rem;
 }
 
@@ -76,6 +76,11 @@
     /* margin-left: 3px; */
 }
 
+.mint_button {
+    margin-top: 0;
+    margin-right: 0;
+}
+
 .exclamatoryIcon {
     color: black;
     font-size: 3rem;
@@ -106,10 +111,10 @@
 }
 
 .adminBtnDiv {
-    margin-right: 3rem;
+    /* margin-right: 3rem; */
     display: flex;
-    align-items: end;
-    justify-content: end;
+    align-items: center;
+    justify-content: center;
 }
 
 .actions {
@@ -151,6 +156,14 @@
 
     .tableNormal {
         overflow: scroll;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .mint_button {
+        margin-top: 42px;
+        margin-left: -45px !important;
+        margin-right: 50px;
     }
 }
 
@@ -214,8 +227,8 @@
 }
 
 @media only screen and (max-width: 350px) {
-    .adminBtnDiv {
+    /* .adminBtnDiv {
         margin-right: 1rem;
-    }
+    } */
 
 }

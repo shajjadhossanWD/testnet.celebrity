@@ -125,12 +125,12 @@ const DashboardDraft = ({ setSelectedTab }) => {
                 <Table bordered responsive className="border-0 text-light">
                     <thead>
                         <tr>
-                            <th>NFT</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th className="handleForDnoneinRespo">Type</th>
+                            <th>NFT<br />Image</th>
+                            <th>NFT<br />Name</th>
+                            <th>Price<br />(SGD)</th>
+                            <th className="handleForDnoneinRespo">NFT<br />Type</th>
                             {/* <th className="handleForDnoneinRespo">Timestamp</th> */}
-                            <th>Action</th>
+                            <th>NFT<br />Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -148,7 +148,7 @@ const DashboardDraft = ({ setSelectedTab }) => {
                                     {data.date}
                                 </td> */}
                                 <td className="pt-3">
-                                    <div className='d-flex justify-content-start align-items-center'>
+                                    <div className='d-flex justify-content-start'>
                                         {/* <Button variant="primary" className='me-1' onClick={() => saveIssue(data._id)} title='Save NFT'><FaSave></FaSave></Button> */}
                                         {/* <CustomTooltip title="Save NFT">
                                             <div onClick={() => saveIssue(data._id)}>
@@ -163,6 +163,11 @@ const DashboardDraft = ({ setSelectedTab }) => {
                                         <CustomTooltip title="Delete NFT">
                                             <span className="rounded nft-delete-button" onClick={() => handleOrderDelete(data._id)}>
                                                 <button className="deleteBtn"><i className="fas fa-trash"></i></button>
+                                            </span>
+                                        </CustomTooltip>
+                                        <CustomTooltip title="MINT NFT">
+                                            <span className="rounded mint_button nft-delete-button ms-1 me-0">
+                                                <button className="saveBtn me-0"><i className="fas fa-plus"></i></button>
                                             </span>
                                         </CustomTooltip>
                                     </div>

@@ -146,6 +146,7 @@ const signBuyFunction = async (id, price, tokenAddress, refAddress, uri) => {
   console.log(tokenAddress)
   console.log(refAddress)
   console.log(uri)
+  
   const contracts = await getAllItemBlockchain();
   const auth = {
     signer: contracts.deployer,

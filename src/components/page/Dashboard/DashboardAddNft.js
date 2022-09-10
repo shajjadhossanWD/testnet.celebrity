@@ -248,6 +248,7 @@ const DashboardAddNft = () => {
                         <label className='mb-1'>Perks of NFT</label>
                         <Editor
                             editorState={perkNfts}
+                            required={true}
                             onEditorStateChange={setPerkNfts}
                             wrapperClassName="wrapper-class"
                             editorClassName="editor-class border mt-2 p-2 bg-white text-black"
@@ -294,6 +295,7 @@ const DashboardAddNft = () => {
                         <Editor
                             editorState={firstValue}
                             onEditorStateChange={setfirstValue}
+                            required={true}
                             wrapperClassName="wrapper-class"
                             editorClassName="editor-class border mt-2 p-2 bg-white text-black"
                             toolbarClassName="toolbar-class text-black"
@@ -334,6 +336,7 @@ const DashboardAddNft = () => {
                                 style={{ backgroundColor: "#272d47", color: 'white' }}
                                 type='date'
                                 name="startDate"
+                                required
                                 aria-label="Amount (to the nearest dollar)" />
 
                         </InputGroup>
@@ -346,6 +349,7 @@ const DashboardAddNft = () => {
                                 style={{ backgroundColor: "#272d47", color: 'white' }}
                                 type='time'
                                 name="startTime"
+                                required
                                 aria-label="Amount (to the nearest dollar)" />
 
                         </InputGroup>
@@ -359,6 +363,7 @@ const DashboardAddNft = () => {
                                 style={{ backgroundColor: "#272d47", color: 'white' }}
                                 type='time'
                                 name="endTime"
+                                required
                                 aria-label="Amount (to the nearest dollar)" />
 
                         </InputGroup>
@@ -373,12 +378,13 @@ const DashboardAddNft = () => {
                         />
 
                         <label className='mb-1'>Purchase Till</label>                  
-                        <InputGroup className="mb-3">
+                        <InputGroup className="mb-3" style={{textAlign: 'left'}}>
 
                             <Form.Control
                                 style={{ backgroundColor: "#272d47", color: 'white' }}
                                 type='date'
                                 name="purchaseDate"
+                                required
                                 value={event}
                                 onChange={e => setEvent(e.target.value)}
                                 aria-label="Amount (to the nearest dollar)" />
@@ -395,6 +401,7 @@ const DashboardAddNft = () => {
                         /> */}
                         <Editor
                             editorState={secondValue}
+                            required={true}
                             onEditorStateChange={setSecondValue}
                             wrapperClassName="wrapper-class"
                             editorClassName="editor-class border mt-2 p-2 bg-white text-black"

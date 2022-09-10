@@ -168,12 +168,12 @@ const DashboardNfts = () => {
                     <Table bordered responsive className="border-0 text-light">
                       <thead>
                         <tr>
-                          <th className='th-font-size'>NFT Image</th>
-                          <th className='th-font-size'>NFT Name</th>
-                          <th className='th-font-size'>Price(SGD)</th>
-                          <th className="handleForDnoneinRespo th-font-size">Type</th>
-                          <th className="handleForDnoneinRespo th-font-size">NFT Created</th>
-                          <th className='th-font-size'>Action</th>
+                          <th className='th-font-size'>NFT<br />Image</th>
+                          <th className='th-font-size'>NFT<br />Name</th>
+                          <th className='th-font-size'>Price<br />(SGD)</th>
+                          <th className="handleForDnoneinRespo th-font-size">NFT<br />Type</th>
+                          <th className="handleForDnoneinRespo th-font-size">NFT<br />Created</th>
+                          <th className='th-font-size'>NFT<br />Action</th>
                         </tr>
                       </thead>
                       <tbody>
