@@ -617,6 +617,9 @@ function MealDetails({ expiryTimestamp }) {
 
   const mintCelebrityNft = async () => {
 
+    console.log(priceByToken);
+    console.log(tokenAddress);
+
     if (!otpVerify) {
       return swal({
         title: "Warning",
@@ -664,6 +667,7 @@ function MealDetails({ expiryTimestamp }) {
       setTokenAddress(QuesttokenAddressTestnet);
     }
     console.log(affiliateWalletAddress)
+
     const data = new FormData();
     data.append('Id', isDetails._id);
     data.append('price', priceByToken);
@@ -691,9 +695,13 @@ function MealDetails({ expiryTimestamp }) {
 
         if (res.status === 200) {
           setImages(res.data.Img)
-          console.log(images)
           console.log(res.data.Img)
-
+          console.log(res.data.ID)
+          console.log(res.data.Price)
+          console.log(res.data.TokenAddress)
+          console.log(res.data.RefAddress)
+          console.log(res.data.Nonce)
+          
           data.append('certificate', res.data.Img);
 
 
