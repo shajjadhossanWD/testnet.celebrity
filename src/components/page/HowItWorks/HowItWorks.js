@@ -13,10 +13,10 @@ function HowItWorks() {
 
           <div className="text-white p-2">
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              DS Legends Pte Ltd (DSL) is launching <a target="_blank" href="https://testnet.celebrity.sg/" style={{ textDecoration: 'none' }} className="text-primary">Celebrity.sg</a> to attract more visitors to Singapore. Anyone can buy these NFTS WITH PURPOSES to enjoy attractive perks which comes with the NFT. This is the first time, where NFTs with real purposes are being launched.
+              DS Legends Pte Ltd (DSL) is launching <a target="_blank" href="https://testnet.celebrity.sg/" style={{ textDecoration: 'none' }} className="text-primary">Celebrity.sg</a> to attract more visitors to Singapore. Anyone can buy these NFTS WITH Perks to enjoy attractive perks which comes with the NFT. This is the first time, where NFTs with real Perks are being launched.
             </Typography>
             <Typography className="pt-3 howItWorksFs" variant="subtitle2" component="div">
-              NFT, Non-fungible token is a unique and is a cryptographic token designed to give you something that can’t be copied. At a very high level, most NFTs are part of a blockchain. It is like a digital certificate representing an asset. NFTs can represent real-world items like artwork and real estate. NFT with purposes are created by DSL to personally use and experience the purpose it’s created for unlike other NFTs.
+              NFT, Non-fungible token is a unique and is a cryptographic token designed to give you something that can’t be copied. At a very high level, most NFTs are part of a blockchain. It is like a digital certificate representing an asset. NFTs can represent real-world items like artwork and real estate. NFT with Perks are created by DSL to personally use and experience the purpose it’s created for unlike other NFTs.
             </Typography>
             <Typography className="pt-3 howItWorksFs" variant="subtitle2" component="div">
               <a target="_blank" href="https://testnet.celebrity.sg/" style={{ textDecoration: 'none' }} className="text-primary">Celebrity.sg</a> wants to connect fans with their celebrities. Fans always exhibit love and admiration towards their favorite celebrities. Celebrity crush and worship has been a fascinating acts of fans.

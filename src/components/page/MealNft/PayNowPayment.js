@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 const PayNowPayment = () => {
   const { email, price } = useParams();
   const navigate = useNavigate()
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    alert("Copied!")
+  }
 
   // let celebrityText = `<span>`
   const celebrityText = "celebrity.sg";
@@ -14,6 +20,7 @@ const PayNowPayment = () => {
   let content = document.createElement("p");
   content.innerHTML = '<span style="color: #0d6efd;">' + celebrityText + '</span> Team will contact you.If you do not receive an email within 24 hours please email to <span style="color: #0d6efd;">' + emailText + '</span>'
 
+ 
 
   const handlePaymentDone = (e) => {
     e.preventDefault();
@@ -61,12 +68,22 @@ const PayNowPayment = () => {
       <h6 className='text-center mb-0 payTexts text-white pb-5'>Scan the PayNow QR code and pay SGD {price}</h6>
       <div className="companyDetails">
         <p><span className='text-primary'>Company Name:</span> DS Legends Pte Ltd</p>
+        <div className="d-flex">
         <p><span className='text-primary'>UEN No:</span> 202133450W</p>
+        <button type="button" onClick={() => copyToClipboard("202133450W")} className="paynowBTNC">
+        <FontAwesomeIcon icon={faCopy} />
+        </button>
+        </div>
+        <div className="d-flex">
         <p className='text-center'><span className='text-primary'>Bill Reference No:</span> {email.toLocaleLowerCase()}</p>
+        <button type="button" onClick={() => copyToClipboard(email.toLocaleLowerCase())} className="paynowBTNC">
+        <FontAwesomeIcon icon={faCopy} />
+        </button>
+        </div>
       </div>
 
       <div className="buttonDiv">
-        <p className='mb-3'><button className='paynowPaidButton' onClick={handlePaymentDone}>I have already Paid</button></p>
+        <p className='mb-3'><button className='paynowPaidButton' onClick={handlePaymentDone}>I have already paid</button></p>
         <p className='mb-3'><button className='paynowLaterPaidButton' onClick={handlePaymentLater}>I will pay later</button></p>
         <p className='mb-3'><button className='paynowPaidButton bg-danger' onClick={handleHome}>Home</button></p>
 

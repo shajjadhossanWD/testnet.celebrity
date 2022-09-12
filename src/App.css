@@ -23,6 +23,14 @@
 
 }
 
+
+
+/* .handleImgforRespons {
+
+  height: 450px !important;
+  
+} */
+
 .banner-button2 {
   /* background-color: rgb(123, 123, 148) !important; */
   margin: 10px;
@@ -95,6 +103,8 @@
 .css-8mmkcg {
   color: #000 !important;
 }
+
+
 
 /* .home-txt-pd {
   padding-top: -50px !important;
@@ -564,6 +574,11 @@ p.text-light.mb-0 {
   /* .search-bar {
     width: 40% !important;
   } */
+  .buttonHomeExplore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* --------------------------------- */
@@ -631,6 +646,159 @@ p.text-light.mb-0 {
     } */
   }
 
+  @media only screen and (max-width: 600px) {
+    .glow_crypto_button {
+      -webkit-animation: glowing 1500ms infinite;
+      -moz-animation: glowing 1500ms infinite;
+      -o-animation: glowing 1500ms infinite;
+      animation: glowing 1500ms infinite;
+    }
+
+    @-webkit-keyframes glowing {
+      0% {
+        background-color: #10ac84;
+        -webkit-box-shadow: 0 0 3px #10ac84;
+      }
+
+      50% {
+        background-color: #28a745;
+        -webkit-box-shadow: 0 0 20px #28a745;
+      }
+
+      100% {
+        background-color: #10ac84;
+        -webkit-box-shadow: 0 0 3px #10ac84;
+      }
+    }
+
+    @-moz-keyframes glowing {
+      0% {
+        background-color: #10ac84;
+        -moz-box-shadow: 0 0 3px #10ac84;
+      }
+
+      50% {
+        background-color: #28a745;
+        -moz-box-shadow: 0 0 20px #28a745;
+      }
+
+      100% {
+        background-color: #10ac84;
+        -moz-box-shadow: 0 0 3px #10ac84;
+      }
+    }
+
+    @-o-keyframes glowing {
+      0% {
+        background-color: #10ac84;
+        box-shadow: 0 0 3px #10ac84;
+      }
+
+      50% {
+        background-color: #28a745;
+        box-shadow: 0 0 20px #28a745;
+      }
+
+      100% {
+        background-color: #10ac84;
+        box-shadow: 0 0 3px #10ac84;
+      }
+    }
+
+    @keyframes glowing {
+      0% {
+        background-color: #10ac84;
+        box-shadow: 0 0 3px #10ac84;
+      }
+
+      50% {
+        background-color: #28a745;
+        box-shadow: 0 0 20px #28a745;
+      }
+
+      100% {
+        background-color: #10ac84;
+        box-shadow: 0 0 3px #10ac84;
+      }
+    }
+
+
+    .glow_paynow_button {
+      -webkit-animation: glowingpaynow 1500ms infinite;
+      -moz-animation: glowingpaynow 1500ms infinite;
+      -o-animation: glowingpaynow 1500ms infinite;
+      animation: glowingpaynow 1500ms infinite;
+    }
+
+    @-webkit-keyframes glowingpaynow {
+      0% {
+        background-color: #2980b9;
+        -webkit-box-shadow: 0 0 3px #2980b9;
+      }
+
+      50% {
+        background-color: #007bff;
+        -webkit-box-shadow: 0 0 20px #007bff;
+      }
+
+      100% {
+        background-color: #2980b9;
+        -webkit-box-shadow: 0 0 3px #2980b9;
+      }
+    }
+
+    @-moz-keyframes glowingpaynow {
+      0% {
+        background-color: #2980b9;
+        -moz-box-shadow: 0 0 3px #2980b9;
+      }
+
+      50% {
+        background-color: #007bff;
+        -moz-box-shadow: 0 0 20px #007bff;
+      }
+
+      100% {
+        background-color: #2980b9;
+        -moz-box-shadow: 0 0 3px #2980b9;
+      }
+    }
+
+    @-o-keyframes glowingpaynow {
+      0% {
+        background-color: #2980b9;
+        box-shadow: 0 0 3px #2980b9;
+      }
+
+      50% {
+        background-color: #007bff;
+        box-shadow: 0 0 20px #007bff;
+      }
+
+      100% {
+        background-color: #2980b9;
+        box-shadow: 0 0 3px #2980b9;
+      }
+    }
+
+    @keyframes glowingpaynow {
+      0% {
+        background-color: #2980b9;
+        box-shadow: 0 0 3px #2980b9;
+      }
+
+      50% {
+        background-color: #007bff;
+        box-shadow: 0 0 20px #007bff;
+      }
+
+      100% {
+        background-color: #2980b9;
+        box-shadow: 0 0 3px #2980b9;
+      }
+    }
+  }
+
   @media only screen and (max-width: 540px) {
     .meal_details_type_title {
       margin-left: 0px !important;
@@ -666,7 +834,6 @@ p.text-light.mb-0 {
     }
 
     .handleImgforRespons {
-      margin-left: 50px !important;
       margin-top: 20px !important;
       width: 70% !important;
     }

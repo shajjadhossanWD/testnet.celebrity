@@ -7,6 +7,8 @@ import { CelebrityContext } from "../../../context/CelebrityContext";
 import Swal from 'sweetalert2';
 import swal from 'sweetalert';
 
+const { ethereum } = window;
+
 const MealSlider = ({ pull_meal }) => {
   const { openWalletModal, user } = useContext(CelebrityContext);
   const [isMeal, setIsMeal] = useState([])
@@ -278,10 +280,10 @@ const MealSlider = ({ pull_meal }) => {
               <hr style={{ margin: "10px 0px 10px 0px" }} />
               <div className="d-flex card_bottom_btn_main " style={{ margin: '15px 0 8px 0' }}>
                 <div className="col-6 d-grid me-2">
-                  <Link to={`/mealnft/${aNft?._id}/${aNft?.imageName}`} className="d-grid"> <button className="card_button2 bg-success" href="#!">PAY BY CRYPTO</button> </Link>
+                  <Link to={`/mealnft/${aNft?._id}/${aNft?.imageName}`} className="d-grid"> <button className={ethereum ? "card_button2 bg-success glow_crypto_button" : "card_button2 bg-success"} href="#!">PAY BY CRYPTO</button> </Link>
                 </div>
                 <div className="col-6 d-grid">
-                  <Link to={`/paynow/${aNft?._id}/${aNft?.imageName}`} className="d-grid"> <button className="card_button2 bg-primary" href="#!">PAY BY PAYNOW </button> </Link>
+                  <Link to={`/paynow/${aNft?._id}/${aNft?.imageName}`} className="d-grid"> <button className={!ethereum ? "card_button2 bg-primary glow_paynow_button" : "card_button2 bg-primary"} href="#!">PAY BY PAYNOW </button> </Link>
                 </div>
               </div>
             </div>

@@ -69,11 +69,12 @@ function Home() {
                     Explore
                   </Link>
                 </div>
-                <div className="col-md-6 offset-md-1 d-flex" style={{ justifyContent: 'center' }}>
+                <div className="col-md-6 offset-md-1 d-flex home-image" style={{ justifyContent: 'center' }}>
                   <img
-                    src="/assets/images/misc/celebrity-banner.jpeg"
-                    className="lazy img-fluid fadeIn handleImgforRespons"
-                    style={{borderRadius: '10px', width: '90%'}}
+                    // src="/assets/images/misc/celebrity-banner.jpeg"
+                    src="https://i.ibb.co/KNHV8bt/celebrity-banner2.jpg"
+                    className="lazy fadeIn handleImgforRespons"
+                    style={{ borderRadius: '1px', width: '90%', }}
                     alt=""
                   />
                 </div>
@@ -122,11 +123,11 @@ function Home() {
             <div className="col-lg-4 col-md-6">
               <div className="de-card has-border text-center boxesNft">
                 <div className="NftDetailsDiv">
-                <i className=" bg-color-2 i-boxed icon_menu-square_alt2"></i>
-                <div className="text">
-                  <h6 className="home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
+                  <i className=" bg-color-2 i-boxed icon_menu-square_alt2"></i>
+                  <div className="text">
+                    <h6 className="home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>

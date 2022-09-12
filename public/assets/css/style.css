@@ -17081,6 +17081,22 @@ img {
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .mouse {
+        position: absolute;
+        width: 22px;
+        height: 42px;
+        bottom: 40px;
+        left: 50%;
+        margin-left: -36px;
+        border-radius: 15px;
+        border: 2px solid #fff;
+        -webkit-animation: intro 1s;
+        animation: intro 1s;
+        visibility: hidden;
+    }
+}
+
 /* section control */
 @media only screen and (min-device-width: 768) and (max-device-width: 1024) and (orientation: portrait) {
     section {

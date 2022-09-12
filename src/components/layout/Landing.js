@@ -51,19 +51,20 @@ export default function () {
                     </div>
                   </div>
                   <p className="wow fadeInUp lead" data-wow-delay="2s">
-                    <h4 style={{ fontSize: '1rem', marginTop: '1.2rem' }}>The largest collection of NFTs with purposes</h4>
+                    <h4 style={{ fontSize: '1rem', marginTop: '1.2rem' }}>The largest collection of NFTs with perks</h4>
                   </p>
                   <div className="mb-sm-30"></div>
-
-                  <Link
-                    to="/mealnft"
-                    className="btn-main wow fadeInUp lead mt-3"
-                    data-wow-delay="1.25s"
-                  >
-                    Explore
-                  </Link>
+                  <p className="buttonHomeExplore">
+                    <Link
+                      to="/mealnft"
+                      className="btn-main wow fadeInUp lead mt-3"
+                      data-wow-delay="1.25s"
+                    >
+                      Explore
+                    </Link>
+                  </p>
                 </div>
-                <div className="col-md-6 offset-md-1 d-flex" style={{ justifyContent: 'center' }} >
+                <div className="col-md-6 offset-md-1 d-flex home-image" style={{ justifyContent: 'center' }} >
                   {/* <img
                     src="/assets/images/misc/women-statue.png"
                     className="lazy img-fluid wow fadeIn handleImgforRespons"
@@ -71,9 +72,10 @@ export default function () {
                     alt=""
                   /> */}
                   <img
-                    src="/assets/images/misc/celebrity-banner.jpeg"
-                    className="lazy img-fluid wow fadeIn handleImgforRespons"
-                    style={{borderRadius: '10px', width: '90%'}}
+                    // src="/assets/images/misc/celebrity-banner.jpeg"
+                    src="https://i.ibb.co/KNHV8bt/celebrity-banner2.jpg"
+                    className="lazy wow fadeIn handleImgforRespons"
+                    style={{ borderRadius: '1px', width: '90%', }}
                     data-wow-delay="1.25s"
                     alt=""
                   />
@@ -122,13 +124,13 @@ export default function () {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="de-card has-border text-center boxesNft">
-              <div className="NftDetailsDiv">
+                <div className="NftDetailsDiv">
 
-                <i className="wow fadeInUp bg-color-2 i-boxed icon_menu-square_alt2"></i>
-                <div className="text">
-                  <h6 className="wow fadeInUp home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
+                  <i className="wow fadeInUp bg-color-2 i-boxed icon_menu-square_alt2"></i>
+                  <div className="text">
+                    <h6 className="wow fadeInUp home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>

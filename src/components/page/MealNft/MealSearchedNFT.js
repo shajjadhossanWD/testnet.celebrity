@@ -42,7 +42,7 @@ const MealSearchedNFT = () => {
           <h1 style={{ marginTop: '80px' }} className='text-gradient text-center pt-5'>Search Results</h1>
         </div>
         {searchResults === "notFound" ? <div>
-          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem" }}>
+          <Typography variant="h6" style={{ color: '#d0d7c2', fontSize: "16px", marginTop: "1rem", textAlign: "center" }}>
             Your search does not return any results. Please see other NFTs here.
             </Typography>
         </div> : <Container className="SouvenirNFT_card row pt-2 ">
@@ -59,7 +59,7 @@ const MealSearchedNFT = () => {
                   <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
                     <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
                       <div className="d-flex card_hover_icon">
-                        <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                        <Link to={`/mealnft/${data?._id}/${data?.imageName}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                       </div>
                     </div>
                   </div>

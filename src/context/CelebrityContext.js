@@ -323,7 +323,7 @@ export default function CelebrityProvider({ children }) {
 
           return {
             mint_hash: mint_hash,
-            ID: "1000" + ID.toString(),
+            ID: "10000" + ID.toString(),
             mintPrice: data.price,
             address: "0x0000000000000000000000000000000000000000",
           };
@@ -403,7 +403,7 @@ export default function CelebrityProvider({ children }) {
 
         return {
           mint_hash: mint_hash,
-          ID: "1000" + ID.toString(),
+          ID: "10000" + ID.toString(),
           mintPrice: data.price,
           address: USDSCtokenAddressTestnet,
         };
@@ -492,7 +492,7 @@ export default function CelebrityProvider({ children }) {
         console.log("Mint link: " + mint_hash);
         return {
           mint_hash: mint_hash,
-          ID: "1000" + ID.toString(),
+          ID: "10000" + ID.toString(),
           mintPrice: data.price,
           address: DSLtokenAddressTestnet,
         };
@@ -606,7 +606,7 @@ export default function CelebrityProvider({ children }) {
 
           return {
             mint_hash: mint_hash,
-            ID: "1000" + ID.toString(),
+            ID: "10000" + ID.toString(),
             mintPrice: data.price,
             address: S39tokenAddressTestnet,
           };
@@ -667,7 +667,7 @@ export default function CelebrityProvider({ children }) {
         console.log("Mint link: " + mint_hash);
         return {
           mint_hash: mint_hash,
-          ID: "1000" + ID.toString(),
+          ID: "10000" + ID.toString(),
           mintPrice: data.price,
           address: QuesttokenAddressTestnet,
         };

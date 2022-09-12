@@ -8,12 +8,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { CelebrityContext } from '../../context/CelebrityContext';
 import swal from 'sweetalert';
+import { IoClose } from "react-icons/io5";
 import './header.css';
 
 function Header() {
   const { openWalletModal, user, searchNftTitle } = useContext(CelebrityContext);
   const [searchInput, setSearchInput] = useState('');
   const [isMeal, setIsMeal] = useState([]);
+  const [showCloseIcone, setShowCloseIcone] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,6 +34,19 @@ function Header() {
   const searchChange = e => {
     const val = e.target.value;
     setSearchInput(val);
+
+    if (e.target.value.length > 0) {
+      setShowCloseIcone(true);
+    } else {
+      setShowCloseIcone(false);
+    }
+  }
+
+  const removeValue = () => {
+    document.getElementById('searchVal').value= "" ;
+    if (document.getElementById('searchVal').value === "") {
+      setShowCloseIcone(false);
+    }
   }
 
   const searched = () => {
@@ -50,8 +65,11 @@ function Header() {
         <InputGroup className="search-bar">
 
           <Form.Control
-            // style={{ textTransform: "lowercase" }}
-            aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" onChange={searchChange} />
+            style={{ borderRight: 'none', backgroundColor: '#272d47', color: '#fff', boxShadow: 'none', borderColor: '#585858' }}
+            aria-label="" className='inputBackground' placeholder='Search' type="text" id='searchVal' required name="search" onChange={searchChange} />
+            {showCloseIcone === true && <div onClick={removeValue} style={{backgroundColor: '#272d47', width: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid #585858', borderRight: '1px solid #585858', borderBottom: '1px solid #585858', cursor: 'pointer'}}>
+              {showCloseIcone === true && <IoClose color='#bbbbbb' />}
+            </div>}
           <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={searched}>
             <i class="fas fa-search"></i>
           </InputGroup.Text>

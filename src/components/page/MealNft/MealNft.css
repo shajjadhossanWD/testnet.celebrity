@@ -34,6 +34,15 @@
     border: none;
 }
 
+.paynowBTNC {
+    padding: 2px 6px;
+    margin-left: 5px;
+    border-radius: 10px;
+    background: #0d6efd;
+    margin-bottom: 1rem;
+    border: none;
+}
+
 .paynowLaterPaidButton {
     background-color: transparent;
     border: 2px solid #0d6efd;
@@ -128,14 +137,14 @@
 .paynow_disable_button {
     width: 40%;
     height: 106px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     cursor: auto;
 }
 
 .paynow_enable_button {
     width: 40%;
     height: 106px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     cursor: pointer;
 }
 
@@ -146,7 +155,7 @@
         border-radius: 10px;
         cursor: auto;
     }
-    
+
     .paynow_enable_button {
         width: 56%;
         height: 106px;
@@ -162,7 +171,7 @@
         border-radius: 10px;
         cursor: auto;
     }
-    
+
     .paynow_enable_button {
         width: 64%;
         height: 106px;

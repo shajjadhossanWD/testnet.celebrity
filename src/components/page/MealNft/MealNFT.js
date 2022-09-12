@@ -51,7 +51,7 @@ const MealNFT = () => {
                   <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
                     <div class="overlay d-grid " style={{ alignContent: 'center', justifyItems: 'center' }}>
                       <div className="d-flex card_hover_icon">
-                        <Link to={`/mealnft/${data?._id}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
+                        <Link to={`/mealnft/${data?._id}/${data?.imageName}`}><button className="card_hover_button mt-5" href="#!">BUY NOW</button></Link>
                       </div>
                     </div>
                   </div>
