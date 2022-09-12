@@ -40,6 +40,7 @@ import News from './components/page/News/News';
 import DetailsPayNow from './components/page/MealNft/DetailsPayNow';
 import PayNowPayment from './components/page/MealNft/PayNowPayment';
 import ProfileProtected from './components/AdminRoute/ProfileProtected';
+import MealSearchedNFT from './components/page/MealNft/MealSearchedNFT';
 function App() {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 180);
@@ -61,6 +62,7 @@ function App() {
             <Route path="/souvenirnft" element={<SouvenirNFT></SouvenirNFT>} />
             <Route path="/souvenirnft/:souvenirId" element={<SouvenirDetails />} />
             <Route path="/mealnft" element={<MealNFT></MealNFT>} />
+            <Route path="/mealsearchednft" element={<MealSearchedNFT />} />
             <Route path="/mealnft/:mealnId/:addressImg" element={<MealDetails expiryTimestamp={time} />} />
             <Route path="/paynow/:mealnId/:addressImg" element={<DetailsPayNow expiryTimestamp={time} />} />
             <Route path="/payNowPayment/:email/:price" element={<PayNowPayment />} />

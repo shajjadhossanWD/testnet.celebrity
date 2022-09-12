@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import './header.css';
 
 function Header() {
-  const { openWalletModal, user } = useContext(CelebrityContext);
+  const { openWalletModal, user, searchNftTitle } = useContext(CelebrityContext);
   const [searchInput, setSearchInput] = useState('');
   const [isMeal, setIsMeal] = useState([]);
 
@@ -34,25 +34,9 @@ function Header() {
     setSearchInput(val);
   }
 
-  const searchNftTitle = () => {
-    console.log(searchInput);
-    const matchedNfts = allNft.filter((element) =>
-      element.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
-    console.log(matchedNfts.length);
-    if (matchedNfts.length > 0 && !searchInput == " ") {
-      navigate("/mealnft");
-    } else {
-      navigate("/mealnft");
-
-      return swal({
-        title: "Attention",
-        text: "Sorry no Nft found according to your search result! See the available Nft instead",
-        icon: "warning",
-        button: "OK!",
-        className: "modal_class_success",
-      });
-    };
+  const searched = () => {
+    searchNftTitle(isMeal, searchInput);
+    navigate("/mealsearchednft");
   }
 
 
@@ -68,7 +52,7 @@ function Header() {
           <Form.Control
             // style={{ textTransform: "lowercase" }}
             aria-label="" className='inputBackground' placeholder='Search' type="text" required name="search" onChange={searchChange} />
-          <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={searchNftTitle}>
+          <InputGroup.Text className='bg-dark text-center border-0 cursor-pointer text-white' role="button" type="button" onClick={searched}>
             <i class="fas fa-search"></i>
           </InputGroup.Text>
         </InputGroup>
@@ -106,9 +90,9 @@ function Header() {
             {/* <Nav.Link as={HashLink} to="/dashboard" href='#dashboard' className='menuText'>Dashboard</Nav.Link> */}
             {
               (!user.walletAddress || user.walletAddress === "undefined") ?
-                <div className='menuText headerButtonW'><button class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>LOGIN WITH WALLET</span> </button> </div>
+                <div className='menuText headerButtonW'><button style={{fontSize: '13px'}} class="button-18" role="button" onClick={openWalletModal}><i className="icon_wallet_alt me-1"></i> <span>LOGIN WITH WALLET</span> </button> </div>
                 :
-                <Nav.Link as={HashLink} href="#Meal" to="/profile" className='menuText dropdown-text'><div className='menuText headerButtonW'><button class="button-18" role="button" >Profile</button> </div></Nav.Link>
+                <Nav.Link as={HashLink} href="#Meal" to="/profile" className='menuText dropdown-text'><div className='menuText headerButtonW'><button style={{fontSize: '13px'}} class="button-18" role="button" >Profile</button> </div></Nav.Link>
             }
           </Nav>
         </Navbar.Collapse>

@@ -71,8 +71,9 @@ function Home() {
                 </div>
                 <div className="col-md-6 offset-md-1 d-flex" style={{ justifyContent: 'center' }}>
                   <img
-                    src="/assets/images/misc/women-statue.png"
+                    src="/assets/images/misc/celebrity-banner.jpeg"
                     className="lazy img-fluid fadeIn handleImgforRespons"
+                    style={{borderRadius: '10px', width: '90%'}}
                     alt=""
                   />
                 </div>

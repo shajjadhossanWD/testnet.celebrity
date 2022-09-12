@@ -64,9 +64,16 @@ export default function () {
                   </Link>
                 </div>
                 <div className="col-md-6 offset-md-1 d-flex" style={{ justifyContent: 'center' }} >
-                  <img
+                  {/* <img
                     src="/assets/images/misc/women-statue.png"
                     className="lazy img-fluid wow fadeIn handleImgforRespons"
+                    data-wow-delay="1.25s"
+                    alt=""
+                  /> */}
+                  <img
+                    src="/assets/images/misc/celebrity-banner.jpeg"
+                    className="lazy img-fluid wow fadeIn handleImgforRespons"
+                    style={{borderRadius: '10px', width: '90%'}}
                     data-wow-delay="1.25s"
                     alt=""
                   />

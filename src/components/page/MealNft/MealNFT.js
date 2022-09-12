@@ -34,7 +34,7 @@ const MealNFT = () => {
     <Fragment>
       <Box className="souvenirNFT_Box" id="Meal">
         <div style={{ backgroundColor: '#1A1A25' }}>
-          <h1 style={{ marginTop: '80px' }} className='text-gradient text-center pt-5'>Celebrity Meal NFT</h1>
+          <h1 style={{ marginTop: '80px' }} className='text-gradient text-center pt-5'>Celebrity Meal NFTs</h1>
         </div>
         <Container className="SouvenirNFT_card row pt-2 ">
           {

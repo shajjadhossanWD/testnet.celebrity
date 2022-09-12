@@ -125,7 +125,51 @@
     height: 83.5%;
 }
 
+.paynow_disable_button {
+    width: 40%;
+    height: 106px;
+    border-radius: 10px;
+    cursor: auto;
+}
+
+.paynow_enable_button {
+    width: 40%;
+    height: 106px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .paynow_disable_button {
+        width: 56%;
+        height: 106px;
+        border-radius: 10px;
+        cursor: auto;
+    }
+    
+    .paynow_enable_button {
+        width: 56%;
+        height: 106px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
+
 @media only screen and (max-width: 376px) {
+    .paynow_disable_button {
+        width: 64%;
+        height: 106px;
+        border-radius: 10px;
+        cursor: auto;
+    }
+    
+    .paynow_enable_button {
+        width: 64%;
+        height: 106px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
     .handleBarcode {
         position: relative;
         /* left: 3rem;

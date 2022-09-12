@@ -16,7 +16,7 @@ const MealSlider = ({ pull_meal }) => {
   const [updated, setUpdated] = useState(null);
   const [postIdDetails, setPostIdDetails] = useState([]);
   const [allAvailable, setAllAvailable] = useState([]);
-
+  const [id, setId] = useState('');
   const [likes, setLikes] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -61,19 +61,28 @@ const MealSlider = ({ pull_meal }) => {
       });
   }, [isMeal])
 
+    useEffect(() => {
+      axios.get("https://backend.celebrity.sg/api/like/getLikes")
+      .then(res => {
+        setNftsPro(res.data.likes);
+      })
+    }, [id]);
 
-  axios.get("https://backend.celebrity.sg/api/like/getLikes")
-    .then(res => {
-      setNftsPro(res.data.likes);
-    })
+    useEffect(() => {
+      axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+          .then(res => {
+            setIsLiked(res.data.nft);
+      })
+    }, [id]);
 
 
   // Like functionality
   const likeCount = (id) => {
-
+    setId(id);
+    
     if (!user.walletAddress || user.walletAddress === "undefined") {
       openWalletModal();
-    } else {
+    } else if (user.walletAddress || user.walletAddress !== "undefined") {
       const likesFiltering = nftsPro.find(i => i.walletAddress === user.walletAddress && i.likedMealId === id);
       console.log(likesFiltering);
 
@@ -99,7 +108,7 @@ const MealSlider = ({ pull_meal }) => {
 
             }
           });
-      } else {
+      } else if (likesFiltering === Object) {
         // 2nd step
         // axios.get("https://backend.celebrity.sg/api/like/getLikes")
         //   .then(res => {
@@ -113,11 +122,6 @@ const MealSlider = ({ pull_meal }) => {
         const likesLenStr = JSON.stringify(totalLikes);
 
         // 4th step
-        axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
-          .then(res => {
-            setIsLiked(res.data.nft);
-          })
-
         const name = isLiked.name;
         const date = isLiked.date;
         const availableNfts = isLiked.availableNfts;
@@ -128,7 +132,7 @@ const MealSlider = ({ pull_meal }) => {
         const venue = isLiked.venue;
         const briefDetails = isLiked.briefDetails;
         const isDraft = isLiked.isDraft;
-        const likesCount = 2;
+        const likesCount = likesLenStr;
         const avatar = isLiked.avatar;
         const price = isLiked.price;
         const type = isLiked.type;

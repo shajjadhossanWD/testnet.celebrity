@@ -878,7 +878,7 @@ function DetailsPayNow({ expiryTimestamp }) {
                             <Typography className="pt-2 pb-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
                                 <span className="text-primary fontArial fontExtand"><span onClick={seePerks} style={{cursor: 'pointer', textDecoration: 'underline', color: '#d13574'}}>Click here</span> for your perks.</span>
                             </Typography>
-                            <img src="https://i.ibb.co/hmWJTzJ/f6043fad-8afd-4b60-bafc-01947f64be9d.jpg" onClick={otpVerifiedNow} style={otpVerify ? { cursor: 'pointer', width: '40%', height: '78px', borderRadius: '16px' } : { cursor: 'auto', width: '40%', height: '78px', borderRadius: '16px' }} alt="" />
+                            <img src="https://i.ibb.co/8d74R5c/paynowbtn.jpg" onClick={otpVerifiedNow} className={otpVerify ? "paynow_enable_button" : "paynow_disable_button"} alt="" />
 
                             <div className="my-3">
                                 <Button variant="danger" className="px-3"

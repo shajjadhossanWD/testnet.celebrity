@@ -71,7 +71,7 @@ const EditDraftNft = () => {
 
         const name = e.target.name.value;
         const price = e.target.price.value;
-        const availableNfts = e.target.availableNfts.value;
+        const availableNfts = parseInt(e.target.availableNfts.value) + parseInt(Nfts.availableNfts);
         const perkNft = stepPerkNft;
         const description = stepOne;
         const startDate = e.target.startDate.value;

@@ -190,8 +190,7 @@ export default function CelebrityProvider({ children }) {
   const [metamaskBalance, setMetamaskBalance] = useState({});
   const [metamaskBalanceLoading, setMetamaskBalanceLoading] = useState(false);
   const [coinbaseModal, setCoinbaseModal] = useState(false);
-
-
+  const [searchResults, setSearchResults] = useState(null);
 
 
   const openWalletModal = () => {
@@ -891,6 +890,17 @@ export default function CelebrityProvider({ children }) {
     return provider;
   };
 
+  const searchNftTitle = (isMeal, searchInput) => {
+    const matchedNfts = isMeal.filter((element) =>
+      element.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    if (matchedNfts.length > 0 && !searchInput == " ") {
+      setSearchResults(matchedNfts);
+    } else {
+      setSearchResults("notFound");
+    };
+  }
+
   const logOut = async () => {
     setCurrentAccount(null);
     setUser({});
@@ -969,6 +979,9 @@ export default function CelebrityProvider({ children }) {
         S39tokenAddressTestnet,
         QuesttokenAddressTestnet,
         signBuyFunction,
+        searchNftTitle,
+        setSearchResults,
+        searchResults
       }}
     >
       {children}

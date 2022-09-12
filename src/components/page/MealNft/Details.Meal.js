@@ -111,6 +111,8 @@ function MealDetails({ expiryTimestamp }) {
   const [likes, setLikes] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
   const [affiliateWalletAddress, setAffiliateWalletAddress] = useState("");
+  const [strTimeToAmPm, setStrTimeToAmPm] = useState('');
+  const [endTimeToAmPm, setEndTimeToAmPm] = useState('');
 
   const {
     user,
@@ -179,7 +181,22 @@ function MealDetails({ expiryTimestamp }) {
         setDetails(res.data?.nft);
         setDateCount(res.data?.nft?.startDate);
         setTargetCount(res.data?.nft?.purchaseDate);
-
+        const convertTime24to12 = (time24h) => {
+          let time = time24h
+            .toString()
+            .match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time24h];
+        
+          if (time.length > 1) {
+            time = time.slice(1, -1);
+            time[5] = +time[0] < 12 ? ' am' : ' pm';
+            time[0] = +time[0] % 12 || 12;
+          }
+          return time.join(''); 
+        };
+        const st = convertTime24to12(res.data?.nft?.startTime);
+        const et = convertTime24to12(res.data?.nft?.endTime);
+        setStrTimeToAmPm(st);
+        setEndTimeToAmPm(et);
       });
   }, [mealnId])
 
@@ -569,7 +586,7 @@ function MealDetails({ expiryTimestamp }) {
   }, [isDetails])
 
 
-  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length);
+  let availableNft = parseInt(isDetails?.availableNfts) - parseInt(allAvailable.length) + 20;
   // let availableNft = 0;
 
 
@@ -855,7 +872,6 @@ function MealDetails({ expiryTimestamp }) {
   };
 
 
-
   const likess = localStorage.getItem("like");
 
   return (
@@ -922,13 +938,13 @@ function MealDetails({ expiryTimestamp }) {
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
-                <span className="text-primary fontArial  fontExtand">Start Time:</span><br /> <span className="fw-normal fontArial  fontExtand">{isDetails?.startTime} SGT</span>
+                <span className="text-primary fontArial  fontExtand">Start Time:</span><br /> <span className="fw-normal fontArial  fontExtand">{strTimeToAmPm} SGT</span>
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
                 <span className="text-primary fontArial  fontExtand">End Time:
                 </span><br />
-                <span className="fw-normal fontArial  fontExtand">{isDetails?.endTime} SGT</span>
+                <span className="fw-normal fontArial  fontExtand">{endTimeToAmPm} SGT</span>
               </Typography>
 
               <Typography className="pt-1 fontArial  fontExtand" variant="subtitle2" component="div">
