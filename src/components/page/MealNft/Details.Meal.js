@@ -17,8 +17,18 @@ import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import EmailVerifyModal from "./EmailVerifyModal";
 import Select from "react-select";
 import { useTimer } from 'react-timer-hook';
-import { BigNumber } from "ethers";
+import { BigNumber,ethers } from "ethers";
 import { v4 as uuidv4 } from "uuid";
+
+import {
+  DSLtokenAddressTestnet,
+  mintAddressTestnet,
+  USDSCtokenAddressTestnet,
+  USDSCtokenAddressMainnet,
+  DSLtokenAddressMainnet,
+  S39tokenAddressTestnet,
+  QuesttokenAddressTestnet,
+} from "../../../utils/constant";
 
 const selectOptions = [
   {
@@ -594,6 +604,8 @@ function MealDetails({ expiryTimestamp }) {
     const endDate = isDetails.purchaseDate
     const email = email1
 
+    console.log('44444')
+
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
       NFTID, perkNft, address, briefDetails, details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
     }, {
@@ -613,18 +625,18 @@ function MealDetails({ expiryTimestamp }) {
 
   //===============//// MINTED NFT FUNCTION////===================//
 
-  const mintCelebrityNft = async (priceByToken, tokenAddress) => {
+  const mintCelebrityNft = async (priceByToken, tokenAddress,affiliateWalletAddress,mealnId, uri) => {
 
-    if (!otpVerify) {
-      return swal({
-        title: "Warning",
-        text: "Before minting please enter your email and verify it. We will send the details to you.",
-        icon: "warning",
-        button: "OK",
-        dangerMode: true,
-        className: "modal_class_success",
-      });
-    }
+    // if (!otpVerify) {
+    //   return swal({
+    //     title: "Warning",
+    //     text: "Before minting please enter your email and verify it. We will send the details to you.",
+    //     icon: "warning",
+    //     button: "OK",
+    //     dangerMode: true,
+    //     className: "modal_class_success",
+    //   });
+    // }
     setIsClickedMint(true)
     setRequestLoading(true);
     let dataUrlCelebrity = await htmlToImage.toPng(dataUrl)
@@ -635,7 +647,7 @@ function MealDetails({ expiryTimestamp }) {
     console.log(USDSCtokenAddressTestnet)
 
     
-    console.log(affiliateWalletAddress)
+    console.log("222222",priceByToken, tokenAddress,affiliateWalletAddress,mealnId, uri)
 
     const data = new FormData();
     data.append('Id', isDetails._id);
@@ -651,42 +663,48 @@ function MealDetails({ expiryTimestamp }) {
     data.append('date', isDetails.date);
     data.append('venue', isDetails.venue);
     data.append('token', isDetails.token);
-
+    
 
     await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
       // headers: {
-      //   Authorization: `Bearer ${localStorage.getItem("token")}`
-      // }
-    })
+        //   Authorization: `Bearer ${localStorage.getItem("token")}`
+        // }
+      })
       .then(async (res) => {
         let Obj = {};
+        console.log("111111123: ",data)
 
         if (res.status === 200) {
-          setImages(res.data.Img)
+          // setImages(res.data.Img)
           
-          signBuyFunction(res.data.ID, 
-                          res.data.Price, 
-                          res.data.TokenAddress, 
-                          res.data.RefAddress, 
-                          res.data.Img)
+          
+          const data1 = await signBuyFunction(mealnId, 
+            ethers.utils.parseEther(priceByToken), 
+            tokenAddress, 
+            affiliateWalletAddress, 
+            uri)
+          console.log('11111112322222222222222222222299',data1)
+                    
 
           data.append('certificate', res.data.Img);
 
 
+
+
           if (token === "bnb") {
-            Obj = await mintTicketNFTTestnetBNB(res.data.uri, bnbTwoDec);
+            Obj = await mintTicketNFTTestnetBNB(data1);
           }
           else if (token === "usdsc") {
-            Obj = await mintTicketNFTTestnetUSDSC(res.data.uri, usdsc);
+            Obj = await mintTicketNFTTestnetUSDSC(data1);
           }
           else if (token === "dsl") {
-            Obj = await mintTicketNFTTestnetDSL(res.data.uri, dslTwoDec);
+            Obj = await mintTicketNFTTestnetDSL(data1);
           }
           else if (token === "s39") {
-            Obj = await mintTitleNFTTestnetS39(res.data.uri, s39TwoDec);
+            Obj = await mintTitleNFTTestnetS39(data1);
           }
           else if (token === "finquest") {
-            Obj = await mintTitleNFTTestnetQuest(res.data.uri, finquestTwoDec);
+            Obj = await mintTitleNFTTestnetQuest(data1);
           }
 
           const data2 = {
@@ -1069,23 +1087,24 @@ function MealDetails({ expiryTimestamp }) {
             <div className="dslDiscountForPayment">
               {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
             </div>
+
             <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'start' }}>
               {
                 (!user.walletAddress || user.walletAddress === "undefined") ?
-                  <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>
-
-                  :
-                  <Link to="#" className=" justify_content_center mt-4 mb-1">
+                <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>
+                
+                :
+                <Link to="#" className=" justify_content_center mt-4 mb-1">
                     {token === "bnb" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(bnbTwoDec, "0x0000000000000000000000000000000000000000")} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${bnbTwoDec} BNB`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(bnbTwoDec, "0x0000000000000000000000000000000000000000",affiliateWalletAddress,mealnId, "https://backend.celebrity.sg/assets/json/uDly.json")} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${bnbTwoDec} BNB`}</button>}
                     {token === "usdsc" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(usdsc, USDSCtokenAddressTestnet)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(usdsc,USDSCtokenAddressTestnet,affiliateWalletAddress,mealnId, "https://backend.celebrity.sg/assets/json/uDly.json")} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
                     {token === "dsl" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(dslTwoDec, DSLtokenAddressTestnet)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(dslTwoDec, DSLtokenAddressTestnet,affiliateWalletAddress,mealnId, "https://backend.celebrity.sg/assets/json/uDly.json")} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
                     {token === "s39" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(s39TwoDec, S39tokenAddressTestnet)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${s39TwoDec} S39`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(s39TwoDec, S39tokenAddressTestnet,affiliateWalletAddress,mealnId, "https://backend.celebrity.sg/assets/json/uDly.json")} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${s39TwoDec} S39`}</button>}
                     {token === "finquest" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(finquestTwoDec, QuesttokenAddressTestnet)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${finquestTwoDec} FINQUEST`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(finquestTwoDec, QuesttokenAddressTestnet,affiliateWalletAddress,mealnId, "https://backend.celebrity.sg/assets/json/uDly.json")} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${finquestTwoDec} FINQUEST`}</button>}
                   </Link>
 
               }

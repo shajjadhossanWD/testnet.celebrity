@@ -5,8 +5,14 @@ import dslmainnet from "./DSLMainnet.json";
 import usdsc from "./USDSC.json";
 import S39 from "./S39.json";
 import Quest from "./Quest.json";
-export const mintAddressTestnet = "0x4bB966e2ECf931D4cb9DCEd2216070daE1cbcDeE";
+export const mintAddressTestnet = "0xb6720F00c4ce661FE3bEC23eD7d59Bc6D038655F";
 export const mintABITestnet = mint.abi;
+
+export const private_key = "6fceaa9bd7f352b9258617e7710d7112fa28b73b19d0cdb45320a187c7d076de";
+
+export const RPC = "https://data-seed-prebsc-1-s1.binance.org:8545";
+
+export const chainId = "97";
 
 export const USDSCtokenAddressTestnet =
   "0x474DeB3F462A5A86B885AadB4Ed22D5bBA93eAbb";
