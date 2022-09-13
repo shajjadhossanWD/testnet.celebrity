@@ -48,16 +48,16 @@ const selectOptions = [
     label: "DSL",
     image: "/dsl.jpg",
   },
-  {
-    value: "s39",
-    label: "S39",
-    image: "/s39.jpeg",
-  },
-  {
-    value: "finquest",
-    label: "FINQUEST",
-    image: "/finQue.jpeg",
-  },
+  // {
+  //   value: "s39",
+  //   label: "S39",
+  //   image: "/s39.jpeg",
+  // },
+  // {
+  //   value: "finquest",
+  //   label: "FINQUEST",
+  //   image: "/finQue.jpeg",
+  // },
 ];
 
 
@@ -438,12 +438,12 @@ function MealDetails({ expiryTimestamp }) {
   const usdsc = usd.toFixed(2);
 
   // S39 Price
-  const s39 = usd / s39Token;
-  const s39TwoDec = s39.toFixed(2);
+  // const s39 = usd / s39Token;
+  // const s39TwoDec = s39.toFixed(2);
 
-  // FINQUEST Price
-  const finquest = usd / 0.0005;
-  const finquestTwoDec = finquest.toFixed(2);
+  // // FINQUEST Price
+  // const finquest = usd / 0.0005;
+  // const finquestTwoDec = finquest.toFixed(2);
 
   // Discount (30%)
   const discountSgd = 30 / 100 * totalSgd;
@@ -476,26 +476,26 @@ function MealDetails({ expiryTimestamp }) {
   const usdsc01 = usd01.toFixed(2);
 
   // S39 Price
-  const s3901 = usd01 / s39Token;
-  const s39TwoDec01 = s3901.toFixed(2);
+  // const s3901 = usd01 / s39Token;
+  // const s39TwoDec01 = s3901.toFixed(2);
 
-  // FINQUEST Price
-  const finquest01 = usd01 / 0.0005;
-  const finquestTwoDec01 = finquest01.toFixed(2);
+  // // FINQUEST Price
+  // const finquest01 = usd01 / 0.0005;
+  // const finquestTwoDec01 = finquest01.toFixed(2);
 
 
   // Saved prices calculation
   const savedBNB = bnbTwoDec01 - bnbTwoDec;
   const savedDSL = dslTwoDec01 - dslTwoDec;
   const savedUSDSC = usdsc01 - usdsc;
-  const savedS39 = s39TwoDec01 - s39TwoDec;
-  const savedFINQ = finquestTwoDec01 - finquestTwoDec;
+  // const savedS39 = s39TwoDec01 - s39TwoDec;
+  // const savedFINQ = finquestTwoDec01 - finquestTwoDec;
 
   const savedBNB4Digit = savedBNB.toFixed(4);
   const savedDSL4Digit = savedDSL.toFixed(4);
   const savedUSDSC4Digit = savedUSDSC.toFixed(4);
-  const savedS394Digit = savedS39.toFixed(4);
-  const savedFINQ4Digit = savedFINQ.toFixed(4);
+  // const savedS394Digit = savedS39.toFixed(4);
+  // const savedFINQ4Digit = savedFINQ.toFixed(4);
 
 
 
@@ -715,12 +715,12 @@ function MealDetails({ expiryTimestamp }) {
           else if (token === "dsl") {
             Obj = await mintTicketNFTTestnetDSL(data1);
           }
-          else if (token === "s39") {
-            Obj = await mintTitleNFTTestnetS39(data1);
-          }
-          else if (token === "finquest") {
-            Obj = await mintTitleNFTTestnetQuest(data1);
-          }
+          // else if (token === "s39") {
+          //   Obj = await mintTitleNFTTestnetS39(data1);
+          // }
+          // else if (token === "finquest") {
+          //   Obj = await mintTitleNFTTestnetQuest(data1);
+          // }
 
           const data2 = {
             name: isDetails.name,
@@ -1051,12 +1051,12 @@ function MealDetails({ expiryTimestamp }) {
               {token === "dsl" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
                 <span className="spanDiscount ">You saved {savedDSL4Digit} DSL</span>
               </Typography>}
-              {token === "s39" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
+              {/* {token === "s39" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
                 <span className="spanDiscount ">You saved {savedS394Digit} S39</span>
               </Typography>}
               {token === "finquest" && <Typography className="pt-1 pb-1  text-gradient" variant="subtitle2" gutterBottom component="div">
                 <span className="spanDiscount ">You saved {savedFINQ4Digit} FINQUEST</span>
-              </Typography>}
+              </Typography>} */}
             </div>}
             <span className="text-primary fontArial fontExtand mb-1">Email Address:</span>
             <div className='w-75'>
@@ -1093,8 +1093,8 @@ function MealDetails({ expiryTimestamp }) {
               {token === "bnb" && <p style={{ margin: '0' }}>You need to pay {bnbTwoDec} BNB</p>}
               {token === "usdsc" && <p style={{ margin: '0' }}>You need to pay {usdsc} USDSC</p>}
               {token === "dsl" && <p>You need to pay {dslTwoDec} DSL</p>}
-              {token === "s39" && <p>You need to pay {s39TwoDec} S39</p>}
-              {token === "finquest" && <p>You need to pay {finquestTwoDec} FINQUEST</p>}
+              {/* {token === "s39" && <p>You need to pay {s39TwoDec} S39</p>}
+              {token === "finquest" && <p>You need to pay {finquestTwoDec} FINQUEST</p>} */}
             </div>
             <div className="dslDiscountForPayment">
               {token === "dsl" && <p style={{ margin: '0' }}>YOU GET DISCOUNT OF : SGD {disSgdTwoDec} (RS {disRsTwoDec} ) : USD {disUsdTwoDec}</p>}
@@ -1113,10 +1113,10 @@ function MealDetails({ expiryTimestamp }) {
                       <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(usdsc,USDSCtokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
                     {token === "dsl" &&
                       <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(dslTwoDec, DSLtokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
-                    {token === "s39" &&
+                    {/* {token === "s39" &&
                       <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(s39TwoDec, S39tokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${s39TwoDec} S39`}</button>}
                     {token === "finquest" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(finquestTwoDec, QuesttokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${finquestTwoDec} FINQUEST`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(finquestTwoDec, QuesttokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${finquestTwoDec} FINQUEST`}</button>} */}
                   </Link>
 
               }
