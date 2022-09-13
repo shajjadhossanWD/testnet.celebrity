@@ -42,14 +42,14 @@ const MintDetails = () => {
             <label htmlFor='referralID'>Contract Address</label>
             <div className='d-flex'>
               <input type="text" id='referralID' value={address} name="referralID" className='form-control bg-transparent text-white' disabled />
-              <button type="button" onClick={() => copyToClipboard("Contract Address:" + " " + address)} className="border"><i className="fa-regular fa-copy"></i></button>
+              <button type="button" onClick={() => copyToClipboard(address)} className="border"><i className="fa-regular fa-copy"></i></button>
             </div>
           </div>
           <div className="mb-2">
             <label htmlFor='referralID'>Token ID</label>
             <div className="d-flex">
               <input type="text" id='referralID' name="referralID" defaultValue={id} className='form-control bg-transparent text-white' disabled />
-              <button type="button" onClick={() => copyToClipboard("Token ID:" + " " + id)} className="border"><i className="fa-regular fa-copy"></i></button>
+              <button type="button" onClick={() => copyToClipboard(id)} className="border"><i className="fa-regular fa-copy"></i></button>
             </div>
           </div>
           <div className="mb-2">

@@ -311,7 +311,7 @@ const EditNft = () => {
 
                   <Form.Control
                     style={{ backgroundColor: "#272d47", color: 'white' }}
-                    type='time'
+                    type='text'
                     defaultValue={Nfts.startTime}
                     name="startTime"
                     aria-label="Amount (to the nearest dollar)" />
@@ -330,7 +330,7 @@ const EditNft = () => {
 
                   <Form.Control
                     style={{ backgroundColor: "#272d47", color: 'white' }}
-                    type='time'
+                    type='text'
                     defaultValue={Nfts.endTime}
                     name="endTime"
                     aria-label="Amount (to the nearest dollar)" />

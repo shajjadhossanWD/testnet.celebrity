@@ -66,7 +66,7 @@ function Header() {
 
           <Form.Control
             style={{ borderRight: 'none', backgroundColor: '#272d47', color: '#fff', boxShadow: 'none', borderColor: '#585858' }}
-            aria-label="" className='inputBackground' placeholder='Search' type="text" id='searchVal' required name="search" onChange={searchChange} />
+            aria-label="" className='inputBackground' placeholder='Search' autocomplete="off" type="text" id='searchVal' required name="search" onChange={searchChange} />
             {showCloseIcone === true && <div onClick={removeValue} style={{backgroundColor: '#272d47', width: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderTop: '1px solid #585858', borderRight: '1px solid #585858', borderBottom: '1px solid #585858', cursor: 'pointer'}}>
               {showCloseIcone === true && <IoClose color='#bbbbbb' />}
             </div>}

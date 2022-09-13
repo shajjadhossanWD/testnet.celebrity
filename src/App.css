@@ -23,6 +23,9 @@
 
 }
 
+.home-padding {
+  padding-top: 85px !important;
+}
 
 
 /* .handleImgforRespons {
@@ -546,6 +549,10 @@ p.text-light.mb-0 {
   padding-left: 25px;
 }
 
+.section-intro {
+  padding-top: -90px !important;
+}
+
 @media only screen and (max-width: 980px) {
   .meal_details_type_title {
     margin-left: 12px !important;
@@ -556,6 +563,10 @@ p.text-light.mb-0 {
   /* .search-bar {
     width: 50% !important;
   } */
+}
+
+.souvenirNFT_Box {
+  height: 120vh !important;
 }
 
 @media only screen and (max-width: 769px) {
@@ -579,6 +590,12 @@ p.text-light.mb-0 {
     align-items: center;
     justify-content: center;
   }
+
+  .home-parent {
+    margin-top: 15px !important;
+  }
+
+
 }
 
 /* --------------------------------- */

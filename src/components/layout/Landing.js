@@ -16,11 +16,11 @@ export default function () {
 
 
   return (
-    <div className="no-bottom no-top" id="content" style={{ marginTop: '80px' }}>
+    <div className="no-bottom no-top home-parent" id="content" style={{ marginTop: '80px' }}>
       <div id="top"></div>
       <div className="bannerBg">
         <div
-          className="text-white no-top no-bottom vh-100"
+          className="text-white no-top no-bottom home-padding"
         >
           <div className="v-center">
             <div className="container">

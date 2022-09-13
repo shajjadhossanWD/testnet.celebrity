@@ -21,10 +21,10 @@ function Home() {
 
 
   return (
-    <div>
+    <div className='home-parent'>
       <div className="bannerBg mt-5 pt-4">
         <div
-          className="text-white no-top no-bottom vh-100"
+          className="text-white no-top no-bottom home-padding"
         >
           <div className="v-center">
             <div className="container">
