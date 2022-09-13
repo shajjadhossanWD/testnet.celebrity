@@ -24,25 +24,6 @@ const MealSlider = ({ pull_meal }) => {
 
 
 
-  const handleClick = () => {
-    if (!user.walletAddress || user.walletAddress === "undefined") {
-      openWalletModal();
-    } else {
-      if (isClicked) {
-        // setLikes(likes - 1);
-        localStorage.setItem("like", likes - 1);
-      } else {
-        // setLikes(likes + 1);
-        localStorage.setItem("like", likes + 1);
-      }
-      setIsClicked(!isClicked);
-      // setLikes(likess);
-      // console.log(likess);
-    }
-  };
-
-  const likess = localStorage.getItem("like");
-
   const allNft = isMeal;
 
   const todayDate = new Date();
@@ -63,122 +44,92 @@ const MealSlider = ({ pull_meal }) => {
       });
   }, [isMeal])
 
-    useEffect(() => {
-      axios.get("https://backend.celebrity.sg/api/like/getLikes")
+  useEffect(() => {
+    axios.get("https://backend.celebrity.sg/api/like/getLikes")
       .then(res => {
         setNftsPro(res.data.likes);
       })
-    }, [id]);
+  }, [id]);
 
-    useEffect(() => {
-      axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
-          .then(res => {
-            setIsLiked(res.data.nft);
+  useEffect(() => {
+    axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+      .then(res => {
+        setIsLiked(res.data.nft);
       })
-    }, [id]);
+  }, [id]);
 
 
-  // Like functionality
-  const likeCount = (id) => {
-    setId(id);
-    
+
+  // like functionality
+  const likeNft = (id) => {
+    console.log("inside like");
     if (!user.walletAddress || user.walletAddress === "undefined") {
       openWalletModal();
-    } else if (user.walletAddress || user.walletAddress !== "undefined") {
-      const likesFiltering = nftsPro.find(i => i.walletAddress === user.walletAddress && i.likedMealId === id);
-      console.log(likesFiltering);
-
-
-      if (likesFiltering === undefined) {
-        // 1st step
-        const likeDetails = {
-          likedMealId: id,
-          walletAddress: user.walletAddress,
-          liked: true
-        }
-
-        fetch("https://backend.celebrity.sg/api/like/addLike", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(likeDetails),
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/like', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
         })
-          .then((res) => res.json())
-          .then((result) => {
-            if (result.insertedId) {
-
-            }
-          });
-      } else if (likesFiltering === Object) {
-        // 2nd step
-        // axios.get("https://backend.celebrity.sg/api/like/getLikes")
-        //   .then(res => {
-        //     setPostIdDetails(res.data.likes);
-        //   })
-
-        // 3rd step
-        const howManyLikes = nftsPro.filter(i => i?.likedMealId === id);
-        const totalLikes = howManyLikes?.length;
-        console.log(totalLikes);
-        const likesLenStr = JSON.stringify(totalLikes);
-
-        // 4th step
-        const name = isLiked.name;
-        const date = isLiked.date;
-        const availableNfts = isLiked.availableNfts;
-        const description = isLiked.description;
-        const startDate = isLiked.startDate;
-        const startTime = isLiked.startTime;
-        const endTime = isLiked.endTime;
-        const venue = isLiked.venue;
-        const briefDetails = isLiked.briefDetails;
-        const isDraft = isLiked.isDraft;
-        const likesCount = likesLenStr;
-        const avatar = isLiked.avatar;
-        const price = isLiked.price;
-        const type = isLiked.type;
-        const purchaseDate = isLiked.purchaseDate;
-
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('price', price);
-        formData.append('availableNfts', availableNfts);
-        formData.append('description', description);
-        formData.append('startDate', startDate)
-        formData.append('startTime', startTime)
-        formData.append('endTime', endTime)
-        formData.append('venue', venue)
-        formData.append('purchaseDate', purchaseDate)
-        formData.append('briefDetails', briefDetails)
-        formData.append('type', type);
-        formData.append('date', date);
-        formData.append('isDraft', isDraft);
-        formData.append('likesCount', likesCount);
-        formData.append('image', avatar);
-
-        // setUpdated(false);
-        axios.put(`https://backend.celebrity.sg/api/nft/update-nft2/${id}`, formData)
-          .then(res => {
-            if (res.status === 200) {
-              // const parsing = JSON.parse(isLiked?.likesCount);
-              // setUpdated(true);
+      }).then(res => res.json())
+        .then(result => {
+          // console.log(result)
+          const newNft = isMeal?.map(data => {
+            if (data._id == result._id) {
+              return result
+            } else {
+              return data
             }
           })
-          .catch(err => {
-            swal({
-              title: "Attention",
-              text: "Your like has already been counted for this NFT",
-              icon: "warning",
-              button: "OK!",
-              className: "modal_class_success",
-            });
+          setIsMeal(newNft)
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+  const unlikeNft = (id) => {
+    console.log("inside unlike");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/unlike', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          // console.log(result)
+          const newNft = isMeal?.map(data => {
+            if (data._id == result._id) {
+              return result
+            } else {
+              return data
+            }
           })
-      }
+          setIsMeal(newNft)
+
+        }).catch(err => {
+          console.log(err)
+        })
     }
   }
 
-  // props.func(allNft);
+
+
 
   let settings = {
     dots: false,
@@ -221,6 +172,8 @@ const MealSlider = ({ pull_meal }) => {
     ]
   };
 
+  console.log(allNft)
+
 
   return (
     <div>
@@ -228,14 +181,13 @@ const MealSlider = ({ pull_meal }) => {
         {allNft?.map((aNft) => (<div key={aNft?._id} className="d-item1">
           <div class="card">
             <div
-              // onClick={() => likeCount(aNft?._id)} 
-              onClick={handleClick}
+              onClick={() => aNft.likes?.includes(user?.walletAddress) ? unlikeNft(aNft?._id) : likeNft(aNft?._id)}
 
               className="nft_item_like like_card">
-              <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
+              <i className={`fa fa-heart ${aNft?.likes?.includes(user?.walletAddress) && "heart-icon"}`}></i>
               <span style={{ marginBottom: '2.2px' }}>
-                {/* {aNft?.likesCount ? parseInt(aNft?.likesCount) : 0} */}
-                {likess == 1 ? likess : 0}
+
+                {aNft?.likes?.length}
               </span>
             </div>
             <div class="card-img" style={{ backgroundImage: `url(${aNft?.avatar})` }}>

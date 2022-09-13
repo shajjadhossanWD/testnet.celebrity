@@ -21,13 +21,8 @@ import { BigNumber,ethers } from "ethers";
 import { v4 as uuidv4 } from "uuid";
 
 import {
-  DSLtokenAddressTestnet,
-  mintAddressTestnet,
-  USDSCtokenAddressTestnet,
   USDSCtokenAddressMainnet,
   DSLtokenAddressMainnet,
-  S39tokenAddressTestnet,
-  QuesttokenAddressTestnet,
 } from "../../../utils/constant";
 
 const selectOptions = [
@@ -48,16 +43,7 @@ const selectOptions = [
     label: "DSL",
     image: "/dsl.jpg",
   },
-  // {
-  //   value: "s39",
-  //   label: "S39",
-  //   image: "/s39.jpeg",
-  // },
-  // {
-  //   value: "finquest",
-  //   label: "FINQUEST",
-  //   image: "/finQue.jpeg",
-  // },
+
 ];
 
 
@@ -131,13 +117,7 @@ function MealDetails({ expiryTimestamp }) {
     mintTicketNFTTestnetBNB,
     mintTicketNFTTestnetUSDSC,
     mintTicketNFTTestnetDSL,
-    mintTitleNFTTestnetS39,
-    mintTitleNFTTestnetQuest,
     mintAddressTestnet,
-    DSLtokenAddressTestnet,
-    USDSCtokenAddressTestnet,
-    S39tokenAddressTestnet,
-    QuesttokenAddressTestnet,
     signBuyFunction
   } = useContext(CelebrityContext);
   // const handleEmail = e => {
@@ -664,7 +644,7 @@ function MealDetails({ expiryTimestamp }) {
 
     console.log(dataUrlCelebrity);
     // console.log(priceByToken)
-    console.log(USDSCtokenAddressTestnet)
+    console.log(USDSCtokenAddressMainnet)
 
     
     console.log("222222",priceByToken, tokenAddress,affiliateWalletAddress,mealnId)
@@ -1110,9 +1090,9 @@ function MealDetails({ expiryTimestamp }) {
                     {token === "bnb" &&
                       <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(bnbTwoDec, "0x0000000000000000000000000000000000000000",affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${bnbTwoDec} BNB`}</button>}
                     {token === "usdsc" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(usdsc,USDSCtokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(usdsc,USDSCtokenAddressMainnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
                     {token === "dsl" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(dslTwoDec, DSLtokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(dslTwoDec, DSLtokenAddressMainnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
                     {/* {token === "s39" &&
                       <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(s39TwoDec, S39tokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${s39TwoDec} S39`}</button>}
                     {token === "finquest" &&
