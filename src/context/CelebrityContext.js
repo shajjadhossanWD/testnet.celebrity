@@ -7,20 +7,20 @@ import abi from "../utils/nftAbi.json"
 import axios from "axios";
 import swal from "sweetalert";
 import {
-  DSLtokenABITestnet,
-  DSLtokenAddressTestnet,
+  // DSLtokenABITestnet,
+  // DSLtokenAddressTestnet,
   mintABITestnet,
   mintAddressTestnet,
-  USDSCtokenABITestnet,
-  USDSCtokenAddressTestnet,
+  // USDSCtokenABITestnet,
+  // USDSCtokenAddressTestnet,
   USDSCtokenAddressMainnet,
   USDSCtokenABIMainnet,
   DSLtokenAddressMainnet,
   DSLtokenABIMainnet,
-  S39tokenAddressTestnet,
-  S39tokenABITestnet,
-  QuesttokenAddressTestnet,
-  QuesttokenABITestnet,
+  // S39tokenAddressTestnet,
+  // S39tokenABITestnet,
+  // QuesttokenAddressTestnet,
+  // QuesttokenABITestnet,
   private_key,
   RPC,
   chainId
@@ -43,29 +43,29 @@ const getMintContractTestnet = () => {
   return MintNFTContract;
 };
 
-const getUSDSCtokenContractTestnet = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(
-    USDSCtokenAddressTestnet,
-    USDSCtokenABITestnet,
-    signer
-  );
+// const getUSDSCtokenContractTestnet = () => {
+//   const provider = new ethers.providers.Web3Provider(ethereum);
+//   const signer = provider.getSigner();
+//   const tokenContract = new ethers.Contract(
+//     USDSCtokenAddressTestnet,
+//     USDSCtokenABITestnet,
+//     signer
+//   );
 
-  return tokenContract;
-};
+//   return tokenContract;
+// };
 
-const getDSLtokenContractTestnet = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(
-    DSLtokenAddressTestnet,
-    DSLtokenABITestnet,
-    signer
-  );
+// const getDSLtokenContractTestnet = () => {
+//   const provider = new ethers.providers.Web3Provider(ethereum);
+//   const signer = provider.getSigner();
+//   const tokenContract = new ethers.Contract(
+//     DSLtokenAddressTestnet,
+//     DSLtokenABITestnet,
+//     signer
+//   );
 
-  return tokenContract;
-};
+//   return tokenContract;
+// };
 
 const getUSDSCtokenContractMainnet = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -91,27 +91,27 @@ const getDSLtokenContractMainnet = () => {
   return tokenContract;
 };
 
-const getS39tokenContractTestnet = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(
-    S39tokenAddressTestnet,
-    S39tokenABITestnet,
-    signer
-  );
+// const getS39tokenContractTestnet = () => {
+//   const provider = new ethers.providers.Web3Provider(ethereum);
+//   const signer = provider.getSigner();
+//   const tokenContract = new ethers.Contract(
+//     S39tokenAddressTestnet,
+//     S39tokenABITestnet,
+//     signer
+//   );
 
-  return tokenContract;
-};
-const getQuesttokenContractTestnet = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(
-    QuesttokenAddressTestnet,
-    QuesttokenABITestnet,
-    signer
-  );
-  return tokenContract;
-};
+//   return tokenContract;
+// };
+// const getQuesttokenContractTestnet = () => {
+//   const provider = new ethers.providers.Web3Provider(ethereum);
+//   const signer = provider.getSigner();
+//   const tokenContract = new ethers.Contract(
+//     QuesttokenAddressTestnet,
+//     QuesttokenABITestnet,
+//     signer
+//   );
+//   return tokenContract;
+// };
 
 const getAllItemBlockchain = async () => {
   const provider = new ethers.providers.JsonRpcProvider(RPC);
@@ -211,35 +211,35 @@ export default function CelebrityProvider({ children }) {
     checkIfWalletIsConnect();
   }, []);
 
-  const getBalanceTestnet = async () => {
-    const USDSCtokenContract = getUSDSCtokenContractTestnet();
-    const DSLtokenContract = getDSLtokenContractTestnet();
-    const S39tokenContract = getS39tokenContractTestnet();
-    const QuestTokenContract = getQuesttokenContractTestnet();
-    const USDSCbalance = await USDSCtokenContract.balanceOf(currentAccount);
-    const USDSCamount = ethers.utils.formatEther(USDSCbalance);
-    const DSLbalance = await DSLtokenContract.balanceOf(currentAccount);
-    const DSLamount = ethers.utils.formatEther(DSLbalance);
-    const S39balance = await S39tokenContract.balanceOf(currentAccount);
-    const S39amount = ethers.utils.formatEther(S39balance);
-    const Questbalance = await QuestTokenContract.balanceOf(currentAccount);
-    const Questamount = ethers.utils.formatEther(Questbalance);
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const balance1 = await provider.getBalance(currentAccount);
-    console.log("usdsc: " + USDSCamount);
-    console.log("dsl: " + DSLamount);
-    console.log("s39: " + S39amount);
-    console.log("Quest: " + Questamount);
-    console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
-    const wallet = {
-      usdsc: USDSCamount,
-      bnb: ethers.utils.formatEther(balance1),
-      dsl: DSLamount,
-      s39: S39amount,
-      Quest: Questamount,
-    };
-    return setMetamaskBalance(wallet);
-  };
+  // const getBalanceTestnet = async () => {
+  //   const USDSCtokenContract = getUSDSCtokenContractTestnet();
+  //   const DSLtokenContract = getDSLtokenContractTestnet();
+  //   const S39tokenContract = getS39tokenContractTestnet();
+  //   const QuestTokenContract = getQuesttokenContractTestnet();
+  //   const USDSCbalance = await USDSCtokenContract.balanceOf(currentAccount);
+  //   const USDSCamount = ethers.utils.formatEther(USDSCbalance);
+  //   const DSLbalance = await DSLtokenContract.balanceOf(currentAccount);
+  //   const DSLamount = ethers.utils.formatEther(DSLbalance);
+  //   const S39balance = await S39tokenContract.balanceOf(currentAccount);
+  //   const S39amount = ethers.utils.formatEther(S39balance);
+  //   const Questbalance = await QuestTokenContract.balanceOf(currentAccount);
+  //   const Questamount = ethers.utils.formatEther(Questbalance);
+  //   const provider = new ethers.providers.Web3Provider(ethereum);
+  //   const balance1 = await provider.getBalance(currentAccount);
+  //   console.log("usdsc: " + USDSCamount);
+  //   console.log("dsl: " + DSLamount);
+  //   console.log("s39: " + S39amount);
+  //   console.log("Quest: " + Questamount);
+  //   console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
+  //   const wallet = {
+  //     usdsc: USDSCamount,
+  //     bnb: ethers.utils.formatEther(balance1),
+  //     dsl: DSLamount,
+  //     s39: S39amount,
+  //     Quest: Questamount,
+  //   };
+  //   return setMetamaskBalance(wallet);
+  // };
 
   console.log(metamaskBalance);
 
@@ -1038,8 +1038,8 @@ export default function CelebrityProvider({ children }) {
         metamaskBalanceLoading,
         setMetamaskBalanceLoading,
         getBalanceMainnet,
-        mintTitleNFTTestnetS39,
-        mintTitleNFTTestnetQuest,
+        // mintTitleNFTTestnetS39,
+        // mintTitleNFTTestnetQuest,
         connectToMetamask,
         connectToCoinbase,
         coinbaseModal,
@@ -1047,10 +1047,10 @@ export default function CelebrityProvider({ children }) {
         closeCoinbaseModal,
 
         mintAddressTestnet,
-        DSLtokenAddressTestnet,
-        USDSCtokenAddressTestnet,
-        S39tokenAddressTestnet,
-        QuesttokenAddressTestnet,
+        // DSLtokenAddressTestnet,
+        // USDSCtokenAddressTestnet,
+        // S39tokenAddressTestnet,
+        // QuesttokenAddressTestnet,
         signBuyFunction,
         searchNftTitle,
         setSearchResults,
