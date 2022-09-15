@@ -12,6 +12,8 @@ export default function () {
   useEffect(() => { }, []);
   const [datas, setandelAutoCall] = useState('')
 
+  
+
 
 
 
@@ -65,20 +67,49 @@ export default function () {
                   </p>
                 </div>
                 <div className="col-md-6 offset-md-1 d-flex home-image" style={{ justifyContent: 'center' }} >
+                  
                   {/* <img
-                    src="/assets/images/misc/women-statue.png"
-                    className="lazy img-fluid wow fadeIn handleImgforRespons"
-                    data-wow-delay="1.25s"
-                    alt=""
-                  /> */}
-                  <img
                     // src="/assets/images/misc/celebrity-banner.jpeg"
                     src="https://i.ibb.co/KNHV8bt/celebrity-banner2.jpg"
                     className="lazy wow fadeIn handleImgforRespons"
                     style={{ borderRadius: '1px', width: '90%', }}
                     data-wow-delay="1.25s"
                     alt=""
-                  />
+                  /> */}
+
+                  <div
+                    id="carouselExampleSlidesOnly"
+                    className="carousel slide lazy wow fadeIn handleImgforRespons"
+                    data-bs-ride="carousel"
+                    data-bs-interval="2000"
+                    data-bs-pause="false"
+                    style={{width: '90%', height: '464px'}}
+                    >
+                    <div className="carousel-inner">
+                      <div className="carousel-item active">
+                        <img src="https://i.ibb.co/y5Nz87S/Photo-14-9-22-7-07-56-AM.png" className="d-block w-100" alt="..." />
+                      </div>
+                      <div className="carousel-item">
+                        <img src="https://i.ibb.co/qNm7bvX/Photo-14-9-22-7-10-15-AM.png" className="d-block w-100" alt="..." />
+                      </div>
+                      <div className="carousel-item">
+                        <img src="https://i.ibb.co/0DbbpxF/Photo-14-9-22-7-12-10-AM.png" className="d-block w-100" alt="..." />
+                      </div>
+                      <div className="carousel-item">
+                        <img src="https://i.ibb.co/qNDtnB1/Photo-14-9-22-7-13-44-AM.png" className="d-block w-100" alt="..." />
+                      </div>
+                      <div className="carousel-item">
+                        <img src="https://i.ibb.co/JrsyMqv/Photo-14-9-22-7-15-27-AM.png" className="d-block w-100" alt="..." />
+                      </div>
+                      <div className="carousel-item">
+                        <img src="https://i.ibb.co/ctLN97r/Photo-14-9-22-7-16-35-AM.png" className="d-block w-100" alt="..." />
+                      </div>
+                      <div className="carousel-item">
+                        <img src="https://i.ibb.co/HXfmHK9/Photo-14-9-22-7-19-37-AM.png" className="d-block w-100" alt="..." />
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -128,7 +159,7 @@ export default function () {
 
                   <i className="wow fadeInUp bg-color-2 i-boxed icon_menu-square_alt2"></i>
                   <div className="text">
-                    <h6 className="wow fadeInUp home-txt">Sell the NFTs with digital art and memorabilia of the celebrity in BSC Marketplaces.</h6>
+                    <h6 className="wow fadeInUp home-txt">Sell the NFTs with digital art of the celebrity in BSC Marketplaces and Play to Earn at our Metaverse Projects</h6>
                   </div>
                 </div>
               </div>

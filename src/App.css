@@ -34,6 +34,14 @@
   
 } */
 
+#more {
+  display: none;
+}
+
+#aboutMore {
+  display: none;
+}
+
 .banner-button2 {
   /* background-color: rgb(123, 123, 148) !important; */
   margin: 10px;
@@ -459,7 +467,7 @@ span.navbar-toggler-icon {
 .slick-prev:before {
   line-height: 0;
   font-size: 50px !important;
-  color: #ffffff48 !important;
+  color: transparent !important;
 
 }
 
@@ -470,7 +478,7 @@ button.slick-arrow.slick-prev {
 .slick-next:before {
   line-height: 0;
   font-size: 50px !important;
-  color: #ffffff48 !important;
+  color: transparent !important;
 
 }
 
@@ -566,7 +574,7 @@ p.text-light.mb-0 {
 }
 
 .souvenirNFT_Box {
-  height: 120vh !important;
+  /* height: 120vh !important; */
 }
 
 @media only screen and (max-width: 769px) {

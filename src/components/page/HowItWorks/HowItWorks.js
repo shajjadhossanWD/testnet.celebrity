@@ -1,7 +1,27 @@
 import { Typography } from "@mui/material";
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 
 function HowItWorks() {
+  const [showDetailsBtn, setShowDetailsBtn] = useState(true);
+  
+  const expand = () => {
+    const dots = document.getElementById("dots");
+    const moreText = document.getElementById("more");
+    const btnText = document.getElementById("expandBtn");
+  
+    if (dots.style.display === "none") {
+      dots.style.display = "block";
+      btnText.innerHTML = "More details"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less"; 
+      moreText.style.display = "block";
+      setShowDetailsBtn(false);
+    }
+  }
+
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
       <div>
@@ -29,7 +49,8 @@ function HowItWorks() {
             </Typography>
 
           </div>
-          <div className="text-white mt-3 p-2">
+          <div id="dots"></div>
+          <div id="more" className="text-white mt-3 p-2">
             <Typography className="titelColor" variant="h5" gutterBottom component="div">
               What is Celebrity Meal NFT?
 
@@ -74,9 +95,10 @@ function HowItWorks() {
               5. Keep the Celebrity Canvas print
             </Typography>
             <Typography className="pt-1 howItWorksFs" variant="subtitle2" component="div">
-              6. Sell your Celebrity NFT in BSC marketplaces (Digital Art)
+              6. Sell the NFTs with digital art of the celebrity in BSC Marketplaces and play to Earn at our Metaverse Projects
             </Typography>
           </div>
+          {showDetailsBtn && <p onClick={expand} id="expandBtn" className="text-primary text-decoration-underline p-2" style={{cursor: 'pointer'}}>More details</p>}
           <div className='d-flex pt-2 pb-3' style={{ justifyContent: 'center' }}>
             <Typography className="text-gradient" variant="h6">
               Pay by DSL and get 30% discount.

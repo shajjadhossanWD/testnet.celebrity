@@ -17,7 +17,7 @@ import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import EmailVerifyModal from "./EmailVerifyModal";
 import Select from "react-select";
 import { useTimer } from 'react-timer-hook';
-import { BigNumber,ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { v4 as uuidv4 } from "uuid";
 
 import {
@@ -87,6 +87,7 @@ function MealDetails({ expiryTimestamp }) {
   const [isDetails, setDetails] = useState({});
   const [otp, setOtp] = useState("");
   const [isSouvenir, setSouvenir] = useState([]);
+  console.log(isSouvenir);
   const [token, setToken] = useState("bnb");
   const [bnbToken, setBnbToken] = useState();
   const [dslToken, setDslToken] = useState();
@@ -175,13 +176,13 @@ function MealDetails({ expiryTimestamp }) {
           let time = time24h
             .toString()
             .match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time24h];
-        
+
           if (time.length > 1) {
             time = time.slice(1, -1);
             time[5] = +time[0] < 12 ? ' am' : ' pm';
             time[0] = +time[0] % 12 || 12;
           }
-          return time.join(''); 
+          return time.join('');
         };
         const st = convertTime24to12(res.data?.nft?.startTime);
         const et = convertTime24to12(res.data?.nft?.endTime);
@@ -408,14 +409,14 @@ function MealDetails({ expiryTimestamp }) {
 
   // BNB Price
   const bnb = usd / bnbToken;
-  const bnbTwoDec = bnb.toFixed(2);
+  const bnbTwoDec = bnb.toFixed(6);
 
   // DSL Price
   const dsl = usd / dslToken;
-  const dslTwoDec = dsl.toFixed(2);
+  const dslTwoDec = dsl.toFixed(4);
 
   // USDSC Price
-  const usdsc = usd.toFixed(2);
+  const usdsc = usd.toFixed(4);
 
   // S39 Price
   // const s39 = usd / s39Token;
@@ -446,14 +447,14 @@ function MealDetails({ expiryTimestamp }) {
 
   // BNB Price
   const bnb01 = usd01 / bnbToken;
-  const bnbTwoDec01 = bnb01.toFixed(2);
+  const bnbTwoDec01 = bnb01.toFixed(6);
 
   // DSL Price
   const dsl01 = usd01 / dslToken;
-  const dslTwoDec01 = dsl01.toFixed(2);
+  const dslTwoDec01 = dsl01.toFixed(4);
 
   // USDSC Price
-  const usdsc01 = usd01.toFixed(2);
+  const usdsc01 = usd01.toFixed(4);
 
   // S39 Price
   // const s3901 = usd01 / s39Token;
@@ -471,7 +472,7 @@ function MealDetails({ expiryTimestamp }) {
   // const savedS39 = s39TwoDec01 - s39TwoDec;
   // const savedFINQ = finquestTwoDec01 - finquestTwoDec;
 
-  const savedBNB4Digit = savedBNB.toFixed(4);
+  const savedBNB4Digit = savedBNB.toFixed(6);
   const savedDSL4Digit = savedDSL.toFixed(4);
   const savedUSDSC4Digit = savedUSDSC.toFixed(4);
   // const savedS394Digit = savedS39.toFixed(4);
@@ -596,7 +597,7 @@ function MealDetails({ expiryTimestamp }) {
     const briefDetails = isDetails.briefDetails
     const endTime = isDetails.endTime
     const venue = isDetails.venue
-    const image = ImgCelebrity
+    const image = isDetails.avatar
     const date = isDetails.startDate
     const endDate = isDetails.purchaseDate
     const email = email1
@@ -622,7 +623,7 @@ function MealDetails({ expiryTimestamp }) {
 
   //===============//// MINTED NFT FUNCTION////===================//
 
-  const mintCelebrityNft = async (priceByToken, tokenAddress,affiliateWalletAddress,mealnId) => {
+  const mintCelebrityNft = async (priceByToken, tokenAddress, affiliateWalletAddress, mealnId) => {
 
     if (!otpVerify) {
       return swal({
@@ -646,8 +647,8 @@ function MealDetails({ expiryTimestamp }) {
     // console.log(priceByToken)
     console.log(USDSCtokenAddressMainnet)
 
-    
-    console.log("222222",priceByToken, tokenAddress,affiliateWalletAddress,mealnId)
+
+    console.log("222222", priceByToken, tokenAddress, affiliateWalletAddress, mealnId)
 
     const data = new FormData();
     data.append('Id', isDetails._id);
@@ -663,26 +664,26 @@ function MealDetails({ expiryTimestamp }) {
     data.append('date', isDetails.date);
     data.append('venue', isDetails.venue);
     data.append('token', isDetails.token);
-    
+
 
     await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
       // headers: {
-        //   Authorization: `Bearer ${localStorage.getItem("token")}`
-        // }
-      })
+      //   Authorization: `Bearer ${localStorage.getItem("token")}`
+      // }
+    })
       .then(async (res) => {
         let Obj = {};
-        console.log("111111123: ",data)
+        console.log("111111123: ", data)
         console.log(res.data.uri)
         if (res.status === 200) {
           // setImages(res.data.Img)
-          const data1 = await signBuyFunction(mealnId, 
-            ethers.utils.parseEther(priceByToken), 
-            tokenAddress, 
-            affiliateWalletAddress, 
+          const data1 = await signBuyFunction(mealnId,
+            ethers.utils.parseEther(priceByToken),
+            tokenAddress,
+            affiliateWalletAddress,
             res.data.uri)
-          console.log('11111112322222222222222222222299',data1)
-                    
+          console.log('11111112322222222222222222222299', data1)
+
           data.append('certificate', res.data.Img);
 
 
@@ -820,7 +821,7 @@ function MealDetails({ expiryTimestamp }) {
     setAffiliateWalletAddress(refCode?.walletAddress);
     if (refCode?.myReferralCode === e.target.value) {
       setGotRefCode(true);
-    } 
+    }
     else {
       setGotRefCode(false);
     }
@@ -866,7 +867,66 @@ function MealDetails({ expiryTimestamp }) {
   };
 
 
-  const likess = localStorage.getItem("like");
+  // like functionality
+  const likeNft = (id) => {
+    console.log("inside like");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/like', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          if (isDetails._id == result._id) {
+            setDetails(result)
+          } else {
+            setDetails(isDetails)
+          }
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+  const unlikeNft = (id) => {
+    console.log("inside unlike");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/unlike', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+
+          if (isDetails._id == result._id) {
+            setDetails(result)
+          } else {
+            setDetails(isDetails)
+          }
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
@@ -877,11 +937,13 @@ function MealDetails({ expiryTimestamp }) {
           </Typography>
           <div className="col-sm-12 col-md-6 col-lg-6 d-grid justify_items_center pt-2">
             <Box className=" col-12 card_top_icon mb-2">
-              <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1" onClick={handleClick}>
-                <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
+              <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1"
+                onClick={() => isDetails.likes?.includes(user?.walletAddress) ? unlikeNft(isDetails?._id) : likeNft(isDetails?._id)}
+              >
+                <i className={`fa fa-heart ${isDetails?.likes?.includes(user?.walletAddress) && "heart-icon"}`}></i>
                 <span className="ps-1">
                   {/* {isDetails?.__v} */}
-                  {likess == 1 ? likess : 0}
+                  {isDetails?.likes?.length}
                 </span>
               </Box>
             </Box>
@@ -1083,16 +1145,16 @@ function MealDetails({ expiryTimestamp }) {
             <div className="d-flex rpv_center" style={{ alignItems: 'flex-end', justifyContent: 'start' }}>
               {
                 (!user.walletAddress || user.walletAddress === "undefined") ?
-                <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>
-                
-                :
-                <Link to="#" className=" justify_content_center mt-4 mb-1">
+                  <button className="card_button button_dtl mt-3" onClick={openWalletModal} href="#!"><i className="icon_wallet_alt me-1"></i> <span>Connect Wallet</span></button>
+
+                  :
+                  <Link to="#" className=" justify_content_center mt-4 mb-1">
                     {token === "bnb" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(bnbTwoDec, "0x0000000000000000000000000000000000000000",affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${bnbTwoDec} BNB`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(bnbTwoDec, "0x0000000000000000000000000000000000000000", affiliateWalletAddress, mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${bnbTwoDec} BNB`}</button>}
                     {token === "usdsc" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(usdsc,USDSCtokenAddressMainnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(usdsc, USDSCtokenAddressMainnet, affiliateWalletAddress, mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${usdsc} USDSC`}</button>}
                     {token === "dsl" &&
-                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(dslTwoDec, DSLtokenAddressMainnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
+                      <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(dslTwoDec, DSLtokenAddressMainnet, affiliateWalletAddress, mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${dslTwoDec} DSl`}</button>}
                     {/* {token === "s39" &&
                       <button disabled={availableNft < 1} className="card_button button_dtl" onClick={() => mintCelebrityNft(s39TwoDec, S39tokenAddressTestnet,affiliateWalletAddress,mealnId)} href="#!">{availableNft < 1 ? "No Nft available" : `BUY THIS NFT FOR ${s39TwoDec} S39`}</button>}
                     {token === "finquest" &&

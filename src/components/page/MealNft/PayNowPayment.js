@@ -14,7 +14,7 @@ const PayNowPayment = () => {
   }
 
   // let celebrityText = `<span>`
-  const celebrityText = "celebrity.sg";
+  const celebrityText = "CELEBRITY.SG";
   const emailText = "support@celebrity.sg";
 
   let content = document.createElement("p");
@@ -65,7 +65,7 @@ const PayNowPayment = () => {
 
         <img style={{ width: "30%" }} src="https://i.ibb.co/BrwYNqt/qrPaynow.png" alt="" />
       </div>
-      <h6 className='text-center mb-0 payTexts text-white pb-5'>Scan the PayNow QR code and pay SGD {price}</h6>
+      <h6 className='text-center mb-0 payTexts text-white pb-5'>Scan the PayNow QR code and pay <br /> <span className='pricePayNow'>SGD {price}</span></h6>
       <div className="companyDetails">
         <p><span className='text-primary'>Company Name:</span> DS Legends Pte Ltd</p>
         <div className="d-flex">

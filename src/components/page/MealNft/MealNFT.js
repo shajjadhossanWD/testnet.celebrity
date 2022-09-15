@@ -1,13 +1,15 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { CelebrityContext } from "../../../context/CelebrityContext";
 
 const MealNFT = () => {
   const [isMeal, setIsMeal] = useState([]);
   const [allAvailable, setAllAvailable] = useState([]);
+  const { openWalletModal, user } = useContext(CelebrityContext);
 
   const allNft = isMeal;
   const todayDate = new Date();
@@ -30,6 +32,81 @@ const MealNFT = () => {
 
   const likess = localStorage.getItem("like");
 
+
+
+
+
+
+
+  // like functionality
+  const likeNft = (id) => {
+    console.log("inside like");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/like', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          console.log(result)
+          const newNft = isMeal?.map(data => {
+            if (data._id == result._id) {
+              return result
+            } else {
+              return data
+            }
+          })
+          setIsMeal(newNft)
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+  const unlikeNft = (id) => {
+    console.log("inside unlike");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/unlike', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          // console.log(result)
+          const newNft = isMeal?.map(data => {
+            if (data._id == result._id) {
+              return result
+            } else {
+              return data
+            }
+          })
+          setIsMeal(newNft)
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
+
   return (
     <Fragment>
       <Box className="souvenirNFT_Box" id="Meal">
@@ -41,11 +118,14 @@ const MealNFT = () => {
             allNft?.map((data, idx) => (
               <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
                 <div class="card">
-                  <div className=" like_card">
-                    <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
-                    <span className="">
-                      {/* {isDetails?.__v} */}
-                      {likess == 1 ? likess : 0}
+                  <div
+                    onClick={() => data.likes?.includes(user?.walletAddress) ? unlikeNft(data?._id) : likeNft(data?._id)}
+
+                    className="nft_item_like like_card">
+                    <i className={`fa fa-heart ${data?.likes?.includes(user?.walletAddress) && "heart-icon"}`}></i>
+                    <span style={{ marginBottom: '2.2px' }}>
+
+                      {data?.likes?.length}
                     </span>
                   </div>
                   <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>

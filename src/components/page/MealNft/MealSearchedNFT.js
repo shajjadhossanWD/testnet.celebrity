@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { CelebrityContext } from "../../../context/CelebrityContext";
 
 const MealSearchedNFT = () => {
-  const { searchResults } = useContext(CelebrityContext);
+  const { openWalletModal, user, searchResults, setSearchResults } = useContext(CelebrityContext);
   const [isMeal, setIsMeal] = useState([]);
   const [allAvailable, setAllAvailable] = useState([]);
 
@@ -29,9 +29,83 @@ const MealSearchedNFT = () => {
       });
   }, [isMeal])
 
-  const likess = localStorage.getItem("like");
 
-  console.log(searchResults);
+
+
+
+
+  // like functionality
+  const likeNft = (id) => {
+    console.log("inside like");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/like', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          console.log(result)
+          const newNft = isMeal?.map(data => {
+            if (data._id == result._id) {
+              return result
+            } else {
+              return data
+            }
+          })
+          setIsMeal(newNft)
+          setSearchResults(newNft)
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
+
+  const unlikeNft = (id) => {
+    console.log("inside unlike");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/unlike', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          // console.log(result)
+          const newNft = isMeal?.map(data => {
+            if (data._id == result._id) {
+              return result
+            } else {
+              return data
+            }
+          })
+          setIsMeal(newNft)
+          setSearchResults(newNft)
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
   return (
     <Fragment >
       <Box className="souvenirNFT_Box" id="Meal" style={{ height: searchResults === null && "150vh" }}>
@@ -48,10 +122,12 @@ const MealSearchedNFT = () => {
               searchResults?.map((data, idx) => (
                 <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
                   <div class="card">
-                    <div className=" like_card">
-                      <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
+                    <div className=" like_card"
+                      onClick={() => data.likes?.includes(user?.walletAddress) ? unlikeNft(data?._id) : likeNft(data?._id)}
+                    >
+                      <i className={`fa fa-heart ${data?.likes?.includes(user?.walletAddress) && "heart-icon"}`}></i>
                       <span className="">
-                        {likess == 1 ? likess : 0}
+                        {data?.likes?.length}
                       </span>
                     </div>
                     <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>
@@ -113,10 +189,12 @@ const MealSearchedNFT = () => {
             allNft?.map((data, idx) => (
               <div key={{ idx }} className="col-sm-12 col-md-4 col-lg-3 d-flex" style={{ justifyContent: 'center' }}>
                 <div class="card">
-                  <div className=" like_card">
-                    <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
+                  <div className=" like_card"
+                    onClick={() => data.likes?.includes(user?.walletAddress) ? unlikeNft(data?._id) : likeNft(data?._id)}
+                  >
+                    <i className={`fa fa-heart ${data?.likes?.includes(user?.walletAddress) && "heart-icon"}`}></i>
                     <span className="">
-                      {likess == 1 ? likess : 0}
+                      {data?.likes?.length}
                     </span>
                   </div>
                   <div class="card-img" style={{ backgroundImage: `url(${data.avatar})` }}>

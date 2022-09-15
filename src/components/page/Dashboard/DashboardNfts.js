@@ -191,7 +191,7 @@ const DashboardNfts = () => {
                               {data.date}
                             </td>
                             <td className="pt-3">
-                              <div className='d-flex justify-content-center align-items-center'>
+                              <div className='d-flex justify-content-start align-items-start'>
                                 <CustomTooltip title="Edit NFT">
                                   <Link to={`editNft/${data._id}`}>
                                     <button className="editBtn"><i className="fas fa-edit"></i></button>

@@ -9,6 +9,24 @@ function AboutUs() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false);
+    const [showDetailsBtn, setShowDetailsBtn] = useState(true);
+  
+  const expand = () => {
+    const dots = document.getElementById("aboutDots");
+    const moreText = document.getElementById("aboutMore");
+    const btnText = document.getElementById("aboutExpandBtn");
+  
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "More details"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less"; 
+      moreText.style.display = "inline";
+      setShowDetailsBtn(false);
+    }
+  }
 
     const {
             getBalanceTestnet, 
@@ -52,7 +70,13 @@ function AboutUs() {
                     {
                         loading && <h3 className='text-white about_content'>Loading...</h3>
                     }
-                    <div dangerouslySetInnerHTML={{ __html: data }} className="text-white about_content"></div>
+                    <div dangerouslySetInnerHTML={{ __html: data?.slice(0, 893) }} className="text-white about_content"></div>
+
+                    <div id="aboutDots"></div>
+                    <div id="aboutMore" dangerouslySetInnerHTML={{ __html: data?.slice(893, data.length) }} className="text-white about_content"></div>
+
+                    {showDetailsBtn && !loading && <p onClick={expand} id="aboutExpandBtn" className="text-primary text-decoration-underline" style={{cursor: 'pointer'}}>More details</p>}
+
                     <button onClick={handelOnclik} class="button-18" id="CertificatModalButton" role="button">  <span>FINTECH CERTIFICATE</span> </button>
                 </Container>
             </div>

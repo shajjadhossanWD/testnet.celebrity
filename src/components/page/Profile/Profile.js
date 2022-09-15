@@ -16,14 +16,16 @@ import swal from 'sweetalert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
+
 const Profile = () => {
   const { user, logOut, metamaskBalance } = useContext(CelebrityContext);
   const navigate = useNavigate();
-
+  // let history = useHistory();
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     alert("Copied!")
   }
+
 
   console.log(metamaskBalance)
 
@@ -39,6 +41,11 @@ const Profile = () => {
     });
   }
 
+  const backNavigate = () => {
+    navigate(-1);
+  }
+
+
   return (
     <div className='handleTheProfileBody'>
       <div className="container pt-3 text-white">
@@ -52,7 +59,7 @@ const Profile = () => {
                   <input type="text" id='walletAddress' name="walletAddress" value={user?.walletAddress} className='form-control bg-transparent text-white' disabled />
                   <button type="button" onClick={() => copyToClipboard(user?.walletAddress)} className="border bg-success">
                     <FontAwesomeIcon icon={faCopy} />
-                    </button>
+                  </button>
                 </div>
               </div>
               <div className="mb-2">
@@ -125,15 +132,16 @@ const Profile = () => {
 
             </div>
             <div className='col-6 text-center'>
-              <Link to="/" className='btn btn-danger'>Cancel</Link>
+
+              <Link to={-1}><button className='btn btn-danger'>Cancel</button></Link>
             </div>
             <div className='col-6 text-center'>
               <button className='btn btn-danger' type='button' onClick={LogOut}>Logout</button>
             </div>
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
 
   );
 };

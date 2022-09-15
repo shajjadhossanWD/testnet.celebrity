@@ -756,6 +756,69 @@ function DetailsPayNow({ expiryTimestamp }) {
     }
 
 
+
+
+    // like functionality
+  const likeNft = (id) => {
+    console.log("inside like");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/like', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          if (isDetails._id == result._id) {
+            setDetails(result)
+          } else {
+            setDetails(isDetails)
+          }
+
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+  const unlikeNft = (id) => {
+    console.log("inside unlike");
+    if (!user.walletAddress || user.walletAddress === "undefined") {
+      openWalletModal();
+    } else {
+      console.log(id)
+      fetch('https://backend.celebrity.sg/api/nft/unlike', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          nftId: id,
+          walletAddress: user?.walletAddress
+        })
+      }).then(res => res.json())
+        .then(result => {
+          
+          if (isDetails._id == result._id) {
+            setDetails(result)
+          } else {
+            setDetails(isDetails)
+          }
+          
+        }).catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
     return (
         <div style={{ backgroundColor: '#1A1A25' }}>
             <div className="d-grid justify_items_center">
@@ -765,13 +828,15 @@ function DetailsPayNow({ expiryTimestamp }) {
                     </Typography>
                     <div className="col-sm-12 col-md-6 col-lg-6 d-grid justify_items_center pt-2">
                         <Box className=" col-12 card_top_icon mb-2">
-                            <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1">
-                                <i className={`fa fa-heart ${likess == 1 && "heart-icon"}`}></i>
-                                <span className="ps-1">
-                                    {/* {isDetails?.__v} */}
-                                    {likess == 1 ? likess : 0}
-                                </span>
-                            </Box>
+                        <Box className="icon_love_Dtl_box icon_love_Dtl_box_none pt-1"
+                onClick={() => isDetails.likes?.includes(user?.walletAddress) ? unlikeNft(isDetails?._id) : likeNft(isDetails?._id)}
+              >
+                <i className={`fa fa-heart ${isDetails?.likes?.includes(user?.walletAddress) && "heart-icon"}`}></i>
+                <span className="ps-1">
+                  {/* {isDetails?.__v} */}
+                  {isDetails?.likes?.length}
+                </span>
+              </Box>
                         </Box>
 
                         {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
@@ -873,12 +938,12 @@ function DetailsPayNow({ expiryTimestamp }) {
                             </div>
 
                             <Typography className="pt-3 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
-                                <span className="text-primary fontArial fontExtand">To attend this Celebrity Meal NFT Session, please pay SGD {isDetails?.price}</span>
+                                <span className="text-primary fontArial fontExtand">To attend this Celebrity Meal NFT Session, please pay <span className="text-danger">SGD {isDetails?.price}</span></span>
                             </Typography>
                             <Typography className="pt-2 pb-1 fontArial  fontExtand" variant="subtitle2" gutterBottom component="div">
                                 <span className="text-primary fontArial fontExtand"><span onClick={seePerks} style={{cursor: 'pointer', textDecoration: 'underline', color: '#d13574'}}>Click here</span> for your perks.</span>
                             </Typography>
-                            <img src="https://i.ibb.co/8d74R5c/paynowbtn.jpg" onClick={otpVerifiedNow} className={otpVerify ? "paynow_enable_button" : "paynow_disable_button"} alt="" />
+                            <img src="https://i.ibb.co/84qRCRm/payNow.jpg" onClick={otpVerifiedNow} className={otpVerify ? "paynow_enable_button" : "paynow_disable_button"} alt="" />
 
                             <div className="my-3">
                                 <Button variant="danger" className="px-3"

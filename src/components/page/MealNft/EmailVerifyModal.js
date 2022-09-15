@@ -30,10 +30,13 @@ export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setErr
     // Re-send OTP states
     const [forEnable, setForEnable] = useState(false);
     const [againEnable, setAgainEnable] = useState(true);
+    const [count, setCount] = useState(2);
+    const [disabled, setDisabled] = useState(false);
 
 
     const hendelSubmit = (e) => {
-
+        setCount(count - 1)
+       e.preventDefault();
         if (otpVerify == otpCode) {
             swal({
                 text: "Email Verified.",
@@ -46,6 +49,24 @@ export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setErr
             handleClose(false)
             return;
         }
+        if(count > 0){
+            let content2 = document.createElement("p");
+            content2.innerHTML = 'You have entered wrong OTP. Please try again. You have another <br/><span style="color: #0d6efd;">0'+ count + '</span> more tries .'
+            swal({
+            content: content2,
+            icon: "warning",
+            button: "OK!",
+            className: "modal_class_success",
+        });
+     }else{
+        setDisabled(true)
+        swal({
+            text: "You have entered wrong OTP, And you have no more tries left. You can request another OTP again",
+            icon: "warning",
+            button: "OK!",
+            className: "modal_class_success",
+        });
+     }
         setError('Email OTP Code not matched')
         setOtpError(true)
 
@@ -71,7 +92,7 @@ export default function EmailVerifyModal({ open, setOpenEmail, otpVerify, setErr
                     </Typography>
                     <form className="d-flex input-group mt-2 mb-2" >
                         <input type="number" className="form-control" placeholder="OTP code" aria-label="OTP code !!" aria-describedby="button-addon2" onChange={e => setOtpCode(e.target.value)} />
-                        <button className="btn btn-outline-secondary bg-danger text-light" onClick={hendelSubmit} type="submit" id="button-addon2">Verify</button>
+                        <button disabled={disabled? true : false} className="btn btn-outline-secondary bg-danger text-light" onClick={hendelSubmit} type="submit" id="button-addon2">Verify</button>
                     </form>
 
                     {isOtpError ? <p style={{ color: 'red' }}>You have entered wrong OTP</p> : ''}
