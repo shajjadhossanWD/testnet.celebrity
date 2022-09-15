@@ -27,6 +27,34 @@
   padding-top: 85px !important;
 }
 
+/* Landing page carosule slider */
+.container-slider {
+  max-width: 700px;
+  height: 464px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity ease-in-out 0.4s;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.active-anim {
+  opacity: 1;
+}
+
 
 /* .handleImgforRespons {
 
@@ -40,6 +68,17 @@
 
 #aboutMore {
   display: none;
+}
+
+.carousel-slider {
+  width: 90%;
+  height: 464px;
+  margin: 0 auto;
+  padding-top: 0;
+}
+
+.howItWorks_section-p {
+  padding-top: 100px;
 }
 
 .banner-button2 {
@@ -654,6 +693,10 @@ p.text-light.mb-0 {
       margin-left: 30px !important;
       margin-right: 50px !important;
     }
+
+    .carousel-slider {
+      padding-top: 20px;
+    }
   }
 
   @media only screen and (max-width: 650px) {
@@ -832,9 +875,19 @@ p.text-light.mb-0 {
       text-align: center;
     }
 
+    .howItWorks_section-p {
+      padding-top: 90px;
+    }
+
     /* .search-bar {
       width: 80% !important;
     } */
+  }
+
+  @media only screen and (max-width: 500px) {
+    .carousel-slider {
+      padding-top: 0;
+    }
   }
 
   @media only screen and (max-width: 480px) {
@@ -845,6 +898,18 @@ p.text-light.mb-0 {
     .modal-btn {
       width: 88px !important;
       font-size: 9px !important;
+    }
+
+    .howItWorks_section-p {
+      padding-top: 56px;
+    }
+
+    .container-slider {
+      height: 400px;
+    }
+
+    .carousel-slider {
+      padding-top: 20px;
     }
 
     /* .search-bar {
@@ -876,6 +941,20 @@ p.text-light.mb-0 {
       font-size: 40px;
     }
 
+    .carousel-slider {
+      width: 90%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .howItWorks_section-p {
+      padding-top: 80px !important;
+    }
+
+    .carousel-slider {
+      padding-top: 0;
+    }
+
     /* .search-bar {
       width: 400% !important;
     } */
@@ -886,6 +965,14 @@ p.text-light.mb-0 {
       margin-left: 0px !important;
       margin-bottom: -28px !important;
       font-size: 16px !important;
+    }
+
+    .container-slider {
+      height: 300px;
+    }
+
+    .carousel-slider {
+      padding-top: 10px;
     }
   }
 }

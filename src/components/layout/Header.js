@@ -81,7 +81,7 @@ function Header() {
             {/* <Nav.Link as={Link} to="/home" href="#home" className='menuText'>Home</Nav.Link> */}
             <Nav.Link as={Link} to="/about_us" href="#home" className='menuText'>ABOUT US</Nav.Link>
 
-            <Nav.Link href="https://dsl.sg/testnettokens" target="_blank" className='menuText'>GET TEST TOKENS</Nav.Link>
+            {/* <Nav.Link href="https://dsl.sg/testnettokens" target="_blank" className='menuText'>GET TEST TOKENS</Nav.Link> */}
 
             <Nav.Link href="https://dsl.sg/news" target="_blank" className='menuText'>NEWS</Nav.Link>
 

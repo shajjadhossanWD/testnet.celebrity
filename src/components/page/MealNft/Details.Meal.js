@@ -87,7 +87,6 @@ function MealDetails({ expiryTimestamp }) {
   const [isDetails, setDetails] = useState({});
   const [otp, setOtp] = useState("");
   const [isSouvenir, setSouvenir] = useState([]);
-  console.log(isSouvenir);
   const [token, setToken] = useState("bnb");
   const [bnbToken, setBnbToken] = useState();
   const [dslToken, setDslToken] = useState();
@@ -211,7 +210,6 @@ function MealDetails({ expiryTimestamp }) {
     })
       .then(res => {
         setBnbToken(res.data.message);
-        // console.log(res.data.message)
       })
       .catch(err => {
         console.log(err)
@@ -282,7 +280,6 @@ function MealDetails({ expiryTimestamp }) {
       }).then(res => {
         if (res.status === 200) {
           // alert(res.data.message);
-          console.log(res.data.email)
           setSendMail(res.data.email)
           restarting(180);
           swal({
@@ -294,7 +291,6 @@ function MealDetails({ expiryTimestamp }) {
           setOtpVerify(res.data.otp);
 
           setTimeout(() => {
-            console.log("Delayed for 1 minute");
             setDisableAfterActivation(false);
           }, 120000);
         }
@@ -361,7 +357,6 @@ function MealDetails({ expiryTimestamp }) {
                   className: "modal_class_success",
                 });
               }
-              // console.log(matchMint);
             }
             else {
               swal({
@@ -418,13 +413,7 @@ function MealDetails({ expiryTimestamp }) {
   // USDSC Price
   const usdsc = usd.toFixed(4);
 
-  // S39 Price
-  // const s39 = usd / s39Token;
-  // const s39TwoDec = s39.toFixed(2);
 
-  // // FINQUEST Price
-  // const finquest = usd / 0.0005;
-  // const finquestTwoDec = finquest.toFixed(2);
 
   // Discount (30%)
   const discountSgd = 30 / 100 * totalSgd;
@@ -504,7 +493,6 @@ function MealDetails({ expiryTimestamp }) {
       NFTPerksStatus: perkStatus,
       NFTCreated: newDate
     }
-    console.log(data);
 
 
     await axios.post('https://backend.dsl.sg/api/v1/nftdetails', data, {
@@ -531,7 +519,6 @@ function MealDetails({ expiryTimestamp }) {
 
   }
 
-  console.log(affiliateWalletAddress);
 
   // const smartContract = async (price, tokenaddress) => {
 
@@ -583,8 +570,8 @@ function MealDetails({ expiryTimestamp }) {
 
   /// send full details to user
 
-  const handleSubmit = (ImgCelebrity, TokeNID) => {
-
+  const handleSubmit = (TokeNID, dataUrlCelebrity) => {
+    
     const NFTID = TokeNID
     const address = mintAddressTestnet
     const type = isDetails.type
@@ -601,11 +588,13 @@ function MealDetails({ expiryTimestamp }) {
     const date = isDetails.startDate
     const endDate = isDetails.purchaseDate
     const email = email1
+    const Qrcode = nftId
+    const QrcodeImg = dataUrlCelebrity
 
     console.log('44444')
 
     axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
-      NFTID, perkNft, address, briefDetails, details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
+      NFTID, perkNft, Qrcode, QrcodeImg, address, briefDetails, details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
     }, {
     })
       .then(res => {
@@ -640,15 +629,9 @@ function MealDetails({ expiryTimestamp }) {
 
     setIsClickedMint(true)
     setRequestLoading(true);
-    let dataUrlCelebrity = await htmlToImage.toPng(dataUrl)
     // const dataUrl = await htmlToImage.toPng(celebrityTemplate.current);
+    let dataUrlCelebrity = await htmlToImage.toPng(dataUrl)
 
-    console.log(dataUrlCelebrity);
-    // console.log(priceByToken)
-    console.log(USDSCtokenAddressMainnet)
-
-
-    console.log("222222", priceByToken, tokenAddress, affiliateWalletAddress, mealnId)
 
     const data = new FormData();
     data.append('Id', isDetails._id);
@@ -656,9 +639,9 @@ function MealDetails({ expiryTimestamp }) {
     data.append('tokenAddress', tokenAddress);
     data.append('refAddress', affiliateWalletAddress);
     data.append('nonce', uuidv4());
-    data.append('file', dataUrlCelebrity);
     data.append('name', isDetails.name);
     data.append('image', isDetails.avatar);
+    data.append('file', dataUrlCelebrity);
     data.append('description', isDetails.description);
     data.append('type', isDetails.type);
     data.append('date', isDetails.date);
@@ -676,7 +659,6 @@ function MealDetails({ expiryTimestamp }) {
         console.log("111111123: ", data)
         console.log(res.data.uri)
         if (res.status === 200) {
-          // setImages(res.data.Img)
           const data1 = await signBuyFunction(mealnId,
             ethers.utils.parseEther(priceByToken),
             tokenAddress,
@@ -684,7 +666,6 @@ function MealDetails({ expiryTimestamp }) {
             res.data.uri)
           console.log('11111112322222222222222222222299', data1)
 
-          data.append('certificate', res.data.Img);
 
 
           if (token === "bnb") {
@@ -702,11 +683,12 @@ function MealDetails({ expiryTimestamp }) {
           // else if (token === "finquest") {
           //   Obj = await mintTitleNFTTestnetQuest(data1);
           // }
-
+        console.log(res.data.fileQr)
           const data2 = {
             name: isDetails.name,
             price: isDetails.price,
-            certificate: res.data.Img,
+            image: isDetails.avatar,
+            file: res.data.fileQr, 
           }
           data.append("mint_hash", Obj.mint_hash);
           setTokenId(Obj.ID);
@@ -757,8 +739,8 @@ function MealDetails({ expiryTimestamp }) {
                     }
                   });
                 postDataAfterMint();
-                console.log("img" + res.data.ImgCelebrity)
-                handleSubmit(res.data.ImgCelebrity, Obj.ID);
+                handleSubmit(Obj.ID, res.data.ImgCelebrity);
+
                 // smartContract(Obj.mintPrice, Obj.address);
               }
             })
@@ -775,7 +757,7 @@ function MealDetails({ expiryTimestamp }) {
                 className: "modal_class_success",
               });
             })
-          console.log(res.data.Img)
+          console.log(res.data.fileQr)
 
         }
       })
@@ -930,6 +912,7 @@ function MealDetails({ expiryTimestamp }) {
 
   return (
     <div style={{ backgroundColor: '#1A1A25' }}>
+
       <div className="d-grid justify_items_center">
         <Container className="row" style={{ marginTop: "100px", alignItems: 'flex-start' }}>
           <Typography className="meal_details_type_title text-gradient" variant="subtitle2" gutterBottom component="div">
@@ -948,12 +931,12 @@ function MealDetails({ expiryTimestamp }) {
               </Box>
             </Box>
 
-            {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
+            {isDetails?.avatar && <div className="certificateCelebrity" >
 
-              <img alt="This is celebrity meal NFT" src="https://i.ibb.co/st4H9R5/c1.jpg" className='deteilsPageImage' />
-              {/* <img alt="This is celebrity meal NFT" src={`https://backend.celebrity.sg/assets/${addressImg}`} className='deteilsPageImage' /> */}
+              {/* <img alt="This is celebrity meal NFT" src="https://i.ibb.co/st4H9R5/c1.jpg" className='deteilsPageImage' /> */}
+              <img alt="This is celebrity meal NFT" src={`https://backend.celebrity.sg/assets/${addressImg}`} className='deteilsPageImage' />
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
-              <img src={src} alt="barcode" className="img-fluid handleBarcode" />
+              <img src={src} alt="barcode" className="img-fluid handleBarcode" ref={celebrityTemplate} />
             </div>
             }
 
@@ -1064,6 +1047,7 @@ function MealDetails({ expiryTimestamp }) {
                   )}
                 />
               </div>
+              {/* <button onClick={()=>handleSubmit("100654")}>click here</button> */}
 
               <Typography className="pt-2 pb-3" variant="subtitle2" gutterBottom component="div">
                 ( <span className="spanDiscount ">30% discount if paid with DSL tokens</span>)

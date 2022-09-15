@@ -6,14 +6,55 @@ import MealSlider from "../page/MealNft/Meal.slider";
 import SouvenirSlider from "../page/Souvenir/Souvenir.slider";
 
 
+const dataSlider = [
+  {
+    id: 1,
+    image: "https://i.ibb.co/y5Nz87S/Photo-14-9-22-7-07-56-AM.png",
+  },
+  {
+    id: 2,
+    image: "https://i.ibb.co/qNm7bvX/Photo-14-9-22-7-10-15-AM.png",
+  },
+  {
+    id: 3,
+    image: "https://i.ibb.co/0DbbpxF/Photo-14-9-22-7-12-10-AM.png",
+  },
+  {
+    id: 4,
+    image: "https://i.ibb.co/qNDtnB1/Photo-14-9-22-7-13-44-AM.png",
+  },
+  {
+    id: 5,
+    image: "https://i.ibb.co/JrsyMqv/Photo-14-9-22-7-15-27-AM.png",
+  },
+  {
+    id: 6,
+    image: "https://i.ibb.co/ctLN97r/Photo-14-9-22-7-16-35-AM.png",
+  },
+  {
+    id: 7,
+    image: "https://i.ibb.co/HXfmHK9/Photo-14-9-22-7-19-37-AM.png",
+  },
+];
 
 
 export default function () {
   useEffect(() => { }, []);
   const [datas, setandelAutoCall] = useState('')
 
-  
+  // Carousel functionality
+  const [slideIndex, setSlideIndex] = useState(1);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (slideIndex !== dataSlider.length) {
+        setSlideIndex(slideIndex + 1);
+      } else if (slideIndex === dataSlider.length) {
+        setSlideIndex(1);
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [slideIndex]);
 
 
 
@@ -66,7 +107,7 @@ export default function () {
                     </Link>
                   </p>
                 </div>
-                <div className="col-md-6 offset-md-1 d-flex home-image" style={{ justifyContent: 'center' }} >
+                <div className="col-md-6 offset-md-1 home-image" style={{ justifyContent: 'center' }} >
                   
                   {/* <img
                     // src="/assets/images/misc/celebrity-banner.jpeg"
@@ -77,13 +118,12 @@ export default function () {
                     alt=""
                   /> */}
 
-                  <div
+                  {/* <div
                     id="carouselExampleSlidesOnly"
-                    className="carousel slide lazy wow fadeIn handleImgforRespons"
+                    className="carousel slide lazy wow fadeIn handleImgforRespons carousel-slider"
                     data-bs-ride="carousel"
                     data-bs-interval="2000"
                     data-bs-pause="false"
-                    style={{width: '90%', height: '464px'}}
                     >
                     <div className="carousel-inner">
                       <div className="carousel-item active">
@@ -108,7 +148,24 @@ export default function () {
                         <img src="https://i.ibb.co/HXfmHK9/Photo-14-9-22-7-19-37-AM.png" className="d-block w-100" alt="..." />
                       </div>
                     </div>
+                  </div> */}
+
+                  {/* Custom carosule */}
+                  <div className="carousel-slider lazy wow fadeIn">
+                  <div className="container-slider">
+                    {dataSlider.map((obj, index) => {
+                      return (
+                        <div
+                          key={obj.id}
+                          className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
+                        >
+                          <img src={obj.image} alt="carousel-images" />
+                        </div>
+                      );
+                    })}
                   </div>
+                  </div>
+
 
                 </div>
               </div>
@@ -125,7 +182,7 @@ export default function () {
           </a>
         </div>
       </div>
-      <section id="section-intro" className="no-bottom">
+      <section id="section-intro" className="no-bottom howItWorks_section-p">
         <div className="container">
           <div className="row g-4">
             <div className="col-lg-12">
