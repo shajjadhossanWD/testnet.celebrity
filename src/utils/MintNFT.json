@@ -471,6 +471,19 @@
       "inputs": [
         {
           "internalType": "address",
+          "name": "_fundAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setFundAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "_operator",
           "type": "address"
         }
