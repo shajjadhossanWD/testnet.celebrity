@@ -6,10 +6,10 @@ import usdsc from "./USDSC.json";
 // import S39 from "./S39.json";
 // import Quest from "./Quest.json";
 
-export const mintAddressTestnet = "0xb756DEC2AD6a90B5Cf7744c7916C1a913d16B3Bc";  //celebritymainnetaddress
+export const mintAddressTestnet = "0xA7F60Eae5a0B97f2209BC2ef3430C34B341C8527";  //celebritymainnetaddress
 export const mintABITestnet = mint.abi;
 
-export const private_key = "a13fe5edde0461f8941f8c8dc7e0cdba8199e8662e47883a258f6b6c4d4b2db8";
+export const private_key = "4284f6eae0ebc914437b42cd3a523a67c70428dd1888c6ae6059f26c74c452cc";
 
 export const RPC = "https://bsc-dataseed.binance.org/";
 
