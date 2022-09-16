@@ -14,14 +14,14 @@ function SouvenirDetails() {
   const [token, setToken] = useState("bnb");
 
   useEffect(() => {
-    axios.get(`https://backend.celebrity.sg/api/nft/${souvenirId}`)
+    axios.get(`https://backendpub.celebrity.sg/api/nft/${souvenirId}`)
       .then(res => {
         setDetails(res.data?.nft);
       });
   }, [souvenirId])
 
   useEffect(() => {
-    axios.get("https://backend.celebrity.sg/api/nft/allsouvenir")
+    axios.get("https://backendpub.celebrity.sg/api/nft/allsouvenir")
       .then(res => {
         setSouvenir(res.data.nft.slice(0, 4))
       });

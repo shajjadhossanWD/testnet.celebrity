@@ -10,7 +10,7 @@ import Loading from "../../Loading/Loading";
 const SouvenirNFT = () => {
   const [isSouvenir, setSouvenir] = useState([])
   useEffect(() => {
-    axios.get("https://backend.celebrity.sg/api/nft/allsouvenir")
+    axios.get("https://backendpub.celebrity.sg/api/nft/allsouvenir")
       .then(res => {
         setSouvenir(res.data.nft.slice(0, 4))
       });

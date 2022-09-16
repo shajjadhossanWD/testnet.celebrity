@@ -42,7 +42,7 @@ const DashboardNfts = () => {
 
   useEffect(() => {
     const todayDate = new Date();
-    fetch('https://backend.celebrity.sg/api/nft/all', {
+    fetch('https://backendpub.celebrity.sg/api/nft/all', {
       method: "GET",
       headers: {
         "content-type": "application/json"
@@ -77,7 +77,7 @@ const DashboardNfts = () => {
       // denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://backend.celebrity.sg/api/nft/delete/${id}`)
+        axios.delete(`https://backendpub.celebrity.sg/api/nft/delete/${id}`)
           .then(res => {
             if (res.status === 200) {
               swal({

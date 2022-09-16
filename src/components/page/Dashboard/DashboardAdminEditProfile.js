@@ -26,7 +26,7 @@ const DashboardAdminEditProfile = () => {
     const [singleAdmin, setSingleAdmin] = useState([]);
 
     useEffect(() => {
-        fetch(`https://backend.celebrity.sg/api/v1/admin/${idOrigin}`, {
+        fetch(`https://backendpub.celebrity.sg/api/v1/admin/${idOrigin}`, {
             method: "GET"
         })
             .then(res => res.json())
@@ -63,7 +63,7 @@ const DashboardAdminEditProfile = () => {
         setonLoading(true);
 
         if (password === cPassword) {
-            await axios.put(`https://backend.celebrity.sg/api/v1/admin/update/${idOrigin}`, formDataSingleAdmin, {
+            await axios.put(`https://backendpub.celebrity.sg/api/v1/admin/update/${idOrigin}`, formDataSingleAdmin, {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
                 }
@@ -186,7 +186,7 @@ const DashboardAdminEditProfile = () => {
                             </p>
                         </div>
                         <div className="col-lg-5 text-center">
-                            <img className='ProfileImg' src={`https://backend.celebrity.sg/${singleAdmin?.avatar}`} alt="avatar" /> <br />
+                            <img className='ProfileImg' src={`https://backendpub.celebrity.sg/${singleAdmin?.avatar}`} alt="avatar" /> <br />
                             <input
                                 type="file"
                                 className='ImageInput text-white form-control text-light'

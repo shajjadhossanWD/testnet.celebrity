@@ -21,7 +21,7 @@ const Forgetpassword = () => {
 
         const email = e.target.email.value;
 
-        axios.post("https://backend.celebrity.sg/api/v1/admin/send-reset-password-link/", { email })
+        axios.post("https://backendpub.celebrity.sg/api/v1/admin/send-reset-password-link/", { email })
             .then(res => {
                 if (res.status === 200) {
                     // alert(res.data.message);

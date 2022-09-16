@@ -144,7 +144,7 @@ function MealDetails({ expiryTimestamp }) {
 
 
   useEffect(() => {
-    axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
+    axios.get("https://backendpub.celebrity.sg/api/v1/mint/mint-nft")
       .then(res => {
         setAllAvailable(res.data);
       });
@@ -156,7 +156,7 @@ function MealDetails({ expiryTimestamp }) {
 
   //get minted nft data
   useEffect(() => {
-    axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
+    axios.get("https://backendpub.celebrity.sg/api/v1/mint/mint-nft")
       .then(res => {
         setLatestNft(res.data[0].certificate);
         console.log(res.data[0].certificate);
@@ -166,7 +166,7 @@ function MealDetails({ expiryTimestamp }) {
 
   // console.log(allAvailable.length);
   useEffect(() => {
-    axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
+    axios.get(`https://backendpub.celebrity.sg/api/nft/${mealnId}`)
       .then(res => {
         setDetails(res.data?.nft);
         setDateCount(res.data?.nft?.startDate);
@@ -193,7 +193,7 @@ function MealDetails({ expiryTimestamp }) {
 
   useEffect(() => {
     const todayDate = new Date();
-    axios.get("https://backend.celebrity.sg/api/nft/allmeal")
+    axios.get("https://backendpub.celebrity.sg/api/nft/allmeal")
       .then(res => {
         setNftData(res.data.nft);
         const filtering = res.data.nft.filter(items => items.isDraft === false && items._id != mealnId && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
@@ -275,7 +275,7 @@ function MealDetails({ expiryTimestamp }) {
     if (email1.length > 0 && email1.includes("@" && ".")) {
       // setLoading(true);
       setEmailVerify(true);
-      await axios.post('https://backend.celebrity.sg/api/v1/verifymint/mail', {
+      await axios.post('https://backendpub.celebrity.sg/api/v1/verifymint/mail', {
         email: email1
       }).then(res => {
         if (res.status === 200) {
@@ -593,7 +593,7 @@ function MealDetails({ expiryTimestamp }) {
 
     console.log('44444')
 
-    axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
+    axios.post("https://backendpub.celebrity.sg/api/v1/verifymint/send-user", {
       NFTID, perkNft, Qrcode, QrcodeImg, address, briefDetails, details, type, date, name, image, price, venue, email, available, startTime, endTime, endDate
     }, {
     })
@@ -649,7 +649,7 @@ function MealDetails({ expiryTimestamp }) {
     data.append('token', isDetails.token);
 
 
-    await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
+    await axios.post('https://backendpub.celebrity.sg/api/v1/mint/uri-json-nft', data, {
       // headers: {
       //   Authorization: `Bearer ${localStorage.getItem("token")}`
       // }
@@ -693,7 +693,7 @@ function MealDetails({ expiryTimestamp }) {
           data.append("mint_hash", Obj.mint_hash);
           setTokenId(Obj.ID);
           console.log(data);
-          await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data2, {
+          await axios.post("https://backendpub.celebrity.sg/api/v1/mint/save-nft", data2, {
             // headers: {
             //   Authorization: `Bearer ${localStorage.getItem("token")}`
             // }
@@ -789,7 +789,7 @@ function MealDetails({ expiryTimestamp }) {
 
   // Referal code discount
   useEffect(() => {
-    axios.get('https://backend.celebrity.sg/api/v1/user/all')
+    axios.get('https://backendpub.celebrity.sg/api/v1/user/all')
       .then(res => {
         setAllUsers(res.data);
       })
@@ -856,7 +856,7 @@ function MealDetails({ expiryTimestamp }) {
       openWalletModal();
     } else {
       console.log(id)
-      fetch('https://backend.celebrity.sg/api/nft/like', {
+      fetch('https://backendpub.celebrity.sg/api/nft/like', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -885,7 +885,7 @@ function MealDetails({ expiryTimestamp }) {
       openWalletModal();
     } else {
       console.log(id)
-      fetch('https://backend.celebrity.sg/api/nft/unlike', {
+      fetch('https://backendpub.celebrity.sg/api/nft/unlike', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -934,7 +934,7 @@ function MealDetails({ expiryTimestamp }) {
             {isDetails?.avatar && <div className="certificateCelebrity" >
 
               {/* <img alt="This is celebrity meal NFT" src="https://i.ibb.co/st4H9R5/c1.jpg" className='deteilsPageImage' /> */}
-              <img alt="This is celebrity meal NFT" src={`https://backend.celebrity.sg/assets/${addressImg}`} className='deteilsPageImage' />
+              <img alt="This is celebrity meal NFT" src={`https://backendpub.celebrity.sg/assets/${addressImg}`} className='deteilsPageImage' />
               <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
               <img src={src} alt="barcode" className="img-fluid handleBarcode" ref={celebrityTemplate} />
             </div>

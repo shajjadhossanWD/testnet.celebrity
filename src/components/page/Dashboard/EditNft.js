@@ -41,7 +41,7 @@ const EditNft = () => {
   }
 
   useEffect(() => {
-    axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+    axios.get(`https://backendpub.celebrity.sg/api/nft/${id}`)
       .then(res => {
         setNfts(res.data.nft);
         const description = res.data.nft.description;
@@ -103,7 +103,7 @@ const EditNft = () => {
     formData.append('isDraft', isDraft)
     formData.append('image', avatar);
 
-    axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${Nfts._id}`, formData)
+    axios.put(`https://backendpub.celebrity.sg/api/nft/update-nft/${Nfts._id}`, formData)
       .then(res => {
         if (res.status === 200) {
           // alert(res.data.message);

@@ -28,7 +28,7 @@ const DashboardExpired = () => {
     const todayDate = new Date();
 
     useEffect(() => {
-        fetch('https://backend.celebrity.sg/api/nft/all', {
+        fetch('https://backendpub.celebrity.sg/api/nft/all', {
             method: "GET",
             headers: {
                 "content-type": "application/json"
@@ -44,7 +44,7 @@ const DashboardExpired = () => {
     // console.log(nfts);
 
     const saveIssue = (id) => {
-        axios.get(`https://backend.celebrity.sg/api/nft/${id}`)
+        axios.get(`https://backendpub.celebrity.sg/api/nft/${id}`)
             .then(res => {
                 setNftsPro(res.data.nft);
                 // console.log(res.data);
@@ -91,7 +91,7 @@ const DashboardExpired = () => {
             // denyButtonText: `Don't save`,
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.put(`https://backend.celebrity.sg/api/nft/update-nft/${id}`, formData)
+                axios.put(`https://backendpub.celebrity.sg/api/nft/update-nft/${id}`, formData)
                     .then(res => {
                         if (res.status === 200) {
                             // alert(res.data.message);
@@ -131,7 +131,7 @@ const DashboardExpired = () => {
             // denyButtonText: `Don't save`,
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://backend.celebrity.sg/api/nft/delete/${id}`)
+                axios.delete(`https://backendpub.celebrity.sg/api/nft/delete/${id}`)
                     .then(res => {
                         if (res.status === 200) {
                             swal({

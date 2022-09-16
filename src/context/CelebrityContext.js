@@ -528,7 +528,7 @@ export default function CelebrityProvider({ children }) {
           setCurrentAccount(accounts[0]);
 
           await axios
-            .post(`https://backend.celebrity.sg/api/v1/user/`, {
+            .post(`https://backendpub.celebrity.sg/api/v1/user/`, {
               walletAddress: accounts[0],
             })
             .then((res) => {
@@ -602,7 +602,7 @@ export default function CelebrityProvider({ children }) {
       setCurrentAccount(accounts[0]);
 
       await axios
-        .post(`https://backend.celebrity.sg/api/v1/user/`, {
+        .post(`https://backendpub.celebrity.sg/api/v1/user/`, {
           walletAddress: accounts[0],
         })
         .then((res) => {
@@ -672,7 +672,7 @@ export default function CelebrityProvider({ children }) {
           setCurrentAccount(accounts[0]);
 
           await axios
-            .post(`https://backend.celebrity.sg/api/v1/user/`, {
+            .post(`https://backendpub.celebrity.sg/api/v1/user/`, {
               walletAddress: accounts[0],
             })
             .then((res) => {

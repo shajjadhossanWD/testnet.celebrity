@@ -24,7 +24,7 @@ const DashboardDraft = ({ setSelectedTab }) => {
     }))
 
     useEffect(() => {
-        fetch('https://backend.celebrity.sg/api/nft/all', {
+        fetch('https://backendpub.celebrity.sg/api/nft/all', {
             method: "GET",
             headers: {
                 "content-type": "application/json"
@@ -50,7 +50,7 @@ const DashboardDraft = ({ setSelectedTab }) => {
             // denyButtonText: `Don't save`,
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.put(`https://backend.celebrity.sg/api/nft/update-nft1/${id}`)
+                axios.put(`https://backendpub.celebrity.sg/api/nft/update-nft1/${id}`)
                     .then(res => {
                         if (res.status === 200) {
                             // alert(res.data.message);
@@ -90,7 +90,7 @@ const DashboardDraft = ({ setSelectedTab }) => {
             // denyButtonText: `Don't save`,
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://backend.celebrity.sg/api/nft/delete/${id}`)
+                axios.delete(`https://backendpub.celebrity.sg/api/nft/delete/${id}`)
                     .then(res => {
                         if (res.status === 200) {
                             swal({

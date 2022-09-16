@@ -75,7 +75,7 @@ const Otp = ({ expiryTimestamp }) => {
     setTimeout(enableing, 180000);
 
     const resendOTP = () => {
-        axios.get(`https://backend.celebrity.sg/api/v1/admin/resend-otp`,
+        axios.get(`https://backendpub.celebrity.sg/api/v1/admin/resend-otp`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -113,7 +113,7 @@ const Otp = ({ expiryTimestamp }) => {
         verifyOtp(otp);
 
 
-        // axios.post(`https://backend.celebrity.sg/api/v1/admin/verify-otp/`, {
+        // axios.post(`https://backendpub.celebrity.sg/api/v1/admin/verify-otp/`, {
         //     otp
         // }, {
         //     headers: {

@@ -15,7 +15,7 @@ const DashboardMenu = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://backend.celebrity.sg/api/v1/admin/')
+        axios.get('https://backendpub.celebrity.sg/api/v1/admin/')
             .then(res => {
                 setAllAdmin(res.data.length);
                 console.log(res.data)
@@ -23,7 +23,7 @@ const DashboardMenu = () => {
     }, [])
 
     useEffect(() => {
-        axios.get('https://backend.celebrity.sg/api/nft/all')
+        axios.get('https://backendpub.celebrity.sg/api/nft/all')
             .then(res => {
                 setMintNft(res.data.nft.length);
                 console.log(res.data)
