@@ -662,7 +662,7 @@ function DetailsPayNow({ expiryTimestamp }) {
                                 postDataAfterMint();
                                 console.log("img" + res.data.ImgCelebrity)
                                 handleSubmit(res.data.ImgCelebrity);
-                          
+
                             }
                         })
                         .catch(err => {
