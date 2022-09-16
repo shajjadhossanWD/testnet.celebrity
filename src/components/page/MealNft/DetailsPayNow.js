@@ -662,7 +662,7 @@ function DetailsPayNow({ expiryTimestamp }) {
                                 postDataAfterMint();
                                 console.log("img" + res.data.ImgCelebrity)
                                 handleSubmit(res.data.ImgCelebrity);
-
+                          
                             }
                         })
                         .catch(err => {
@@ -860,7 +860,7 @@ function DetailsPayNow({ expiryTimestamp }) {
 
                         {isDetails?.avatar && <div className="certificateCelebrity" ref={celebrityTemplate}>
                             {/* <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' /> */}
-                            <img alt="This is celebrity meal NFT" src={`https://backendpub.celebrity.sg/assets/${addressImg}`} className='deteilsPageImage' />
+                            <img alt="This is celebrity meal NFT" src={isDetails?.avatar} className='deteilsPageImage' />
                             <img src="https://i.ibb.co/Pwt1fRw/9ee03415-e591-4320-bf25-af881b8c27a6.jpg" alt="" className={`img-fluid nft-watermark ${isClickedMint ? "d-none" : ""}`} />
                             <img src={src} alt="barcode" className="img-fluid handleBarcode" />
                         </div>
