@@ -12,7 +12,7 @@ function SouvenirSlider({ pull_souvenir }) {
   const allNft = isSouvenir.nft;
 
   useEffect(() => {
-    axios.get("https://backendpub.celebrity.sg/api/nft/allsouvenir")
+    axios.get("https://backend.celebrity.sg/api/nft/allsouvenir")
       .then(res => {
         setSouvenir(res.data);
         // setFilterData(res.data.slice(0, 5))

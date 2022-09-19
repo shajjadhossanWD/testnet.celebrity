@@ -61,7 +61,7 @@ const DashboardModal = (props) => {
 
 
         if (saveAsDraft === "save") {
-            await axios.post('https://backendpub.celebrity.sg/api/nft/add', formData, {
+            await axios.post('https://backend.celebrity.sg/api/nft/add', formData, {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -96,7 +96,7 @@ const DashboardModal = (props) => {
 
         }
         else {
-            await axios.post('https://backendpub.celebrity.sg/api/nft/saveAsDraft', formData, {
+            await axios.post('https://backend.celebrity.sg/api/nft/saveAsDraft', formData, {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('token')}`
                 }

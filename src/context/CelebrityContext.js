@@ -7,20 +7,20 @@ import abi from "../utils/nftAbi.json"
 import axios from "axios";
 import swal from "sweetalert";
 import {
-  // DSLtokenABITestnet,
-  // DSLtokenAddressTestnet,
+  DSLtokenABITestnet,
+  DSLtokenAddressTestnet,
   mintABITestnet,
   mintAddressTestnet,
-  // USDSCtokenABITestnet,
-  // USDSCtokenAddressTestnet,
+  USDSCtokenABITestnet,
+  USDSCtokenAddressTestnet,
   USDSCtokenAddressMainnet,
   USDSCtokenABIMainnet,
   DSLtokenAddressMainnet,
   DSLtokenABIMainnet,
-  // S39tokenAddressTestnet,
-  // S39tokenABITestnet,
-  // QuesttokenAddressTestnet,
-  // QuesttokenABITestnet,
+  S39tokenAddressTestnet,
+  S39tokenABITestnet,
+  QuesttokenAddressTestnet,
+  QuesttokenABITestnet,
   private_key,
   RPC,
   chainId
@@ -43,7 +43,29 @@ const getMintContractTestnet = () => {
   return MintNFTContract;
 };
 
+const getUSDSCtokenContractTestnet = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(
+    USDSCtokenAddressTestnet,
+    USDSCtokenABITestnet,
+    signer
+  );
 
+  return tokenContract;
+};
+
+const getDSLtokenContractTestnet = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(
+    DSLtokenAddressTestnet,
+    DSLtokenABITestnet,
+    signer
+  );
+
+  return tokenContract;
+};
 
 const getUSDSCtokenContractMainnet = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -69,7 +91,27 @@ const getDSLtokenContractMainnet = () => {
   return tokenContract;
 };
 
+const getS39tokenContractTestnet = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(
+    S39tokenAddressTestnet,
+    S39tokenABITestnet,
+    signer
+  );
 
+  return tokenContract;
+};
+const getQuesttokenContractTestnet = () => {
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(
+    QuesttokenAddressTestnet,
+    QuesttokenABITestnet,
+    signer
+  );
+  return tokenContract;
+};
 
 const getAllItemBlockchain = async () => {
   const provider = new ethers.providers.JsonRpcProvider(RPC);
@@ -169,7 +211,35 @@ export default function CelebrityProvider({ children }) {
     checkIfWalletIsConnect();
   }, []);
 
-
+  const getBalanceTestnet = async () => {
+    const USDSCtokenContract = getUSDSCtokenContractTestnet();
+    const DSLtokenContract = getDSLtokenContractTestnet();
+    const S39tokenContract = getS39tokenContractTestnet();
+    const QuestTokenContract = getQuesttokenContractTestnet();
+    const USDSCbalance = await USDSCtokenContract.balanceOf(currentAccount);
+    const USDSCamount = ethers.utils.formatEther(USDSCbalance);
+    const DSLbalance = await DSLtokenContract.balanceOf(currentAccount);
+    const DSLamount = ethers.utils.formatEther(DSLbalance);
+    const S39balance = await S39tokenContract.balanceOf(currentAccount);
+    const S39amount = ethers.utils.formatEther(S39balance);
+    const Questbalance = await QuestTokenContract.balanceOf(currentAccount);
+    const Questamount = ethers.utils.formatEther(Questbalance);
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const balance1 = await provider.getBalance(currentAccount);
+    console.log("usdsc: " + USDSCamount);
+    console.log("dsl: " + DSLamount);
+    console.log("s39: " + S39amount);
+    console.log("Quest: " + Questamount);
+    console.log("BNB Testnet: " + ethers.utils.formatEther(balance1));
+    const wallet = {
+      usdsc: USDSCamount,
+      bnb: ethers.utils.formatEther(balance1),
+      dsl: DSLamount,
+      s39: S39amount,
+      Quest: Questamount,
+    };
+    return setMetamaskBalance(wallet);
+  };
 
   console.log(metamaskBalance);
 
@@ -200,7 +270,7 @@ export default function CelebrityProvider({ children }) {
           method: "eth_chainId",
         });
         console.log("This is Chain ID: ", chainid);
-        if (chainid === "0x38") {
+        if (chainid === "0x38" || chainid === "0x61") {
           const MintNFTContract = getMintContractTestnet();
           console.log(MintNFTContract);
           const provider = new ethers.providers.Web3Provider(ethereum);
@@ -241,7 +311,7 @@ export default function CelebrityProvider({ children }) {
             txn_test = await provider.getTransaction(Val.hash);
           }
           console.log("txn_test.blockNumber: " + txn_test.blockNumber);
-          let mint_hash = "https://bscscan.com/tx/" + Val.hash;
+          let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
           console.log("Mint link: " + mint_hash);
           const ID = await MintNFTContract.totalSupply();
           console.log("Token ID: ", ID.toString());
@@ -272,7 +342,7 @@ export default function CelebrityProvider({ children }) {
     try {
       if (ethereum) {
         const MintNFTContract = getMintContractTestnet();
-        const USDSCTokenContract = getUSDSCtokenContractMainnet();
+        const USDSCTokenContract = getUSDSCtokenContractTestnet();
         console.log(USDSCTokenContract);
         const provider = new ethers.providers.Web3Provider(ethereum);
         // const parsedAmount = ethers.utils.parseEther(data.price);
@@ -294,7 +364,7 @@ export default function CelebrityProvider({ children }) {
           payment_test = await provider.getTransaction(payment.hash);
         }
         console.log(payment_test.blockNumber);
-        let payment_hash = "https://bscscan.com/tx/" + payment.hash;
+        let payment_hash = "https://testnet.bscscan.com/tx/" + payment.hash;
         console.log("Payment link: " + payment_hash);
         // const recipient = currentAccount;
         // // const Val = await MintNFTContract.mint(uriNft, recipient);
@@ -328,13 +398,14 @@ export default function CelebrityProvider({ children }) {
         }
         const ID = await MintNFTContract.totalSupply();
         console.log(ID.toString());
-        let mint_hash = "https://bscscan.com/tx/" + Val.hash;
+        let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
         console.log("Mint link: " + mint_hash);
 
         return {
           mint_hash: mint_hash,
           ID: "10000" + ID.toString(),
           mintPrice: data.price,
+          address: USDSCtokenAddressTestnet,
         };
 
       }
@@ -369,7 +440,7 @@ export default function CelebrityProvider({ children }) {
     try {
       if (ethereum) {
         const MintNFTContract = getMintContractTestnet();
-        const USDSCTokenContract = getDSLtokenContractMainnet();
+        const USDSCTokenContract = getDSLtokenContractTestnet();
         const provider = new ethers.providers.Web3Provider(ethereum);
         // const parsedAmount = ethers.utils.parseEther(mintPrice);
         // const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
@@ -390,7 +461,7 @@ export default function CelebrityProvider({ children }) {
           payment_test = await provider.getTransaction(payment.hash);
         }
         console.log(payment_test.blockNumber);
-        let payment_hash = "https://bscscan.com/tx/" + payment.hash;
+        let payment_hash = "https://testnet.bscscan.com/tx/" + payment.hash;
         console.log("Payment link: " + payment_hash);
         // const recipient = currentAccount;
         // const Val = await MintNFTContract.mint(uriNft, recipient);
@@ -417,12 +488,13 @@ export default function CelebrityProvider({ children }) {
         }
         const ID = await MintNFTContract.totalSupply();
         console.log(ID.toString());
-        let mint_hash = "https://bscscan.com/tx/" + Val.hash;
+        let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
         console.log("Mint link: " + mint_hash);
         return {
           mint_hash: mint_hash,
           ID: "10000" + ID.toString(),
           mintPrice: data.price,
+          address: DSLtokenAddressTestnet,
         };
       }
     } catch (error) {
@@ -452,9 +524,181 @@ export default function CelebrityProvider({ children }) {
     }
   };
 
-  
+  const mintTitleNFTTestnetS39 = async (data) => {
+    try {
+      if (ethereum) {
+        const chainid = await window.ethereum.request({
+          method: "eth_chainId",
+        });
+        console.log("This is Chain ID: ", chainid);
+        if (chainid === "0x38" || chainid === "0x61") {
+          const MintNFTContract = getMintContractTestnet();
+          console.log(MintNFTContract);
+          const S39TokenContract = getS39tokenContractTestnet();
+          console.log(S39TokenContract);
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          // const price1 = await axios.get(
+          //   "https://api.pancakeswap.info/api/v2/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+          // );
+          // const price = (price1.data.data.price * mintPrice).toString();
+          // console.log(price);
+          // const parsedAmount = ethers.utils.parseEther(price);
+          // const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
+          // const gasLimit = await S39TokenContract.estimateGas.transfer(
+          //   admin,
+          //   parsedAmount._hex
+          // );
+          // const gasPrice = await await provider.getGasPrice();
+          // const payment = await S39TokenContract.transfer(
+          //   admin,
+          //   parsedAmount._hex,
+          //   { gasLimit: gasLimit, gasPrice: gasPrice }
+          // );
+          // let payment_test = await provider.getTransaction(payment.hash);
+          // while (payment_test.blockNumber === null) {
+          //   console.log("Payment In Progress...");
+          //   payment_test = await provider.getTransaction(payment.hash);
+          // }
+          // console.log(payment_test.blockNumber);
+          // let payment_hash = "https://testnet.bscscan.com/tx/" + payment.hash;
+          // console.log("Payment link: " + payment_hash);
 
+          console.log("USDC",MintNFTContract.address,
+          BigNumber.from(ethers.constants.MaxUint256))
+          const payment = await S39TokenContract.approve(
+            MintNFTContract.address,
+            BigNumber.from(ethers.constants.MaxUint256)
+          );
+          let payment_test = await provider.getTransaction(payment.hash);
+          while (payment_test.blockNumber === null) {
+            console.log("Approve In Progress...");
+            payment_test = await provider.getTransaction(payment.hash);
+          }
+          console.log(payment_test.blockNumber);
+          let payment_hash = "https://testnet.bscscan.com/tx/" + payment.hash;
+          console.log("Payment link: " + payment_hash);
   
+          const object = {
+            id: data.id,
+            price: data.price,
+            tokenAddress: data.tokenAddress,
+            refAddress: data.refAddress,
+            nonce: data.nonce,
+            uri: data.uri,
+            signature: data.signature
+          }
+          console.log("valueeee",object)
+  
+          const Val = await MintNFTContract.buyNFT(object)
+          await Val.wait()
+            let txn_test = await provider.getTransaction(Val.hash);
+          while (txn_test.blockNumber === null) {
+            console.log("Minting...");
+            txn_test = await provider.getTransaction(Val.hash);
+          }
+          console.log("txn_test.blockNumber: " + txn_test.blockNumber);
+          const ID = await MintNFTContract.totalSupply();
+          console.log("Token ID: ", ID.toString());
+          let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
+          console.log("Mint link: " + mint_hash);
+          console.log("this is Token ID: 10000" + ID.toString());
+          console.log("this is Contract Address: : " + mintAddressTestnet);
+
+          return {
+            mint_hash: mint_hash,
+            ID: "10000" + ID.toString(),
+            mintPrice: data.price,
+            address: S39tokenAddressTestnet,
+          };
+        } else {
+          console.log("No ethereum object");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error("No ethereum object");
+    }
+  };
+
+  const mintTitleNFTTestnetQuest = async (data) => {
+    try {
+      if (ethereum) {
+        const MintNFTContract = getMintContractTestnet();
+        const USDSCTokenContract = getQuesttokenContractTestnet();
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        console.log("USDC",MintNFTContract.address,
+        BigNumber.from(ethers.constants.MaxUint256))
+        const payment = await USDSCTokenContract.approve(
+          MintNFTContract.address,
+          BigNumber.from(ethers.constants.MaxUint256)
+        );
+        let payment_test = await provider.getTransaction(payment.hash);
+        while (payment_test.blockNumber === null) {
+          console.log("Approve In Progress...");
+          payment_test = await provider.getTransaction(payment.hash);
+        }
+        console.log(payment_test.blockNumber);
+        let payment_hash = "https://testnet.bscscan.com/tx/" + payment.hash;
+        console.log("Payment link: " + payment_hash);
+        const object = {
+          id: data.id,
+          price: data.price,
+          tokenAddress: data.tokenAddress,
+          refAddress: data.refAddress,
+          nonce: data.nonce,
+          uri: data.uri,
+          signature: data.signature
+        }
+        console.log("valueeee",object)
+
+        const Val = await MintNFTContract.buyNFT(object)
+        await Val.wait();
+        let txn_test = await provider.getTransaction(Val.hash);
+        if (txn_test) {
+          while (txn_test.blockNumber === null) {
+            console.log("Minting...");
+            txn_test = await provider.getTransaction(Val.hash);
+          }
+          console.log("txn_test.blockNumber: " + txn_test.blockNumber);
+        }
+        const ID = await MintNFTContract.totalSupply();
+        console.log(ID.toString());
+        let mint_hash = "https://testnet.bscscan.com/tx/" + Val.hash;
+        console.log("Mint link: " + mint_hash);
+        return {
+          mint_hash: mint_hash,
+          ID: "10000" + ID.toString(),
+          mintPrice: data.price,
+          address: QuesttokenAddressTestnet,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      console.log("No ethereum object");
+      //setRequestLoading(false);
+      if (error.code === -32603) {
+        swal({
+          title: "Attention",
+          text: "Insufficient funds for minting!",
+          icon: "warning",
+          button: "OK",
+          // dangerMode: true,
+          className: "modal_class_success",
+        });
+      } else {
+        swal({
+          title: "Attention",
+          text: "Minting Failed",
+          icon: "warning",
+          button: "OK",
+          // dangerMode: true,
+          className: "modal_class_success",
+        });
+      }
+      throw new Error("No ethereum object");
+    }
+  };
+
   // useEffect(() => {
   //     if (currentAccount && localStorage.getItem("token")) {
   //         setLoading(true);
@@ -528,12 +772,12 @@ export default function CelebrityProvider({ children }) {
           setCurrentAccount(accounts[0]);
 
           await axios
-            .post(`https://backendpub.celebrity.sg/api/v1/user/`, {
+            .post(`https://backend.celebrity.sg/api/v1/user/`, {
               walletAddress: accounts[0],
             })
             .then((res) => {
               if (res.data.user) {
-                getBalanceMainnet();
+                getBalanceTestnet();
                 setUser(res.data.user);
                 setLoading(false);
                 closeWalletModal();
@@ -569,7 +813,7 @@ export default function CelebrityProvider({ children }) {
   };
 
   const connectToCoinbase = async () => {
-    getBalanceMainnet();
+    getBalanceTestnet();
 
     if (typeof window.ethereum === "undefined") {
       // ask the user to install the extension
@@ -594,7 +838,7 @@ export default function CelebrityProvider({ children }) {
     });
     console.log("This is Chain ID: ", chainid);
     setChain(chainid);
-    if (chainid === "0x38") {
+    if (chainid === "0x61") {
       const accounts = await provider.request({
         method: "eth_requestAccounts",
       });
@@ -602,12 +846,12 @@ export default function CelebrityProvider({ children }) {
       setCurrentAccount(accounts[0]);
 
       await axios
-        .post(`https://backendpub.celebrity.sg/api/v1/user/`, {
+        .post(`https://backend.celebrity.sg/api/v1/user/`, {
           walletAddress: accounts[0],
         })
         .then((res) => {
           if (res.data.user) {
-            getBalanceMainnet();
+            getBalanceTestnet();
             setUser(res.data.user);
             setLoading(false);
             closeCoinbaseModal();
@@ -616,9 +860,11 @@ export default function CelebrityProvider({ children }) {
             wrapper.innerHTML = `<p class='text-break text-white fs-6'>You have succesfully logged in with <br/>Coin Base.</p>`;
             return swal({
               title: "Success",
+              // text: "You have succesfully logged in with Binance Chain.",
               content: wrapper,
               icon: "success",
               button: "OK",
+              // dangerMode: true,
               className: "modal_class_success",
             });
           }
@@ -627,7 +873,7 @@ export default function CelebrityProvider({ children }) {
       console.log("Please Switch to Binance Chain");
       swal({
         title: "Attention",
-        text: "Please change to Binance Chain (Mainnet) before connecting.",
+        text: "Please change to Binance Chain (Testnet) before connecting.",
         icon: "warning",
         button: "OK",
         dangerMode: true,
@@ -637,7 +883,7 @@ export default function CelebrityProvider({ children }) {
   };
 
   const connectToMetamask = async () => {
-    getBalanceMainnet();
+    getBalanceTestnet();
     if (typeof window.ethereum === "undefined") {
       // ask the user to install the extension
       return swal({
@@ -664,7 +910,7 @@ export default function CelebrityProvider({ children }) {
         });
         console.log("This is Chain ID: ", chainid);
         setChain(chainid);
-        if (chainid === "0x38") {
+        if (chainid === "0x61") {
           const accounts = await provider.request({
             method: "eth_requestAccounts",
           });
@@ -672,13 +918,13 @@ export default function CelebrityProvider({ children }) {
           setCurrentAccount(accounts[0]);
 
           await axios
-            .post(`https://backendpub.celebrity.sg/api/v1/user/`, {
+            .post(`https://backend.celebrity.sg/api/v1/user/`, {
               walletAddress: accounts[0],
             })
             .then((res) => {
               if (res.data.user) {
                 setUser(res.data.user);
-                getBalanceMainnet();
+                getBalanceTestnet();
 
                 setLoading(false);
                 closeWalletModal();
@@ -700,7 +946,7 @@ export default function CelebrityProvider({ children }) {
           console.log("Please Switch to Binance Chain");
           swal({
             title: "Attention",
-            text: "Please change to Binance Chain (Mainnet) before connecting.",
+            text: "Please change to Binance Chain (Testnet) before connecting.",
             icon: "warning",
             button: "OK",
             dangerMode: true,
@@ -792,12 +1038,19 @@ export default function CelebrityProvider({ children }) {
         metamaskBalanceLoading,
         setMetamaskBalanceLoading,
         getBalanceMainnet,
+        mintTitleNFTTestnetS39,
+        mintTitleNFTTestnetQuest,
         connectToMetamask,
         connectToCoinbase,
         coinbaseModal,
         openCoinbaseModal,
         closeCoinbaseModal,
+
         mintAddressTestnet,
+        DSLtokenAddressTestnet,
+        USDSCtokenAddressTestnet,
+        S39tokenAddressTestnet,
+        QuesttokenAddressTestnet,
         signBuyFunction,
         searchNftTitle,
         setSearchResults,

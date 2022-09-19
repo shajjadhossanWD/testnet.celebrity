@@ -15,7 +15,7 @@ const ResetPassword = () => {
         e.preventDefault();
         const newPassword = e.target.password.value;
 
-        axios.post("https://backendpub.celebrity.sg/api/v1/admin/reset-password/", { newPassword }, {
+        axios.post("https://backend.celebrity.sg/api/v1/admin/reset-password/", { newPassword }, {
             headers: {
                 'authorization': `Bearer ${token}`
             }

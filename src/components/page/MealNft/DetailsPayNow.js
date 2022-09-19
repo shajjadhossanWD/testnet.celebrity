@@ -107,7 +107,7 @@ function DetailsPayNow({ expiryTimestamp }) {
 
 
     useEffect(() => {
-        axios.get("https://backendpub.celebrity.sg/api/v1/mint/mint-nft")
+        axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
             .then(res => {
                 setAllAvailable(res.data);
             });
@@ -119,7 +119,7 @@ function DetailsPayNow({ expiryTimestamp }) {
 
     //get minted nft data
     useEffect(() => {
-        axios.get("https://backendpub.celebrity.sg/api/v1/mint/mint-nft")
+        axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
             .then(res => {
                 setLatestNft(res.data[0].certificate);
                 console.log(res.data[0].certificate);
@@ -129,7 +129,7 @@ function DetailsPayNow({ expiryTimestamp }) {
 
     // console.log(allAvailable.length);
     useEffect(() => {
-        axios.get(`https://backendpub.celebrity.sg/api/nft/${mealnId}`)
+        axios.get(`https://backend.celebrity.sg/api/nft/${mealnId}`)
             .then(res => {
                 setDetails(res.data?.nft);
                 setDateCount(res.data?.nft?.startDate);
@@ -158,7 +158,7 @@ function DetailsPayNow({ expiryTimestamp }) {
 
     useEffect(() => {
         const todayDate = new Date();
-        axios.get("https://backendpub.celebrity.sg/api/nft/allmeal")
+        axios.get("https://backend.celebrity.sg/api/nft/allmeal")
             .then(res => {
                 setNftData(res.data.nft);
                 const filtering = res.data.nft.filter(items => items.isDraft === false && items._id != mealnId && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
@@ -240,7 +240,7 @@ function DetailsPayNow({ expiryTimestamp }) {
         if (email1.length > 0 && email1.includes("@" && ".")) {
             // setLoading(true);
             setEmailVerify(true);
-            await axios.post('https://backendpub.celebrity.sg/api/v1/verifymint/mail', {
+            await axios.post('https://backend.celebrity.sg/api/v1/verifymint/mail', {
                 email: email1
             }).then(res => {
                 if (res.status === 200) {
@@ -523,7 +523,7 @@ function DetailsPayNow({ expiryTimestamp }) {
         console.log(sendMail);
 
 
-        axios.post("https://backendpub.celebrity.sg/api/v1/verifymint/send-user", {
+        axios.post("https://backend.celebrity.sg/api/v1/verifymint/send-user", {
             NFTID, type, date, name, image, price, venue, email
         }, {
             // headers: {
@@ -576,7 +576,7 @@ function DetailsPayNow({ expiryTimestamp }) {
         data.append('venue', isDetails.venue);
         data.append('token', isDetails.token);
 
-        await axios.post('https://backendpub.celebrity.sg/api/v1/mint/uri-json-nft', data, {
+        await axios.post('https://backend.celebrity.sg/api/v1/mint/uri-json-nft', data, {
             // headers: {
             //   Authorization: `Bearer ${localStorage.getItem("token")}`
             // }
@@ -614,7 +614,7 @@ function DetailsPayNow({ expiryTimestamp }) {
                     }
                     data.append("mint_hash", Obj.mint_hash);
                     console.log(data);
-                    await axios.post("https://backendpub.celebrity.sg/api/v1/mint/save-nft", data2, {
+                    await axios.post("https://backend.celebrity.sg/api/v1/mint/save-nft", data2, {
                         // headers: {
                         //   Authorization: `Bearer ${localStorage.getItem("token")}`
                         // }
@@ -711,7 +711,7 @@ function DetailsPayNow({ expiryTimestamp }) {
 
     // Referal code discount
     useEffect(() => {
-        axios.get('https://backendpub.celebrity.sg/api/v1/user/all')
+        axios.get('https://backend.celebrity.sg/api/v1/user/all')
             .then(res => {
                 setAllUsers(res.data);
             })
@@ -784,7 +784,7 @@ function DetailsPayNow({ expiryTimestamp }) {
       openWalletModal();
     } else {
       console.log(id)
-      fetch('https://backendpub.celebrity.sg/api/nft/like', {
+      fetch('https://backend.celebrity.sg/api/nft/like', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -813,7 +813,7 @@ function DetailsPayNow({ expiryTimestamp }) {
       openWalletModal();
     } else {
       console.log(id)
-      fetch('https://backendpub.celebrity.sg/api/nft/unlike', {
+      fetch('https://backend.celebrity.sg/api/nft/unlike', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

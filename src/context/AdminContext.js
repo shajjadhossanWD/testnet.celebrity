@@ -10,7 +10,7 @@ export default function AdminProvider({ children }) {
     const [isAuthenticating, setIsAuthenticating] = useState(false);
     // console.log(localStorage)
     useEffect(() => {
-        axios.get("https://backendpub.celebrity.sg/api/v1/admin/currentAdmin", {
+        axios.get("https://backend.celebrity.sg/api/v1/admin/currentAdmin", {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
             }
@@ -30,7 +30,7 @@ export default function AdminProvider({ children }) {
 
 
     const login = async (email, password) => {
-        await axios.post('https://backendpub.celebrity.sg/api/v1/admin/login', {
+        await axios.post('https://backend.celebrity.sg/api/v1/admin/login', {
             email,
             password
         })
@@ -56,7 +56,7 @@ export default function AdminProvider({ children }) {
     }
 
     const verifyOtp = async (otp) => {
-        await axios.post('https://backendpub.celebrity.sg/api/v1/admin/verify-otp/', {
+        await axios.post('https://backend.celebrity.sg/api/v1/admin/verify-otp/', {
             otp
         }, {
             headers: {

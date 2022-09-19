@@ -99,7 +99,7 @@ const DashboardAddNft = () => {
         formData.append('image', image)
 
 
-        await axios.post('https://backendpub.celebrity.sg/api/nft/add', formData, {
+        await axios.post('https://backend.celebrity.sg/api/nft/add', formData, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('token')}`
             }

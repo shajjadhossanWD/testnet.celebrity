@@ -49,7 +49,7 @@ const DashboardModalNewAdmin = (props) => {
         formDataAddAdmin.append('image', image)
         formDataAddAdmin.append('password', password)
 
-        await axios.post("https://backendpub.celebrity.sg/api/v1/admin/", formDataAddAdmin, {
+        await axios.post("https://backend.celebrity.sg/api/v1/admin/", formDataAddAdmin, {
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
             }

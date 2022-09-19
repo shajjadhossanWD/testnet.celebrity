@@ -33,7 +33,7 @@ const Login = () => {
 
         login(email, password);
 
-        // axios.post("https://backendpub.celebrity.sg/api/v1/admin/login", {
+        // axios.post("https://backend.celebrity.sg/api/v1/admin/login", {
         //     email, password
         // })
         //     .then(res => {
@@ -141,7 +141,7 @@ export default Login;
 //         const email = e.target.email.value;
 //         const password = e.target.password.value;
 
-//         axios.post("https://backendpub.celebrity.sg/api/v1/admin/login", {
+//         axios.post("https://backend.celebrity.sg/api/v1/admin/login", {
 //             email, password
 //         })
 //             .then(res => {

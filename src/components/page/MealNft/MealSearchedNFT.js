@@ -15,14 +15,14 @@ const MealSearchedNFT = () => {
   const todayDate = new Date();
 
   useEffect(() => {
-    axios.get("https://backendpub.celebrity.sg/api/v1/mint/mint-nft")
+    axios.get("https://backend.celebrity.sg/api/v1/mint/mint-nft")
       .then(res => {
         setAllAvailable(res.data);
       });
   }, [])
 
   useEffect(() => {
-    axios.get("https://backendpub.celebrity.sg/api/nft/allmeal")
+    axios.get("https://backend.celebrity.sg/api/nft/allmeal")
       .then(res => {
         const filtering = res.data?.nft?.filter(items => items?.isDraft === false && new Date(`${items?.purchaseDate.slice(5, 7)}/${items?.purchaseDate.slice(8, 10)}/${items?.purchaseDate.slice(0, 4)}`) > todayDate);
         setIsMeal(filtering);
@@ -41,7 +41,7 @@ const MealSearchedNFT = () => {
       openWalletModal();
     } else {
       console.log(id)
-      fetch('https://backendpub.celebrity.sg/api/nft/like', {
+      fetch('https://backend.celebrity.sg/api/nft/like', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const MealSearchedNFT = () => {
       openWalletModal();
     } else {
       console.log(id)
-      fetch('https://backendpub.celebrity.sg/api/nft/unlike', {
+      fetch('https://backend.celebrity.sg/api/nft/unlike', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

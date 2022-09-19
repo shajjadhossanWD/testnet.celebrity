@@ -16,7 +16,7 @@ const DashboardAdmin = () => {
     const [refetch, setRefetch] = useState(false);
 
     useEffect(() => {
-        fetch("https://backendpub.celebrity.sg/api/v1/admin/")
+        fetch("https://backend.celebrity.sg/api/v1/admin/")
             .then(res => res.json())
             .then(data => setAllAdmin(data))
     }, [refetch])
@@ -33,7 +33,7 @@ const DashboardAdmin = () => {
 
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://backendpub.celebrity.sg/api/v1/admin/${id}`, {
+                axios.delete(`https://backend.celebrity.sg/api/v1/admin/${id}`, {
                     headers: {
                         'authorization': `Bearer ${localStorage.getItem('adminCelebrity')}`
                     }
@@ -93,7 +93,7 @@ const DashboardAdmin = () => {
                             {
                                 allAdmin?.map(admin => <tr admin={admin} key={admin._id} className='tableRow'>
                                     <td align='center'>
-                                        {admin?.avatar ? <img className='imgAdmin' src={`https://backendpub.celebrity.sg/${admin.avatar}`} alt="profilePic" /> : <img className='imgAdmin' src="https://backendpub.celebrity.sg/assets/1660396587217.jpeg" alt="profilePic" />}
+                                        {admin?.avatar ? <img className='imgAdmin' src={`https://backend.celebrity.sg/${admin.avatar}`} alt="profilePic" /> : <img className='imgAdmin' src="https://backend.celebrity.sg/assets/1660396587217.jpeg" alt="profilePic" />}
                                     </td>
                                     <td style={{ textTransform: 'lowercase' }} className='text-start'>{admin?.username}</td>
                                     <td className='text-start adminHidden'>{admin?.email}</td>
