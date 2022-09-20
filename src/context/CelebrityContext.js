@@ -21,7 +21,7 @@ import {
   S39tokenABITestnet,
   QuesttokenAddressTestnet,
   QuesttokenABITestnet,
-  private_key,
+  // private_key,
   RPC,
   chainId
 } from "../utils/constant";
@@ -122,27 +122,27 @@ const getAllItemBlockchain = async () => {
   };
 };
 
-const genSignature = async (types, voucher, auth) => {
-  const domain = {
-    name: "NFT-Voucher",
-    version: "1",
-    verifyingContract: auth.contract,
-    chainId: chainId
-  };
-  const BuyNFTVoucher = {
-    id: voucher.id,
-    price: voucher.price,
-    tokenAddress: voucher.tokenAddress,
-    nonce: voucher.nonce
-  };
+// const genSignature = async (types, voucher, auth) => {
+//   const domain = {
+//     name: "NFT-Voucher",
+//     version: "1",
+//     verifyingContract: auth.contract,
+//     chainId: chainId
+//   };
+  // const BuyNFTVoucher = {
+  //   id: voucher.id,
+  //   price: voucher.price,
+  //   tokenAddress: voucher.tokenAddress,
+  //   nonce: voucher.nonce
+  // };
 
-  const signature = await auth.signer._signTypedData(domain, types, BuyNFTVoucher);
+//   const signature = await auth.signer._signTypedData(domain, types, BuyNFTVoucher);
 
-  return {
-    ...voucher,
-    signature,
-  };
-};
+//   return {
+//     ...voucher,
+//     signature,
+//   };
+// };
 
 const signBuyFunction = async (id, price, tokenAddress, refAddress, uri) => {
   

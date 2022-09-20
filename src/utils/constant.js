@@ -5,10 +5,10 @@ import dslmainnet from "./DSLMainnet.json";
 import usdsc from "./USDSC.json";
 import S39 from "./S39.json";
 import Quest from "./Quest.json";
-export const mintAddressTestnet = "0xb6720F00c4ce661FE3bEC23eD7d59Bc6D038655F";
+export const mintAddressTestnet = "0xe799aB223c484c40d9A3a823e721516B39628774";
 export const mintABITestnet = mint.abi;
 
-export const private_key = "6fceaa9bd7f352b9258617e7710d7112fa28b73b19d0cdb45320a187c7d076de";
+// export const private_key = "6fceaa9bd7f352b9258617e7710d7112fa28b73b19d0cdb45320a187c7d076de";
 
 export const RPC = "https://data-seed-prebsc-1-s1.binance.org:8545";
 
