@@ -5,7 +5,7 @@ import dslmainnet from "./DSLMainnet.json";
 import usdsc from "./USDSC.json";
 import S39 from "./S39.json";
 import Quest from "./Quest.json";
-export const mintAddressTestnet = "0xe799aB223c484c40d9A3a823e721516B39628774";
+export const mintAddressTestnet = "0x10Bbb1c23dd6334503B893CDF0ae8e784b2346A3";
 export const mintABITestnet = mint.abi;
 
 // export const private_key = "6fceaa9bd7f352b9258617e7710d7112fa28b73b19d0cdb45320a187c7d076de";
