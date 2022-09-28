@@ -440,7 +440,8 @@ export default function CelebrityProvider({ children }) {
     try {
       if (ethereum) {
         const MintNFTContract = getMintContractTestnet();
-        const USDSCTokenContract = getDSLtokenContractTestnet();
+        const DSLTokenContract = getDSLtokenContractTestnet();
+        console.log(DSLTokenContract);
         const provider = new ethers.providers.Web3Provider(ethereum);
         // const parsedAmount = ethers.utils.parseEther(mintPrice);
         // const admin = "0x626D20125da6a371aA48023bF9dad94BD66588F7";
@@ -451,7 +452,7 @@ export default function CelebrityProvider({ children }) {
         // const gasPrice = await await provider.getGasPrice();
         console.log("USDC",MintNFTContract.address,
         BigNumber.from(ethers.constants.MaxUint256))
-        const payment = await USDSCTokenContract.approve(
+        const payment = await DSLTokenContract.approve(
           MintNFTContract.address,
           BigNumber.from(ethers.constants.MaxUint256)
         );
@@ -480,6 +481,13 @@ export default function CelebrityProvider({ children }) {
         await Val.wait()
         let txn_test = await provider.getTransaction(Val.hash);
         if (txn_test) {
+          const wrapper = document.createElement("div");
+          wrapper.innerHTML = `<p></p><div class="loaders"></div> <p class="wait"><b>Transaction Pending...<b></p> `;
+          swal({
+            content: wrapper,
+            button: false,
+            className: "modal_class_success",
+          });
           while (txn_test.blockNumber === null) {
             console.log("Minting...");
             txn_test = await provider.getTransaction(Val.hash);
