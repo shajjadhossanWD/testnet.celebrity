@@ -19,7 +19,7 @@ export const USDSCtokenAddressTestnet =
 export const USDSCtokenABITestnet = token.abi;
 
 export const DSLtokenAddressTestnet =
-  " 0x203507762cF4B63bFEF530a87497c7F5FDad7b0B";
+  "0x203507762cF4B63bFEF530a87497c7F5FDad7b0B";
 export const DSLtokenABITestnet = dsltestnet.abi;
 
 export const USDSCtokenAddressMainnet =
