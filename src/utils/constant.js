@@ -15,11 +15,11 @@ export const RPC = "https://data-seed-prebsc-1-s1.binance.org:8545";
 export const chainId = "97";
 
 export const USDSCtokenAddressTestnet =
-  "0x474DeB3F462A5A86B885AadB4Ed22D5bBA93eAbb";
+  "0x8d671b650248B4BfaF411CB36Cc1C8bD8429F2A3";
 export const USDSCtokenABITestnet = token.abi;
 
 export const DSLtokenAddressTestnet =
-  "0xb1eCd4C8C6EEF40EF4EB6a066821C7b3227083d5";
+  " 0x203507762cF4B63bFEF530a87497c7F5FDad7b0B";
 export const DSLtokenABITestnet = dsltestnet.abi;
 
 export const USDSCtokenAddressMainnet =
@@ -31,9 +31,9 @@ export const DSLtokenAddressMainnet =
 export const DSLtokenABIMainnet = dslmainnet.abi;
 
 export const S39tokenAddressTestnet =
-  "0x98a094ae9CB1f770cA0f800588B09e4729f2CDaD";
+  "0x80aAeA2450F81a67fcEB2dEDABCbC57ebF346Ee7";
 export const S39tokenABITestnet = S39.abi;
 
 export const QuesttokenAddressTestnet =
-  "0x01461B5EB656Bb3735Ea3bBED3760628Ad507D02";
+  " 0x5C6e946b94b2c79563b1fB2B73bD60bB7bd0Cf5B";
 export const QuesttokenABITestnet = Quest.abi;
